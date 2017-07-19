@@ -1,7 +1,7 @@
 language: node_js
 branches:
   only:
-    - source #源码分支名称
+    - blog-source #源码分支名称
 before_install:
   - npm install -g hexo
   - npm install -g hexo-cli

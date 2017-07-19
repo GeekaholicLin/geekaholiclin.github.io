@@ -7,6 +7,8 @@ branches:
 before_install:
   - npm install -g hexo
   - npm install -g hexo-cli
+  - wget https://github.com/jgm/pandoc/releases/download/1.19.2.1/pandoc-1.19.2.1-1-amd64.deb
+  - sudo dpkg -i pandoc-1.19.2.1-1-amd64.deb
 before_script:
   - git config --global user.name 'GeekaholicLin'
   - git config --global user.email 'geekaholiclin@gmail.com'

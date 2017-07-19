@@ -1,0 +1,22 @@
+language: node_js
+branches:
+  only:
+    - source #源码分支名称
+before_install:
+  - npm install -g hexo
+  - npm install -g hexo-cli
+before_script:
+  - git config --global user.name 'GeekaholicLin'
+  - git config --global user.email 'geekaholiclin@gmail.com'
+  - sed -i'' "s~git@github.com:GeekaholicLin/geekaholiclin.github.io.git~https://${TOKEN}:x-oauth-basic@github.com/GeekaholicLin/geekaholiclin.github.io.git~" _config.yml
+install:
+  - npm install
+script:
+  - hexo clean
+  - hexo generate
+after_success:
+  - hexo deploy
+env:
+  global:
+    - REPO: github.com/GeekaholicLin/geekaholiclin.github.io.git
+

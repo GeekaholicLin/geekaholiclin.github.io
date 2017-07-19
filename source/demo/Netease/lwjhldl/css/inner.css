@@ -1,0 +1,265 @@
+a, area {
+    outline: none;
+    cursor: hand;
+}
+
+#wrap {
+    min-width: 1280px;
+    max-width: 1920px;
+    margin: 0 auto;
+    z-index: 10;
+    background-color: #F6F5FD;
+}
+
+
+#container {
+    position: relative;
+    background: url(../img/top.jpg) no-repeat center top;
+    width: 100%;
+    margin: 0 auto;
+    background-color: #F6F5FD;
+}
+/*innerwrap必须在containner之后，解决多背景问题*/
+#innerwrap{
+    background: url(../img/bottom.jpg) no-repeat scroll center bottom ;
+}
+
+#top{
+    position: relative;
+    width: 1200px;
+    margin: 0 auto;
+    height: 685px;
+}
+#main {
+    position: relative;
+    width: 1200px;
+    margin: 0 auto;
+}
+
+/*==nav导航 start==*/
+.nav {
+    position: absolute;
+    width: 359px;
+    height: 33px;
+    right: 100px;
+    top: 24px;
+}
+
+.nav > a, #NIE-share .NIE-share-txt, #NIE-share .NIE-share-iconBtn a {
+    font-size: 14px;
+    color: #797584;
+    text-align: center;
+    height: 34px;
+    line-height: 34px;
+}
+#NIE-share .NIE-share-iconBtn a{
+}
+
+.nav > a {
+    text-decoration: none;
+    margin-left: 14px;
+}
+
+.nav > a > span {
+    margin: 0 3px 0 5px;
+}
+
+#NIE-share {
+    position: absolute;
+    right: 7px;
+    top: 0
+}
+
+#NIE-share .NIE-share-iconBtn a {
+    font-size: 23px
+}
+
+.nav > a:hover, #NIE-share .NIE-share-iconBtn a:hover {
+    color: #725BB5;
+}
+
+/*==nav导航 end==*/
+/*==logo==*/
+#logo {
+    display: block;
+    position: absolute;
+    background-image: url("../img/logo.png");
+   width: 265px;
+    height: 102px;
+    left: 207px;
+    top: 65px;
+}
+
+/*==logo end==*/
+#top > .download {
+    display: block;
+    position: absolute;
+    background: url(../img/download.png) 0 0 no-repeat;
+    width: 256px;
+    height: 61px;
+    top: 349px;
+    left: 457px;
+}
+
+#top > .download:hover {
+    background-position: -257px 0;
+}
+
+.navbarwrap{
+    position: absolute;
+    height: 88px;
+    width: 100%;
+    text-align: center;
+    z-index: 999;
+    top: 496px;
+}
+#navbar{
+    display: inline-block;
+    top:495px;
+    left:0;
+    *display:inline; /* IE6、7 block 元素 */
+    *zoom:1;/* IE6、7 block 元素 */
+}
+#navbar:after{
+    content: ".";
+    display: block;
+    height: 0;
+    width: 0;
+    visibility: hidden;
+}
+
+#navbar > ul >li{
+    float: left;
+    height: 80px;
+    background: url(../img/divider.png) no-repeat center right;
+    padding:0 20px;
+}
+#navbar  .item{
+    display: inline-block;
+    height: 80px;
+    font-size: 30px;
+    font-weight: bold;
+    line-height: 80px;
+    color: #FFFFFF;
+    margin: 0 auto;
+    text-decoration: none;
+    text-align: center;
+    padding:0 20px;
+    /**display:inline; /!* IE6、7 block 元素 *!/*/
+    /**zoom:1;/!* IE6、7 block 元素 *!/*/
+}
+#navbar .item:hover,#navbar .selected{
+    color: #FBF006;
+    border-bottom: 8px solid #FBF006;
+}
+a.homebtn{
+    display: block;
+    position: absolute;
+    background: url(../img/back.png) no-repeat 0 -144px;
+    top:616px;
+    right: 0;
+    width: 116px;
+    height: 42px;
+}
+a.homebtn:hover{
+    background-position: 0 -188px;
+}
+
+/*==content start==*/
+#content{
+    padding-top: 30px;
+    background-color: #F5F5F5;
+    width: 1000px;
+    margin: 0 auto;
+    min-height: 377px;
+    padding-bottom: 100px;
+    text-align: center;
+}
+#content > h3{
+    display: inline-block;
+    *display:inline;
+    *zoom:1;
+    padding-left: 52px;
+    background:url(../img/lb.png) no-repeat center left;
+    height: 38px;
+    line-height: 38px;
+    color: #444444;
+    font-size: 38px;
+    font-weight: bold;
+    margin-bottom: 88px;
+    text-align: left;
+}
+
+/*修复IE7下小标题h4居中*/
+#content > .fix{
+    text-align: left;
+}
+#content > .content-section{
+    margin-bottom: 40px;
+}
+
+.content-section > h4{
+    background-image: url(../img/titlebg.png);
+    width: 174px;
+    height: 44px;
+    line-height: 44px;
+    font-size: 27px;
+    font-weight: bold;
+    color: #6700E4;
+    margin-bottom: 35px;
+    text-align: center;
+}
+
+.content-section > .info{
+    padding: 0 36px;
+    text-align: left;
+    color: #2D2D2D;
+    margin-bottom: 40px;
+    font-size: 14px;
+    line-height: 30px;
+}
+
+.content-section > .info p,.content-section > .info > .lightBox{
+    margin-bottom: 30px;
+}
+
+/*通过外套块级元素进行图像居中*/
+.light{
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+/*==content end==*/
+#totop{
+    position: fixed;
+    display: block;
+    width:50px;
+    height: 142px;
+    background: url(../img/back.png) no-repeat scroll -52px 0;
+    right: 100px;
+    bottom: 160px;
+    z-index: 9999;
+}
+#totop:hover{
+    background-position: 0 0;
+}
+/*==footer==*/
+#footer {
+    width: 100%;
+    max-width: 1920px;
+    background-color: #000000;
+    text-align: center;
+    padding-top: 50px;
+    margin: 0 auto;
+}
+
+#NIE-copyRight {
+    height: 100px
+}
+
+#NIE-copyRight, #NIE-copyRight a {
+    color: #B4181E
+}
+#ncp-l2{
+    color: #FFFFFF;
+}

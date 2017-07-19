@@ -1,0 +1,20 @@
+<%
+    var base = '/css/base';
+    var needed = '';
+    var comment = '';
+    if (is_home()) {
+        needed = '/css/pages/article-exp';
+    } else if (is_post()) {
+        needed = '/css/pages/post';
+        if(theme.gitment.enable){
+          comment = "/css/pages/comments";
+        }
+    } else if (is_archive() || is_tag() || is_category()) {
+        needed = '/css/pages/archive';
+    } else {
+        needed = '/css/pages/othersPages'
+    }
+    var _fontAwe = theme.fontAwesome || '/css/thirdParty/font-awesome.min.css';
+    var _highlight = '/css/thirdParty/highlight/'+theme.highlightStyle;
+%>
+<%- css([base, needed, _fontAwe, _highlight,comment]) %>

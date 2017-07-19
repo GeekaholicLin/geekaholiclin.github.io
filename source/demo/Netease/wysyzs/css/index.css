@@ -1,0 +1,668 @@
+a, area {
+    outline: none;
+    cursor: hand;
+}
+
+#wrap {
+    position: relative;
+    min-width: 1280px;
+    max-width: 1902px;
+    margin: 0 auto;
+    background-color: #000000;
+}
+
+#container {
+    position: relative;
+    background: url(../img/bg.jpg) no-repeat center top;
+    background-color: #000000;
+    width: 100%;
+    margin: 0 auto;
+    min-height: 1222px;
+}
+
+#main {
+    position: relative;
+    width: 1280px;
+    margin: 0 auto
+}
+
+#top {
+    position: relative;
+    height: 113px;
+}
+
+#content {
+    padding-top: 25px;
+    position: relative;
+    height: 1191px;
+}
+
+/*==slide==*/
+/*点*/
+.swiper-slide .dot {
+    position: absolute;
+    display: block;
+    background: url(../img/dot.png) no-repeat;
+    width: 46px;
+    height: 46px;
+}
+
+
+/*线*/
+.swiper-slide .line {
+    position: absolute;
+    display: block;
+}
+
+/*按钮*/
+.swiper-slide .btn {
+    position: absolute;
+    display: block;
+}
+
+
+#slidewrap, #slidewrap .swiper-container, #slidewrap .swiper-wrapper {
+    position: relative;
+    margin: 0 auto;
+    overflow: hidden;
+    /*background: rgba(0, 0, 0, 0) url("../img/1.png") no-repeat scroll -72px 79px;/!*用来定位1*!/*/
+    /*background: rgba(0, 0, 0, 0) url("../img/2.png") no-repeat scroll 19px 64px; /!*用来定位2*!/*/
+    /*background: rgba(0, 0, 0, 0) url("../img/3.png") no-repeat scroll 57px -40px; /!*用来定位3*!/*/
+
+}
+
+.swiper-slide.first {
+    /*display: none;*/
+    position: relative;
+    width: 1280px;
+    height: 620px;
+}
+
+.swiper-slide.second {
+    /*display: none;*/
+    position: relative;
+    width: 1280px;
+    height: 620px;
+}
+
+.swiper-slide.third {
+    position: relative;
+    width: 1280px;
+    height: 620px;
+}
+
+/*========================*/
+/*slide1*/
+.swiper-slide.first .monitor {
+    position: absolute;
+    background: url(../img/content1.png) no-repeat center center;
+    height: 490px;
+    width: 1208px;
+    top: 80px;
+    left: 168px
+}
+
+/*省流量*/
+
+.sll > .dot {
+    left: 915px;
+    top: 457px;
+}
+
+.sll > .line {
+    background: url(../img/line_sll.png) no-repeat;
+    left: 924px;
+    top: 460px;
+    width: 133px;
+    height: 41px;
+}
+
+.sll > .btn {
+    background: url(../img/sll.png);
+    left: 1009px;
+    top: 352px;
+    width: 187px;
+    height: 193px;
+}
+
+/*省电量*/
+.sdl > .dot {
+    left: 283px;
+    top: 244px;
+}
+
+.sdl > .line {
+    background: url(../img/line_sdl.png) no-repeat;
+    left: 230px;
+    top: 222px;
+    width: 98px;
+    height: 65px;
+}
+
+.sdl > .btn {
+    background: url(../img/sdl.png);
+    left: 113px;
+    top: 126px;
+    width: 160px;
+    height: 167px;
+}
+
+/*大屏幕*/
+.dpm > .dot {
+    left: 296px;
+    top: 410px;
+}
+
+.dpm > .line {
+    background: url(../img/line_dpm.png) no-repeat;
+    left: 236px;
+    top: 410px;
+    width: 106px;
+    height: 67px;
+}
+
+.dpm > .btn {
+    background: url(../img/dpm.png);
+    left: -73px;
+    top: 238px;
+    width: 438px;
+    height: 441px;
+}
+
+/*挂机爽*/
+.gjs > .dot {
+    left: 913px;
+    top: 240px;
+}
+
+.gjs > .line {
+    background: url(../img/line_gjs.png) no-repeat;
+    left: 938px;
+    top: 223px;
+    width: 132px;
+    height: 42px;
+}
+
+.gjs > .btn {
+    background: url(../img/gjs.png);
+    left: 1024px;
+    top: 100px;
+    width: 142px;
+    height: 142px;
+}
+
+/*========================*/
+/*slide2*/
+.swiper-slide.second .monitor {
+    position: absolute;
+    background: url(../img/content2.png) no-repeat center center;
+    height: 490px;
+    width: 1262px;
+    top: 80px;
+    left: 136px;
+}
+
+/*全球首发*/
+.qqsf > .dot {
+    left: 268px;
+    top: 149px;
+}
+
+.qqsf > .line {
+    background: url(../img/line_qqsf.png) no-repeat;
+    left: 215px;
+    top: 152px;
+    width: 88px;
+    height: 39px;
+}
+
+.qqsf > .btn {
+    background: url(../img/qqsf.png);
+    left: 19px;
+    top: 64px;
+    width: 217px;
+    height: 169px;
+}
+
+/*完美兼容*/
+.wmjr > .dot {
+    background: url(../img/jrtxt.png) no-repeat;
+    width: 218px;
+    height: 84px;
+    left: 265px;
+    top: 385px;
+}
+
+.wmjr > .line {
+    background: url(../img/line_jr.png) no-repeat;
+    left: 185px;
+    top: 388px;
+    width: 118px;
+    height: 125px;
+}
+
+.wmjr > .btn {
+    background: url(../img/wmjr.png);
+    left: 37px;
+    top: 382px;
+    width: 191px;
+    height: 193px;
+}
+
+/*安全保障*/
+.aqbz > .dot {
+    left: 954px;
+    top: 273px;
+}
+
+.aqbz > .line {
+    background: url(../img/line_anq.png) no-repeat;
+    left: 961px;
+    top: 276px;
+    width: 97px;
+    height: 39px;
+}
+
+.aqbz > .btn {
+    background: url(../img/aqbz.png);
+    left: 1021px;
+    top: 192px;
+    width: 263px;
+    height: 150px;
+}
+
+/*网易精选*/
+.wyjx > .dot {
+    left: 600px;
+    top: 196px;
+}
+
+.wyjx > .line {
+    background: url(../img/line_wyjx.png) no-repeat;
+    left: 516px;
+    top: 219px;
+    width: 103px;
+    height: 1px;
+}
+
+.wyjx > .btn {
+    background: url(../img/content2con.png);
+    left: 378px;
+    top: 206px;
+    width: 177px;
+    height: 177px;
+}
+
+/*========================*/
+/*slide3*/
+.swiper-slide.third .monitor {
+    position: absolute;
+    background: url(../img/content3.png) no-repeat center center;
+    width: 1262px;
+    height: 490px;
+    top: 80px;
+    left: 135px;
+}
+
+/*键位自定义*/
+
+.jwzdy > .btn {
+    background: url(../img/jwzdy.png);
+    left: 58px;
+    top: 170px;
+    width: 194px;
+    height: 205px;
+}
+
+/*一键截屏*/
+.yjjp > .dot {
+    left: 583px;
+    top: 461px;
+}
+
+.yjjp > .line {
+    background: url(../img/line_yjjp.png) no-repeat;
+    width: 376px;
+    height: 59px;
+    left: 247px;
+    top: 468px;
+}
+
+.yjjp > .btn {
+    background: url(../img/yjjp.png) no-repeat;
+    left: 144px;
+    top: 431px;
+    width: 129px;
+    height: 131px;
+}
+
+/*老板键*/
+.lbj > .dot {
+    left: 807px;
+    top: 302px;
+}
+
+.lbj > .line {
+    background: url(../img/line_.png) no-repeat;
+    left: 816px;
+    top: 181px;
+    width: 263px;
+    height: 163px;
+}
+
+.lbj > .btn {
+    background: url(../img/lbj.png);
+    left: 909px;
+    top: -40px;
+    width: 346px;
+    height: 348px;
+}
+
+/*分辨率*/
+.fbl > .dot {
+    left: 858px;
+    top: 345px;
+}
+
+.fbl > .line {
+    background: url(../img/line_dip.png) no-repeat;
+    left: 866px;
+    top: 329px;
+    width: 258px;
+    height: 59px;
+}
+
+.fbl > .btn {
+    background: url(../img/fblsjs.png);
+    left: 1090px;
+    top: 253px;
+    width: 162px;
+    height: 162px;
+}
+
+/*apk安装*/
+.apk > .dot {
+    left: 778px;
+    top: 462px;
+}
+
+.apk > .line {
+    background: url(../img/line_apk.png) no-repeat;
+    left: 784px;
+    top: 468px;
+    width: 301px;
+    height: 59px;
+}
+
+.apk > .btn {
+    background: url(../img/apk.png);
+    left: 1057px;
+    top: 431px;
+    width: 128px;
+    height: 131px;
+}
+
+/*==下载按钮==*/
+#content .download {
+    display: block;
+    position: absolute;
+    top: 642px;
+    width: 100%;
+    height: 131px;
+}
+.download > .zsb:hover{
+    background-position: 0 0;
+
+}
+ .download > .zsb,.download > .zsb:active {
+    position: absolute;
+    display: block;
+    background: url(../img/btn.png) no-repeat -250px 0;
+    width: 248px;
+    height: 104px;
+    left: 415px;
+    top: -21px;
+}
+ .download > .jyb:hover{
+    background-position: 0 -106px;
+}
+.download > .jyb,.download > .jyb:active{
+    position: absolute;
+    display: block;
+    background: url(../img/btn.png) no-repeat -237px -106px;
+   width: 235px;
+    height: 81px;
+    left: 682px;
+    top: 2px;
+}
+.download > h3{
+    position: absolute;
+    height: 20px;
+    line-height: 20px;
+    font-size: 18px;
+    color: #FFFFFF;
+    text-shadow: 2px 2px 0 #04252c;
+    left: 418px;
+    top: 99px;
+}
+
+/*==logo==*/
+#logo {
+    display: block;
+    position: absolute;
+    background-image: url("../img/logo.png");
+    width: 245px;
+    height: 59px;
+    left: 34px;
+    top: 19px;
+}
+
+/*==logo end==*/
+
+#tip {
+    position: absolute;
+    width: 395px;
+    height: 56px;
+    top: 19px;
+    right: -63px;
+}
+#tip > a:hover{
+    color: #FFFFFF;
+}
+#tip > a,#tip > a:active, #tip {
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    font-size: 14px;
+    height: 36px;
+    line-height: 36px;
+    padding-left: 58px;
+    color: #EDEAEA;
+    margin-top: 10px;
+    text-decoration: none;
+}
+#tip > a{
+    position: relative;
+
+}
+#tip > p{
+    position: absolute;
+    left: -172px;
+    top: 11px;
+    padding-left: 60px;
+    font-size: 14px;
+    height: 36px;
+    line-height: 36px;
+}
+/*下载单独样式*/
+#tip > p > a:hover{
+    text-decoration: underline;
+    color: #FFFFFF;
+}
+#tip > p > a,#tip > p > a:active{
+    color: #EDEAEA;
+    padding-left: 10px;
+    text-decoration: none;
+}
+
+#tip  span{
+    position: absolute;
+    display: block;
+    width: 62px;
+    height: 40px;
+    background: url(../img/slice.png) no-repeat;
+    left:0;
+    top:-5px;
+}
+/*助手版点击瞬间有变化*/
+
+/*简易版点击瞬间有变化*/
+#tip .down > span.hover{
+    background-position: -168px -106px;
+}
+
+#tip .down > span{
+    background-position:  -168px 0;
+}
+
+/*点击瞬间有变化*/
+#tip > .faq:hover > span {
+    background-position: -232px 0;
+}
+
+
+#tip > .faq > span, #tip > .faq:active >span{
+    background-position:  -168px -53px;
+
+}
+
+#tip > .qq:hover > span{
+    background-position: -232px -53px;
+}
+
+/*点击瞬间有变化*/
+#tip > .qq > span, #tip > .qq:active > span {
+    background-position:  -232px -106px;
+}
+
+/*=====bottom=======*/
+#bottomwrap{
+    position: absolute;
+    height: 71px;
+    width: 100%;
+    bottom: 10px;
+    left:0;
+}
+#bottom{
+    width: 1200px;
+    height: 71px;
+    position: relative;
+    margin: 0 auto;
+    left: 57px;
+}
+
+#bottom img,#bottom a{
+    display: block;
+    position: absolute;
+    top:15px;
+}
+#bottom img{
+    background: url(../img/hzhb.png) no-repeat;
+    width: 78px;
+    height: 24px;
+    left: 47px;
+    top: 22px;
+}
+#bottom .bluestacks{
+    background: url(../img/hz1.png) no-repeat;
+    width: 138px;
+    height: 39px;
+    left: 178px
+}
+#bottom .aiwan{
+    background: url(../img/hz2.png) no-repeat;
+    width: 152px;
+    height: 34px;
+    left: 443px;
+}
+
+#bottom .wyuu{
+    background: url(../img/hz3.png) no-repeat;
+    width: 191px;
+    height: 39px;
+    left: 664px
+}
+#bottom .wyyxhy{
+    background: url(../img/hz4.png) no-repeat;
+    width: 165px;
+    height: 41px;
+    left: 918px;
+}
+/*====箭头====*/
+
+#wrap .left-arr:hover{
+    background-position: 0 0;
+}
+#wrap .left-arr,#wrap .left-arr:active{
+    position: absolute;
+    background: url(../img/slice.png) no-repeat -84px 0;
+    width: 82px;
+    height: 69px;
+    left:10px;
+    top:582px;
+    z-index: 90;
+}
+
+#wrap .right-arr:hover{
+    background-position: 0 -71px;
+}
+
+#wrap .right-arr,#wrap .right-arr:active{
+    position: absolute;
+    background: url(../img/slice.png) no-repeat -84px -71px;
+    width: 82px;
+    height: 69px;
+    right:10px;
+    top:582px;
+    z-index: 90;
+}
+
+
+
+
+
+
+/*==footer==*/
+#footer {
+    width: 100%;
+    max-width: 1920px;
+    background-color: #000000;
+    text-align: center;
+    padding-top: 35px;
+    margin: 0 auto;
+}
+
+#NIE-copyRight {
+    height: 160px;
+}
+
+#NIE-copyRight, #NIE-copyRight a {
+    color: #FFF
+}
+#wrap .monitor,#wrap .dot,#wrap .line,#wrap .btn{
+    display: none;
+}
+#wrap .dot.show,#wrap .line.show,#wrap .btn.show{
+    display: block;
+}
+/*修复露底bug*/
+.third.swiper-slide-duplicate{
+    opacity: 0;
+    filter: alpha(opacity=0);
+    height: 620px;!important;
+
+}
+.third.swiper-slide-duplicate.swiper-slide-active{
+    opacity: 100;
+    filter: alpha(opacity=100);
+}

@@ -1,0 +1,257 @@
+a,area{
+    outline: none;
+    cursor: hand;
+}
+#wrap {
+    min-width: 1280px;
+    max-width: 1920px;
+    margin: 0 auto;
+    background-color: #E7D8AF;
+}
+
+#container {
+    position: relative;
+    background: url(../img/bg.jpg) no-repeat center top;
+    background-color: #E7D8AF;
+    width: 100%;
+    margin: 0 auto;
+    height: 960px;
+}
+
+#main {
+    position: relative;
+    width: 1200px;
+    margin: 0 auto
+}
+
+/*==nav导航 start==*/
+.nav {
+    position: absolute;
+    background-image: url(../img/nav_bg.png);
+    width: 213px;
+    height: 33px;
+    right: 0;
+    top: 18px;
+}
+
+.nav > a{
+    background: url("../img/divider.png") no-repeat left center;
+    margin-left: 13px;
+    font-size: 14px;
+    color: #E7D8AF;
+    text-align: center;
+    height: 34px;
+    line-height: 34px;
+    padding-left: 22px;
+}
+ #NIE-share .NIE-share-txt{
+    font-size: 14px;
+    color: #5D5D52;
+    text-align: center;
+    height: 20px;
+    line-height: 20px;
+}
+#NIE-share .NIE-share-iconBtn a {
+    font-size: 14px;
+    color: #5D5D52;
+    text-align: center;
+    height: 34px;
+    line-height: 34px;
+}
+
+.nav > a {
+    text-decoration: none;
+    margin-left: 13px;
+    padding-left: 22px;
+    color: #E7D8AF;
+}
+.nav > a > span{
+    margin: 0 3px 0 5px;
+}
+
+#NIE-share {
+    position: absolute;
+    right: 7px;
+    top: 0;
+    left: 0;
+}
+#NIE-share .NIE-share-iconBtn a {
+    font-size: 23px
+}
+
+.nav > a:hover, #NIE-share .NIE-share-iconBtn a:hover {
+    color: #E5B948;
+}
+
+
+/*==nav导航 end==*/
+/*==logo==*/
+#logo{
+    display: block;
+    position: absolute;
+    background-image: url("../img/logo.png");
+     width: 148px;
+    height: 115px;
+    left: -111px;
+    top: -5px;
+}
+/*==logo end==*/
+/*==content==*/
+
+/*==content==*/
+
+/*==btn==*/
+#btn-area,.map-nav > img{
+    position: absolute;
+    left: 301px;
+    top: 351px;
+    width: 647px;
+    height: 316px;
+}
+.btn{
+    display: block;
+    position: absolute;
+    background-image: url("../img/btn.png");
+    background-repeat: no-repeat;
+    width: 202px;
+    height: 201px;
+}
+.btn.btn1{
+    left: 2px;
+    top: 2px;
+    background-position: 0 0;
+}
+.btn.btn1:hover,.btn1.selected{
+    background-position: -1020px 0;
+}
+.btn.btn2{
+    left: 113px;
+    top: 113px;
+    background-position: -204px  0;
+
+}
+.btn.btn2:hover,.btn2.selected{
+    background-position: -1224px 0;
+}
+.btn.btn3{
+    left: 223px;
+    top: 4px;
+    background-position: -408px 0;
+}
+.btn.btn3:hover,.btn3.selected{
+    background-position: -1428px 0;
+}
+.btn.btn4{
+    left: 334px;
+    top: 114px;
+    background-position: -612px 0;
+}
+.btn.btn4:hover,.btn4.selected{
+    background-position: -1632px 0;
+}
+.btn.btn5{
+    top: 4px;
+    left: 442px;
+    background-position: -816px 0;
+}
+.btn.btn5:hover,.btn5.selected{
+    background-position: -1836px 0;
+}
+
+/*==btn==*/
+
+
+
+/*==footer==*/
+#footer {
+    width: 100%;
+    max-width: 1920px;
+    background-color: #2B2825;
+    text-align: center;
+    padding-top: 50px;
+    margin:0 auto;
+}
+
+#NIE-copyRight {
+    height: 100px
+}
+
+#NIE-copyRight, #NIE-copyRight a {
+    color: #57514E
+}
+/*share*/
+#sharewrap{
+    width:100%;
+    height: 32px;
+    position: relative;
+    max-width: 1920px;
+}
+#sharecontainer{
+    position: relative;
+    width:1200px;
+    height: 100%;
+    margin: 0 auto;
+}
+#NIE-copyRight, #NIE-copyRight a {
+    color: #FFF
+}
+
+
+#NIE-copyRight {
+    height: 100px;
+}
+
+#NIE-copyRight, #NIE-copyRight a {
+    color: #676767
+}
+
+#NIE-share {
+    position: absolute;
+    left: 0;
+    bottom: 5px;
+}
+
+
+#NIE-share .NIE-share-iconBtn a{
+    font-size: 24px;
+    color: #666666;
+}
+/*[23, 22, 2, 1, 4, 3,8]*/
+#NIE-share .NIE-share-iconBtn a:hover{
+    text-decoration: none;
+    color: #B7B7B7;
+}
+
+#NIE-share em,#NIE-share .NIE-share-txt{
+    color: #676767;
+}
+#NIE-share .NIE-share-iconBtn a:hover > em{
+    color: #B7B7B7;
+}
+/*[23, 22, 2, 1, 4, 3,8]分享按钮微调*/
+#NIE-share .NIE-share-btn23,#NIE-share .NIE-share-btn22{
+    width: 57px;
+}
+#NIE-share .NIE-share-btn2,#NIE-share .NIE-share-btn3{
+    width: 83px;
+}
+#NIE-share .NIE-share-btn1{
+    width:70px
+}
+#NIE-share .NIE-share-btn8{
+    width:73px;
+}
+#NIE-share .NIE-share-btn23 em,
+#NIE-share .NIE-share-btn22 em,
+#NIE-share .NIE-share-btn2 em,
+#NIE-share .NIE-share-btn1 em,
+#NIE-share .NIE-share-btn4 em,
+#NIE-share .NIE-share-btn3 em,
+#NIE-share .NIE-share-btn8 em{
+    margin-left: 3px;
+}
+
+.content-title {
+    width: 1000px;
+
+}

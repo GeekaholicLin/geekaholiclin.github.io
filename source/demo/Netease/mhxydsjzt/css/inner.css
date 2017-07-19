@@ -1,0 +1,276 @@
+a,area{
+    outline: none;
+    cursor: hand;
+}
+#bar{
+    height:55px;
+}
+#wrap {
+    min-width: 1280px;
+    max-width: 1920px;
+    margin: 0 auto
+}
+
+#container {
+    position: relative;
+    background: #1D2361 url("../img/innerbg.jpg") no-repeat scroll center top;
+    width: 100%;
+    margin: 0 auto;
+    min-height: 916px;
+}
+#top{
+    height: 648px;
+    position: relative;
+    width: 1200px;
+    margin: 0 auto;
+}
+#main {
+    position: relative;
+    width: 1200px;
+    margin: 0 auto;
+    z-index:10;
+}
+
+/*==nav导航 start==*/
+.nav {
+    position: absolute;
+    background-image: url(../img/nav_bg.png);
+    width: 401px;
+    height: 33px;
+    right: 47px;
+    top: 39px;
+}
+
+.nav > a, #NIE-share .NIE-share-txt, #NIE-share .NIE-share-iconBtn a {
+    font-size: 14px;
+    color: #FFFFFF;
+    text-align: center;
+    height: 33px;
+    line-height: 33px;
+}
+
+.nav > a {
+    text-decoration: none;
+    margin-left: 18px;
+}
+.nav > a > span{
+    margin: 0 3px 0 5px;
+}
+
+#NIE-share {
+    position: absolute;
+    right: 14px;
+    top: 0
+}
+#NIE-share .NIE-share-iconBtn a {
+    font-size: 23px
+}
+
+.nav > a:hover, #NIE-share .NIE-share-iconBtn a:hover {
+    color:#F8EB47;
+}
+
+
+/*==nav导航 end==*/
+
+/*==logo==*/
+#logo{
+    display: block;
+    position: absolute;
+    background-image: url("http://webinput.nie.netease.com/img/xyq/logo.png/250");
+    height: 106px;
+    width: 250px;
+    left: 334px;
+    top: 26px;
+}
+
+/*==btn==*/
+#navBar{
+    position: absolute;
+    top: 0;
+    left: -265px;
+    width: 242px;
+    height: 687px;
+    z-index: 8888;
+}
+#navBar li{
+    width: 242px;
+    height: 86px;
+}
+#navBar .inner-btn{
+    display: block;
+    width: 242px;
+    height: 86px;
+    background-image: url(../img/innerbtn.png);
+    text-decoration: none;
+}
+#navBar .inner-btn1{
+    background-position: 0 -616px;
+}
+#navBar .inner-btn1:hover,#navBar .inner-btn1.selected{
+    background-position: -244px -616px;
+}
+#navBar .inner-btn2{
+    background-position: 0 0;
+}
+#navBar .inner-btn2:hover,#navBar .inner-btn2.selected{
+    background-position: -244px 0;
+}
+#navBar .inner-btn3{
+    background-position: 0 -88px;
+}
+#navBar .inner-btn3:hover,#navBar .inner-btn3.selected{
+    background-position: -244px -88px;
+}
+#navBar .inner-btn4{
+    background-position: 0 -176px;
+}
+#navBar .inner-btn4:hover,#navBar .inner-btn4.selected{
+    background-position: -244px -176px;
+}
+#navBar .inner-btn5{
+    background-position: 0 -264px;
+}
+#navBar .inner-btn5:hover,#navBar .inner-btn5.selected{
+    background-position: -244px -264px;
+}
+#navBar .inner-btn6{
+    background-position: 0 -352px;
+}
+#navBar .inner-btn6:hover,#navBar .inner-btn6.selected{
+    background-position: -244px -352px;
+}
+#navBar .inner-btn7{
+    background-position: 0 -440px;
+}
+#navBar .inner-btn7:hover,#navBar .inner-btn7.selected{
+    background-position: -244px -440px;
+}
+#navBar .inner-btn8{
+    background-position: 0 -528px;
+}
+#navBar .inner-btn8:hover,#navBar .inner-btn8.selected{
+    background-position: -244px -528px;
+}
+/*content*/
+#content{
+    width: 862px;
+    position: relative;
+    margin: 0 0 0 274px;
+    background-color: #F1F7FF;
+    padding: 39px 0 30px;
+    text-align: center;
+}
+#content .title{
+    display: inline-block;
+    *display:inline;
+    *zoom:1;
+    background: url("../img/left.png") no-repeat left 12px;
+    padding-left: 310px;
+    margin: 0 auto 50px;
+    height: 42px;
+    line-height: 42px;
+    vertical-align: top;
+}
+#content .title > span{
+    display: inline-block;
+    *display:inline;
+    *zoom:1;
+    color: #391494;
+    font-size: 32px;
+    height: 42px;
+    line-height: 42px;
+    font-weight: bold;
+    padding-right: 310px;
+    background: url("../img/right.png") no-repeat right 12px;
+    white-space: nowrap;
+    vertical-align: top;
+}
+
+#content .section{
+    padding: 0 44px 23px;
+    text-align: left;
+}
+#content .subtitle{
+    background: url("../img/subtitle.png") no-repeat left center;
+    padding-left: 30px;
+    font-size: 22px;
+    font-weight: bold;
+    color: #391394;
+    margin-bottom: 24px;
+}
+#content .inner-section{
+    text-align: center;
+    padding: 0 33px 0;
+}
+#content .inner-section p{
+    font-size: 16px;
+    color: #5D4C9E;
+    line-height: 30px;
+    text-align: left;
+}
+#content .inner-section em{
+    color: #FF2414;
+}
+#content .inner-section img{
+    margin: 20px auto;
+}
+#content table {
+    border-collapse: collapse; /*合并为1个边框*/
+    text-indent: 20px;
+    margin: 20px auto;
+    text-align: left;
+}
+
+#content thead{
+    background-color: #A899E0;
+    font-weight: bold;
+    height: 36px;
+    line-height: 36px;
+     color: #FFFFFF;
+    font-size: 16px;
+}
+#content tbody td{
+    height: 30px;
+    line-height: 30px;
+    width: 230px;
+     font-size: 14px;
+     color: #444444;
+}
+
+#content table, td {
+    /*解决IE7下边框重叠问题的办法*/
+    border: solid 1px #C0B3E7;
+}
+/*==footer==*/
+#footer {
+    width: 100%;
+    max-width: 1920px;
+    text-align: center;
+    padding-top: 50px;
+    margin:0 auto;
+    z-index: 9;
+}
+
+#NIE-copyRight {
+    height: 100px
+}
+
+#NIE-copyRight, #NIE-copyRight a {
+    color: #FFF
+}
+#totop{
+    position: fixed;
+    /*display: block;*/
+    display: none;
+    background-image: url(../img/totop.png);
+    width: 50px;
+    height: 154px;
+    right: 29px;
+    bottom: 145px;
+    z-index:1999;
+}
+#lightboxOverlay{
+    position: fixed;
+}
+

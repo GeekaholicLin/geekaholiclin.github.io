@@ -1,26 +1,27 @@
 language: node_js
-node_js:
-  - "6"
 branches:
   only:
     - blog-source #源码分支名称
 before_install:
   - npm install -g hexo
   - npm install -g hexo-cli
-  - wget https://github.com/jgm/pandoc/releases/download/1.19.2.1/pandoc-1.19.2.1-1-amd64.deb
-  - sudo dpkg -i pandoc-1.19.2.1-1-amd64.deb
 before_script:
   - git config --global user.name 'GeekaholicLin'
   - git config --global user.email 'geekaholiclin@gmail.com'
-  - sed -i'' "s~git@github.com:GeekaholicLin/geekaholiclin.github.io.git~https://${TOKEN}:x-oauth-basic@github.com/GeekaholicLin/geekaholiclin.github.io.git~" _config.yml
+
 install:
   - npm install
 script:
   - hexo clean
   - hexo generate
 after_success:
-  - hexo deploy
+  - cd ./public
+  - git init
+  - git add .
+  - git commit -m "update blog using Travis"
+  - git push --force --quiet "https://${GITHUB_TOKEN}@${GITHUB_REPO}" master:master
+  - git push --force --quiet "https://${CODING_TOKEN}@${CODING_REPO}" master:master
 env:
   global:
-    - REPO: github.com/GeekaholicLin/geekaholiclin.github.io.git
-
+    - GITHUB_REPO: github.com/GeekaholicLin/geekaholiclin.github.io.git
+    - CODING_REPO: git.coding.net/Geekaholic/Geekaholic.git

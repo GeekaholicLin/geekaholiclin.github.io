@@ -1,0 +1,13 @@
+Host github.com
+  HostName github.com
+  User git
+  StrictHostKeyChecking no
+  IdentityFile ~/.ssh/travis-hexo_rsa
+  IdentitiesOnly yes
+
+Host git.coding.net
+  HostName git.coding.net
+  User git
+  StrictHostKeyChecking no
+  IdentityFile ~/.ssh/travis-hexo_rsa
+  IdentitiesOnly yes

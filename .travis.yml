@@ -5,8 +5,7 @@ branches:
   only:
   - blog-source
 before_install:
-- openssl aes-256-cbc -K $encrypted_d16ac2c469ba_key -iv $encrypted_d16ac2c469ba_iv
-  -in .travis/travis-hexo_rsa.enc -out ~/.ssh/travis-hexo_rsa -d
+- openssl aes-256-cbc -K $encrypted_d16ac2c469ba_key -iv $encrypted_d16ac2c469ba_iv -in .travis/travis-hexo_rsa.enc -out ~/.ssh/travis-hexo_rsa -d
 - chmod 600 ~/.ssh/travis-hexo_rsa
 - eval $(ssh-agent)
 - ssh-add ~/.ssh/travis-hexo_rsa
@@ -24,12 +23,6 @@ script:
 - hexo clean
 - hexo generate
 after_success:
-#- cd ./public
-#- git init
-#- git add .
-#- git commit -m "update blog using Travis"
-#- git push --force --quiet "https://${GITHUB_TOKEN}@${GITHUB_REPO}" master:master
-#- git push --force --quiet "https://${CODING_TOKEN}@${CODING_REPO}" master:master
 - hexo deploy
 env:
   global:

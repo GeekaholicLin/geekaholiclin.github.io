@@ -837,6 +837,7 @@ function renderHeader(_ref, instance) {
       return instance.like();
     };
   }
+
   container.appendChild(likeButton);
 
   var commentsCount = document.createElement('span');
@@ -884,6 +885,7 @@ function renderComments(_ref2, instance) {
       initHint.appendChild(initButton);
       errorBlock.appendChild(initHint);
     } else {
+      console.log('error object', error);
       errorBlock.innerText = error;
     }
     container.appendChild(errorBlock);
@@ -1096,10 +1098,10 @@ function render(state, instance) {
   var container = document.createElement('div');
   container.lang = "en-US";
   container.className = 'gitment-container gitment-root-container';
-  container.appendChild(instance.renderHeader(state, instance));
-  container.appendChild(instance.renderComments(state, instance));
-  container.appendChild(instance.renderEditor(state, instance));
-  container.appendChild(instance.renderFooter(state, instance));
+  container.appendChild(renderHeader(state, instance));
+  container.appendChild(renderComments(state, instance));
+  container.appendChild(renderEditor(state, instance));
+  container.appendChild(renderFooter(state, instance));
   return container;
 }
 

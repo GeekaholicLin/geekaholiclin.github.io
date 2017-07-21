@@ -3,12 +3,12 @@
   "version": "0.0.0",
   "private": true,
   "hexo": {
-    "version": "3.2.2"
+    "version": "3.3.8"
   },
   "scripts": {
-    "start":"hexo clean && hexo g && hexo s -p",
-    "deploy":"hexo clean && hexo g && hexo d",
-    "postdeploy":"git add * && git commit -m'backup hexo blog' && git push origin master"
+    "start": "hexo clean && hexo g && hexo s -p",
+    "deploy": "hexo clean && hexo g && hexo d",
+    "postdeploy": "git add * && git commit -m'backup hexo blog' && git push origin master"
   },
   "dependencies": {
     "ejs": "^1.0.0",

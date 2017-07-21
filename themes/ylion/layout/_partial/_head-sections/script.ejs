@@ -19,8 +19,10 @@ var _busuanzi = theme.busuanzi_src || '/js/thirdParty/busuanzi.min.js';
 <% if(theme.visits_count.enable){ %>
 <script async src="<%- url_for(_busuanzi) %>"></script>
 <% } %>
+<!--<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>-->
+
 <%if(theme.gitment.enable&&is_post()){%>
-<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<%- js("/js/thirdParty/gitment.browser.js") %>
 <script>
   var labels = "<%= theme.gitment.labels%>";
   labels = labels.split(",");

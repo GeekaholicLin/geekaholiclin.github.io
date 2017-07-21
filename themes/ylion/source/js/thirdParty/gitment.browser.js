@@ -885,7 +885,6 @@ function renderComments(_ref2, instance) {
       initHint.appendChild(initButton);
       errorBlock.appendChild(initHint);
     } else {
-      console.log('error object', error);
       errorBlock.innerText = error;
     }
     container.appendChild(errorBlock);

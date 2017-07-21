@@ -22,7 +22,7 @@ var _busuanzi = theme.busuanzi_src || '/js/thirdParty/busuanzi.min.js';
 <!--<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>-->
 
 <%if(theme.gitment.enable&&is_post()){%>
-<%- js("/js/thirdParty/gitment.browser.js") %>
+<%- js("/js/thirdParty/gitment.browser.min.js") %>
 <script>
   var labels = "<%= theme.gitment.labels%>";
   labels = labels.split(",");

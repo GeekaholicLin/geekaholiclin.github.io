@@ -1141,7 +1141,7 @@ var _constants = __webpack_require__(14);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var isString = exports.isString = function isString(s) {
-  return toString.call(s) === '[object String]';
+  return {}.toString.call(s) === '[object String]';
 };
 
 function getTargetContainer(container) {
@@ -5051,9 +5051,8 @@ var Gitment = function () {
 
       var renderers = (0, _keys2.default)(theme);
       renderers.forEach(function (renderer) {
-        return _this3[renderer] = _this3.theme[renderer];
+        return extendRenderer(_this3, renderer);
       });
-      extendRenderer(this, 'render');
     }
   }, {
     key: 'update',

@@ -1097,10 +1097,10 @@ function render(state, instance) {
   var container = document.createElement('div');
   container.lang = "en-US";
   container.className = 'gitment-container gitment-root-container';
-  container.appendChild(renderHeader(state, instance));
-  container.appendChild(renderComments(state, instance));
-  container.appendChild(renderEditor(state, instance));
-  container.appendChild(renderFooter(state, instance));
+  container.appendChild(instance.renderHeader(state, instance));
+  container.appendChild(instance.renderComments(state, instance));
+  container.appendChild(instance.renderEditor(state, instance));
+  container.appendChild(instance.renderFooter(state, instance));
   return container;
 }
 
@@ -4916,8 +4916,7 @@ var scope = 'public_repo';
 function extendRenderer(instance, renderer) {
   instance[renderer] = function (container) {
     var targetContainer = (0, _utils.getTargetContainer)(container);
-    var render = instance.theme[renderer] || instance.defaultTheme[renderer];
-
+    var render = instance.theme[renderer];
     (0, _mobx.autorun)(function () {
       var e = render(instance.state, instance);
       if (targetContainer.firstChild) {
@@ -4962,20 +4961,17 @@ var Gitment = function () {
     (0, _classCallCheck3.default)(this, Gitment);
 
     this.defaultTheme = _default2.default;
-    this.useTheme(_default2.default);
-
     (0, _assign2.default)(this, {
       id: window.location.href,
       title: window.document.title,
       link: window.location.href,
       desc: '',
       labels: [],
-      theme: _default2.default,
       oauth: {},
       perPage: 20,
       maxCommentHeight: 250
     }, options);
-
+    this.theme = (0, _assign2.default)({}, _default2.default, options.theme);
     this.useTheme(this.theme);
 
     var user = {};
@@ -5053,12 +5049,11 @@ var Gitment = function () {
 
       var theme = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 
-      this.theme = theme;
-
-      var renderers = (0, _keys2.default)(this.theme);
+      var renderers = (0, _keys2.default)(theme);
       renderers.forEach(function (renderer) {
-        return extendRenderer(_this3, renderer);
+        return _this3[renderer] = _this3.theme[renderer];
       });
+      extendRenderer(this, 'render');
     }
   }, {
     key: 'update',

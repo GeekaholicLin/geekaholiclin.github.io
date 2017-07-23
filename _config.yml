@@ -15,7 +15,7 @@ timezone:
 url: http://blog.geekaholic.cn
 root: /
 permalink: :year/:month/:day/:title/
-permalink_defaults: /404.html
+permalink_defaults: /404/index.html
 
 # Directory
 source_dir: source

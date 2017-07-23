@@ -75,3 +75,52 @@
     line-height: 2.8!important;
   }
 }
+
+#error-page{
+  min-height: 100%;
+  header{
+    //.rotate(-5deg)
+    .transform(rotate(-5deg) translate(-9%));
+    width: 120%;
+    transform-origin: 100% 50%;
+    #site-meta{
+      margin-left: 1.1rem;
+    }
+    #nav{
+      float: left;
+      margin-left: 1rem;
+    }
+  }
+  #sidebar{
+    display: none;
+  }
+  #main{
+    width: 100%;
+  }
+  #error{
+    padding-top: 50%;
+    margin-left: 50%;
+    .translate(-50%, -50%);
+    & > pre{
+      position: relative;
+      -webkit-clip-path: polygon(0% 0%, 5% 3%, 13% 2%, 20% 4%, 27% 1%, 38% 2%, 41% 6%, 50% 2%, 55% 5%, 66% 1%, 76% 6%, 81% 2%, 91% 7%, 96% 15%, 97% 24%, 97% 39%, 99% 49%, 99% 56%, 98% 70%, 95% 83%, 98% 90%, 92% 94%, 84% 98%, 73% 92%, 67% 98%, 58% 95%, 54% 99%, 43% 97%, 35% 89%, 28% 97%, 19% 92%, 13% 98%, 8% 92%, 4% 85%, 2% 67%, 1% 51%, 7% 45%, 2% 36%, 7% 28%, 2% 26%);
+       clip-path: polygon(0% 0%, 5% 3%, 13% 2%, 20% 4%, 27% 1%, 38% 2%, 41% 6%, 50% 2%, 55% 5%, 66% 1%, 76% 6%, 81% 2%, 91% 7%, 96% 15%, 97% 24%, 97% 39%, 99% 49%, 99% 56%, 98% 70%, 95% 83%, 98% 90%, 92% 94%, 84% 98%, 73% 92%, 67% 98%, 58% 95%, 54% 99%, 43% 97%, 35% 89%, 28% 97%, 19% 92%, 13% 98%, 8% 92%, 4% 85%, 2% 67%, 1% 51%, 7% 45%, 2% 36%, 7% 28%, 2% 26%);
+      //box-shadow: inset 13px 12px 200px rgba(70, 66, 66, 0.97), inset -34px -26px 200px rgba(33, 30, 30, 0.33);
+      &:before{
+        content: "";
+        display: block;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: -1;
+        //background-color: @secondBlue;
+      }
+
+    }
+  }
+  #tools{
+    display: none;
+  }
+}

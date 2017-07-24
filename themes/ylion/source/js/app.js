@@ -34,6 +34,8 @@ window.onload = function () {
     $postList = document.getElementById("post-list"),
     $postFooter = document.getElementById("post-footer"),
     $exchangeBtn = document.querySelector('#tools .exchange-btn'),
+    $prompt = document.querySelector("#error .prompt input"),
+    $terminal = document.querySelector("#error .terminal"),
     $gitcomment = document.getElementById("gitcomment");
   //responsive design
   var isPC = true;
@@ -81,7 +83,21 @@ window.onload = function () {
     else $container.classList.remove('exchange-sidebar');
     clickTimes++;
   },false);
-
+  autoFocus();
+  function autoFocus () {
+    $prompt && $prompt.focus();
+  }
+  $terminal && $terminal.addEventListener('click',function () {
+    autoFocus();
+  });
+  $prompt && $prompt.addEventListener('keypress',function (event) {
+    if(event.keyCode===13){
+      var inputValue = $prompt.value.trim();
+      $searchInput.value = inputValue;
+      $searchBtn.dispatchEvent(new Event('click'));
+      document.getElementById('search-input').dispatchEvent(new Event('input'));
+    }
+  });
   //classList ployfill
   if (!("classList" in document.documentElement) && Object.defineProperty &&
     typeof HTMLElement !== "undefined") {

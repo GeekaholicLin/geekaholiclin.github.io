@@ -82,7 +82,7 @@
     overflow: hidden;
   }
   header{
-    .animation(ruinHeader 1s ease-out 0s 1 normal running forwards);
+    .animation(ruinHeader 1s ease-out 0s 1 normal forwards);
     width: 120%;
     #site-meta{
       margin-left: 1.1rem;
@@ -114,7 +114,7 @@
   }
   .terminal-run{
     overflow: hidden;
-    height: 4rem;
+    min-height: 5rem;
     p + p {
       margin-top: -20px;
     }
@@ -137,6 +137,9 @@
       &::-ms-clear {
         display: none;
       }
+    }
+    .error-date{
+      margin-right: 15px;
     }
   }
 }

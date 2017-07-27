@@ -8,9 +8,9 @@ menu:
 #- page: archives
 #  url: /archives
 #  icon: fa-archive
-- page: 作品
-  url: /demo
-  icon: fa-code
+#- page: 作品
+#  url: /demo
+#  icon: fa-code
 - page: about
   url: /about
   icon: fa-user
@@ -71,12 +71,12 @@ social:
 - url: https://github.com/GeekaholicLin
   title: github
   icon: fa-github
-- url: https://leetcode.com/geekaholic/
-  title: leetcode
-  icon: fa-code
-- url: https://www.zhihu.com/people/geekaholic/activities
-  title: 知乎
-  icon: fa-graduation-cap
+#- url: https://leetcode.com/geekaholic/
+#  title: leetcode
+#  icon: fa-code
+#- url: https://www.zhihu.com/people/geekaholic/activities
+#  title: 知乎
+#  icon: fa-graduation-cap
 - url: mailto:geekaholiclin@gmail.com
   title: mail to me
   icon: fa-envelope-o

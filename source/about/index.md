@@ -3,7 +3,7 @@ title: about
 date: 2017-02-23 16:22:46
 type: 'about'
 ---
-{% codeblock 关于我 lang:javascript  http://note.geekaholic.cn/about/resume.html 我的简历 %}
+{% codeblock 关于我 lang:javascript %}
 {
     name: "林家兴 / Geekaholic",
     birthday: "1995-08-10",

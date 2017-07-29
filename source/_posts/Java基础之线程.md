@@ -1,3 +1,4 @@
+---
 title: Java基础之线程
 toc: true
 date: 2016-02-09 14:56:28

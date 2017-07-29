@@ -1,3 +1,4 @@
+---
 title: AMD等模块化的简单原理
 date: 2017-03-11 16:36:19
 tags: [JavaScript, 模块化, Web]

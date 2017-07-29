@@ -1,3 +1,4 @@
+---
 title: Genymotion模拟器无法启动解决办法
 toc: false
 date: 2016-03-18 20:44:36

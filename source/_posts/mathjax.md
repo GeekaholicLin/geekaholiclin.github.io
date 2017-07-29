@@ -1,3 +1,4 @@
+---
 title: mathjax
 date: 2017-02-19 14:51:32
 mathjax: true
@@ -36,6 +37,8 @@ $$
 \\
 \check{a} \bar{a} \ddot{a} \dot{a}
 $$
+
+
 
 #### 标准函数
 

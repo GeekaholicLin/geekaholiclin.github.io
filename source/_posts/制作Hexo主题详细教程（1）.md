@@ -1,3 +1,4 @@
+---
 title: 制作Hexo主题详细教程（1）
 tags:
   - hexo

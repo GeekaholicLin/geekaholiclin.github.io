@@ -26,6 +26,7 @@
     "hexo-renderer-pandoc": "^0.1.1",
     "hexo-renderer-stylus": "^0.3.1",
     "hexo-server": "^0.2.0",
+    "hexo-util": "^0.6.1",
     "highlight": "^0.2.4",
     "less": "^2.7.2",
     "moment": "latest",

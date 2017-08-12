@@ -4,7 +4,6 @@ toc: true
 date: 2015-12-27 20:09:13
 categories: [编执狂, Java]
 tags: [Java, IO操作, 流类型]
-top: 130
 ---
 ## 前言
 

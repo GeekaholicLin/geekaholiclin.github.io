@@ -4,7 +4,6 @@ date: 2017-02-19 14:51:32
 mathjax: true
 categories: [编程之外, hexo]
 tags: [Hexo主题, ylion, Mathjax]
-top: 9999
 ---
 
 ## 这是一个测试mathjax公式的页面

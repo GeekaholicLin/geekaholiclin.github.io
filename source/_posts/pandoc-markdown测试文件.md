@@ -3,7 +3,6 @@ title: pandoc-markdown测试文件
 date: 2017-02-19 14:51:32
 categories: [编程之外, hexo]
 tags: [Hexo主题, ylion, Mathjax]
-top: 9999
 ---
 **说明：** 本文件使用`hexo-renderer-pandoc`插件进行基于Hexo官方Markdown测试文件渲染，以验证pandoc-markdown语法是否兼容hexo-markdown语法。
 

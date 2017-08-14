@@ -8,9 +8,9 @@ menu:
 #- page: archives
 #  url: /archives
 #  icon: fa-archive
-#- page: 作品
-#  url: /demo
-#  icon: fa-code
+- page: 作品
+  url: /demo
+  icon: fa-code
 - page: about
   url: /about
   icon: fa-user

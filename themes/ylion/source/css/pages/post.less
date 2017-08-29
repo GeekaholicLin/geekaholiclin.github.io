@@ -60,6 +60,9 @@
     p {
       line-height: 1.9;
     }
+    p + p {
+        margin-top: 10px;
+    }
     h1, h2, h3, h4, h5, h6 {
       cursor: pointer;
       position: relative;
@@ -222,8 +225,9 @@
       border-collapse: collapse;
       margin: .15rem auto;
       border: 1px solid @lineColor;
-      max-width: 90%;
-      width: 60%!important;
+      width: 100%;
+      overflow: auto;
+      display: block;
       thead {
         background-color: #E3E3E3;
         font-weight: bold;

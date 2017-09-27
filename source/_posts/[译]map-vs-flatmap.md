@@ -1,5 +1,5 @@
 ---
-title: 【译】翻译功能测试文件
+title: 【译】Map vs FlatMap
 date: 2017-9-27
 tags: [Javascript, RxJS, Translation]
 categories: [他山之石, Web]

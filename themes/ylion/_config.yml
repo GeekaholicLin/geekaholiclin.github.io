@@ -177,7 +177,7 @@ fontAwesome: //cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css
 
 ## script cdn
 
-leancloud_src: http://cdn1.lncld.net/static/js/2.1.0/av-min.js
+leancloud_src: http://cdn1.lncld.net/static/js/3.2.1/av-min.js
 busuanzi_src: //dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js
 
 # theme and site self settings

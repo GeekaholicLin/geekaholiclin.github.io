@@ -40,7 +40,8 @@ window.onload = function () {
     $urlPlaceHolders = document.querySelectorAll(".error-url"),
     $datePlaceHolders = document.querySelectorAll(".error-date"),
     $hostPlaceHolders = document.querySelectorAll(".error-host"),
-    $gitcomment = document.getElementById("gitcomment");
+    $gitcomment = document.getElementById("gitcomment"),
+    _originalTableWidth = [];
   //responsive design
   var isPC = true;
   (function (designPercent) {
@@ -68,6 +69,7 @@ window.onload = function () {
       fixPostFooterStyle();
       window.onresize = function () {
         fixPostFooterStyle();
+        handleLongTable();
       };
     }
   })(450 / 100);
@@ -519,5 +521,23 @@ window.onload = function () {
       }
     })();
   }
+  function handleLongTable(){
+   if($postBody){
+     var tables = document.querySelectorAll('#post-body > table');
+     var length = tables.length;
+     for(var i = 0;i< length;i++){
+       var item = tables[i];
+       var tableWidth = window.getComputedStyle(item).width;
+       var postBodyWidth = window.getComputedStyle($postBody).width;
+       _originalTableWidth[i] = _originalTableWidth[i] || tableWidth;
+       if(parseInt(_originalTableWidth[i]) > parseInt(postBodyWidth)){
+         item.classList.add('scroll-table');
+       }else{
+         item.classList.remove('scroll-table');
+       }
+     }
 
+   }
+  }
+  handleLongTable();
 };

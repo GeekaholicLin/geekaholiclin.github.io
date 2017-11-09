@@ -1,6 +1,6 @@
 ---
 title: 【译】Map 与 FlatMap 的对比
-date: 2017-9-27
+date: 2017-9-27 17:22:05
 tags: [Javascript, RxJS, Translation]
 categories: [他山之石, Web]
 translation: https://namitamalik.github.io/Map-vs-FlatMap/

@@ -45,7 +45,7 @@ public class JavaIO {
         while (input.hasNext()) {
             System.out.println(input.next());
         }
-        
+
         input = new Scanner(test);
         input.useDelimiter("个");
         System.out.println("该Scanner对象的分隔符为---->" + input.delimiter());
@@ -69,7 +69,7 @@ public class JavaIO {
 该Scanner对象的分隔符为---->个
 新的结果如下
 这   是  一
-  测试   字符串    
+  测试   字符串
 
 细心的应该会发现上述的方法中，有说到，"读取下一个标记作为float值返回"。对，是作为，不是读取**为float值的标记**，那如果该标记读取后无法转化为float类型怎么办？也就是如果标记和期望的类型不匹配。那就会抛出一个运行异常`java.util.InputMismatchException`。
 
@@ -88,4 +88,4 @@ Attempting to perform search operations after a scanner has been closed will res
 ![侵删][1]
 
 
-  [1]: http://7xobsp.com1.z0.glb.clouddn.com/%E5%9B%BE%E7%89%87%20-%20Google%20%E6%90%9C%E7%B4%A2.jpg
+  [1]: http://old-image.geekaholic.cn/%E5%9B%BE%E7%89%87%20-%20Google%20%E6%90%9C%E7%B4%A2.jpg

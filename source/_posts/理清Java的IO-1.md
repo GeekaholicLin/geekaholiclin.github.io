@@ -39,7 +39,7 @@ date: 2015-12-27 10:14:00
 ### 个人记忆方法
 
 那我们开门见山吧~其实很简单。[**请紧记于心**]
-``` java 
+``` java
 就两个"大类"--文本I/O和二进制I/O。
 最后的单词是'-er'的(包括Scanner)是处理文本文件数据，'-Stream'可以处理二进制文件数据**以及文本数据**。
 ```
@@ -156,8 +156,8 @@ public class JavaIO {
 }
 ```
 ```
- 运行结果  
-  
+ 运行结果
+
  我是节点流对象mFileReader读取的数据
  Hello,我是编执狂。欢迎来到Geekaholic的博客~
  ~~~~~华丽丽的分割线~~~~~
@@ -191,5 +191,5 @@ BufferedWriterer,InputStreamWriter(转换流),FilterWriter和它的子类。
 因为IO操作的内容太庞大了，所以只能将它们分隔开来。这一篇主要从大的分类方向梳理I/O处理的"流"，第二篇会继续更新常见的具体'流'类，第三篇将更新Scanner的知识，比如工作原理。
 
 
-  [1]: http://7xobsp.com1.z0.glb.clouddn.com/sxt-javaio.jpg
-  [2]: http://7xobsp.com1.z0.glb.clouddn.com/javaio%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93%20-%20-%20ITeye%E6%8A%80%E6%9C%AF%E7%BD%91%E7%AB%99.jpg
+  [1]: http://old-image.geekaholic.cn/sxt-javaio.jpg
+  [2]: http://old-image.geekaholic.cn/javaio%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93%20-%20-%20ITeye%E6%8A%80%E6%9C%AF%E7%BD%91%E7%AB%99.jpg

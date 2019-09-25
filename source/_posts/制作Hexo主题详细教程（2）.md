@@ -2,7 +2,7 @@
 title: 制作Hexo主题详细教程（2）
 tags:
   - ylion
-  - hexo
+  - Hexo
   - 主题制作
 categories:
   - 编执狂
@@ -44,7 +44,7 @@ widgets:
      'archive',
      'popular',
      'tagcloud',
-     'friends' 
+     'friends'
     ]
 }
 ```
@@ -59,13 +59,13 @@ menu:
 - page: rss
   url: /atom.xml
   icon: fa-rss
-  
+
 ```
 
 转换为：
 
 ```javascript
-{ 
+{
 	menu: [
     { page: 'home', url: '/', icon: 'fa-home' },
     { page: 'rss', url: '/atom.xml', icon: 'fa-rss' }
@@ -134,7 +134,7 @@ localStorage.setItem('debug', 'leancloud*');
 但在应用发布的时候，删掉该行代码，即可关闭调试日志，以免暴露敏感信息。**如果删掉之后，在本地还是会显示的，这时请再清空Local Storage对应的数据即可。**
 
 
-![删掉该行即可](http://olpvawdcl.bkt.clouddn.com/acecz5kpij00o4y6kpe9u43a5h)
+![删掉该行即可](http://image.geekaholic.cn/acecz5kpij00o4y6kpe9u43a5h)
 
 初始化leancloud之后，接下来就是逻辑部分的代码了。但在逻辑部分开始前，让我们先明确几个leancloud需要用到的概念，为了更好的理解，从数据库的角度进行类比，但是这是不严谨的。
 
@@ -145,7 +145,7 @@ localStorage.setItem('debug', 'leancloud*');
 
 - 属性：对应数据表中的列。
 
-![leancloud后台界面](http://olpvawdcl.bkt.clouddn.com/2phdciysyieupd75ou6yzup8lq)
+![leancloud后台界面](http://image.geekaholic.cn/2phdciysyieupd75ou6yzup8lq)
 
 
 
@@ -175,7 +175,7 @@ newcounter.save(null, {
 说回安全控制，可使用如图所示的方法，这也是官方推荐使用的方法，这样就确保在一定域名下才能访问你的敏感数据。
 
 
-![添加安全域名](http://olpvawdcl.bkt.clouddn.com/bmsz65rvvaryxq9mlgdxuvu4hi)
+![添加安全域名](http://image.geekaholic.cn/bmsz65rvvaryxq9mlgdxuvu4hi)
 
 
 
@@ -184,7 +184,7 @@ newcounter.save(null, {
 #### 统计阅读量
 
 ```javascript
-for (var i = 0; i < arrLength; i++) { 
+for (var i = 0; i < arrLength; i++) {
 (function(index) {
     var query = new AV.Query(className);
     var item = null,

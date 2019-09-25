@@ -215,7 +215,7 @@ iwo.define('mods/module2',function () {
 2. 定义依赖于`mods/module2`的`module1`模块，执行`iwo.define()`方法，实际上是new出来一个新的`Module`对象
 	1. 对于每个新的`Module`对象都要将其依赖加入`loadings`对象中，并赋值`loadings[id]`为0，说明是依赖声明状态。而且，将`Module`对象缓存到`cache`对象中，并设置`loadings[id]`为2，说明是模块声明状态。
 	2. 模块定义阶段结束。
-	
+
 3. 执行`iwo.run()`方法，执行`module1`模块
 	1. `queue.push(path);`--先将当前执行模块压入执行队列，因为要先加载其依赖，方可执行当前模块。
 	2. `utils.addLoading([path]);`--标明当前模块的状态。(PS:但是我个人认为`Module`对象的状态已经在`new`的时候标注为`2`，这里显得多此一举，暂时不知道该步骤为了考虑什么情况。若大家知道，可以在评论区指出，谢谢~)
@@ -232,7 +232,7 @@ iwo.define('mods/module2',function () {
 
 上面的代码例子执行结果如下图所示：
 
-![执行结果](http://olpvawdcl.bkt.clouddn.com/2017-03-15_142611_0001.jpg)
+![执行结果](http://image.geekaholic.cn/2017-03-15_142611_0001.jpg)
 
 
 由一二条打印结果可以看出，模块加载是异步的，而且模块内部的变量无法被外部全局访问，而第3，4条打印结果可以告诉我们，`module1`的执行是先加载并定义`mods/module2`，但是并没有运行`mods/module2`的`factory`函数，`mods/module2`的`factory()`函数真正执行的时机在于`require('mods/module2')`，所以从这点上来看，**`iwo.js`这一个特点更像是`CMD规范`的懒执行**。
@@ -253,6 +253,3 @@ iwo.define('mods/module2',function () {
 而这里还是要再说明一下，`JavaScript延迟执行`与`factory函数懒执行`说的是两码事。以`iWo.js`为例子，动态创建DOM的方式加载js脚本的时候，当一加载完成就会执行该外部脚本，否则哪里来的`define`。而`factory函数懒执行`只不过是调用该`factory`函数是在`require`相应模块的时候。
 
 End.
-
-
-

@@ -1,7 +1,7 @@
 ---
 title: 制作Hexo主题详细教程（1）
 tags:
-  - hexo
+  - Hexo
   - ylion
   - 主题制作
 categories:
@@ -13,7 +13,7 @@ date: 2017-02-22 14:53:00
 
 ### 为什么要造轮子
 
-利用寒假接近半个月来写了一个[主题](https://github.com/GeekaholicLin/hexo-theme-ylion)。为什么要造轮子？其实做这个Hexo主题的目的就是想学习更高级的用法，比如`less`，比如`ejs`，比如`CSS3`以及原生`Javascript`，也为了更好地沉淀。因为大半年的时间学习jQuery，处理IE的兼容，感觉越来越与前端的发展脱节...
+利用寒假接近半个月来写了一个[主题](https://github.com/GeekaholicLin/hexo-theme-ylion)。为什么要造轮子？其实做这个Hexo主题的目的就是想学习更高级的用法，比如`less`，比如`ejs`，比如`CSS3`以及原生`JavaScript`，也为了更好地沉淀。因为大半年的时间学习jQuery，处理IE的兼容，感觉越来越与前端的发展脱节...
 
 ### 为什么要写本教程
 
@@ -23,11 +23,11 @@ date: 2017-02-22 14:53:00
 
 ### 准备
 
-制作一款Hexo主题的要求并不高，要求掌握`ejs`、`less`、以及基本的`HTML`、`CSS`、`Javascript`，还有熟悉Hexo提供的插件和功能(参见API文档)。至于设计方面的知识，可以参考现有的主题，包括但不限于Hexo主题。
+制作一款Hexo主题的要求并不高，要求掌握`ejs`、`less`、以及基本的`HTML`、`CSS`、`JavaScript`，还有熟悉Hexo提供的插件和功能(参见API文档)。至于设计方面的知识，可以参考现有的主题，包括但不限于Hexo主题。
 
-`ejs`和`less`可以使用`Swig`和`Sass/Scss`等，要看自己熟悉哪一个，自己用的适应就行。  
+`ejs`和`less`可以使用`Swig`和`Sass/Scss`等，要看自己熟悉哪一个，自己用的适应就行。
 
-`ejs`和`less`并不难学，两者都是为了模块化，减少代码量。前者基本上是js+html，后者基本是css。而`Javascript`部分，如果想减少上手难度，可以使用`jQuery`代替。
+`ejs`和`less`并不难学，两者都是为了模块化，减少代码量。前者基本上是js+html，后者基本是css。而`JavaScript`部分，如果想减少上手难度，可以使用`jQuery`代替。
 
 ## 开始
 
@@ -44,30 +44,30 @@ date: 2017-02-22 14:53:00
 ```bash
 	npm install yo -g
    npm install generator-hexo-theme -g
-  
+
 ```
 
 然后在新建的`ylion`目录，使用命令`yo hexo-theme`，进行技术栈的选择。结束后大概是以下的画面：
 
-![hexo-theme](http://olpvawdcl.bkt.clouddn.com/qm1k5oy4o3bdh2n07mdj0lq505)
+![hexo-theme](http://image.geekaholic.cn/qm1k5oy4o3bdh2n07mdj0lq505)
 
 而现在的`ylion`目录下的结构为：
 
 ```bash
 .
-├── _config.yml  
-├── layout 
-│   ├── archive.ejs 
-│   ├── category.ejs 
-│   ├── index.ejs 
-│   ├── layout.ejs 
-│   ├── page.ejs 
-│   ├── partials 
+├── _config.yml
+├── layout
+│   ├── archive.ejs
+│   ├── category.ejs
+│   ├── index.ejs
+│   ├── layout.ejs
+│   ├── page.ejs
+│   ├── partials
 │   │   ├── pagination.ejs
 │   │   └── recent-posts.ejs
-│   ├── post.ejs 
-│   └── tag.ejs 
-└── source 
+│   ├── post.ejs
+│   └── tag.ejs
+└── source
     ├── css
     │   └── ylion.less
     ├── favicon.ico
@@ -96,7 +96,7 @@ date: 2017-02-22 14:53:00
 │   ├── post.ejs ### 文章详情文件
 │   └── tag.ejs ### 标签布局文件
 ├── package.json
-├── scripts ### 
+├── scripts ###
 │   ├── generator ### 生成器
 │   └── helper ### 辅助器
 └── source ###
@@ -131,7 +131,7 @@ date: 2017-02-22 14:53:00
 
 再对照表格：
 
-![模板表格](http://olpvawdcl.bkt.clouddn.com/1snknxi1kcjzgsgojrpazsh92e)
+![模板表格](http://image.geekaholic.cn/1snknxi1kcjzgsgojrpazsh92e)
 
 其中`layout.ejs`是最主要的文件，它是所有布局的入口，而其他的布局(layout)比如`index.ejs`只是`layout.ejs`的`<%- body %>`部分。
 
@@ -173,7 +173,7 @@ date: 2017-02-22 14:53:00
 不过，还是举一个例子。以ylion主题中的`leancloud`统计功能为例子，如果在ejs文件中想获取主题下的`_config.yml`的设置，可以使用`theme.leancloud.enable`进行判断。至于怎么正确获取配置中的值，还请熟悉配置文件的格式。之后会有教程专门讲解，不是这部分的内容。
 
 
-![全局变量](http://olpvawdcl.bkt.clouddn.com/aknwxmpru3ss9hnubjv1kte4ll)
+![全局变量](http://image.geekaholic.cn/aknwxmpru3ss9hnubjv1kte4ll)
 
 
 **注意：**全局变量中的`page`指的是`页面变量`，与页面变量中的`page`是不同的。页面变量到底有哪些内容，是根据当前不同的布局(layout)而决定的。
@@ -182,7 +182,7 @@ date: 2017-02-22 14:53:00
 
 让我们来看看文档又给我们挖了什么样的坑。页面变量中的`page`变量说的就是你。
 
-![page 变量](http://olpvawdcl.bkt.clouddn.com/f10e1zorltdtbmkqp4aepvs940)
+![page 变量](http://image.geekaholic.cn/f10e1zorltdtbmkqp4aepvs940)
 
 `page`变量有一部分是**front-matter 所设定的变量**，而不是它本身拥有的。比如`page.photos`，其他的暂时没有验证，**目测** `page.link`也是。想当时，一直郁闷为什么无法获取文章的照片，原来是需要在文章中指定（摔！）
 
@@ -219,7 +219,7 @@ result += '<li class="' + className + '-list-item' + additionalClassName + '">';
       }
 
       result += '</li>';
-     
+
 ```
 
 这是`list_categories`辅助函数的一部分内容，生成的是文章的分类列表，如果你的结构不是这样，不就需要进行修改了吗？

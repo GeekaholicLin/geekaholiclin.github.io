@@ -9,10 +9,12 @@ var _busuanzi = theme.busuanzi_src || '/js/thirdParty/busuanzi.min.js';
   var appId = "<%- theme.leancloud.app_id %>";
   var appKey = "<%- theme.leancloud.app_key %>";
   var region = "<%= theme.leancloud.region %>";
+  var serverURLs = "<%= theme.leancloud.serverURLs %>";
   AV.init({
     appId: appId,
     appKey: appKey,
-    region: region
+    region: region,
+    serverURLs: serverUrls
   });
 </script>
 <% } %>

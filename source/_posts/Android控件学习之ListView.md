@@ -25,7 +25,7 @@ ListView的学习主要是适配器(Adapter)的使用以及对MVC的理解。代
 ![][1]
 >simple_list_item_multiple_choice : 都带有一个复选框
 ![][2]
->simple_list_item_single_choice : 都带有一个单选钮 
+>simple_list_item_single_choice : 都带有一个单选钮
 
 
 <!--more-->
@@ -87,21 +87,21 @@ protected void onCreate(Bundle savedInstanceState) {
 
 >比如：在res\valuse下创建一个数组资源的xml文件：arrays.xml：
 ```java
-<?xml version="1.0" encoding="utf-8"?>  
-<resources>  
-    <string-array name="myarray">  
-    <item>语文</item>  
-    <item>数学</item>  
-    <item>英语</item>  
-    </string-array>      
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="myarray">
+    <item>语文</item>
+    <item>数学</item>
+    <item>英语</item>
+    </string-array>
 </resources>
 ```
 >接着布局的listview属性设置下这个列表项：
 ```java
-<ListView  
-        android:id="@id/list_test"  
-        android:layout_height="match_parent"  
-        android:layout_width="match_parent"   
+<ListView
+        android:id="@id/list_test"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
         android:entries="@array/myarray"/>
 ```
 就可以了~
@@ -120,7 +120,7 @@ SimpleAdapter也是Android自己提供的一个Adapter适配器，它与ArrayAda
 首先，我们先来看SimpleAdapter的构造方法：来自【[博客][5]】
 `public SimpleAdapter(Context context, List<? extends Map<String, ?>> data,
             @LayoutRes int resource, String[] from, @IdRes int[]to)`
-            
+
 >第一个参数Context context是指当前的Activity，我们传入this即可。
 第二个参数List<? extends Map<String,?>>是指传入的数据类型必须是List集合，集合存放的数据类型必须是Map。
 >第三个参数int resource是指View的布局文件。传入我们的布局文件
@@ -203,7 +203,7 @@ public class MainActivity extends AppCompatActivity {
                 R.drawable.profile,
                 R.drawable.profile,
         };
-        
+
         //构建Map类型的线性表List数据，将数据存储在List<Map<String,Object>>类型中
         List<Map<String,Object>> dataList = new ArrayList<>();
         for (int i = 0; i <dataStrings.length ; i++) {
@@ -525,10 +525,10 @@ public View getView(int position, View convertView, ViewGroup parent) {
   [1]: ./images/1454742558811.jpg "1454742558811.jpg"
   [2]: ./images/1454742586021.jpg "1454742586021.jpg"
   [3]: http://www.runoob.com/w3cnote/android-tutorial-adapter.html
-  [4]: http://7xobsp.com1.z0.glb.clouddn.com/2016-02-06_00001.jpg
+  [4]: http://old-image.geekaholic.cn/2016-02-06_00001.jpg
   [5]: http://blog.csdn.net/to_be_designer/article/details/47980475
   [6]: http://blog.csdn.net/to_be_designer/article/details/47983017
-  [7]: http://7xobsp.com1.z0.glb.clouddn.com/%5BAndroid%5D%20ListView%E4%B8%ADgetView%E7%9A%84%E5%8E%9F%E7%90%86%EF%BC%8B%E5%A6%82%E4%BD%95%E5%9C%A8ListView%E4%B8%AD%E6%94%BE%E7%BD%AE%E5%A4%9A%E4%B8%AAitem%20-%20%E6%9C%A8%E4%B9%83%E7%8C%AB%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD.jpg
+  [7]: http://old-image.geekaholic.cn/%5BAndroid%5D%20ListView%E4%B8%ADgetView%E7%9A%84%E5%8E%9F%E7%90%86%EF%BC%8B%E5%A6%82%E4%BD%95%E5%9C%A8ListView%E4%B8%AD%E6%94%BE%E7%BD%AE%E5%A4%9A%E4%B8%AAitem%20-%20%E6%9C%A8%E4%B9%83%E7%8C%AB%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD.jpg
   [8]: http://www.runoob.com/w3cnote/android-tutorial-adapter.html
   [9]: http://blog.csdn.net/to_be_designer/article/details/47980475
   [10]: http://www.cnblogs.com/xiaowenji/archive/2010/12/08/1900579.html

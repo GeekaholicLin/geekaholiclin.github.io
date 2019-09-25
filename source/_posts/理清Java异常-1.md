@@ -12,18 +12,18 @@ tags: [马士兵, Java, 异常处理]
 **参考资料**
 > 1.`Java语言程序设计(基础篇)`
   2.尚学堂马士兵的`Java视频教程`
-  
+
   <!--more-->
-  
+
 ### 异常的概念
 
 > 异常是程序在运行时的错误。
 
-设计良好的程序应该在异常发生的时候提供处理这些错误的方法，使得程序不会因为异常的发生而阻断或者产生不可遇见的结果。 
+设计良好的程序应该在异常发生的时候提供处理这些错误的方法，使得程序不会因为异常的发生而阻断或者产生不可遇见的结果。
 
 还有一个好处在于，程序员应该对可能抛出的异常进行处理，而不是让异常直接抛出给使用的用户，专业的异常术语可能导致用户不好的体验，所以应该进行处理，可以进行更加易懂或者说是友好的提示。
 
-### 异常的分类 
+### 异常的分类
 打开Java API的异常类，即`Throwable`类，可以看到有两个直接的子类(为什么是直接的子类？因为**用户可以自定义自己的异常类**)
 
 - Throwable 所有异常类的根
@@ -34,7 +34,7 @@ tags: [马士兵, Java, 异常处理]
         - ......
     - `Exception`(异常)
     **错误或异常能被程序捕获和处理**。描述的是程序和外部环境所引起的错误。
-      
+
         - ClassNotFoundException等 其他异常
         - RunTimeException(运行时异常)
         **在Exception类中比较特殊的子类**。描述的是程序设计错误，异常由Java虚拟机抛出。常见情况有:错误的类型转换，数组下标越界等。
@@ -50,10 +50,10 @@ tags: [马士兵, Java, 异常处理]
 
 **总结**
 >- 异常是程序在运行时的错误
->- Throwable是所有异常的父类。其有两个直接的子类--Error和Exception，其中Exception中有一个特殊的子类--RunTimeException，它和Error是`免检异常`，Java不强制要求处理免检异常。 
+>- Throwable是所有异常的父类。其有两个直接的子类--Error和Exception，其中Exception中有一个特殊的子类--RunTimeException，它和Error是`免检异常`，Java不强制要求处理免检异常。
 
 ![][2]
 
 
-  [1]: http://7xobsp.com1.z0.glb.clouddn.com/%E5%BC%82%E5%B8%B8%E7%9A%84%E5%A4%A7%E6%A6%82%E5%88%86%E7%B1%BB.jpg
-  [2]: http://7xobsp.com1.z0.glb.clouddn.com/%E5%88%9B%E6%84%8F%20-%20Google%20%E6%90%9C%E7%B4%A2.jpg
+  [1]: http://old-image.geekaholic.cn/%E5%BC%82%E5%B8%B8%E7%9A%84%E5%A4%A7%E6%A6%82%E5%88%86%E7%B1%BB.jpg
+  [2]: http://old-image.geekaholic.cn/%E5%88%9B%E6%84%8F%20-%20Google%20%E6%90%9C%E7%B4%A2.jpg

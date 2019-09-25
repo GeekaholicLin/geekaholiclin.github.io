@@ -14,7 +14,7 @@ tags: [JavaScript, 模块化, Web]
 
 在学习C语言的时候，都能清楚地知道模块化的重要性--代码复用以及高内聚低耦合，不仅是为了可维护也是为了代码的健壮性。而在JavaScript中，解决的是什么？
 
---当一个项目逐渐复杂，多个人进行开发的时候，难免会出现命名冲突的问题，还有一个就是前端开发并不像后端一样，有专门的工具进行管理依赖，只以script标签的出现顺序来简略地规定文件的依赖关系。所以**命名冲突**和**文件依赖**是Javascript模块化解决的主要问题，它的好处自然是可维护性和复用性。
+--当一个项目逐渐复杂，多个人进行开发的时候，难免会出现命名冲突的问题，还有一个就是前端开发并不像后端一样，有专门的工具进行管理依赖，只以script标签的出现顺序来简略地规定文件的依赖关系。所以**命名冲突**和**文件依赖**是JavaScript模块化解决的主要问题，它的好处自然是可维护性和复用性。
 
 ### 命名冲突
 
@@ -185,9 +185,9 @@ Tips：可以看到`_seal()`是使用了`delete`删除属性的操作符，而`_
 
 因为调用`Module._seal()`的时候`delete my._unseal;`，会失去`_unseal`的引用，在新增加模块文件之前，自然无法调用`Module._unseal()`，导致出错。而且跨文件访问私有属性很难管理。我找到了作者在评论讨论的一番话，当时的内心Orz...
 
-> I've never actually used it, which is probably a good sign that it's not useful. I was mostly just trying to prove that you COULD do something like that with the Module Pattern, and to show the flexibility of JavaScript. 
+> I've never actually used it, which is probably a good sign that it's not useful. I was mostly just trying to prove that you COULD do something like that with the Module Pattern, and to show the flexibility of JavaScript.
 
-![讨论详情](http://olpvawdcl.bkt.clouddn.com/20170310103317.png)
+![讨论详情](http://image.geekaholic.cn/20170310103317.png)
 
 文章挺久远的了，但是不妨碍我们学习其思想:)
 
@@ -234,7 +234,7 @@ body
 
 JavaScript 模块化最早是出现在`Nodejs`当中，推出了`Module/1.0`规范并获得不错的成功后，想继而推广到浏览器端的时候，出现了分歧，形成了三大流派，大致如下：
 
-![CommonJS流派](http://olpvawdcl.bkt.clouddn.com/p978yzq5wzv76ep29wn4hwjl73)
+![CommonJS流派](http://image.geekaholic.cn/p978yzq5wzv76ep29wn4hwjl73)
 
 如果你想了解这部分历史，请翻阅玉伯大大的[前端模块化开发那点历史](https://github.com/seajs/seajs/issues/588)。
 
@@ -356,7 +356,7 @@ const inst = new MyClass();
 
 好处是它是一个标准，而且**实时更新**，然而残酷的现实是浏览器支持度全线飘红，不过可以通过`Babel`等工具进行代码转换。
 
-![兼容性](http://olpvawdcl.bkt.clouddn.com/2017-03-10_173025_0001.jpg)
+![兼容性](http://image.geekaholic.cn/2017-03-10_173025_0001.jpg)
 
 
 ### 模块打包构建方案

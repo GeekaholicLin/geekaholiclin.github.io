@@ -98,10 +98,10 @@ warning:
 
 ### index article excerpt
 defaultImgs:
-  - http://olpvawdcl.bkt.clouddn.com/blog-bg3.jpg
-  - http://olpvawdcl.bkt.clouddn.com/blog-bg4.png
-  - http://olpvawdcl.bkt.clouddn.com/blog-bg5.jpg
-  - http://olpvawdcl.bkt.clouddn.com/blog-bg6.jpg
+  - http://image.geekaholic.cn/blog-bg3.jpg
+  - http://image.geekaholic.cn/blog-bg4.png
+  - http://image.geekaholic.cn/blog-bg5.jpg
+  - http://image.geekaholic.cn/blog-bg6.jpg
 #  - /img/default-1.jpg
 
 excerptLength: 400
@@ -109,14 +109,14 @@ excerptLength: 400
 whichCategory: 0
 ### post footer
 high_song: 'high起来 &#128541;'
-author_img: http://olpvawdcl.bkt.clouddn.com/author.jpg
+author_img: http://image.geekaholic.cn/author.jpg
 author_profile_page: /about.html # default is the blog home
 donate:
   text: '打赏资瓷 &#128536;'
   img:
-  - url: http://olpvawdcl.bkt.clouddn.com/alipay.jpg
+  - url: http://image.geekaholic.cn/alipay.jpg
     alt: '支付宝付款'
-  - url: http://olpvawdcl.bkt.clouddn.com/wechat.png
+  - url: http://image.geekaholic.cn/wechat.png
     alt: '微信付款'
 # support html&text like notification's support in this theme,
 # but please don't use <li> tag
@@ -145,6 +145,7 @@ leancloud:
   app_key: yuke8QmutaxI5YvyD2NIE57u
   region:
   limits: 10 # popular posts will be disable when 0
+  serverURLs: http://image.geekaholic.cn/alipay.jpg
 ## comments
 ### disqus
 #disqus_shortname: geekaholiclin
@@ -177,8 +178,8 @@ fontAwesome: //cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css
 
 ## script cdn
 
-leancloud_src: http://cdn1.lncld.net/static/js/3.2.1/av-min.js
-busuanzi_src: //dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js
+leancloud_src: //cdn.jsdelivr.net/npm/leancloud-storage@3.15.0/dist/av-min.js
+busuanzi_src: //busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js
 
 # theme and site self settings
 since: 2015

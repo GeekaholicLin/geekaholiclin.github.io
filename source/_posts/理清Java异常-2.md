@@ -22,7 +22,7 @@ tags: [马士兵, Java, 异常处理]
 <!--more-->
 以上"咬文嚼字"的过程涉及三个操作--1.声明异常，2.抛出异常，3.捕获异常。
 #### 代码实例
-``` java 
+``` java
     import java.io.IOException;//引入需要的包
     import java.io.File;
     import java.io.FileInputStream;
@@ -34,11 +34,11 @@ tags: [马士兵, Java, 异常处理]
              System.out.println(e);
         }
     }
-    
-        
+
+
     public void B() throws IOException/*声明IO异常,关键字throws*/{
         try{
-        
+
             File mFile = new File("myFile.dat");
             FileInputStream input = new FileInputStream(mFile);
             //方法C
@@ -54,7 +54,7 @@ tags: [马士兵, Java, 异常处理]
             //System.out.println("出错+"e);
         }
     }
-    
+
 ```
 
 
@@ -73,7 +73,7 @@ tags: [马士兵, Java, 异常处理]
 >异常信息可以使用异常对象的 `getMessage()` 获取。【见代码部分】
 
 #### 捕获异常(关键字:try,catch,finally)
-使用try语句块包含可能出错的方法，使用catch语句块捕获可能出现的异常。只有catch语句块中的异常对象相匹配，才会执行catch语句块中的语句。 
+使用try语句块包含可能出错的方法，使用catch语句块捕获可能出现的异常。只有catch语句块中的异常对象相匹配，才会执行catch语句块中的语句。
 
 注意:catch异常对象只需声明引用，如Exception e;这样我们就可以直接使用了。那对象的初始化呢？异常在Java运行时系统抛出异常对象时已帮我们自动初始化对象，即'new Exception()'。
 
@@ -100,7 +100,7 @@ public class Exc {
     Exc(double r) {
         setRadius(r);
     }
-    
+
     public static void main(String[] args) {
         try{
             Exc circle = new Exc(5.0);
@@ -139,7 +139,7 @@ java.lang.IllegalArgumentException: 出错！半径小于0
     //伪代码
     if(setRadius() throws IllegalArgumentException)
         return null;
-    
+
 ```
 **假设第3点中，setRadius()抛出的异常可以在Exc()内部自己处理，不需要抛出异常给main方法**，那这一段代码不需要try-catch，因为太简单了，可以预料。那执意要使用try-catch呢？虽然说try-catch使得错误处理的代码和正常的代码分离，更易懂。但是
 > 由于异常处理需要初始化新的异常对象，需要从调用栈返回，而且还需要沿着方法调用链来传播异常以便找到它的**异常处理器**，这个过程需要更多的内存和时间。
@@ -201,11 +201,11 @@ Caused by: java.lang.Exception: info from method2
 > 一个方法内部调用有抛出异常的方法时，或手动抛出异常时，必须做出处理。处理的方式有两种:1.继续向调用方法抛出异常 2.捕获异常并解决
 
 > main方法也可以不捕获并解决异常，直接抛出。这时是抛给Java运行时系统，异常信息会被打印并终止程序的运行。也就是我们一般见到的情况。
- 
+
 ![图片来自网络,侵删][4]
 
 
   [1]: http://garcin-lam.github.io/2015/12/26/%E7%90%86%E6%B8%85Java%E5%BC%82%E5%B8%B8-1/
   [2]: http://garcin-lam.github.io/2015/12/26/%E7%90%86%E6%B8%85Java%E5%BC%82%E5%B8%B8-3/
   [3]: http://book.douban.com/subject/6529833/
-  [4]: http://7xobsp.com1.z0.glb.clouddn.com/%E5%88%9B%E6%84%8F%20-%20Google%20%E6%90%9C%E7%B4%A2%281%29.jpg
+  [4]: http://old-image.geekaholic.cn/%E5%88%9B%E6%84%8F%20-%20Google%20%E6%90%9C%E7%B4%A2%281%29.jpg

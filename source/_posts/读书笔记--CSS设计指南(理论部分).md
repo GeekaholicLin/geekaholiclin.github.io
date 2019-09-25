@@ -33,7 +33,7 @@ tags: [CSS设计指南, 读书笔记, 兼容性, polyfill]
 6. link伪类四个同时使用的时候 ：为了好记，我建议大家可以这
 么想：“ LoVe? HA!”大写字母就是每个伪类的头一个字母。【顺序问题困扰很久】
 
-7. 新学习的伪类，**`:target`** 
+7. 新学习的伪类，**`:target`**
 
 > 如果用户点击一个指向页面中其他元素的链接，则那个元素就是目标target），可以用:target 伪类选中它。
 对于下面这个链接`<a href="#more_info">More Information</a>`位于页面其他地方、 ID 为more_info 的那个元素就是目标。该元素可能是这样的：`<h2 id="more_info">This is the information you are looking for.</h2> ` 那么，如下CSS规则 `#more_info:target{background:#eee;}` 会在用户单击链接转向ID为more_info的元素时，为该元素添加浅灰色背景。
@@ -84,7 +84,7 @@ background-clip: content-box;/*背景包括content，不包括padding和border*/
 ![字体][3]
 
 23. 字体大小
- 
+
 > 默认情况下， 1em等于 16 像素，这也是 font-size 的基准大小。如果需要重新设定了基准大小，则修改body 的字体大小。body的字体大小即为1em(比如重新设定为20px,则1em = 20px)
 
 * 绝对字体大小。
@@ -100,15 +100,15 @@ background-clip: content-box;/*背景包括content，不包括padding和border*/
     <body>
         <p>This is <strong>very important!</strong></p>
     </body>
-    
+
     p {font-size:.75em;}
     strong {font-size:.75em;}
-    
+
     //计算
-    
+
     font-size(p) = 0.75*16px = 12px;
     font-size(strong) = 12px * 0.75 = 9px;
-    
+
 ```
 
 24. 默认值并不是无用，它可以用来有选择地覆盖某个默认或你设定的全局属性。
@@ -120,7 +120,7 @@ background-clip: content-box;/*背景包括content，不包括padding和border*/
    * 斜体：`font-style:italic;`或`font-style:oblique;`或`<em>`
 (emphasized)标签或`<i>`(italic)标签。
    * 粗体: `font-weight:bold;`或`<strong>`(strong)标签或`<b>`(bold)标签。
-   
+
 **那应该如何选择？**
 
 > 其实，个人认为，如果不是特别强调的，不要轻易使用`<em>`,`<strong>`两种分别显示斜体和粗体。因为他们在搜索引擎中更受重视，将会影响SEO。也就是说，在一般情况下，使用css来控制字体样式(推荐)或者`<b>`和`<i>`。
@@ -359,7 +359,7 @@ handled：匹配手持设备（小屏幕、单色、带宽有限）；
  print：匹配分页媒体或打印预览模式下的屏幕；
  screen：匹配彩色计算机屏幕；
  其他媒体类型还有 braille（盲文点字触觉反馈设备）、 embossed（盲文分页打印机）、projection（投影仪）、 speech（语音合成器）、 tty（电话机屏幕等固定宽度字符栅格设备）和 tv（电视机）。
- 
+
  **任意时刻浏览器窗口中只能使用一种媒体类型**。
 
 #### 媒体特性
@@ -370,7 +370,7 @@ handled：匹配手持设备（小屏幕、单色、带宽有限）；
 > min-device-width 和 max-device-width：匹配设备屏幕的尺寸；
 min-width 和 max-width：匹配视口的宽度，例如浏览器窗口宽度；
 orientation（值为portrait(竖屏)和landscape(横屏)）：匹配设备是横屏还是竖屏。
-如果想通过媒体查询来根据用户对浏览器窗口的缩放重新调整布局，应该使用 min-width 和max-width。 
+如果想通过媒体查询来根据用户对浏览器窗口的缩放重新调整布局，应该使用 min-width 和max-width。
 
 还可以使用逻辑运算符 and、 not、 or 及关键字 all、 only 组合媒体类型和媒体特性。
 
@@ -500,8 +500,8 @@ CSS 选择符。
 
   [1]: http://www.w3.org/TR/2005/WD-css3-%20selectors-20051215/#pseudo-elements
   [2]: http://modernizr.com
-  [3]: http://7xobsp.com1.z0.glb.clouddn.com/2016-03-14_00001.jpg
-  [4]: http://7xobsp.com1.z0.glb.clouddn.com/2016-03-14_00002.jpg
+  [3]: http://old-image.geekaholic.cn/2016-03-14_00001.jpg
+  [4]: http://old-image.geekaholic.cn/2016-03-14_00002.jpg
   [5]: https://www.google.com/fonts/
   [6]: http://www.fontsquirrel.com
   [7]: http://www.w3cplus.com/content/css3-font-face
@@ -509,11 +509,11 @@ CSS 选择符。
   [9]: http://www.w3school.com.cn/cssref/pr_box-sizing.asp
   [10]: https://github.com/albertogasparin/borderBoxModel
   [11]: http://www.cnblogs.com/pomoho/p/4381753.html
-  [12]: http://7xobsp.com1.z0.glb.clouddn.com/2016-03-15_00001.jpg
+  [12]: http://old-image.geekaholic.cn/2016-03-15_00001.jpg
   [13]: #%E5%B1%82%E5%8F%A0
   [14]: https://github.com/Modernizr/%20Modernizr/wiki/HTML5-Cross-Browser-Polyfills
   [15]: http://%20modernizr.com
-  [16]: http://7xobsp.com1.z0.glb.clouddn.com/2016-03-18_00001.jpg
+  [16]: http://old-image.geekaholic.cn/2016-03-18_00001.jpg
   [17]: http://www.adobe.com/cn/devnet/dreamweaver/articles/using-modernizr.html
   [18]: https://book.douban.com/subject/23123255/
   [19]: http://code.google.com/p/html5shiv

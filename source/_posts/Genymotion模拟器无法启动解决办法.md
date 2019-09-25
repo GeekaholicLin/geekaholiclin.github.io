@@ -23,9 +23,9 @@ Genymotion模拟器可谓是Android开发者最常用的模拟器之一，拥有
     Choose properties
     Check "VirtualBox NDIS6 Bridged Networking driver"
     disable and Enable the adapter
-    
+
 在`网络和共享中心`中找到VisualBox的适配器。
-![步骤1][2]    
+![步骤1][2]
 
 **右键**，然后**属性**。
 
@@ -36,10 +36,10 @@ Genymotion模拟器可谓是Android开发者最常用的模拟器之一，拥有
 再次启动Genymotion模拟器即可，完美解决。
 
 ![模拟器界面][4]
-  
 
 
-  [1]: http://7xobsp.com1.z0.glb.clouddn.com/2016-03-18_00003.jpg
-  [2]: http://7xobsp.com1.z0.glb.clouddn.com/jm.jpg
-  [3]: http://7xobsp.com1.z0.glb.clouddn.com/2016-03-18_00002.jpg
-  [4]: http://7xobsp.com1.z0.glb.clouddn.com/2016-03-18_00004.jpg
+
+  [1]: http://old-image.geekaholic.cn/2016-03-18_00003.jpg
+  [2]: http://old-image.geekaholic.cn/jm.jpg
+  [3]: http://old-image.geekaholic.cn/2016-03-18_00002.jpg
+  [4]: http://old-image.geekaholic.cn/2016-03-18_00004.jpg

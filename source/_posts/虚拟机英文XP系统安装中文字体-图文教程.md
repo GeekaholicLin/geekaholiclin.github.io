@@ -19,7 +19,7 @@ tags: [虚拟机, 英文XP系统, 中文字体, 兼容性]
 >    * win7 + ie10
 >    * win7 或 xp + ie8 或 ie7（可忽略）
 >    * mac + safari / firefox / chrome （可忽略）
->    * win8.1 + ie11 
+>    * win8.1 + ie11
 
 每一个选项都应该是一台远程或本地的测试机器，或者是一个vmware虚拟机，装有原生对应版本浏览器的操作系统。
 在学习前端的时候，浏览器的兼容器总是让人头疼。因为硬性规定，要用原生的浏览器进行测试，不可以是**IE11**下对**IE7-9**进行仿真，而且测试的时候不可以使用在线工具(**测试地址要求权限，使得在线工具无权限访问**)。
@@ -134,20 +134,20 @@ tags: [虚拟机, 英文XP系统, 中文字体, 兼容性]
   [2]: https://dev.windows.com/en-us/microsoft-edge/tools/vms/windows/
   [3]: http://recentsolutions.blogspot.com/2012/09/east-asian-language-pack-for-windows-xp.html
   [4]: http://pan.baidu.com/s/1pKtQBfP
-  [5]: http://7xobsp.com1.z0.glb.clouddn.com/2016-02-18_00001.jpg
-  [6]: http://7xobsp.com1.z0.glb.clouddn.com/2016-02-18_00002.jpg
-  [7]: http://7xobsp.com1.z0.glb.clouddn.com/2016-02-18_00003.jpg
-  [8]: http://7xobsp.com1.z0.glb.clouddn.com/200.jpg
-  [9]: http://7xobsp.com1.z0.glb.clouddn.com/251.jpg
-  [10]: http://7xobsp.com1.z0.glb.clouddn.com/430.jpg
-  [11]: http://7xobsp.com1.z0.glb.clouddn.com/2016-02-18_00006.jpg
-  [12]: http://7xobsp.com1.z0.glb.clouddn.com/2016-02-18_00007.jpg
-  [13]: http://7xobsp.com1.z0.glb.clouddn.com/2016-02-18_00008.jpg
-  [14]: http://7xobsp.com1.z0.glb.clouddn.com/2016-02-18_00009.jpg
-  [15]: http://7xobsp.com1.z0.glb.clouddn.com/2016-02-18_00010.jpg
-  [16]: http://7xobsp.com1.z0.glb.clouddn.com/2016-02-18_00011.jpg
-  [17]: http://7xobsp.com1.z0.glb.clouddn.com/1209.jpg
-  [18]: http://7xobsp.com1.z0.glb.clouddn.com/1307.jpg
-  [19]: http://7xobsp.com1.z0.glb.clouddn.com/346.jpg
-  [20]: http://7xobsp.com1.z0.glb.clouddn.com/1626.jpg
-  [21]: http://7xobsp.com1.z0.glb.clouddn.com/1800.jpg
+  [5]: http://old-image.geekaholic.cn/2016-02-18_00001.jpg
+  [6]: http://old-image.geekaholic.cn/2016-02-18_00002.jpg
+  [7]: http://old-image.geekaholic.cn/2016-02-18_00003.jpg
+  [8]: http://old-image.geekaholic.cn/200.jpg
+  [9]: http://old-image.geekaholic.cn/251.jpg
+  [10]: http://old-image.geekaholic.cn/430.jpg
+  [11]: http://old-image.geekaholic.cn/2016-02-18_00006.jpg
+  [12]: http://old-image.geekaholic.cn/2016-02-18_00007.jpg
+  [13]: http://old-image.geekaholic.cn/2016-02-18_00008.jpg
+  [14]: http://old-image.geekaholic.cn/2016-02-18_00009.jpg
+  [15]: http://old-image.geekaholic.cn/2016-02-18_00010.jpg
+  [16]: http://old-image.geekaholic.cn/2016-02-18_00011.jpg
+  [17]: http://old-image.geekaholic.cn/1209.jpg
+  [18]: http://old-image.geekaholic.cn/1307.jpg
+  [19]: http://old-image.geekaholic.cn/346.jpg
+  [20]: http://old-image.geekaholic.cn/1626.jpg
+  [21]: http://old-image.geekaholic.cn/1800.jpg

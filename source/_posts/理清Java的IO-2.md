@@ -24,7 +24,7 @@ tags: [Java, IO操作, 流类型]
 
 ```java
 // 文件输入流构造方法
-FileInputStream(File file) 
+FileInputStream(File file)
 FileInputStream(FileDescriptor fdObj)
 FileInputStream(String name)
 
@@ -89,9 +89,9 @@ writeUTF()---以UTF-8格式写入一个字符串
 
 /*注意不要混淆Java的char,byte 以及C语言中的char
   Java中的char字符型是以统一码(Unicode)编码的，也就是说Java中的char虽说是一个字符，但它是两个字节组成的，而byte是Java中的char类型的低八位，也就是一个字节。至于C语言中的char类型，因为C语言的字符型是以ASCII码进行编码，所以每个字符是8位，一个字节。
-  
-  所以输出中的writeBytes()，writeChar(),writeChars()以及writeUTF()之间有什么区别和联系？应该在什么情况下使用？ 
-  
+
+  所以输出中的writeBytes()，writeChar(),writeChars()以及writeUTF()之间有什么区别和联系？应该在什么情况下使用？
+
   writeBytes方法适用于ASCII码组成的字符串，因为ASCII只储存统一码的低八位。
   而对于不是全部由ASCII码组成的字符串(比如含有汉字)，则要使用writeUTF()和writeChars()，都是将两个字节的长度信息写入输出流。但使用UTF编码格式来存储相对更省空间，它是变长的，对于ASCII字符它只会使用1个字节，但如果使用Unicode，则使用了两个字节。所以，如果一个长字符串的大多数字符都是普通的ASCII字符，采用UTF-8格式储存更加高效。
 */
@@ -254,7 +254,7 @@ public class JavaIO {
         }
         catch (FileNotFoundException ex) {
             System.out.println("找不到文件");
-        } 
+        }
 
     }
 }
@@ -292,10 +292,10 @@ public class JavaIO {
 //方法2 try-with-resources
 
 public class JavaIO {
-    public static void main(String[] args) {   
+    public static void main(String[] args) {
         File mFile = new File("D:\\test.txt");
-        try(FileReader mFileReader=new FileReader(mFile)) {         
-            char[] value = new char[2];            
+        try(FileReader mFileReader=new FileReader(mFile)) {
+            char[] value = new char[2];
             System.out.println("我是节点流对象mFileReader读取的数据");
             //一个字符一个字符地读取，当read()返回值为-1时，读取结束
             while (mFileReader.read(value, 0, 1) != -1) {
@@ -325,5 +325,5 @@ public class JavaIO {
 
 
   [1]: http://garcin-lam.github.io/2015/12/27/%E7%90%86%E6%B8%85Java%E7%9A%84IO-1/
-  [2]: http://7xobsp.com1.z0.glb.clouddn.com/javaio%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93%20-%20-%20ITeye%E6%8A%80%E6%9C%AF%E7%BD%91%E7%AB%99.jpg
+  [2]: http://old-image.geekaholic.cn/javaio%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93%20-%20-%20ITeye%E6%8A%80%E6%9C%AF%E7%BD%91%E7%AB%99.jpg
   [3]: http://www.iteye.com/topic/47740

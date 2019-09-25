@@ -6,7 +6,6 @@ type: 'about'
 {% codeblock 关于我 lang:javascript %}
 {
     name: "林家兴 / Geekaholic",
-    birthday: "1995-08-10",
     gender: "男",
     address: "广东省广州市",
     education: "本科 / 华南农业大学",

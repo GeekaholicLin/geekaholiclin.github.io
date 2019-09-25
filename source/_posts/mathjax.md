@@ -2,7 +2,7 @@
 title: mathjax
 date: 2017-02-19 14:51:32
 mathjax: true
-categories: [编程之外, hexo]
+categories: [编程之外, Hexo]
 tags: [Hexo主题, ylion, Mathjax]
 ---
 

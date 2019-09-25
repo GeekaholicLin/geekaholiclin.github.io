@@ -71,10 +71,10 @@ public class MyThread{
     public void run() {
         System.out.println("=====开启子线程======");
         for (int i = 0; i < 50; i++) {
-                   System.out.println("这是子线程中第"+(i+1)+"行");         
+                   System.out.println("这是子线程中第"+(i+1)+"行");
         }
     }
-    
+
 }
 
 ```
@@ -88,14 +88,14 @@ public class MyThread{
 //此时实际上是main()方法对run()方法进行调用，而不是开启线程执行run()方法
 ```
 
-**方法二** 
+**方法二**
 
 与上面方法一类似，只需要适当修改一下。
 ```java
 
 public class MyThread{
     public static void main(String[] args) {
-       
+
         MyRunnableClass mThread = new MyRunnableClass();
         mThread.start();//开启线程
         for (int i = 0; i < 50; i++) {
@@ -110,10 +110,10 @@ public class MyThread{
     public void run() {
         System.out.println("=====开启子线程======");
         for (int i = 0; i < 50; i++) {
-                   System.out.println("这是子线程中第"+(i+1)+"行");         
+                   System.out.println("这是子线程中第"+(i+1)+"行");
         }
     }
-    
+
 }
 ```
 
@@ -271,7 +271,7 @@ public class MyThread {
 
 class MyRunnableClass extends Thread {
     MyRunnableClass(){
-        
+
     }
     //通过super(String)为线程起名,可以使用getName()获取名字
     MyRunnableClass(String name){
@@ -290,8 +290,8 @@ class MyRunnableClass extends Thread {
             } catch (InterruptedException ex) {
                 System.out.println(ex);
             }
-         
-            
+
+
         }
     }
 }
@@ -328,6 +328,5 @@ Java提供一个线程调度器来监控程序中启动后进入就绪状态的�
 
 
 
-  [1]: http://7xobsp.com1.z0.glb.clouddn.com/2016-02-09_00001.jpg
-  [2]: http://7xobsp.com1.z0.glb.clouddn.com/2016-02-09_00003.jpg
- 
+  [1]: http://old-image.geekaholic.cn/2016-02-09_00001.jpg
+  [2]: http://old-image.geekaholic.cn/2016-02-09_00003.jpg

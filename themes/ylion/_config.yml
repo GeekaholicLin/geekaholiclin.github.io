@@ -151,16 +151,18 @@ leancloud:
 #disqus_shortname: geekaholiclin
 ### duoshuo
 #duoshuo_shortname: garcin
-### Gitment
-gitment:
+
+gittalk:
   enable: true
-  owner: GeekaholicLin
+  clientID: aa2215dfc8ee944d1205
+  clientSecret: 77cd2afa5d161bc0ab04639ed81300d808c6e22b
   repo: geekaholiclin.github.io
-  client_id: aa2215dfc8ee944d1205
-  client_secret: 77cd2afa5d161bc0ab04639ed81300d808c6e22b
-  labels: "blog,gitment"
-  perPage: 20
-  maxCommentHeight:
+  owner: GeekaholicLin
+  admin: GeekaholicLin
+  distractionFreeMode: false
+  css: https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css
+  js: https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js
+
 ## analytics
 baidu_anaylytics: 1fdc784829bc9fa0c0bbee0c680ffe2a
 google_anaylytics: UA-91854900-3

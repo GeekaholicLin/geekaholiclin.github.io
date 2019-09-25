@@ -145,7 +145,7 @@ leancloud:
   app_key: yuke8QmutaxI5YvyD2NIE57u
   region:
   limits: 10 # popular posts will be disable when 0
-  serverURLs: http://image.geekaholic.cn/alipay.jpg
+  serverURLs: http://leancloud.geekaholic.cn
 ## comments
 ### disqus
 #disqus_shortname: geekaholiclin

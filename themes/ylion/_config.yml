@@ -8,9 +8,9 @@ menu:
 #- page: archives
 #  url: /archives
 #  icon: fa-archive
-- page: 作品
-  url: /demo
-  icon: fa-code
+# - page: 作品
+#   url: /demo
+#   icon: fa-code
 - page: about
   url: /about
   icon: fa-user
@@ -48,7 +48,7 @@ arch_config:
 ### tagcloud config
 tagcloud_config:
  min_font: 0.14
- max_font: 0.2
+ max_font: 0.28
  unit: rem
  amount: 100
  color: true

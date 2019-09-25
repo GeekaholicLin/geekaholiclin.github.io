@@ -22,20 +22,20 @@ var _busuanzi = theme.busuanzi_src || '/js/thirdParty/busuanzi.min.js';
 <script async src="<%- url_for(_busuanzi) %>"></script>
 <% } %>
 
-<% if(theme.gittalk.enable && is_post()){ %>
-<script src="<%= theme.gittalk.js %>"></script>
+<% if(theme.gitalk.enable && is_post()){ %>
+<script src="<%= theme.gitalk.js %>"></script>
 
 <script>
-  var admin = "<%= theme.gittalk.admin %>";
+  var admin = "<%= theme.gitalk.admin %>";
   admin = admin.split(",");
-  var gittalk = new Gitalk({
-    clientID: "<%= theme.gittalk.clientID %>",
-    clientSecret: "<%= theme.gittalk.clientSecret %>",
-    repo: "<%= theme.gittalk.repo %>",
-    owner: "<%= theme.gittalk.owner %>",
+  var gitalk = new Gitalk({
+    clientID: "<%= theme.gitalk.clientID %>",
+    clientSecret: "<%= theme.gitalk.clientSecret %>",
+    repo: "<%= theme.gitalk.repo %>",
+    owner: "<%= theme.gitalk.owner %>",
     admin: admin,
     id: location.pathname,
-    distractionFreeMode: "<%= theme.gittalk.distractionFreeMode %>"
+    distractionFreeMode: "<%= theme.gitalk.distractionFreeMode %>"
   })
 
 </script>

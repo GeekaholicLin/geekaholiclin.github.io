@@ -24,7 +24,7 @@ after_script:
 - git add .
 - git commit -m"Update Site By Travis"
 - git push --force "https://${GITHUB_TOKEN}@${GITHUB_REPO}" master:master
-- git push --force "https://${CODING_TOKEN}@${CODING_REPO}" master:master
+- git push --force "https://Geekaholic:${CODING_TOKEN}@${CODING_REPO}" master:master
 
 env:
   global:

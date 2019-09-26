@@ -1,0 +1,543 @@
+<!doctype html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no">
+    
+<meta name="google-site-verification" content="osGzKb_y9J6vt8d0mGYPDH81ljatwPdSVCFwxMCJSaE">
+
+    
+<meta name="baidu-site-verification" content="Yn6v4uAWVY">
+<script>
+    //push
+    (function(){
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        }
+        else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    <!--Simple SEO-->
+
+<meta name="description" content="编执狂的博客，主要记录自己在IT路上的成长历程。/">
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+    <!--Title-->
+
+<title>AMD等模块化的简单原理 | Geekaholic</title>
+
+<link rel="alternate" href="/atom.xml" title="Geekaholic" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+    
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/css/pages/post.css">
+<link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/thirdParty/highlight/solarized-light.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+
+<style>
+    figure .code .line:before{
+        display: none!important;
+    }
+</style>
+
+    <!--script-->
+
+
+<script src="//cdn.jsdelivr.net/npm/leancloud-storage@3.15.0/dist/av-min.js"></script>
+<script>
+  var appId = "RI5uv752sD0nGTyUSUC6odJE-gzGzoHsz";
+  var appKey = "yuke8QmutaxI5YvyD2NIE57u";
+  var region = "null";
+  var serverURLs = "http://leancloud.geekaholic.cn";
+  AV.init({
+    appId: appId,
+    appKey: appKey,
+    region: region,
+    serverURLs: serverURLs
+  });
+</script>
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+<script>
+  var admin = "GeekaholicLin";
+  admin = admin.split(",");
+  var gitalk = new Gitalk({
+    clientID: "aa2215dfc8ee944d1205",
+    clientSecret: "77cd2afa5d161bc0ab04639ed81300d808c6e22b",
+    repo: "geekaholiclin.github.io",
+    owner: "GeekaholicLin",
+    admin: admin,
+    id: decodeURIComponent(location.pathname),
+    distractionFreeMode: false
+  })
+
+</script>
+
+    
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?1fdc784829bc9fa0c0bbee0c680ffe2a";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+    
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-91854900-3', 'auto');
+    ga('send', 'pageview');
+
+</script>
+
+</head>
+</html>
+<body id="normal">
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<style>
+    header{ top: 71px; position: absolute!important;}
+    #container{padding-top: 151px!important;}
+</style>
+<div style="position:fixed;z-index:9999;left:0;top:0;width:100%;height:70px;background-color:#e0e0e0;color:#396CA5;border-bottom:1px solid #cecece;text-align:center;line-height:70px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis">您使用的浏览器版本过低，为了您更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<div id="wrap">
+    <header  style="position: absolute;" >
+    <div id="site-meta">
+        <a href="/" id="logo">
+            <h1 class="title">Geekaholic</h1>
+        </a>
+        
+        <h2 class="subtitle">编程在于折腾</h2>
+        
+    </div>
+    <ul id="nav">
+        
+            <li><a href="/"><i class="fa fa-home"></i>首页</a></li>
+        
+            <li><a href="/about"><i class="fa fa-user"></i>关于我</a></li>
+        
+            <li><a href="/atom.xml"><i class="fa fa-rss"></i>RSS</a></li>
+        
+        <li id="search"><a href="javascript:void(0)"><i class="fa fa-search"></i>搜索</a></li>
+    </ul>
+</header>
+
+    <div id="container">
+        
+<ul id="sidebar">
+    
+    
+    
+    
+<li class="widget widget-normal category">
+    <h3 class="fa fa-th widget-title">分类</h3>
+    <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/他山之石/"><i class="fa" aria-hidden="true">他山之石</i></a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/他山之石/Web/"><i class="fa" aria-hidden="true">Web</i></a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/编执狂/"><i class="fa" aria-hidden="true">编执狂</i></a><span class="category-list-count">14</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/编执狂/Android/"><i class="fa" aria-hidden="true">Android</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/编执狂/Java/"><i class="fa" aria-hidden="true">Java</i></a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/编执狂/Web/"><i class="fa" aria-hidden="true">Web</i></a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/编执狂/计算机基础/"><i class="fa" aria-hidden="true">计算机基础</i></a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/编程之外/"><i class="fa" aria-hidden="true">编程之外</i></a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/编程之外/Hexo/"><i class="fa" aria-hidden="true">Hexo</i></a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/编程之外/解决方法/"><i class="fa" aria-hidden="true">解决方法</i></a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/黄金屋-读书笔记/"><i class="fa" aria-hidden="true">黄金屋--读书笔记</i></a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/黄金屋-读书笔记/CSS设计指南/"><i class="fa" aria-hidden="true">CSS设计指南</i></a><span class="category-list-count">1</span></li></ul></li></ul>
+</li>
+
+
+    
+    
+<li class="widget widget-normal archive">
+  <h3 class="fa fa-archive widget-title">归档</h3>
+    <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/"><i class="fa" aria-hidden="true">九月 2017</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/"><i class="fa" aria-hidden="true">八月 2017</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/"><i class="fa" aria-hidden="true">三月 2017</i></a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/"><i class="fa" aria-hidden="true">二月 2017</i></a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/"><i class="fa" aria-hidden="true">三月 2016</i></a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/"><i class="fa" aria-hidden="true">二月 2016</i></a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/"><i class="fa" aria-hidden="true">一月 2016</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/"><i class="fa" aria-hidden="true">十二月 2015</i></a><span class="archive-list-count">5</span></li></ul>
+</li>
+
+
+    
+    
+<li class="widget widget-normal popular-posts" id="popular-posts">
+    <h3 class="fa fa-thermometer-3 widget-title">热门文章</h3>
+    <ul id="popular-content">
+        <li class="load-first"><i class="fa fa-spinner fa-pulse"></i></li>
+    </ul>
+</li>
+
+    
+    
+<li class="widget widget-normal tags">
+  <h3 class="fa fa-tags widget-title">标签云</h3>
+  <div class="tagcloud-content">
+    
+      <a href="/tags/Mathjax/" style="font-size: 0.18rem; color: #4f83b8">Mathjax</a> <a href="/tags/JavaScript/" style="font-size: 0.21rem; color: #386da4">JavaScript</a> <a href="/tags/Web/" style="font-size: 0.21rem; color: #386da4">Web</a> <a href="/tags/Android/" style="font-size: 0.18rem; color: #4f83b8">Android</a> <a href="/tags/ListView原理/" style="font-size: 0.14rem; color: #69c">ListView原理</a> <a href="/tags/ListView优化/" style="font-size: 0.14rem; color: #69c">ListView优化</a> <a href="/tags/Android控件/" style="font-size: 0.14rem; color: #69c">Android控件</a> <a href="/tags/解决方法/" style="font-size: 0.14rem; color: #69c">解决方法</a> <a href="/tags/Genymotion/" style="font-size: 0.14rem; color: #69c">Genymotion</a> <a href="/tags/VisualBox/" style="font-size: 0.14rem; color: #69c">VisualBox</a> <a href="/tags/Java/" style="font-size: 0.28rem; color: #0a407c">Java</a> <a href="/tags/线程/" style="font-size: 0.14rem; color: #69c">线程</a> <a href="/tags/InterruptedException/" style="font-size: 0.14rem; color: #69c">InterruptedException</a> <a href="/tags/异常/" style="font-size: 0.14rem; color: #69c">异常</a> <a href="/tags/RxJS/" style="font-size: 0.14rem; color: #69c">RxJS</a> <a href="/tags/Translation/" style="font-size: 0.18rem; color: #4f83b8">Translation</a> <a href="/tags/Hexo主题/" style="font-size: 0.18rem; color: #4f83b8">Hexo主题</a> <a href="/tags/ylion/" style="font-size: 0.25rem; color: #215690">ylion</a> <a href="/tags/模块化/" style="font-size: 0.18rem; color: #4f83b8">模块化</a> <a href="/tags/CSS3/" style="font-size: 0.14rem; color: #69c">CSS3</a> <a href="/tags/W3C/" style="font-size: 0.14rem; color: #69c">W3C</a> <a href="/tags/Hexo/" style="font-size: 0.21rem; color: #386da4">Hexo</a> <a href="/tags/主题制作/" style="font-size: 0.18rem; color: #4f83b8">主题制作</a> <a href="/tags/IO操作/" style="font-size: 0.21rem; color: #386da4">IO操作</a> <a href="/tags/Scanner/" style="font-size: 0.14rem; color: #69c">Scanner</a> <a href="/tags/马士兵/" style="font-size: 0.18rem; color: #4f83b8">马士兵</a> <a href="/tags/异常处理/" style="font-size: 0.18rem; color: #4f83b8">异常处理</a> <a href="/tags/流类型/" style="font-size: 0.18rem; color: #4f83b8">流类型</a> <a href="/tags/算法分析/" style="font-size: 0.14rem; color: #69c">算法分析</a> <a href="/tags/复杂度/" style="font-size: 0.14rem; color: #69c">复杂度</a> <a href="/tags/虚拟机/" style="font-size: 0.14rem; color: #69c">虚拟机</a> <a href="/tags/英文XP系统/" style="font-size: 0.14rem; color: #69c">英文XP系统</a> <a href="/tags/中文字体/" style="font-size: 0.14rem; color: #69c">中文字体</a> <a href="/tags/兼容性/" style="font-size: 0.18rem; color: #4f83b8">兼容性</a> <a href="/tags/CSS设计指南/" style="font-size: 0.14rem; color: #69c">CSS设计指南</a> <a href="/tags/读书笔记/" style="font-size: 0.14rem; color: #69c">读书笔记</a> <a href="/tags/polyfill/" style="font-size: 0.14rem; color: #69c">polyfill</a>
+  </div>
+</li>
+
+
+    
+    
+<li class="widget widget-normal friends-link">
+    <h3 class="fa fa-globe widget-title">友链</h3><br/>
+
+    
+        <a href="http://geekaholiclin.github.io" class="fa" target="_blank">主题作者</a>
+
+    
+        <a href="http://walkerlala.github.com/" class="fa" target="_blank">walkerlala</a>
+
+    
+        <a href="http://jerry011235.github.io/" class="fa" target="_blank">璀璨星空</a>
+
+    
+
+</li>
+
+    
+</ul>
+
+
+        <div id="main">
+    <article id="post">
+        <div id="post-header">
+
+            <h1 id="AMD等模块化的简单原理">
+                
+                AMD等模块化的简单原理
+                
+            </h1>
+            <div class="article-meta">
+    
+    
+    <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+        <span>Web</span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+         <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            JavaScript
+            
+        </span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta ">2017/03/11</span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+            <i class="fa fa-thermometer-three-quarters"></i>
+        <span class="hits hits-meta " data-leadcloud-title="AMD等模块化的简单原理"
+              data-leadcloud-url="/2017/03/11/AMD等模块化的简单原理/"><i class="fa fa-spinner fa-spin"></i></span>
+    </span>
+    
+    
+</div>
+
+            
+            
+            <p class="fa fa-exclamation-triangle warning">
+                本文于<strong>928</strong>天之前发表，文中内容可能已经过时。如有疑问，请在评论区留言。
+            </p>
+            
+        </div>
+        
+        <div id="post-body">
+            <h2 id="iwo">iWo</h2>
+<p>在正式开始之前，让我们先看看一个简易版的模块Loader是如何实现的？</p>
+<p>感谢@爝神的<a href="https://github.com/liulyliu/iWo/blob/master/src/iwo.loader.js" target="_blank" rel="noopener">iWo.js</a>，虽然不一定符合AMD规范，而且有着一些使用限制，比如必须有id，而且路径是相对于最后加载<code>&lt;script&gt;</code>的<code>baseUrl</code>而言等等缺陷，毕竟不足100行的代码。但麻雀虽小，五脏俱全，不妨碍我们解读一个加载器的大概思想。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * @author xiaojue[designsor@gmail.com]</span></span><br><span class="line"><span class="comment"> * @date 20141112</span></span><br><span class="line"><span class="comment"> * @fileoverview core for iwo,a easy module control</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params">win, doc, undef</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> cache = &#123;&#125;,</span><br><span class="line">        loadings = &#123;&#125;,</span><br><span class="line">        queue = [],</span><br><span class="line">        scripts = doc.getElementsByTagName(<span class="string">'script'</span>),</span><br><span class="line">        root = scripts[scripts.length - <span class="number">1</span>].src,</span><br><span class="line">        basepath = root.slice(<span class="number">0</span>, root.lastIndexOf(<span class="string">'/'</span>) + <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">Module</span>(<span class="params">path, deps, factory</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.id = path;</span><br><span class="line">        <span class="keyword">this</span>.deps = factory ? deps : [];</span><br><span class="line">        <span class="keyword">this</span>.factory = factory ? factory : deps;</span><br><span class="line">        utils.addLoading(<span class="keyword">this</span>.deps);</span><br><span class="line">        cache[path] = <span class="keyword">this</span>;</span><br><span class="line">        loadings[path] = <span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> utils = &#123;</span><br><span class="line">        addLoading: <span class="function"><span class="keyword">function</span>(<span class="params">deps</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; deps.length; i++) &#123;</span><br><span class="line">                <span class="keyword">var</span> id = deps[i],stat = loadings[id];</span><br><span class="line">                loadings[id] = stat ? stat : <span class="number">0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        _r: <span class="function"><span class="keyword">function</span>(<span class="params">id</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">var</span> mod = cache[id];</span><br><span class="line">            <span class="keyword">return</span> mod.exports || (mod.exports = mod.compile());</span><br><span class="line">        &#125;,</span><br><span class="line">        checkLoading: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">var</span> id <span class="keyword">in</span> loadings) &#123;</span><br><span class="line">                <span class="keyword">if</span> (loadings[id] &lt; <span class="number">2</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;,</span><br><span class="line">        loadDeps: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">var</span> id <span class="keyword">in</span> loadings)&#123;</span><br><span class="line">                <span class="keyword">if</span> (loadings[id] &lt; <span class="number">1</span>) utils.loadMod(id);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        loadScript: <span class="function"><span class="keyword">function</span>(<span class="params">path, cb</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">var</span> script = doc.createElement(<span class="string">'script'</span>),</span><br><span class="line">                parent = doc.getElementsByTagName(<span class="string">'head'</span>)[<span class="number">0</span>];</span><br><span class="line">            script.onload = script.onreadystatechange = script.onerror = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">                <span class="keyword">if</span> (<span class="regexp">/loaded|complete|undefined/</span>.test(script.readyState)) &#123;</span><br><span class="line">                    script.onload = script.onerror = script.onreadystatechange = <span class="literal">null</span>;</span><br><span class="line">                    script.parentNode.removeChild(script);</span><br><span class="line">                    script = undef;</span><br><span class="line">                    <span class="keyword">if</span>(cb) cb();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;;</span><br><span class="line">            script.src = basepath + path + <span class="string">'.js'</span>;</span><br><span class="line">            parent.appendChild(script);</span><br><span class="line">        &#125;,</span><br><span class="line">        loadMod: <span class="function"><span class="keyword">function</span>(<span class="params">id</span>) </span>&#123;</span><br><span class="line">            loadings[id] = <span class="number">1</span>;</span><br><span class="line">            utils.loadScript(id, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">                <span class="keyword">if</span> (utils.checkLoading()) &#123;</span><br><span class="line">                    <span class="keyword">while</span> (queue.length) &#123;</span><br><span class="line">                        cache[queue.shift()].compile();</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    utils.loadDeps();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;,</span><br><span class="line">        run: <span class="function"><span class="keyword">function</span>(<span class="params">path</span>) </span>&#123;</span><br><span class="line">            queue.push(path);</span><br><span class="line">            utils.addLoading([path]);</span><br><span class="line">            utils.loadDeps();</span><br><span class="line">        &#125;,</span><br><span class="line">        define: <span class="function"><span class="keyword">function</span>(<span class="params">path, deps, factory</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">new</span> Module(path, deps, factory);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    Module.prototype = &#123;</span><br><span class="line">        <span class="keyword">constructor</span>: Module,</span><br><span class="line">        compile: function() &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">this</span>.factory(utils._r);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    win.iwo = &#123;</span><br><span class="line">        version: <span class="string">'0.0.1'</span>,</span><br><span class="line">        core: <span class="string">'iwo.core'</span>,</span><br><span class="line">        run: utils.run,</span><br><span class="line">        define: utils.define</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//iwo.run(iwo.core);</span></span><br><span class="line"></span><br><span class="line">&#125;)(<span class="built_in">window</span>, <span class="built_in">document</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="iwo-源码概要">iWo 源码概要</h3>
+<p>先来看看最外一层，很熟悉是不是？对，就是IIFE(立即执行函数表达式)，在很多插件的实现或者开源代码中很常见。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params">win, doc, undef</span>) </span>&#123;</span><br><span class="line">&#125;)(<span class="built_in">window</span>, <span class="built_in">document</span>);</span><br></pre></td></tr></table></figure>
+<p>虽然很常见，但还是多说几句吧。</p>
+<p>将<code>window</code>，<code>document</code>传入是为了提高效率，使得变量查找不需要再沿着作用域链向上查找，还有就是为了在压缩的时候，两者都可以被压缩，达到一定的优化。而<code>undef</code>这里因为第三个参数<strong>没有定义</strong>，所以自然获得<code>undefined</code>，而不传<code>undefined</code>是因为在一些浏览器中<code>undefined</code>的可以被修改。</p>
+<p>接着，让我们来看看里面的成员都有哪些，有什么作用吧，从上到下分别是</p>
+<ul>
+<li>cache：用来存储初始化(new)的<code>Module</code>对象，key即为path，也为id，value为对应的<code>Module</code>对象</li>
+<li>loadings：用来存储模块(或依赖的模块)的状态，key即为path，也为id，value为0时是依赖声明，value为1时是依赖加载，value为2时是模块初始化</li>
+<li>queue：用来存储执行队列的数组</li>
+<li>scripts：<code>script</code>标签对象</li>
+<li>root：最后一个标签的地址</li>
+<li>basepath：基地址(到最后的一个’/‘，包括’/’)</li>
+<li>Module：<code>Module</code>构造函数</li>
+<li>utils：挂载相关函数的对象
+<ul>
+<li>addLoading：初始化当前模块的状态(若不存在则为0)</li>
+<li>_r：作于<code>factory</code>的参数，在此用于<code>require(Module)</code>使用，返回<code>reuqire</code>的<code>Module</code>的返回值</li>
+<li>checkLoading：检测是否所有模块加载并初始化</li>
+<li>loadDeps：遍历<code>loadings</code>，调用<code>loadMod()</code>加载声明的依赖，即loadings[id]=0</li>
+<li>loadMod：将依赖的状态进行改变为加载状态(<code>loadings[id]=1</code>)，调用<code>loadScript()</code>，并传入<code>callback</code>回调</li>
+<li>loadScript：<strong>动态创建<code>&lt;script&gt;</code>，异步加载模块文件<code>*.js</code></strong>，监听加载事件(做了兼容处理)，加载成功(或失败)后移除标签，重置并调用回调函数<code>callback</code></li>
+<li>run：运行模块</li>
+<li>define：模块定义，也就是<code>new Module()</code></li>
+</ul></li>
+<li>Module.prototype：主要为了挂载<code>Module</code>对象的公共方法<code>compile</code>
+<ul>
+<li>compile：其实就是<code>Module</code>对象的<code>factory()</code>，只不过将<code>_r</code>作为实参传入，作用自然是执行<code>Module</code>的<code>factory()</code>方法，而在<code>_r()</code>中，核心代码是<code>return mod.exports || (mod.exports = mod.compile());</code>，这行代码使得<strong>依赖模块只执行一次，而不是多次，从而达到优化目的</strong></li>
+</ul></li>
+<li>win.iwo：将必要的变量和方法（<code>run()</code>和<code>define()</code>）挂载到全局对象window中。</li>
+</ul>
+<h3 id="举个栗子">举个栗子</h3>
+<p>阅读源码的方法我个人的做法是使用调试的方法，所以自己瞎写了一些例子，让我们先来看看项目的结构。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">.</span><br><span class="line">├── app.js</span><br><span class="line">├── iWo.js</span><br><span class="line">├── mods</span><br><span class="line">│   └── module2.js</span><br><span class="line">└── <span class="built_in">test</span></span><br><span class="line">    └── home.html</span><br></pre></td></tr></table></figure>
+<p>其中<code>home.html</code>是我们的测试页面，其实页面什么都没有，只是用于加载script脚本而已，核心代码如下：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- home.html --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"../iWo.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"../app.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>而<code>iWo.js</code>的内容就是Loader加载器了，代码已经粘贴在上面。而<code>app.js</code>是我们业务逻辑代码的入口，为了搞清楚加载流程和执行的顺序，特地增加了好几个<code>console.log()</code>。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">//app.js</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'loaded app.js file'</span>);</span><br><span class="line"><span class="keyword">var</span> temp;</span><br><span class="line">iwo.define(<span class="string">'module1'</span>,[<span class="string">'mods/module2'</span>],<span class="function"><span class="keyword">function</span> (<span class="params">require</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'executing module1'</span>);</span><br><span class="line">    <span class="keyword">var</span> temp = <span class="string">'init value'</span>;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'print out temp init value in module1:'</span>+temp);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'require mods/module2'</span>);</span><br><span class="line">    temp = <span class="built_in">require</span>(<span class="string">'mods/module2'</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'print out temp value after requiring module2 in module1:'</span>+temp);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'executed module1'</span>);</span><br><span class="line">&#125;);</span><br><span class="line">iwo.run(<span class="string">'module1'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'print out temp value after running module in global scope:'</span>+temp);</span><br></pre></td></tr></table></figure>
+<p>而<code>module2.js</code>为了能验证其路径的正确处理，特放在<code>mods</code>目录下面。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">//module2.js</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'loaded module2.js file'</span>);</span><br><span class="line">iwo.define(<span class="string">'mods/module2'</span>,<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'executing module2'</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'executed module2'</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="string">'Module2 return value'</span>;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="执行流程">执行流程</h3>
+<p>让我们来从<code>app.js</code>入口梳理一下整个代码执行的流程。</p>
+<ol style="list-style-type: decimal">
+<li><p>打印<code>loaded app.js file</code>，说明浏览器已经加载<code>app.js</code>文件并执行该文件。</p></li>
+<li>定义依赖于<code>mods/module2</code>的<code>module1</code>模块，执行<code>iwo.define()</code>方法，实际上是new出来一个新的<code>Module</code>对象
+<ol style="list-style-type: decimal">
+<li>对于每个新的<code>Module</code>对象都要将其依赖加入<code>loadings</code>对象中，并赋值<code>loadings[id]</code>为0，说明是依赖声明状态。而且，将<code>Module</code>对象缓存到<code>cache</code>对象中，并设置<code>loadings[id]</code>为2，说明是模块声明状态。</li>
+<li>模块定义阶段结束。</li>
+</ol></li>
+<li>执行<code>iwo.run()</code>方法，执行<code>module1</code>模块
+<ol style="list-style-type: decimal">
+<li><code>queue.push(path);</code>–先将当前执行模块压入执行队列，因为要先加载其依赖，方可执行当前模块。</li>
+<li><code>utils.addLoading([path]);</code>–标明当前模块的状态。(PS:但是我个人认为<code>Module</code>对象的状态已经在<code>new</code>的时候标注为<code>2</code>，这里显得多此一举，暂时不知道该步骤为了考虑什么情况。若大家知道，可以在评论区指出，谢谢~)</li>
+<li><code>utils.loadDeps();</code>–加载当前模块的依赖。具体的工作原理是怎么样的？该方法遍历<code>loadings</code>对象，如果<code>loadings[id]</code>的值小于1，说明是依赖声明状态，并未加载依赖文件，这时候调用<code>loadMod(id)</code>方法</li>
+<li><code>loadMod(id)</code>–先是改变<code>loadings[id]</code>的状态为“依赖加载”，也就是“1”，然后调用<code>loadScript(id,callback)</code>方法</li>
+<li><code>loadScript(id,callback)</code>–其实就是根据<code>id</code>构建出<code>src</code>，动态创建<code>&lt;script&gt;</code>标签将依赖的模块所在文件异步加载，并监听新创建标签的<code>onload</code>/<code>onerror</code>/<code>onreadystatechange</code>事件，当事件完成后移除创建的标签并且重置<code>script</code>标签对象的各个变量，最后调用<code>callback()</code>。这里需要注意的是，<code>onreadystatechange</code>是为了处理ie下的兼容性，因为在<a href="http://kangax.github.io/jstests/script-element-onload-attribute-support/" target="_blank" rel="noopener">IE9以下版本的IE中<code>script</code>标签不支持<code>onload</code>和<code>onerror</code></a>，所以使用<code>onreadystatechange</code>进行替代，但是还有一个问题，重置<code>script</code>对象下的变量不仅是为了垃圾回收机制，更多的是为了避免某些浏览器(如IE9)触发两次事件。可以查看<a href="http://www.aaronpeters.nl/blog/prevent-double-callback-execution-in-IE9" target="_blank" rel="noopener">这篇久远的国外文章</a>进行简单的了解</li>
+<li>当<code>mods/module2.js</code>加载进来的时候，又一次开始执行<code>iwo.define()</code>，再一次进入模块定义阶段，初始化<code>mods/module2</code>模块。</li>
+<li>当加载的<code>mods/module2.js</code>执行结束后，意味着<code>mods/module2</code>已经定义好了。这时候就会调用<code>callback()</code>方法了。</li>
+<li><code>callback()</code>–这个方法的主要任务是调用<code>checkLoading()</code>检测依赖是否都已经加载进来，如何检测？对，就是利用<code>loadings[id]</code>的状态值，当所有的<code>loadings[id]</code>都为2(也就是所有模块文件都加载进来，都定义好了)的时候，就会根据执行队列的模块长度，从第一个开始进行执行。这里有一个妙用，<code>queue.shift()</code>这样就能保证从头到尾按照顺序执行模块。具体的执行是调用了挂载在<code>Module</code>原型上的<code>compile()</code>方法，实质上是其对应模块的<code>factory()</code>的执行，唯一的差别在于其可以传递<code>require</code>进行导出结果操作。</li>
+</ol></li>
+</ol>
+<h3 id="结果与简要分析">结果与简要分析</h3>
+<p>上面的代码例子执行结果如下图所示：</p>
+<div class="figure">
+<img src="http://image.geekaholic.cn/2017-03-15_142611_0001.jpg" alt="执行结果">
+<p class="caption">执行结果</p>
+</div>
+<p>由一二条打印结果可以看出，模块加载是异步的，而且模块内部的变量无法被外部全局访问，而第3，4条打印结果可以告诉我们，<code>module1</code>的执行是先加载并定义<code>mods/module2</code>，但是并没有运行<code>mods/module2</code>的<code>factory</code>函数，<code>mods/module2</code>的<code>factory()</code>函数真正执行的时机在于<code>require('mods/module2')</code>，所以从这点上来看，<strong><code>iwo.js</code>这一个特点更像是<code>CMD规范</code>的懒执行</strong>。</p>
+<p>可以看出，一个简单的模块加载器，最起码需要有：</p>
+<ul>
+<li>异步加载脚本</li>
+<li>依赖检测、分析与加载</li>
+</ul>
+<p>而如果你想了解<code>JavaScript异步加载</code>的多种加载方式(其中属<code>动态创建DOM节点</code>最为常用)，以及<code>JavaScript延迟执行</code>的方法，可以查看以下两个链接：</p>
+<ul>
+<li><p><a href="http://coolshell.cn/articles/9749.html" target="_blank" rel="noopener">JAVASCRIPT 装载和执行</a></p></li>
+<li><p><a href="http://www.infoq.com/cn/articles/browser-resource-loading-optimization" target="_blank" rel="noopener">让我们再聊聊浏览器资源加载优化</a></p></li>
+</ul>
+<p>其中第二个文章的分析也不仅仅讲的是加载和执行，干货满满，非常值得一看。</p>
+<p>而这里还是要再说明一下，<code>JavaScript延迟执行</code>与<code>factory函数懒执行</code>说的是两码事。以<code>iWo.js</code>为例子，动态创建DOM的方式加载js脚本的时候，当一加载完成就会执行该外部脚本，否则哪里来的<code>define</code>。而<code>factory函数懒执行</code>只不过是调用该<code>factory</code>函数是在<code>require</code>相应模块的时候。</p>
+<p>End.</p>
+
+        </div>
+        <div id="post-footer">
+            <div class="avatar" >
+                <img src="http://image.geekaholic.cn/author.jpg" alt="avatar"/>
+                
+                <a href="javascript:void(0)" class="high-song">high起来 &#128541;</a>
+                
+                
+                <a href="javascript:void(0)" class="donate fa">打赏资瓷 &#128536;</a>
+                
+            </div>
+            <ul class="author-profile-section">
+                <li>
+                  
+                  作者:
+                  
+                    
+                    <a href="/about.html">GeekaholicLin</a>
+                </li>
+                
+                <li>发表日期: <span>2017-03-11  16:36:19</span></li>
+                
+                <li>最后编辑日期: <span>2019-09-26  05:21:46</span></li>
+                
+                <li class="post-category">
+                    文章分类:
+                    
+                    <a href="/categories/编执狂/">编执狂</a>
+                    
+                    <a href="/categories/编执狂/Web/">Web</a>
+                    
+                </li>
+                <li class="post-tags">
+                    文章标签:
+                    
+                    <a href="/tags/JavaScript/">JavaScript</a>
+                    
+                    <a href="/tags/模块化/">模块化</a>
+                    
+                    <a href="/tags/Web/">Web</a>
+                    
+                </li>
+                
+                <li> 版权声明: 
+<a href="https://creativecommons.org/licenses/by-nc-nd/3.0/" target="_blank">
+知识共享署名-非商业性使用-禁止演绎 3.0 未本地化版本许可协议（CC BY-NC-ND 3.0）
+</a></li>
+                
+            </ul>
+            <div id="donate-wrap">
+                
+                
+                
+                <img src="http://image.geekaholic.cn/alipay.jpg" alt="支付宝付款" class="donate-img">
+                
+                <img src="http://image.geekaholic.cn/wechat.png" alt="微信付款" class="donate-img">
+                
+                
+            </div>
+        </div>
+    </article>
+    <div class="article-nav">
+        
+        <a href="/2017/03/19/从伪类和伪元素说起的知识点/" class="pre-post fa fa-caret-left">从伪类和伪元素说起的知识点</a>
+        
+        
+        <a href="/2017/03/09/JavaScript模块化的一二事/" class="next-post fa">JavaScript模块化的一二事</a>
+        
+    </div>
+    
+    <div id="comments">
+        
+
+<script>
+  gitalk.render("comments");
+</script>
+
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+    <footer id="footer">
+    
+    <div class="social">
+        
+        <a href="https://freecodecamp.cn/geekaholiclin" class="fa fa-free-code-camp" target="_blank" title="freecodecamp"></a>
+        
+        <a href="https://github.com/GeekaholicLin" class="fa fa-github" target="_blank" title="github"></a>
+        
+        <a href="mailto:geekaholiclin@gmail.com" class="fa fa-envelope-o" target="_blank" title="mail to me"></a>
+        
+    </div>
+    
+    <div>
+        
+        <a href="/" class="copyright-links">GeekaholicLin</a>&copy;2015 - 2019.All Rights
+        Reserved.
+    </div>
+    <p>Powered by <a href="https://hexo.io" class="copyright-links" target="_blank">Hexo</a> | Theme by <a
+                href="https://github.com/GeekaholicLin" class="copyright-links" target="_blank">GeekaholicLin</a>
+    </p>
+    
+    
+    <p>
+        <span id="busuanzi_container_site_uv" class="fa fa-bar-chart">
+        欢迎第<span id="busuanzi_value_site_uv"><i class="fa fa-spinner fa-spin"></i></span>位小伙伴~
+        </span>
+    </p>
+    
+</footer>
+
+</div>
+    <ul id="tools">
+    <li class="totop-btn fa fa-angle-up"></li>
+    <li class="exchange-btn fa fa-exchange"></li>
+  
+    <li class="toc-btn fa fa-list-ul"></li>
+    
+    
+
+    
+    <li class="comment-btn fa fa-comments-o">
+        <a href="#comments" title="comments"></a>
+    </li>
+    
+</ul>
+<p id="process"></p>
+<div id="search-overlay">
+    <div class="search-area-wrap">
+        <div id="search-area">
+            <div class="input-wrap focus">
+                <i class="fa fa-search" aria-hidden="true"></i>
+                <input id="search-input" autofocus autocomplete="off" type="text"
+                       placeholder="search this website..."/>
+            </div>
+            <ul id="search-result">
+                <li class="load-first"><i class="fa fa-spinner fa-pulse"></i></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#iwo"><span class="toc-number">1.</span> <span class="toc-text">iWo</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#iwo-源码概要"><span class="toc-number">1.1.</span> <span class="toc-text">iWo 源码概要</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#举个栗子"><span class="toc-number">1.2.</span> <span class="toc-text">举个栗子</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#执行流程"><span class="toc-number">1.3.</span> <span class="toc-text">执行流程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#结果与简要分析"><span class="toc-number">1.4.</span> <span class="toc-text">结果与简要分析</span></a></li></ol></li></ol>
+
+
+    <script src="/js/highsong.js"></script>
+
+
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+    //theme config datas
+    var copyrightObj = {};
+    copyrightObj.enable = 'true';
+    copyrightObj.triggerCopyLength = '200';
+    copyrightObj.appendText = '商业转载请联系作者获得授权,非商业转载请注明出处 © GeekaholicLin';
+    var leancloudObj = {};
+    leancloudObj.enable = 'true';
+    leancloudObj.className = 'BlogCounter';
+    leancloudObj.limits = '10';
+</script>
+<script type="text/javascript">
+    var search = {};
+    var search_path = "search.xml";
+    if (!search_path) {
+        search_path = "search.xml";
+    }
+    search.path = "/" + search_path;
+    search.func =  _ajax.init();
+</script>
+<script src="/js/app.js"></script>
+
+
+</body>
+</html>

@@ -1,0 +1,557 @@
+a, area {
+    outline: none;
+    cursor: hand;
+}
+
+#top {
+    height: 55px;
+}
+
+#wrap {
+    min-width: 1280px;
+    max-width: 1920px;
+    margin: 0 auto
+}
+
+#container {
+    position: relative;
+    background: url(../img/bg.jpg) no-repeat center top;
+    background-color: #D18D60;
+    width: 100%;
+    margin: 0 auto;
+    height: 901px;
+}
+
+#tip {
+    position: relative;
+    min-width: 1280px;
+    max-width: 1820px;
+    margin: 0 auto;
+}
+
+#main {
+    position: relative;
+    width: 1200px;
+    margin: 0 auto;
+}
+
+/*==nav导航 start==*/
+.nav {
+    position: absolute;
+    width: 380px;
+    height: 33px;
+    right: 0;
+    top: 18px;
+}
+
+.nav > a, #NIE-share .NIE-share-txt, #NIE-share .NIE-share-iconBtn a {
+    font-size: 14px;
+    color: #fffbe1;
+    text-align: center;
+    height: 30px;
+    line-height: 29px;
+}
+
+.nav > a {
+    text-decoration: none;
+    margin-left: 14px;
+}
+
+.nav > a > span {
+    margin: 0 3px 0 5px;
+}
+
+#NIE-share {
+    position: absolute;
+    background: url(../img/nav-bg.png) no-repeat;
+    right: 7px;
+    padding-left: 5px;
+    top: 0
+}
+
+#NIE-share .NIE-share-iconBtn a {
+    font-size: 23px
+}
+
+.nav > a:hover, #NIE-share .NIE-share-iconBtn a:hover {
+    color: #F1EAB6;
+}
+
+#NIE-share .morebtn {
+    padding: 0 5px;
+    background: url("../img/more-bg.png") no-repeat scroll 3px 0;
+}
+
+/*==nav导航 end==*/
+/*==logo==*/
+#logo {
+    background: url(../img/logo.png) no-repeat;
+    display: block;
+    position: absolute;
+    width: 118px;
+    height: 141px;
+    left: -327px;
+    top: 30px;
+}
+
+/*==logo end==*/
+#tab-area {
+    position: absolute;
+    height: 124px;
+    left: 222px;
+    top: 412px;
+}
+
+#tab-area .tabs {
+    position: absolute;
+    width: 374px;
+    height: 124px;
+    /*background: url(../img/tab-btn.png) no-repeat;*/
+    top: 0;
+}
+
+#tab-area .tabs.qxw {
+    left: 6px;
+    background-position: 0 0;
+}
+
+#tab-area .tabs.qxw:hover {
+    background-position: -758px 0;
+}
+
+#tab-area .tabs.qxl {
+    left: 373px;
+    background-position: -379px 0;
+}
+
+#tab-area .tabs.qxl:hover {
+    background-position: -1127px 0;
+}
+
+/*==btn==*/
+#btn-area {
+    position: absolute;
+    left: 59px;
+    top: 377px;
+    width: 1072px;
+    height: 418px;
+
+}
+
+.btn {
+    position: absolute;
+    width: 200px;
+    height: 201px;
+}
+
+.btn.btn1 {
+    background: url("../img/dd_btn.png") no-repeat scroll 0 0;
+    width: 377px;
+    height: 124px;
+    left: 347px;
+    top: -10px;
+}
+
+.btn.btn1:hover,.btn.btn1.hover {
+    background-position: -379px 0;
+}
+
+.btn.btn2 {
+    background: url("../img/btn.png") no-repeat scroll -606px 0;
+    top: 3px;
+    left: 108px;
+
+}
+
+.btn.btn2:hover,.btn.btn2.hover {
+    background-position: -2828px 0;
+}
+
+.btn.btn2.disabled, .btn.btn2.disabled:hover,.btn.btn2.disabled.hover {
+    background: url(../img/disabled_btn.png) no-repeat -606px 0;
+}
+
+.btn.btn3 {
+    background: url("../img/btn.png") no-repeat scroll -808px 0;
+    top: 2px;
+    left: 762px;
+}
+
+.btn.btn3:hover,.btn.btn3.hover {
+    background-position: -3030px 0;
+}
+
+.btn.btn3.disabled, .btn.btn3.disabled:hover,.btn.btn3.disabled.hover {
+    background: url(../img/disabled_btn.png) no-repeat -808px 0;
+}
+
+.btn.btn4 {
+    background: url("../img/btn.png") no-repeat scroll -1010px 0;
+    top: 110px;
+    left: 2px;
+
+}
+
+.btn.btn4:hover,.btn.btn4.hover {
+    background-position: -3232px 0;
+}
+
+.btn.btn4.disabled, .btn.btn4.disabled:hover,.btn.btn4.disabled.hover {
+    background: url(../img/disabled_btn.png) no-repeat -1010px 0;
+}
+
+.btn.btn5 {
+    background: url("../img/btn.png") no-repeat scroll -1212px 0;
+    top: 109px;
+    left: 218px;
+
+}
+
+.btn.btn5:hover,.btn.btn5.hover {
+    background-position: -3434px 0;
+}
+
+.btn.btn5.disabled, .btn.btn5.disabled:hover,.btn.btn5.disabled.hover {
+    background: url(../img/disabled_btn.png) no-repeat -1212px 0;
+}
+
+.btn.btn6 {
+    background: url("../img/btn.png") no-repeat scroll -1414px 0;
+    top: 110px;
+    left: 438px;
+
+}
+
+.btn.btn6:hover,.btn.btn6.hover {
+    background-position: -3636px 0;
+}
+
+.btn.btn6.disabled, .btn.btn6.disabled:hover,.btn.btn6.disabled.hover {
+    background: url(../img/disabled_btn.png) no-repeat -1414px 0;
+}
+
+.btn.btn7 {
+    background: url("../img/btn.png") no-repeat scroll -1616px 0;
+    top: 110px;
+    left: 655px;
+
+}
+
+.btn.btn7:hover,.btn.btn7.hover {
+    background-position: -3838px 0;
+}
+
+.btn.btn7.disabled, .btn.btn7.disabled:hover,.btn.btn7.disabled.hover {
+    background: url(../img/disabled_btn.png) no-repeat -1616px 0;
+}
+
+.btn.btn8 {
+    background: url("../img/btn.png") no-repeat scroll -1818px 0;
+    top: 109px;
+    left: 872px;
+
+}
+
+.btn.btn8:hover,.btn.btn8.hover {
+    background-position: -4040px 0;
+}
+
+.btn.btn8.disabled, .btn.btn8.disabled:hover,.btn.btn8.disabled.hover {
+    background: url(../img/disabled_btn.png) no-repeat -1818px 0;
+}
+
+.btn.btn9 {
+    background: url("../img/btn.png") no-repeat scroll -2020px 0;
+    top: 216px;
+    left: 111px;
+
+}
+
+.btn.btn9:hover,.btn.btn9.hover {
+    background-position: -4242px 0;
+}
+
+.btn.btn9.disabled, .btn.btn9.disabled:hover,.btn.btn9.disabled.hover {
+    background: url(../img/disabled_btn.png) no-repeat -2020px 0;
+}
+
+.btn.btn10 {
+    background: url("../img/btn.png") no-repeat scroll 0 0;
+    top: 216px;
+    left: 326px;
+
+}
+
+.btn.btn10:hover,.btn.btn10.hover {
+    background-position: -2222px 0;
+}
+
+.btn.btn10.disabled, .btn.btn10.disabled:hover,.btn.btn10.disabled.hover {
+    background: url(../img/disabled_btn.png) no-repeat 0 0;
+}
+
+.btn.btn11 {
+    background: url("../img/btn.png") no-repeat scroll -202px 0;
+    top: 215px;
+    left: 546px;
+
+}
+
+.btn.btn11:hover,.btn.btn11.hover {
+    background-position: -2424px 0;
+}
+
+.btn.btn11.disabled, .btn.btn11.disabled:hover,.btn.btn11.disabled.hover {
+    background: url(../img/disabled_btn.png) no-repeat -202px 0;
+}
+
+.btn.btn12 {
+    background: url("../img/btn.png") no-repeat scroll -404px 0;
+    top: 216px;
+    left: 763px;
+
+}
+
+.btn.btn12:hover,.btn.btn12.hover {
+    background-position: -2626px 0;
+}
+
+.btn.btn12.disabled, .btn.btn12.disabled:hover,.btn.btn12.disabled.hover {
+    background: url(../img/disabled_btn.png) no-repeat -404px 0;
+}
+
+/*Map style*/
+#map-nav img{
+    position: absolute;
+    top: 379px;
+    left: 61px;
+    width: 1070px;
+    height: 414px;
+    border: none;
+}
+#map-nav area.disabled{
+    cursor: default;
+}
+.txt {
+    position: absolute;
+    left: 324px;
+    top: 830px;
+    background: url(../img/txt_bg.png) no-repeat;
+    width: 540px;
+    height: 40px;
+    padding-left: 33px;
+}
+
+.txt li {
+    display: inline-block;
+    min-width: 115px;
+    color: #fffbe1;
+    font-size: 20px;
+    *display: inline;
+    *zoom: 1;
+}
+
+.txt li > .li-txt {
+    margin: 0 22px;
+    font-size: 16px;
+    line-height: 37px;
+    color: #FFFFFF;
+    display: inline-block;
+    text-decoration: none;
+    *display: inline;
+    *zoom: 1;
+}
+
+/*==btn==*/
+
+#main .date {
+    position: absolute;
+    font-size: 25px;
+    color: #F3EACA;
+    left: 439px;
+    top: 326px;
+    line-height: 30px;
+    height: 30px;
+}
+
+/*==footer==*/
+#footer {
+    width: 100%;
+    max-width: 1920px;
+    background-color: #0D0D0D;
+    text-align: center;
+    padding-top: 50px;
+    margin: 0 auto;
+}
+
+#NIE-copyRight {
+    height: 100px
+}
+
+#NIE-copyRight, #NIE-copyRight a {
+    color: #D80112
+}
+
+/*弹窗*/
+#pop-mask {
+    background: #000;
+    opacity: 0.6;
+    filter: alpha(opacity=60);
+}
+
+#pop-background, #pop-mask {
+    display: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    z-index: 9999;
+}
+
+#pop > li {
+    display: none;
+}
+
+#pop-content {
+    position: fixed;
+    background-color: #E6E5E5;
+    padding: 20px 32px;
+    width: 840px;
+    height: 550px;
+    top: 20%;
+    left: 52%;
+    margin-left: -500px;
+}
+
+#pop, #pop li {
+    position: relative;
+}
+
+#pop .avatar {
+    position: absolute;
+    top: -2px;
+    left: -2px;
+}
+
+#pop .article-top {
+    text-align: center;
+    padding-top: 46px;
+    padding-bottom: 10px;
+}
+
+#pop .title {
+    font-size: 32px;
+    line-height: 40px;
+    color: #494949;
+    text-align: center;
+}
+
+#pop .article-date {
+    padding: 10px;
+    color: #A3A3A3;
+    font-size: 14px;
+}
+
+#pop .article-body-wrap {
+    padding: 0 10px;
+}
+
+#pop .article-body {
+    margin: 12px auto;
+    width: 810px;
+    height: 460px;
+    /*margin:0 auto;*/
+    border-top: 1px solid #D1CFCF;
+    overflow: auto;
+}
+
+.article-body .content-title, .article-body .content-subtitle {
+    line-height: 29px;
+    color: #494949;
+    padding-bottom: 10px;
+    font-weight: bold;
+
+}
+
+.article-body .content-smalltitle {
+    font-weight: bold;
+}
+
+.article-body .content-title {
+    font-size: 20px;
+}
+
+.article-body .content-subtitle {
+    font-size: 18px;
+}
+
+.article-body .content-txt {
+    font-size: 14px;
+    color: #494949;
+    line-height: 25px;
+    margin-bottom: 10px;
+}
+
+.article-body .article-img, .article-body img {
+    display: block;
+    margin: 15px auto;
+    /*width:550px;*/
+}
+
+.article-content .emphasis {
+    color: #F38A88;
+}
+
+.article-body table {
+    border-collapse: collapse; /*合并为1个边框*/
+    color: #223414;
+    font-size: 14px;
+    margin: 20px auto;
+    text-align: center;
+}
+
+.article-body thead {
+    background-color: #CCCCCC;
+    font-weight: bold;
+    height: 40px;
+    line-height: 40px;
+}
+
+.article-body tbody td {
+    height: 40px;
+    line-height: 40px;
+    width: 100px;
+}
+
+table, td {
+    /*解决IE7下边框重叠问题的办法*/
+    border: solid 1px #C3C2C2;
+}
+
+/*==弹窗滚动条==*/
+#pop .mCSB_dragger,
+#pop .mCSB_dragger_bar {
+    width: 5px;
+    background-color: #B6B6B6;
+}
+
+#pop .mCSB_draggerRail,
+#pop .mCSB_draggerContainer {
+    width: 5px;
+    background-color: #FFFFFF;
+    height: 90%; /*IE7*/
+}
+
+#pop-content .close {
+    position: absolute;
+    background: url(../img/close.png) no-repeat;
+    width: 70px;
+    height: 70px;
+    right: -83px;
+    top: 2px;
+}
+
+#pop-content .close:hover {
+    background-color: #A3A3A3;
+}

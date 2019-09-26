@@ -1,0 +1,497 @@
+<!doctype html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no">
+    
+<meta name="google-site-verification" content="osGzKb_y9J6vt8d0mGYPDH81ljatwPdSVCFwxMCJSaE">
+
+    
+<meta name="baidu-site-verification" content="Yn6v4uAWVY">
+<script>
+    //push
+    (function(){
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        }
+        else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    <!--Simple SEO-->
+
+<meta name="description" content="编执狂的博客，主要记录自己在IT路上的成长历程。/">
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+    <!--Title-->
+
+<title>算法分析符号和算法分析浅谈 | Geekaholic</title>
+
+<link rel="alternate" href="/atom.xml" title="Geekaholic" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+    
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/css/pages/post.css">
+<link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/thirdParty/highlight/solarized-light.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+
+<style>
+    figure .code .line:before{
+        display: none!important;
+    }
+</style>
+
+    <!--script-->
+
+
+<script src="//cdn.jsdelivr.net/npm/leancloud-storage@3.15.0/dist/av-min.js"></script>
+<script>
+  var appId = "RI5uv752sD0nGTyUSUC6odJE-gzGzoHsz";
+  var appKey = "yuke8QmutaxI5YvyD2NIE57u";
+  var region = "null";
+  var serverURLs = "http://leancloud.geekaholic.cn";
+  AV.init({
+    appId: appId,
+    appKey: appKey,
+    region: region,
+    serverURLs: serverURLs
+  });
+</script>
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+<script>
+  var admin = "GeekaholicLin";
+  admin = admin.split(",");
+  var gitalk = new Gitalk({
+    clientID: "aa2215dfc8ee944d1205",
+    clientSecret: "77cd2afa5d161bc0ab04639ed81300d808c6e22b",
+    repo: "geekaholiclin.github.io",
+    owner: "GeekaholicLin",
+    admin: admin,
+    id: decodeURIComponent(location.pathname),
+    distractionFreeMode: false
+  })
+
+</script>
+
+    
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?1fdc784829bc9fa0c0bbee0c680ffe2a";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+    
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-91854900-3', 'auto');
+    ga('send', 'pageview');
+
+</script>
+
+</head>
+</html>
+<body id="normal">
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<style>
+    header{ top: 71px; position: absolute!important;}
+    #container{padding-top: 151px!important;}
+</style>
+<div style="position:fixed;z-index:9999;left:0;top:0;width:100%;height:70px;background-color:#e0e0e0;color:#396CA5;border-bottom:1px solid #cecece;text-align:center;line-height:70px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis">您使用的浏览器版本过低，为了您更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<div id="wrap">
+    <header  style="position: absolute;" >
+    <div id="site-meta">
+        <a href="/" id="logo">
+            <h1 class="title">Geekaholic</h1>
+        </a>
+        
+        <h2 class="subtitle">编程在于折腾</h2>
+        
+    </div>
+    <ul id="nav">
+        
+            <li><a href="/"><i class="fa fa-home"></i>首页</a></li>
+        
+            <li><a href="/about"><i class="fa fa-user"></i>关于我</a></li>
+        
+            <li><a href="/atom.xml"><i class="fa fa-rss"></i>RSS</a></li>
+        
+        <li id="search"><a href="javascript:void(0)"><i class="fa fa-search"></i>搜索</a></li>
+    </ul>
+</header>
+
+    <div id="container">
+        
+<ul id="sidebar">
+    
+    
+    
+    
+<li class="widget widget-normal category">
+    <h3 class="fa fa-th widget-title">分类</h3>
+    <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/他山之石/"><i class="fa" aria-hidden="true">他山之石</i></a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/他山之石/Web/"><i class="fa" aria-hidden="true">Web</i></a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/编执狂/"><i class="fa" aria-hidden="true">编执狂</i></a><span class="category-list-count">14</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/编执狂/Android/"><i class="fa" aria-hidden="true">Android</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/编执狂/Java/"><i class="fa" aria-hidden="true">Java</i></a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/编执狂/Web/"><i class="fa" aria-hidden="true">Web</i></a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/编执狂/计算机基础/"><i class="fa" aria-hidden="true">计算机基础</i></a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/编程之外/"><i class="fa" aria-hidden="true">编程之外</i></a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/编程之外/Hexo/"><i class="fa" aria-hidden="true">Hexo</i></a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/编程之外/解决方法/"><i class="fa" aria-hidden="true">解决方法</i></a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/黄金屋-读书笔记/"><i class="fa" aria-hidden="true">黄金屋--读书笔记</i></a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/黄金屋-读书笔记/CSS设计指南/"><i class="fa" aria-hidden="true">CSS设计指南</i></a><span class="category-list-count">1</span></li></ul></li></ul>
+</li>
+
+
+    
+    
+<li class="widget widget-normal archive">
+  <h3 class="fa fa-archive widget-title">归档</h3>
+    <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/"><i class="fa" aria-hidden="true">九月 2017</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/"><i class="fa" aria-hidden="true">八月 2017</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/"><i class="fa" aria-hidden="true">三月 2017</i></a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/"><i class="fa" aria-hidden="true">二月 2017</i></a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/"><i class="fa" aria-hidden="true">三月 2016</i></a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/"><i class="fa" aria-hidden="true">二月 2016</i></a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/"><i class="fa" aria-hidden="true">一月 2016</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/"><i class="fa" aria-hidden="true">十二月 2015</i></a><span class="archive-list-count">5</span></li></ul>
+</li>
+
+
+    
+    
+<li class="widget widget-normal popular-posts" id="popular-posts">
+    <h3 class="fa fa-thermometer-3 widget-title">热门文章</h3>
+    <ul id="popular-content">
+        <li class="load-first"><i class="fa fa-spinner fa-pulse"></i></li>
+    </ul>
+</li>
+
+    
+    
+<li class="widget widget-normal tags">
+  <h3 class="fa fa-tags widget-title">标签云</h3>
+  <div class="tagcloud-content">
+    
+      <a href="/tags/Mathjax/" style="font-size: 0.18rem; color: #4f83b8">Mathjax</a> <a href="/tags/JavaScript/" style="font-size: 0.21rem; color: #386da4">JavaScript</a> <a href="/tags/Web/" style="font-size: 0.21rem; color: #386da4">Web</a> <a href="/tags/Android/" style="font-size: 0.18rem; color: #4f83b8">Android</a> <a href="/tags/ListView原理/" style="font-size: 0.14rem; color: #69c">ListView原理</a> <a href="/tags/ListView优化/" style="font-size: 0.14rem; color: #69c">ListView优化</a> <a href="/tags/Android控件/" style="font-size: 0.14rem; color: #69c">Android控件</a> <a href="/tags/解决方法/" style="font-size: 0.14rem; color: #69c">解决方法</a> <a href="/tags/Genymotion/" style="font-size: 0.14rem; color: #69c">Genymotion</a> <a href="/tags/VisualBox/" style="font-size: 0.14rem; color: #69c">VisualBox</a> <a href="/tags/Java/" style="font-size: 0.28rem; color: #0a407c">Java</a> <a href="/tags/线程/" style="font-size: 0.14rem; color: #69c">线程</a> <a href="/tags/InterruptedException/" style="font-size: 0.14rem; color: #69c">InterruptedException</a> <a href="/tags/异常/" style="font-size: 0.14rem; color: #69c">异常</a> <a href="/tags/RxJS/" style="font-size: 0.14rem; color: #69c">RxJS</a> <a href="/tags/Translation/" style="font-size: 0.18rem; color: #4f83b8">Translation</a> <a href="/tags/Hexo主题/" style="font-size: 0.18rem; color: #4f83b8">Hexo主题</a> <a href="/tags/ylion/" style="font-size: 0.25rem; color: #215690">ylion</a> <a href="/tags/模块化/" style="font-size: 0.18rem; color: #4f83b8">模块化</a> <a href="/tags/CSS3/" style="font-size: 0.14rem; color: #69c">CSS3</a> <a href="/tags/W3C/" style="font-size: 0.14rem; color: #69c">W3C</a> <a href="/tags/Hexo/" style="font-size: 0.21rem; color: #386da4">Hexo</a> <a href="/tags/主题制作/" style="font-size: 0.18rem; color: #4f83b8">主题制作</a> <a href="/tags/IO操作/" style="font-size: 0.21rem; color: #386da4">IO操作</a> <a href="/tags/Scanner/" style="font-size: 0.14rem; color: #69c">Scanner</a> <a href="/tags/马士兵/" style="font-size: 0.18rem; color: #4f83b8">马士兵</a> <a href="/tags/异常处理/" style="font-size: 0.18rem; color: #4f83b8">异常处理</a> <a href="/tags/流类型/" style="font-size: 0.18rem; color: #4f83b8">流类型</a> <a href="/tags/算法分析/" style="font-size: 0.14rem; color: #69c">算法分析</a> <a href="/tags/复杂度/" style="font-size: 0.14rem; color: #69c">复杂度</a> <a href="/tags/虚拟机/" style="font-size: 0.14rem; color: #69c">虚拟机</a> <a href="/tags/英文XP系统/" style="font-size: 0.14rem; color: #69c">英文XP系统</a> <a href="/tags/中文字体/" style="font-size: 0.14rem; color: #69c">中文字体</a> <a href="/tags/兼容性/" style="font-size: 0.18rem; color: #4f83b8">兼容性</a> <a href="/tags/CSS设计指南/" style="font-size: 0.14rem; color: #69c">CSS设计指南</a> <a href="/tags/读书笔记/" style="font-size: 0.14rem; color: #69c">读书笔记</a> <a href="/tags/polyfill/" style="font-size: 0.14rem; color: #69c">polyfill</a>
+  </div>
+</li>
+
+
+    
+    
+<li class="widget widget-normal friends-link">
+    <h3 class="fa fa-globe widget-title">友链</h3><br/>
+
+    
+        <a href="http://geekaholiclin.github.io" class="fa" target="_blank">主题作者</a>
+
+    
+        <a href="http://walkerlala.github.com/" class="fa" target="_blank">walkerlala</a>
+
+    
+        <a href="http://jerry011235.github.io/" class="fa" target="_blank">璀璨星空</a>
+
+    
+
+</li>
+
+    
+</ul>
+
+
+        <div id="main">
+    <article id="post">
+        <div id="post-header">
+
+            <h1 id="算法分析符号和算法分析浅谈">
+                
+                算法分析符号和算法分析浅谈
+                
+            </h1>
+            <div class="article-meta">
+    
+    
+    <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+        <span>计算机基础</span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+         <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            算法分析
+            
+        </span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta ">2016/01/19</span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+            <i class="fa fa-thermometer-three-quarters"></i>
+        <span class="hits hits-meta " data-leadcloud-title="算法分析符号和算法分析浅谈"
+              data-leadcloud-url="/2016/01/19/算法符号和算法分析浅谈/"><i class="fa fa-spinner fa-spin"></i></span>
+    </span>
+    
+    
+</div>
+
+            
+            
+            <p class="fa fa-exclamation-triangle warning">
+                本文于<strong>1345</strong>天之前发表，文中内容可能已经过时。如有疑问，请在评论区留言。
+            </p>
+            
+        </div>
+        
+        <div id="post-body">
+            <h2 id="算法分析符号及实例">算法分析符号及实例</h2>
+<h3 id="算法分析符号">算法分析符号</h3>
+<p>今天要为下学期的课程准备，打打酱油吧，感觉好多事要做啊啊啊啊啊。APP没有完成，JS也放下没有继续学习，就急急忙忙为下学期的《数据结构和算法》做准备，还有部门的官网任务，感觉这个假期是所有事情都不可能做好，哭。战线拉得太长了T-T</p>
+<p>在看《算法导论》的时候，几个常见的算法分析符号把我难住了。(PS:讲的够快的，而且一堆定义，看到定义就头疼)，经过百度后，略略能get到那个point，所以赶紧做笔记，以便以后温习，怕的是没几天就忘记了，白白浪费时间。</p>
+<a id="more"></a>
+<p><strong>大O,Ω,Θ</strong>，主要用到的是这个符号，当然还有<strong>小o</strong>，<strong>小Ω</strong>(类似w)。下面的描述是摘自<a href="http://pake007.iteye.com/blog/87022" target="_blank" rel="noopener">pake007的博客</a>。</p>
+<blockquote>
+<p>f (n) = O (g (n))代表g(n)是f(n)的一个上界，即f(n)的增长率小于等于(≤)g(n)的增长率，如n^2 = O(n^3)，若f(n) = n^2, g(n) = 2n^2, 从而f(n) = O(g(n))也是正确的；</p>
+</blockquote>
+<blockquote>
+<p>f (n) =Ω (g (n)) 代表g(n)是f(n)的一个下界，和O符号的意义正好相反，代表f(n)的增长率大于等于(≥)g(n)的增长率；</p>
+</blockquote>
+<blockquote>
+<p>f (n) = Θ(g (n)) 代表两个函数以相同的速率增长，若f(n) = 2n^2，则写成f(n) = Θ(n^2)是最好的答案；</p>
+</blockquote>
+<blockquote>
+<p>f (n) = o (g (n)) 和大O符号的意义基本相同，除了相等的情况外，即表示f(n)的增长率小于(&lt;)g(n)的增长率.</p>
+</blockquote>
+<blockquote>
+<p>由理可得，小Ω代表f(n)的增长率大于(&lt;)g(n)的增长率。</p>
+</blockquote>
+<p>OK，看完之后有点眉目。但主要还是<strong>大O</strong>,<strong>Θ</strong>这两个经常搞混。再经过看视频和百度，Google，<code>F(n) = Θ(g(n)) 等价于 F(n) = O(g(n)) AND F(n) = Ω(g(n))</code>，并且在知乎发现了一张图，<strong>一图胜千言</strong>…所谓“增长率”和图中的“order”讲的是<strong>阶</strong>这个概念。</p>
+<div class="figure">
+<img src="http://old-image.geekaholic.cn/2016-02-11_00001.jpg" alt="图片来自University of Manitoba CS3170算法分析课堂ppt">
+<p class="caption">图片来自University of Manitoba CS3170算法分析课堂ppt</p>
+</div>
+<p>由图可以看出，<strong>大O</strong>是同阶或低阶，<strong>Θ</strong>是同阶。下面举几个例子。</p>
+<blockquote>
+<p>n^2 = O(n<sup>3)—对的 n</sup>2 = Θ(n<sup>3)—错的 n</sup>2 = O(n<sup>2)—对的 n</sup>2 = Θ(n^2)—对的</p>
+</blockquote>
+<p>为什么不讲Ω这个符号，其实在算法分析中很少会涉及到<strong>最优</strong>，很多时候考虑的是<strong>最坏的情况</strong>，而且，对算法的时间复杂度T(n)，我们用符号大O来进行分析。</p>
+<blockquote>
+<p>T(n):定义：如果一个问题的规模是n，解这一问题的某一算法所需要的时间为T(n)，它是n的某一函数 T(n)称为这一算法的“时间复杂性”。</p>
+</blockquote>
+<blockquote>
+<p>时间复杂度按数量级递增排列依次为：常数阶O(1)、对数阶O(log2n)、线性阶O(n)、线性对数阶O(nlog2n)、平方阶O(n<sup>2)、立方阶O(n</sup>3)、……k次方阶O(n^k)。</p>
+</blockquote>
+<h3 id="实例">实例</h3>
+<p>有了以上的概念，让我们看一些实例，一探究竟：来自<a href="http://www.xuebuyuan.com/1771236.html" target="_blank" rel="noopener">学步园</a></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">O(n^<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"><span class="number">2.1</span>. 交换i和j的内容</span><br><span class="line"></span><br><span class="line">     sum=<span class="number">0</span>；                 （一次）</span><br><span class="line"></span><br><span class="line">     <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)       （n次 ）</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(j=<span class="number">1</span>;j&lt;=n;j++) （n^<span class="number">2</span>次 ）</span><br><span class="line"></span><br><span class="line">         sum++；       （n^<span class="number">2</span>次 ）</span><br><span class="line"></span><br><span class="line">解：T(n)=<span class="number">2</span>n^<span class="number">2</span>+n+<span class="number">1</span> =O(n^<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="number">2.4</span>.</span><br><span class="line"></span><br><span class="line">     i=<span class="number">1</span>;       ①</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (i&lt;=n)</span><br><span class="line"></span><br><span class="line">       i=i*<span class="number">2</span>; ②</span><br><span class="line"></span><br><span class="line">解： 语句<span class="number">1</span>的频度是<span class="number">1</span>,</span><br><span class="line"></span><br><span class="line">          设语句<span class="number">2</span>的频度是f(n),   则：<span class="number">2</span>^f(n)&lt;=n;f(n)&lt;=log2n</span><br><span class="line"></span><br><span class="line">          取最大值f(n)= log2n,</span><br><span class="line"></span><br><span class="line">          T(n)=O(log2n )</span><br></pre></td></tr></table></figure>
+
+        </div>
+        <div id="post-footer">
+            <div class="avatar" >
+                <img src="http://image.geekaholic.cn/author.jpg" alt="avatar"/>
+                
+                <a href="javascript:void(0)" class="high-song">high起来 &#128541;</a>
+                
+                
+                <a href="javascript:void(0)" class="donate fa">打赏资瓷 &#128536;</a>
+                
+            </div>
+            <ul class="author-profile-section">
+                <li>
+                  
+                  作者:
+                  
+                    
+                    <a href="/about.html">GeekaholicLin</a>
+                </li>
+                
+                <li>发表日期: <span>2016-01-19  13:44:50</span></li>
+                
+                <li>最后编辑日期: <span>2019-09-26  05:21:46</span></li>
+                
+                <li class="post-category">
+                    文章分类:
+                    
+                    <a href="/categories/编执狂/">编执狂</a>
+                    
+                    <a href="/categories/编执狂/计算机基础/">计算机基础</a>
+                    
+                </li>
+                <li class="post-tags">
+                    文章标签:
+                    
+                    <a href="/tags/算法分析/">算法分析</a>
+                    
+                    <a href="/tags/复杂度/">复杂度</a>
+                    
+                </li>
+                
+                <li> 版权声明: 
+<a href="https://creativecommons.org/licenses/by-nc-nd/3.0/" target="_blank">
+知识共享署名-非商业性使用-禁止演绎 3.0 未本地化版本许可协议（CC BY-NC-ND 3.0）
+</a></li>
+                
+            </ul>
+            <div id="donate-wrap">
+                
+                
+                
+                <img src="http://image.geekaholic.cn/alipay.jpg" alt="支付宝付款" class="donate-img">
+                
+                <img src="http://image.geekaholic.cn/wechat.png" alt="微信付款" class="donate-img">
+                
+                
+            </div>
+        </div>
+    </article>
+    <div class="article-nav">
+        
+        <a href="/2016/02/06/Android控件学习之ListView/" class="pre-post fa fa-caret-left">Android控件学习之ListView</a>
+        
+        
+        <a href="/2015/12/28/理清Java中的IO-Scanner/" class="next-post fa">理清Java中的IO-Scanner</a>
+        
+    </div>
+    
+    <div id="comments">
+        
+
+<script>
+  gitalk.render("comments");
+</script>
+
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+    <footer id="footer">
+    
+    <div class="social">
+        
+        <a href="https://freecodecamp.cn/geekaholiclin" class="fa fa-free-code-camp" target="_blank" title="freecodecamp"></a>
+        
+        <a href="https://github.com/GeekaholicLin" class="fa fa-github" target="_blank" title="github"></a>
+        
+        <a href="mailto:geekaholiclin@gmail.com" class="fa fa-envelope-o" target="_blank" title="mail to me"></a>
+        
+    </div>
+    
+    <div>
+        
+        <a href="/" class="copyright-links">GeekaholicLin</a>&copy;2015 - 2019.All Rights
+        Reserved.
+    </div>
+    <p>Powered by <a href="https://hexo.io" class="copyright-links" target="_blank">Hexo</a> | Theme by <a
+                href="https://github.com/GeekaholicLin" class="copyright-links" target="_blank">GeekaholicLin</a>
+    </p>
+    
+    
+    <p>
+        <span id="busuanzi_container_site_uv" class="fa fa-bar-chart">
+        欢迎第<span id="busuanzi_value_site_uv"><i class="fa fa-spinner fa-spin"></i></span>位小伙伴~
+        </span>
+    </p>
+    
+</footer>
+
+</div>
+    <ul id="tools">
+    <li class="totop-btn fa fa-angle-up"></li>
+    <li class="exchange-btn fa fa-exchange"></li>
+  
+    <li class="toc-btn fa fa-list-ul"></li>
+    
+    
+
+    
+    <li class="comment-btn fa fa-comments-o">
+        <a href="#comments" title="comments"></a>
+    </li>
+    
+</ul>
+<p id="process"></p>
+<div id="search-overlay">
+    <div class="search-area-wrap">
+        <div id="search-area">
+            <div class="input-wrap focus">
+                <i class="fa fa-search" aria-hidden="true"></i>
+                <input id="search-input" autofocus autocomplete="off" type="text"
+                       placeholder="search this website..."/>
+            </div>
+            <ul id="search-result">
+                <li class="load-first"><i class="fa fa-spinner fa-pulse"></i></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#算法分析符号及实例"><span class="toc-number">1.</span> <span class="toc-text">算法分析符号及实例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#算法分析符号"><span class="toc-number">1.1.</span> <span class="toc-text">算法分析符号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实例"><span class="toc-number">1.2.</span> <span class="toc-text">实例</span></a></li></ol></li></ol>
+
+
+    <script src="/js/highsong.js"></script>
+
+
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+    //theme config datas
+    var copyrightObj = {};
+    copyrightObj.enable = 'true';
+    copyrightObj.triggerCopyLength = '200';
+    copyrightObj.appendText = '商业转载请联系作者获得授权,非商业转载请注明出处 © GeekaholicLin';
+    var leancloudObj = {};
+    leancloudObj.enable = 'true';
+    leancloudObj.className = 'BlogCounter';
+    leancloudObj.limits = '10';
+</script>
+<script type="text/javascript">
+    var search = {};
+    var search_path = "search.xml";
+    if (!search_path) {
+        search_path = "search.xml";
+    }
+    search.path = "/" + search_path;
+    search.func =  _ajax.init();
+</script>
+<script src="/js/app.js"></script>
+
+
+</body>
+</html>

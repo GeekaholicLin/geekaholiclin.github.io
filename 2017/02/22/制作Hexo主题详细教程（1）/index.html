@@ -1,0 +1,552 @@
+<!doctype html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no">
+    
+<meta name="google-site-verification" content="osGzKb_y9J6vt8d0mGYPDH81ljatwPdSVCFwxMCJSaE">
+
+    
+<meta name="baidu-site-verification" content="Yn6v4uAWVY">
+<script>
+    //push
+    (function(){
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        }
+        else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    <!--Simple SEO-->
+
+<meta name="description" content="编执狂的博客，主要记录自己在IT路上的成长历程。/">
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+    <!--Title-->
+
+<title>制作Hexo主题详细教程（1） | Geekaholic</title>
+
+<link rel="alternate" href="/atom.xml" title="Geekaholic" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+    
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/css/pages/post.css">
+<link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/thirdParty/highlight/solarized-light.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+
+<style>
+    figure .code .line:before{
+        display: none!important;
+    }
+</style>
+
+    <!--script-->
+
+
+<script src="//cdn.jsdelivr.net/npm/leancloud-storage@3.15.0/dist/av-min.js"></script>
+<script>
+  var appId = "RI5uv752sD0nGTyUSUC6odJE-gzGzoHsz";
+  var appKey = "yuke8QmutaxI5YvyD2NIE57u";
+  var region = "null";
+  var serverURLs = "http://leancloud.geekaholic.cn";
+  AV.init({
+    appId: appId,
+    appKey: appKey,
+    region: region,
+    serverURLs: serverURLs
+  });
+</script>
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+<script>
+  var admin = "GeekaholicLin";
+  admin = admin.split(",");
+  var gitalk = new Gitalk({
+    clientID: "aa2215dfc8ee944d1205",
+    clientSecret: "77cd2afa5d161bc0ab04639ed81300d808c6e22b",
+    repo: "geekaholiclin.github.io",
+    owner: "GeekaholicLin",
+    admin: admin,
+    id: decodeURIComponent(location.pathname),
+    distractionFreeMode: false
+  })
+
+</script>
+
+    
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?1fdc784829bc9fa0c0bbee0c680ffe2a";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+    
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-91854900-3', 'auto');
+    ga('send', 'pageview');
+
+</script>
+
+</head>
+</html>
+<body id="normal">
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<style>
+    header{ top: 71px; position: absolute!important;}
+    #container{padding-top: 151px!important;}
+</style>
+<div style="position:fixed;z-index:9999;left:0;top:0;width:100%;height:70px;background-color:#e0e0e0;color:#396CA5;border-bottom:1px solid #cecece;text-align:center;line-height:70px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis">您使用的浏览器版本过低，为了您更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<div id="wrap">
+    <header  style="position: absolute;" >
+    <div id="site-meta">
+        <a href="/" id="logo">
+            <h1 class="title">Geekaholic</h1>
+        </a>
+        
+        <h2 class="subtitle">编程在于折腾</h2>
+        
+    </div>
+    <ul id="nav">
+        
+            <li><a href="/"><i class="fa fa-home"></i>首页</a></li>
+        
+            <li><a href="/about"><i class="fa fa-user"></i>关于我</a></li>
+        
+            <li><a href="/atom.xml"><i class="fa fa-rss"></i>RSS</a></li>
+        
+        <li id="search"><a href="javascript:void(0)"><i class="fa fa-search"></i>搜索</a></li>
+    </ul>
+</header>
+
+    <div id="container">
+        
+<ul id="sidebar">
+    
+    
+    
+    
+<li class="widget widget-normal category">
+    <h3 class="fa fa-th widget-title">分类</h3>
+    <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/他山之石/"><i class="fa" aria-hidden="true">他山之石</i></a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/他山之石/Web/"><i class="fa" aria-hidden="true">Web</i></a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/编执狂/"><i class="fa" aria-hidden="true">编执狂</i></a><span class="category-list-count">14</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/编执狂/Android/"><i class="fa" aria-hidden="true">Android</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/编执狂/Java/"><i class="fa" aria-hidden="true">Java</i></a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/编执狂/Web/"><i class="fa" aria-hidden="true">Web</i></a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/编执狂/计算机基础/"><i class="fa" aria-hidden="true">计算机基础</i></a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/编程之外/"><i class="fa" aria-hidden="true">编程之外</i></a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/编程之外/Hexo/"><i class="fa" aria-hidden="true">Hexo</i></a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/编程之外/解决方法/"><i class="fa" aria-hidden="true">解决方法</i></a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/黄金屋-读书笔记/"><i class="fa" aria-hidden="true">黄金屋--读书笔记</i></a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/黄金屋-读书笔记/CSS设计指南/"><i class="fa" aria-hidden="true">CSS设计指南</i></a><span class="category-list-count">1</span></li></ul></li></ul>
+</li>
+
+
+    
+    
+<li class="widget widget-normal archive">
+  <h3 class="fa fa-archive widget-title">归档</h3>
+    <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/"><i class="fa" aria-hidden="true">九月 2017</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/"><i class="fa" aria-hidden="true">八月 2017</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/"><i class="fa" aria-hidden="true">三月 2017</i></a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/"><i class="fa" aria-hidden="true">二月 2017</i></a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/"><i class="fa" aria-hidden="true">三月 2016</i></a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/"><i class="fa" aria-hidden="true">二月 2016</i></a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/"><i class="fa" aria-hidden="true">一月 2016</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/"><i class="fa" aria-hidden="true">十二月 2015</i></a><span class="archive-list-count">5</span></li></ul>
+</li>
+
+
+    
+    
+<li class="widget widget-normal popular-posts" id="popular-posts">
+    <h3 class="fa fa-thermometer-3 widget-title">热门文章</h3>
+    <ul id="popular-content">
+        <li class="load-first"><i class="fa fa-spinner fa-pulse"></i></li>
+    </ul>
+</li>
+
+    
+    
+<li class="widget widget-normal tags">
+  <h3 class="fa fa-tags widget-title">标签云</h3>
+  <div class="tagcloud-content">
+    
+      <a href="/tags/Mathjax/" style="font-size: 0.18rem; color: #4f83b8">Mathjax</a> <a href="/tags/JavaScript/" style="font-size: 0.21rem; color: #386da4">JavaScript</a> <a href="/tags/Web/" style="font-size: 0.21rem; color: #386da4">Web</a> <a href="/tags/Android/" style="font-size: 0.18rem; color: #4f83b8">Android</a> <a href="/tags/ListView原理/" style="font-size: 0.14rem; color: #69c">ListView原理</a> <a href="/tags/ListView优化/" style="font-size: 0.14rem; color: #69c">ListView优化</a> <a href="/tags/Android控件/" style="font-size: 0.14rem; color: #69c">Android控件</a> <a href="/tags/解决方法/" style="font-size: 0.14rem; color: #69c">解决方法</a> <a href="/tags/Genymotion/" style="font-size: 0.14rem; color: #69c">Genymotion</a> <a href="/tags/VisualBox/" style="font-size: 0.14rem; color: #69c">VisualBox</a> <a href="/tags/Java/" style="font-size: 0.28rem; color: #0a407c">Java</a> <a href="/tags/线程/" style="font-size: 0.14rem; color: #69c">线程</a> <a href="/tags/InterruptedException/" style="font-size: 0.14rem; color: #69c">InterruptedException</a> <a href="/tags/异常/" style="font-size: 0.14rem; color: #69c">异常</a> <a href="/tags/RxJS/" style="font-size: 0.14rem; color: #69c">RxJS</a> <a href="/tags/Translation/" style="font-size: 0.18rem; color: #4f83b8">Translation</a> <a href="/tags/Hexo主题/" style="font-size: 0.18rem; color: #4f83b8">Hexo主题</a> <a href="/tags/ylion/" style="font-size: 0.25rem; color: #215690">ylion</a> <a href="/tags/模块化/" style="font-size: 0.18rem; color: #4f83b8">模块化</a> <a href="/tags/CSS3/" style="font-size: 0.14rem; color: #69c">CSS3</a> <a href="/tags/W3C/" style="font-size: 0.14rem; color: #69c">W3C</a> <a href="/tags/Hexo/" style="font-size: 0.21rem; color: #386da4">Hexo</a> <a href="/tags/主题制作/" style="font-size: 0.18rem; color: #4f83b8">主题制作</a> <a href="/tags/IO操作/" style="font-size: 0.21rem; color: #386da4">IO操作</a> <a href="/tags/Scanner/" style="font-size: 0.14rem; color: #69c">Scanner</a> <a href="/tags/马士兵/" style="font-size: 0.18rem; color: #4f83b8">马士兵</a> <a href="/tags/异常处理/" style="font-size: 0.18rem; color: #4f83b8">异常处理</a> <a href="/tags/流类型/" style="font-size: 0.18rem; color: #4f83b8">流类型</a> <a href="/tags/算法分析/" style="font-size: 0.14rem; color: #69c">算法分析</a> <a href="/tags/复杂度/" style="font-size: 0.14rem; color: #69c">复杂度</a> <a href="/tags/虚拟机/" style="font-size: 0.14rem; color: #69c">虚拟机</a> <a href="/tags/英文XP系统/" style="font-size: 0.14rem; color: #69c">英文XP系统</a> <a href="/tags/中文字体/" style="font-size: 0.14rem; color: #69c">中文字体</a> <a href="/tags/兼容性/" style="font-size: 0.18rem; color: #4f83b8">兼容性</a> <a href="/tags/CSS设计指南/" style="font-size: 0.14rem; color: #69c">CSS设计指南</a> <a href="/tags/读书笔记/" style="font-size: 0.14rem; color: #69c">读书笔记</a> <a href="/tags/polyfill/" style="font-size: 0.14rem; color: #69c">polyfill</a>
+  </div>
+</li>
+
+
+    
+    
+<li class="widget widget-normal friends-link">
+    <h3 class="fa fa-globe widget-title">友链</h3><br/>
+
+    
+        <a href="http://geekaholiclin.github.io" class="fa" target="_blank">主题作者</a>
+
+    
+        <a href="http://walkerlala.github.com/" class="fa" target="_blank">walkerlala</a>
+
+    
+        <a href="http://jerry011235.github.io/" class="fa" target="_blank">璀璨星空</a>
+
+    
+
+</li>
+
+    
+</ul>
+
+
+        <div id="main">
+    <article id="post">
+        <div id="post-header">
+
+            <h1 id="制作Hexo主题详细教程（1）">
+                
+                制作Hexo主题详细教程（1）
+                
+            </h1>
+            <div class="article-meta">
+    
+    
+    <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+        <span>Web</span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+         <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            ylion
+            
+        </span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta ">2017/02/22</span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+            <i class="fa fa-thermometer-three-quarters"></i>
+        <span class="hits hits-meta " data-leadcloud-title="制作Hexo主题详细教程（1）"
+              data-leadcloud-url="/2017/02/22/制作Hexo主题详细教程（1）/"><i class="fa fa-spinner fa-spin"></i></span>
+    </span>
+    
+    
+</div>
+
+            
+            
+            <p class="fa fa-exclamation-triangle warning">
+                本文于<strong>945</strong>天之前发表，文中内容可能已经过时。如有疑问，请在评论区留言。
+            </p>
+            
+        </div>
+        
+        <div id="post-body">
+            <h2 id="关于">关于</h2>
+<h3 id="为什么要造轮子">为什么要造轮子</h3>
+<p>利用寒假接近半个月来写了一个<a href="https://github.com/GeekaholicLin/hexo-theme-ylion" target="_blank" rel="noopener">主题</a>。为什么要造轮子？其实做这个Hexo主题的目的就是想学习更高级的用法，比如<code>less</code>，比如<code>ejs</code>，比如<code>CSS3</code>以及原生<code>JavaScript</code>，也为了更好地沉淀。因为大半年的时间学习jQuery，处理IE的兼容，感觉越来越与前端的发展脱节…</p>
+<h3 id="为什么要写本教程">为什么要写本教程</h3>
+<p>在写ylion主题的时候，我也没想到会是如此艰辛。艰辛的不是技术使用方面，艰辛的是<a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="noopener">Hexo官方文档</a>。当你写过主题就知道官方的API写的多么的含糊不清(摔！)，而要命的是，这方面的介绍少之又少(也可能是我搜索的姿势不对…)。所以，为了方便后来造轮子者有个参考，也为了温习制作主题时利用到的知识，写下本教程，本教程以ylion主题为例，<strong>水平有限，如有纰漏，还望指出~</strong></p>
+<h3 id="准备">准备</h3>
+<p>制作一款Hexo主题的要求并不高，要求掌握<code>ejs</code>、<code>less</code>、以及基本的<code>HTML</code>、<code>CSS</code>、<code>JavaScript</code>，还有熟悉Hexo提供的插件和功能(参见API文档)。至于设计方面的知识，可以参考现有的主题，包括但不限于Hexo主题。</p>
+<p><code>ejs</code>和<code>less</code>可以使用<code>Swig</code>和<code>Sass/Scss</code>等，要看自己熟悉哪一个，自己用的适应就行。</p>
+<p><code>ejs</code>和<code>less</code>并不难学，两者都是为了模块化，减少代码量。前者基本上是js+html，后者基本是css。而<code>JavaScript</code>部分，如果想减少上手难度，可以使用<code>jQuery</code>代替。</p>
+<h2 id="开始">开始</h2>
+<h3 id="初始化">初始化</h3>
+<p>按照<a href="https://hexo.io/zh-cn/docs/index.html" target="_blank" rel="noopener">教程</a>配置好自己的开发环境，然后<a href="https://hexo.io/zh-cn/docs/setup.html" target="_blank" rel="noopener">初始化</a>，Hexo则会在指定目录新建需要的文件。 该目录下的文件说明，可以在<a href="https://hexo.io/zh-cn/docs/setup.html" target="_blank" rel="noopener">官方文档</a>中看到，不再赘述。</p>
+<h3 id="新建主题">新建主题</h3>
+<p>在<code>themes</code>建立新的文件夹，命名为<code>ylion</code>，为了减少工作量，这里使用<code>generator-hexo-theme</code>和<code>yo</code>来帮我们自动生成需要的目录和文件，再根据我们的需求进行删减和添加。当然，手动建立也是可以的。</p>
+<p>首先是需要工具的安装：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install yo -g</span><br><span class="line">  npm install generator-hexo-theme -g</span><br></pre></td></tr></table></figure>
+<p>然后在新建的<code>ylion</code>目录，使用命令<code>yo hexo-theme</code>，进行技术栈的选择。结束后大概是以下的画面：</p>
+<div class="figure">
+<img src="http://image.geekaholic.cn/qm1k5oy4o3bdh2n07mdj0lq505" alt="hexo-theme">
+<p class="caption">hexo-theme</p>
+</div>
+<p>而现在的<code>ylion</code>目录下的结构为：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">.</span><br><span class="line">├── _config.yml</span><br><span class="line">├── layout</span><br><span class="line">│   ├── archive.ejs</span><br><span class="line">│   ├── category.ejs</span><br><span class="line">│   ├── index.ejs</span><br><span class="line">│   ├── layout.ejs</span><br><span class="line">│   ├── page.ejs</span><br><span class="line">│   ├── partials</span><br><span class="line">│   │   ├── pagination.ejs</span><br><span class="line">│   │   └── recent-posts.ejs</span><br><span class="line">│   ├── post.ejs</span><br><span class="line">│   └── tag.ejs</span><br><span class="line">└── <span class="built_in">source</span></span><br><span class="line">    ├── css</span><br><span class="line">    │   └── ylion.less</span><br><span class="line">    ├── favicon.ico</span><br><span class="line">    └── js</span><br><span class="line">        └── ylion.js</span><br></pre></td></tr></table></figure>
+<p>经过删减和增加后的文件结构一般如下,至于该新建什么文件，是根据自己的主题进行的。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">├── _config.yml <span class="comment">### 主题的配置文件</span></span><br><span class="line">├── languages <span class="comment">### 多语言支持目录</span></span><br><span class="line">│   ├── default.yml</span><br><span class="line">│   ├── zh-CN.yml</span><br><span class="line">│   └── zh-TW.yml</span><br><span class="line">├── layout <span class="comment">### 布局模块目录</span></span><br><span class="line">│   ├── _partial <span class="comment">### 可重复利用的模块目录</span></span><br><span class="line">│   ├── _thirdParty <span class="comment">### 第三方模块目录</span></span><br><span class="line">│   ├── _widget <span class="comment">### 小插件模块目录</span></span><br><span class="line">│   ├── archive.ejs <span class="comment">### 归档布局文件</span></span><br><span class="line">│   ├── category.ejs <span class="comment">### 分类布局文件</span></span><br><span class="line">│   ├── index.ejs <span class="comment">### 首页布局文件</span></span><br><span class="line">│   ├── layout.ejs <span class="comment">### 主布局文件</span></span><br><span class="line">│   ├── page.ejs <span class="comment">### 分页导航布局文件</span></span><br><span class="line">│   ├── post.ejs <span class="comment">### 文章详情文件</span></span><br><span class="line">│   └── tag.ejs <span class="comment">### 标签布局文件</span></span><br><span class="line">├── package.json</span><br><span class="line">├── scripts <span class="comment">###</span></span><br><span class="line">│   ├── generator <span class="comment">### 生成器</span></span><br><span class="line">│   └── helper <span class="comment">### 辅助器</span></span><br><span class="line">└── <span class="built_in">source</span> <span class="comment">###</span></span><br><span class="line">    ├── css <span class="comment">### css</span></span><br><span class="line">    ├── favicon.ico <span class="comment">### 网站图标</span></span><br><span class="line">    ├── fonts <span class="comment">### 字体</span></span><br><span class="line">    ├── img <span class="comment">## 图片目录</span></span><br><span class="line">    └── js <span class="comment">## js</span></span><br></pre></td></tr></table></figure>
+<p>至于每个目录和文件有什么作用，为什么这么分，以及如何自己更强地自定义，会在下面的内容或者以后的内容讲到。</p>
+<h3 id="文档补充">文档补充</h3>
+<p>这一部分是对Hexo官方文档的烂的一比的部分(主要表现在<code>自定义</code>部分)进行的补充说明，以及编写主题时的一些心得。我会尽量对照着官方文档的顺序进行补充。</p>
+<h4 id="模板">模板</h4>
+<p>在官方的<a href="https://hexo.io/zh-cn/docs/templates.html" target="_blank" rel="noopener">模板说明文档</a>页面，有这么一个表格。让我们回头看<code>ylion</code>目录下的部分文件。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">│   ├── archive.ejs <span class="comment">### 归档布局文件</span></span><br><span class="line">│   ├── category.ejs <span class="comment">### 分类布局文件</span></span><br><span class="line">│   ├── index.ejs <span class="comment">### 首页布局文件</span></span><br><span class="line">│   ├── layout.ejs <span class="comment">### 主布局文件</span></span><br><span class="line">│   ├── page.ejs <span class="comment">### 分页导航布局文件</span></span><br><span class="line">│   ├── post.ejs <span class="comment">### 文章详情文件</span></span><br><span class="line">│   └── tag.ejs <span class="comment">### 标签布局文件</span></span><br></pre></td></tr></table></figure>
+<p>再对照表格：</p>
+<div class="figure">
+<img src="http://image.geekaholic.cn/1snknxi1kcjzgsgojrpazsh92e" alt="模板表格">
+<p class="caption">模板表格</p>
+</div>
+<p>其中<code>layout.ejs</code>是最主要的文件，它是所有布局的入口，而其他的布局(layout)比如<code>index.ejs</code>只是<code>layout.ejs</code>的<code>&lt;%- body %&gt;</code>部分。</p>
+<p>当你访问博客的首页时，通过表格知道首页对照的模板为<code>index.ejs</code>，这时Hexo将<code>index.ejs</code>的内容替换掉<code>layout.ejs</code>中的<code>&lt;%- body %&gt;</code>。而如果是归档界面呢？对的，是<code>archive.ejs</code>的内容替换掉<code>&lt;%- body %&gt;</code>。而如果<code>archive.ejs</code>不存在呢？这时就该表格中的<code>回调</code>部分出场了，<code>archive.ejs</code>的回调是<code>index.ejs</code>，则说明当<code>archive.ejs</code>不存在的时候，用<code>index.ejs</code>的内容。</p>
+<p>那问题来了，如果我想添加新的页面(page)怎么办？其实有好多种方法。</p>
+<ol style="list-style-type: decimal">
+<li><p>Github Pages有一个功能，是每个项目都可以算是一个page。比如你的repo名字是<code>demo</code>，而你的Github名字是<code>Geek</code>，也就是说你的个人域名是<code>geek.github.io</code>，那你可以通过<code>geek.github.io/demo/index.html</code>访问<code>demo</code>repo下的<code>index.html</code>，是不是很方便，这样就可以建立很多个pages了。</p></li>
+<li><p>但是，我们不想那么麻烦怎么办？根据一定的网站知识，我们可以知道，在你博客目录下的<code>source</code>目录下建立一个<code>demo</code>目录，然后添加<code>index.html</code>照样可以实现上述的功能。</p></li>
+<li><p>但是又有一个问题，这个<code>index.html</code>没有样式，脚本等等，你想让Hexo帮你渲染，怎么弄？ <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo new page <span class="string">'demo'</span></span><br></pre></td></tr></table></figure></p></li>
+</ol>
+<p>则会帮你完成在<code>source</code>目录创立<code>demo</code>目录，并初始化一个<code>index.md</code>文件，使用的渲染布局自然就是<code>page.ejs</code>了，为什么？<a href="https://hexo.io/zh-cn/docs/commands.html#new" target="_blank" rel="noopener">官方命令说明</a>如下： <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo new [layout] &lt;title&gt;</span><br></pre></td></tr></table></figure></p>
+<p>但这还不够，因为比如会添加许多许多pages。<code>page.ejs</code>如何加以区分，然后进行渲染？ 这时候<a href="https://hexo.io/zh-cn/docs/front-matter.html" target="_blank" rel="noopener">front-matter</a>出场了。给它加上一个字段<code>type: 'demo'</code>，然后在<code>page.ejs</code>进行逻辑判断，获取的变量为<code>page.type</code>，然后实现你的业务逻辑即可。目前(2017-2-22)ylion主题尚未实现<code>page.ejs</code>渲染分类等。</p>
+<ol start="4" style="list-style-type: decimal">
+<li>又有一个问题(问题真多…)，如果我不想用<code>page.ejs</code>进行渲染呢，毕竟在一个文件里写过多的<code>page.type</code>判断会显得乱，可不可以单独一个文件，比如<code>demo.ejs</code>进行渲染。当然可以！更改<code>demo</code>目录下的<code>index.md</code>文件的<code>front-matter</code>中的<code>layout</code>字段，为你要渲染的layout名字，此处为<code>demo</code>，然后在<code>layout</code>文件夹下新建一个文件<code>demo.ejs</code>即可~这相当于<strong>自定义layout</strong>。</li>
+</ol>
+<p>至于<code>Partial</code>局部模块，还是要根据自己的需求进行处理。比如<code>ylion</code>主题中的<code>article-meta</code>是文章的信息显示。因为在ylion主题的每个页面都有出现，这时候就有必要抽取为一个局部模块，减少代码的代码量。</p>
+<p>而优化是不能够缺少的，如果你的主题是提交至官方Hexo的话。<strong>在这里有一个坑！！！</strong>一般来说，局部缓存的代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;%- partial(&apos;_partial/xxxxx&apos;, null, &#123;cache: !config.relative_link&#125;) %&gt;</span><br></pre></td></tr></table></figure>
+<p>但是，如果你<code>xxxx</code>局部模块中的变量是根据不同页面被赋不同的值，则不能够使用，不然所有页面中的<strong>此变量都是同一个值</strong>,切记。</p>
+<h4 id="变量">变量</h4>
+<p>全局变量，官方已经讲的很清楚了，不再赘述，主要讲页面变量。</p>
+<p>不过，还是举一个例子。以ylion主题中的<code>leancloud</code>统计功能为例子，如果在ejs文件中想获取主题下的<code>_config.yml</code>的设置，可以使用<code>theme.leancloud.enable</code>进行判断。至于怎么正确获取配置中的值，还请熟悉配置文件的格式。之后会有教程专门讲解，不是这部分的内容。</p>
+<div class="figure">
+<img src="http://image.geekaholic.cn/aknwxmpru3ss9hnubjv1kte4ll" alt="全局变量">
+<p class="caption">全局变量</p>
+</div>
+<p><strong>注意：</strong>全局变量中的<code>page</code>指的是<code>页面变量</code>，与页面变量中的<code>page</code>是不同的。页面变量到底有哪些内容，是根据当前不同的布局(layout)而决定的。</p>
+<p>比如页面变量中的<code>page</code>是指由<code>page.ejs</code>渲染的页面，<code>post</code>是<code>post.ejs</code>渲染的页面。就这么简单？Too Young!!</p>
+<p>让我们来看看文档又给我们挖了什么样的坑。页面变量中的<code>page</code>变量说的就是你。</p>
+<div class="figure">
+<img src="http://image.geekaholic.cn/f10e1zorltdtbmkqp4aepvs940" alt="page 变量">
+<p class="caption">page 变量</p>
+</div>
+<p><code>page</code>变量有一部分是<strong>front-matter 所设定的变量</strong>，而不是它本身拥有的。比如<code>page.photos</code>，其他的暂时没有验证，<strong>目测</strong> <code>page.link</code>也是。想当时，一直郁闷为什么无法获取文章的照片，原来是需要在文章中指定（摔！）</p>
+<p>似乎理清了变量怎么使用，但有些人会对<code>page.layout</code>变量感到郁闷，我也是在写这篇文章的时候才搞懂。算是临时加上的吧。<code>page.layout</code>对应<code>page.ejs</code>来说肯定是<code>page</code>，对于<code>post.ejs</code>来说肯定是<code>post</code>，这毋庸置疑。但问题来了。对于<code>hexo new page 'demo'</code>的<code>demo page</code>来说，layout也是<code>page</code>，其他的新建页面同理，但是有没有办法改变？</p>
+<p>办法是有的，但是改变的话’意思’就完全变了。</p>
+<p><a href="https://hexo.io/zh-cn/docs/front-matter.html" target="_blank" rel="noopener">front-matter</a>变量中有一个<code>layout</code>字段，官方文档在该页并没有详细讲解。<code>layout</code>字段指定的是该page使用哪一个layout进行渲染。由前面的模板部分讲解的4种方法创建一个page中的’自定义布局一样’。所以，<strong>页面变量中的page变量指的是page布局和自定义布局的对象变量更加准确</strong>。</p>
+<h4 id="辅助函数">辅助函数</h4>
+<p>这一部分倒不是有什么问题，而是我有话想说。关于制作Hexo主题的一点小经验。</p>
+<p>ylion主题的制作过程中，我是先花了将近两天完成了基本的原型，期间参考了很多博客的设计，完成了HTML和基本的CSS部分。在写原型的时候，有意地进行模块划分，这样有利于后期转换为ejs和less更加方便。这样好处是有的，不用在多个文件来来回回地跳，这样很容易混乱。但坏处是什么？</p>
+<p>坏处就是，你写的结构和类名与Hexo官方提供的辅助函数生成的结构和类名不同，这就会导致你要改类名，严重的需要修改整个结构。当然，修改Hexo官方的辅助函数是可以的，以后的教程会讲到如何做，但是这样又增加了工作量，得不偿失。</p>
+<p>所以，折中或者理智的做法应该是，看官方的辅助函数为你生成的结构和类名是什么，这类辅助函数集中在<a href="https://hexo.io/zh-cn/docs/helpers.html#列表" target="_blank" rel="noopener">列表</a>和<a href="https://hexo.io/zh-cn/docs/helpers.html#paginator" target="_blank" rel="noopener">分页器</a>，所以在写主题前最好了解一下。举个栗子：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">result += &apos;&lt;li class=&quot;&apos; + className + &apos;-list-item&apos; + additionalClassName + &apos;&quot;&gt;&apos;;</span><br><span class="line"></span><br><span class="line">      result += &apos;&lt;a class=&quot;&apos; + className + &apos;-list-link&apos; + (isCurrent ? &apos; current&apos; : &apos;&apos;) + &apos;&quot; href=&quot;&apos; + self.url_for(cat.path) + &apos;&quot;&gt;&apos;;</span><br><span class="line">      result += transform ? transform(cat.name) : cat.name;</span><br><span class="line">      result += &apos;&lt;/a&gt;&apos;;</span><br><span class="line"></span><br><span class="line">      if (showCount) &#123;</span><br><span class="line">        result += &apos;&lt;span class=&quot;&apos; + className + &apos;-list-count&quot;&gt;&apos; + cat.length + &apos;&lt;/span&gt;&apos;;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      if (child) &#123;</span><br><span class="line">        result += &apos;&lt;ul class=&quot;&apos; + className + &apos;-list-child&quot;&gt;&apos; + child + &apos;&lt;/ul&gt;&apos;;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      result += &apos;&lt;/li&gt;&apos;;</span><br></pre></td></tr></table></figure>
+<p>这是<code>list_categories</code>辅助函数的一部分内容，生成的是文章的分类列表，如果你的结构不是这样，不就需要进行修改了吗？</p>
+<p>官方的补充说明暂且就这么多吧。</p>
+<h2 id="未完待续">未完待续</h2>
+<p>因为文章过长，所以分割为两个部分进行，前一个部分也就是本文，主要讲如何开始和补充那坑爹的Hexo文档。对应着<code>ylion</code>目录的文件，已经算是讲解了</p>
+<ol style="list-style-type: decimal">
+<li><code>languages</code>多语言支持(官方文档)。</li>
+<li><code>layout</code>布局，讲了如何新建page，如何自定义layout，讲了如何看到官方文档的模板表格以及优化的注意事项。</li>
+<li>变量的补充说明。</li>
+</ol>
+<p>还剩下实现的一些细节:</p>
+<ol style="list-style-type: decimal">
+<li>如何写<code>_config.yml</code>文件以及如何读取其中的变量</li>
+<li>如何集成第三方服务</li>
+<li>如何改写和自定义辅助器或者生成器等</li>
+<li><del>ylion主题的小功能及其实现思路</del></li>
+</ol>
+<p>To be continued…</p>
+
+        </div>
+        <div id="post-footer">
+            <div class="avatar" >
+                <img src="http://image.geekaholic.cn/author.jpg" alt="avatar"/>
+                
+                <a href="javascript:void(0)" class="high-song">high起来 &#128541;</a>
+                
+                
+                <a href="javascript:void(0)" class="donate fa">打赏资瓷 &#128536;</a>
+                
+            </div>
+            <ul class="author-profile-section">
+                <li>
+                  
+                  作者:
+                  
+                    
+                    <a href="/about.html">GeekaholicLin</a>
+                </li>
+                
+                <li>发表日期: <span>2017-02-22  14:53:00</span></li>
+                
+                <li>最后编辑日期: <span>2019-09-26  05:21:46</span></li>
+                
+                <li class="post-category">
+                    文章分类:
+                    
+                    <a href="/categories/编执狂/">编执狂</a>
+                    
+                    <a href="/categories/编执狂/Web/">Web</a>
+                    
+                </li>
+                <li class="post-tags">
+                    文章标签:
+                    
+                    <a href="/tags/ylion/">ylion</a>
+                    
+                    <a href="/tags/Hexo/">Hexo</a>
+                    
+                    <a href="/tags/主题制作/">主题制作</a>
+                    
+                </li>
+                
+                <li> 版权声明: 
+<a href="https://creativecommons.org/licenses/by-nc-nd/3.0/" target="_blank">
+知识共享署名-非商业性使用-禁止演绎 3.0 未本地化版本许可协议（CC BY-NC-ND 3.0）
+</a></li>
+                
+            </ul>
+            <div id="donate-wrap">
+                
+                
+                
+                <img src="http://image.geekaholic.cn/alipay.jpg" alt="支付宝付款" class="donate-img">
+                
+                <img src="http://image.geekaholic.cn/wechat.png" alt="微信付款" class="donate-img">
+                
+                
+            </div>
+        </div>
+    </article>
+    <div class="article-nav">
+        
+        <a href="/2017/03/06/制作Hexo主题详细教程（2）/" class="pre-post fa fa-caret-left">制作Hexo主题详细教程（2）</a>
+        
+        
+        <a href="/2017/02/19/mathjax/" class="next-post fa">mathjax</a>
+        
+    </div>
+    
+    <div id="comments">
+        
+
+<script>
+  gitalk.render("comments");
+</script>
+
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+    <footer id="footer">
+    
+    <div class="social">
+        
+        <a href="https://freecodecamp.cn/geekaholiclin" class="fa fa-free-code-camp" target="_blank" title="freecodecamp"></a>
+        
+        <a href="https://github.com/GeekaholicLin" class="fa fa-github" target="_blank" title="github"></a>
+        
+        <a href="mailto:geekaholiclin@gmail.com" class="fa fa-envelope-o" target="_blank" title="mail to me"></a>
+        
+    </div>
+    
+    <div>
+        
+        <a href="/" class="copyright-links">GeekaholicLin</a>&copy;2015 - 2019.All Rights
+        Reserved.
+    </div>
+    <p>Powered by <a href="https://hexo.io" class="copyright-links" target="_blank">Hexo</a> | Theme by <a
+                href="https://github.com/GeekaholicLin" class="copyright-links" target="_blank">GeekaholicLin</a>
+    </p>
+    
+    
+    <p>
+        <span id="busuanzi_container_site_uv" class="fa fa-bar-chart">
+        欢迎第<span id="busuanzi_value_site_uv"><i class="fa fa-spinner fa-spin"></i></span>位小伙伴~
+        </span>
+    </p>
+    
+</footer>
+
+</div>
+    <ul id="tools">
+    <li class="totop-btn fa fa-angle-up"></li>
+    <li class="exchange-btn fa fa-exchange"></li>
+  
+    <li class="toc-btn fa fa-list-ul"></li>
+    
+    
+
+    
+    <li class="comment-btn fa fa-comments-o">
+        <a href="#comments" title="comments"></a>
+    </li>
+    
+</ul>
+<p id="process"></p>
+<div id="search-overlay">
+    <div class="search-area-wrap">
+        <div id="search-area">
+            <div class="input-wrap focus">
+                <i class="fa fa-search" aria-hidden="true"></i>
+                <input id="search-input" autofocus autocomplete="off" type="text"
+                       placeholder="search this website..."/>
+            </div>
+            <ul id="search-result">
+                <li class="load-first"><i class="fa fa-spinner fa-pulse"></i></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#关于"><span class="toc-number">1.</span> <span class="toc-text">关于</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#为什么要造轮子"><span class="toc-number">1.1.</span> <span class="toc-text">为什么要造轮子</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#为什么要写本教程"><span class="toc-number">1.2.</span> <span class="toc-text">为什么要写本教程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#准备"><span class="toc-number">1.3.</span> <span class="toc-text">准备</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#开始"><span class="toc-number">2.</span> <span class="toc-text">开始</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#初始化"><span class="toc-number">2.1.</span> <span class="toc-text">初始化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#新建主题"><span class="toc-number">2.2.</span> <span class="toc-text">新建主题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#文档补充"><span class="toc-number">2.3.</span> <span class="toc-text">文档补充</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#模板"><span class="toc-number">2.3.1.</span> <span class="toc-text">模板</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#变量"><span class="toc-number">2.3.2.</span> <span class="toc-text">变量</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#辅助函数"><span class="toc-number">2.3.3.</span> <span class="toc-text">辅助函数</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#未完待续"><span class="toc-number">3.</span> <span class="toc-text">未完待续</span></a></li></ol>
+
+
+    <script src="/js/highsong.js"></script>
+
+
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+    //theme config datas
+    var copyrightObj = {};
+    copyrightObj.enable = 'true';
+    copyrightObj.triggerCopyLength = '200';
+    copyrightObj.appendText = '商业转载请联系作者获得授权,非商业转载请注明出处 © GeekaholicLin';
+    var leancloudObj = {};
+    leancloudObj.enable = 'true';
+    leancloudObj.className = 'BlogCounter';
+    leancloudObj.limits = '10';
+</script>
+<script type="text/javascript">
+    var search = {};
+    var search_path = "search.xml";
+    if (!search_path) {
+        search_path = "search.xml";
+    }
+    search.path = "/" + search_path;
+    search.func =  _ajax.init();
+</script>
+<script src="/js/app.js"></script>
+
+
+</body>
+</html>

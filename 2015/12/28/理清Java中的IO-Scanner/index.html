@@ -1,0 +1,483 @@
+<!doctype html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no">
+    
+<meta name="google-site-verification" content="osGzKb_y9J6vt8d0mGYPDH81ljatwPdSVCFwxMCJSaE">
+
+    
+<meta name="baidu-site-verification" content="Yn6v4uAWVY">
+<script>
+    //push
+    (function(){
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        }
+        else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    <!--Simple SEO-->
+
+<meta name="description" content="编执狂的博客，主要记录自己在IT路上的成长历程。/">
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+    <!--Title-->
+
+<title>理清Java中的IO-Scanner | Geekaholic</title>
+
+<link rel="alternate" href="/atom.xml" title="Geekaholic" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+    
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/css/pages/post.css">
+<link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/thirdParty/highlight/solarized-light.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+
+<style>
+    figure .code .line:before{
+        display: none!important;
+    }
+</style>
+
+    <!--script-->
+
+
+<script src="//cdn.jsdelivr.net/npm/leancloud-storage@3.15.0/dist/av-min.js"></script>
+<script>
+  var appId = "RI5uv752sD0nGTyUSUC6odJE-gzGzoHsz";
+  var appKey = "yuke8QmutaxI5YvyD2NIE57u";
+  var region = "null";
+  var serverURLs = "http://leancloud.geekaholic.cn";
+  AV.init({
+    appId: appId,
+    appKey: appKey,
+    region: region,
+    serverURLs: serverURLs
+  });
+</script>
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+<script>
+  var admin = "GeekaholicLin";
+  admin = admin.split(",");
+  var gitalk = new Gitalk({
+    clientID: "aa2215dfc8ee944d1205",
+    clientSecret: "77cd2afa5d161bc0ab04639ed81300d808c6e22b",
+    repo: "geekaholiclin.github.io",
+    owner: "GeekaholicLin",
+    admin: admin,
+    id: decodeURIComponent(location.pathname),
+    distractionFreeMode: false
+  })
+
+</script>
+
+    
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?1fdc784829bc9fa0c0bbee0c680ffe2a";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+    
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-91854900-3', 'auto');
+    ga('send', 'pageview');
+
+</script>
+
+</head>
+</html>
+<body id="normal">
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<style>
+    header{ top: 71px; position: absolute!important;}
+    #container{padding-top: 151px!important;}
+</style>
+<div style="position:fixed;z-index:9999;left:0;top:0;width:100%;height:70px;background-color:#e0e0e0;color:#396CA5;border-bottom:1px solid #cecece;text-align:center;line-height:70px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis">您使用的浏览器版本过低，为了您更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<div id="wrap">
+    <header  style="position: absolute;" >
+    <div id="site-meta">
+        <a href="/" id="logo">
+            <h1 class="title">Geekaholic</h1>
+        </a>
+        
+        <h2 class="subtitle">编程在于折腾</h2>
+        
+    </div>
+    <ul id="nav">
+        
+            <li><a href="/"><i class="fa fa-home"></i>首页</a></li>
+        
+            <li><a href="/about"><i class="fa fa-user"></i>关于我</a></li>
+        
+            <li><a href="/atom.xml"><i class="fa fa-rss"></i>RSS</a></li>
+        
+        <li id="search"><a href="javascript:void(0)"><i class="fa fa-search"></i>搜索</a></li>
+    </ul>
+</header>
+
+    <div id="container">
+        
+<ul id="sidebar">
+    
+    
+    
+    
+<li class="widget widget-normal category">
+    <h3 class="fa fa-th widget-title">分类</h3>
+    <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/他山之石/"><i class="fa" aria-hidden="true">他山之石</i></a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/他山之石/Web/"><i class="fa" aria-hidden="true">Web</i></a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/编执狂/"><i class="fa" aria-hidden="true">编执狂</i></a><span class="category-list-count">14</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/编执狂/Android/"><i class="fa" aria-hidden="true">Android</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/编执狂/Java/"><i class="fa" aria-hidden="true">Java</i></a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/编执狂/Web/"><i class="fa" aria-hidden="true">Web</i></a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/编执狂/计算机基础/"><i class="fa" aria-hidden="true">计算机基础</i></a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/编程之外/"><i class="fa" aria-hidden="true">编程之外</i></a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/编程之外/Hexo/"><i class="fa" aria-hidden="true">Hexo</i></a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/编程之外/解决方法/"><i class="fa" aria-hidden="true">解决方法</i></a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/黄金屋-读书笔记/"><i class="fa" aria-hidden="true">黄金屋--读书笔记</i></a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/黄金屋-读书笔记/CSS设计指南/"><i class="fa" aria-hidden="true">CSS设计指南</i></a><span class="category-list-count">1</span></li></ul></li></ul>
+</li>
+
+
+    
+    
+<li class="widget widget-normal archive">
+  <h3 class="fa fa-archive widget-title">归档</h3>
+    <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/"><i class="fa" aria-hidden="true">九月 2017</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/"><i class="fa" aria-hidden="true">八月 2017</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/"><i class="fa" aria-hidden="true">三月 2017</i></a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/"><i class="fa" aria-hidden="true">二月 2017</i></a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/"><i class="fa" aria-hidden="true">三月 2016</i></a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/"><i class="fa" aria-hidden="true">二月 2016</i></a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/"><i class="fa" aria-hidden="true">一月 2016</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/"><i class="fa" aria-hidden="true">十二月 2015</i></a><span class="archive-list-count">5</span></li></ul>
+</li>
+
+
+    
+    
+<li class="widget widget-normal popular-posts" id="popular-posts">
+    <h3 class="fa fa-thermometer-3 widget-title">热门文章</h3>
+    <ul id="popular-content">
+        <li class="load-first"><i class="fa fa-spinner fa-pulse"></i></li>
+    </ul>
+</li>
+
+    
+    
+<li class="widget widget-normal tags">
+  <h3 class="fa fa-tags widget-title">标签云</h3>
+  <div class="tagcloud-content">
+    
+      <a href="/tags/Mathjax/" style="font-size: 0.18rem; color: #4f83b8">Mathjax</a> <a href="/tags/JavaScript/" style="font-size: 0.21rem; color: #386da4">JavaScript</a> <a href="/tags/Web/" style="font-size: 0.21rem; color: #386da4">Web</a> <a href="/tags/Android/" style="font-size: 0.18rem; color: #4f83b8">Android</a> <a href="/tags/ListView原理/" style="font-size: 0.14rem; color: #69c">ListView原理</a> <a href="/tags/ListView优化/" style="font-size: 0.14rem; color: #69c">ListView优化</a> <a href="/tags/Android控件/" style="font-size: 0.14rem; color: #69c">Android控件</a> <a href="/tags/解决方法/" style="font-size: 0.14rem; color: #69c">解决方法</a> <a href="/tags/Genymotion/" style="font-size: 0.14rem; color: #69c">Genymotion</a> <a href="/tags/VisualBox/" style="font-size: 0.14rem; color: #69c">VisualBox</a> <a href="/tags/Java/" style="font-size: 0.28rem; color: #0a407c">Java</a> <a href="/tags/线程/" style="font-size: 0.14rem; color: #69c">线程</a> <a href="/tags/InterruptedException/" style="font-size: 0.14rem; color: #69c">InterruptedException</a> <a href="/tags/异常/" style="font-size: 0.14rem; color: #69c">异常</a> <a href="/tags/RxJS/" style="font-size: 0.14rem; color: #69c">RxJS</a> <a href="/tags/Translation/" style="font-size: 0.18rem; color: #4f83b8">Translation</a> <a href="/tags/Hexo主题/" style="font-size: 0.18rem; color: #4f83b8">Hexo主题</a> <a href="/tags/ylion/" style="font-size: 0.25rem; color: #215690">ylion</a> <a href="/tags/模块化/" style="font-size: 0.18rem; color: #4f83b8">模块化</a> <a href="/tags/CSS3/" style="font-size: 0.14rem; color: #69c">CSS3</a> <a href="/tags/W3C/" style="font-size: 0.14rem; color: #69c">W3C</a> <a href="/tags/Hexo/" style="font-size: 0.21rem; color: #386da4">Hexo</a> <a href="/tags/主题制作/" style="font-size: 0.18rem; color: #4f83b8">主题制作</a> <a href="/tags/IO操作/" style="font-size: 0.21rem; color: #386da4">IO操作</a> <a href="/tags/Scanner/" style="font-size: 0.14rem; color: #69c">Scanner</a> <a href="/tags/马士兵/" style="font-size: 0.18rem; color: #4f83b8">马士兵</a> <a href="/tags/异常处理/" style="font-size: 0.18rem; color: #4f83b8">异常处理</a> <a href="/tags/流类型/" style="font-size: 0.18rem; color: #4f83b8">流类型</a> <a href="/tags/算法分析/" style="font-size: 0.14rem; color: #69c">算法分析</a> <a href="/tags/复杂度/" style="font-size: 0.14rem; color: #69c">复杂度</a> <a href="/tags/虚拟机/" style="font-size: 0.14rem; color: #69c">虚拟机</a> <a href="/tags/英文XP系统/" style="font-size: 0.14rem; color: #69c">英文XP系统</a> <a href="/tags/中文字体/" style="font-size: 0.14rem; color: #69c">中文字体</a> <a href="/tags/兼容性/" style="font-size: 0.18rem; color: #4f83b8">兼容性</a> <a href="/tags/CSS设计指南/" style="font-size: 0.14rem; color: #69c">CSS设计指南</a> <a href="/tags/读书笔记/" style="font-size: 0.14rem; color: #69c">读书笔记</a> <a href="/tags/polyfill/" style="font-size: 0.14rem; color: #69c">polyfill</a>
+  </div>
+</li>
+
+
+    
+    
+<li class="widget widget-normal friends-link">
+    <h3 class="fa fa-globe widget-title">友链</h3><br/>
+
+    
+        <a href="http://geekaholiclin.github.io" class="fa" target="_blank">主题作者</a>
+
+    
+        <a href="http://walkerlala.github.com/" class="fa" target="_blank">walkerlala</a>
+
+    
+        <a href="http://jerry011235.github.io/" class="fa" target="_blank">璀璨星空</a>
+
+    
+
+</li>
+
+    
+</ul>
+
+
+        <div id="main">
+    <article id="post">
+        <div id="post-header">
+
+            <h1 id="理清Java中的IO-Scanner">
+                
+                理清Java中的IO-Scanner
+                
+            </h1>
+            <div class="article-meta">
+    
+    
+    <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+        <span>Java</span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+         <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            Java
+            
+        </span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta ">2015/12/28</span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+            <i class="fa fa-thermometer-three-quarters"></i>
+        <span class="hits hits-meta " data-leadcloud-title="理清Java中的IO-Scanner"
+              data-leadcloud-url="/2015/12/28/理清Java中的IO-Scanner/"><i class="fa fa-spinner fa-spin"></i></span>
+    </span>
+    
+    
+</div>
+
+            
+            
+            <p class="fa fa-exclamation-triangle warning">
+                本文于<strong>1367</strong>天之前发表，文中内容可能已经过时。如有疑问，请在评论区留言。
+            </p>
+            
+        </div>
+        
+        <div id="post-body">
+            <p>java.io.scanner 类用来从文件(包括’控制台’)中读取字符串和基本类型数值.Scanner 可以将输入分为由空白字符分隔的标记。<strong>为了能从键盘读取，需要为System.in创建一个Scanner实例</strong>，即<code>Scanner input = new Scanner(System.in);</code>。不知道还记不记得上一篇文章讲到的“标准流”？</p>
+<blockquote>
+<p>传送门</p>
+</blockquote>
+<p>当然可以从文件中读取。`Scanner input = new Scanner(new File(filename))</p>
+<p><strong>Scanner中常见的方法：</strong></p>
+<blockquote>
+<p>close() : void—关闭该Scanner hasNext() : boolean —判断是否还有更多数据读取 next(): String — 从该Scanner中读取下一个标记作为字符串返回 nextLine() :String —从该Scanner中读取一行，以换行结束 nextFloat() : float—从该Scanner中读取下一个标记作为float值返回(其他基本类型同理) useDelimiliter(String) :Scanner —设置Scanner的分割符，并且返回该Scanner</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="scanner-如何工作">Scanner 如何工作</h2>
+<p>当Scanner创建的时候，从指定的文件中(包括<strong>字符串</strong>，<strong>控制台</strong>)中<strong>扫描标记</strong>。Scanner中很多方法都和<code>标记</code>打交道，默认的标记是<strong>空格</strong>，可以使用上述的useDelimiliter()设置新的分隔符模式。这也可以在一定程度上解释了为什么当我们用空格分隔开输入的数据时，一般后面的数据不会被读取。</p>
+<p><strong>那怎么样才算是一个标记呢</strong>？无论前面有多少个分割符，都看成一个，且该数值以分隔符结尾。<strong>简言之，被分隔符包围的都算一个标记</strong>。而且，要注意next()和nextLine()的不要。虽然都是读取字符串，但是next()方法读取一个由分隔符分分隔的字符串，nextLine()读取一个以换行符结束的行。</p>
+<h3 id="代码实例">代码实例</h3>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JavaIO</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        String test = <span class="string">"这   是  一个  测试   字符串    "</span>;</span><br><span class="line">        Scanner input = <span class="keyword">new</span> Scanner(test);</span><br><span class="line">        System.out.println(<span class="string">"该Scanner对象的分隔符为 ----&gt;"</span> + input.delimiter());</span><br><span class="line">        System.out.println(<span class="string">"结果如下"</span>);</span><br><span class="line">        <span class="keyword">while</span> (input.hasNext()) &#123;</span><br><span class="line">            System.out.println(input.next());</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        input = <span class="keyword">new</span> Scanner(test);</span><br><span class="line">        input.useDelimiter(<span class="string">"个"</span>);</span><br><span class="line">        System.out.println(<span class="string">"该Scanner对象的分隔符为----&gt;"</span> + input.delimiter());</span><br><span class="line">        System.out.println(<span class="string">"新的结果如下"</span>);</span><br><span class="line">        <span class="keyword">while</span> (input.hasNext()) &#123;</span><br><span class="line">            System.out.println(input.next());</span><br><span class="line">        &#125;</span><br><span class="line">        input.close();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>运行结果为： &gt; 该Scanner对象的分隔符为 —-&gt;+ 结果如下 这 是 一个 测试 字符串 该Scanner对象的分隔符为—-&gt;个 新的结果如下 这 是 一 测试 字符串</p>
+<p>细心的应该会发现上述的方法中，有说到，“读取下一个标记作为float值返回”。对，是作为，不是读取<strong>为float值的标记</strong>，那如果该标记读取后无法转化为float类型怎么办？也就是如果标记和期望的类型不匹配。那就会抛出一个运行异常<code>java.util.InputMismatchException</code>。</p>
+<blockquote>
+<p>Scanner在使用之后一般要使用close()方法关闭，或者使用try-with-resources方法关闭，因为Scanner有实现AutoClosable接口。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 举例:Scanner 类(来自 Java API 文档)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">close</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">Closes <span class="keyword">this</span> scanner.</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">If <span class="keyword">this</span> scanner has not yet been closed then <span class="keyword">if</span> its underlying readable also implements the Closeable interface then the readable's close method will be invoked. If <span class="keyword">this</span> scanner is already closed then invoking <span class="keyword">this</span> method will have no effect.</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">Attempting to perform search operations after a scanner has been closed will result in an IllegalStateException.</span></span><br></pre></td></tr></table></figure>
+<div class="figure">
+<img src="http://old-image.geekaholic.cn/%E5%9B%BE%E7%89%87%20-%20Google%20%E6%90%9C%E7%B4%A2.jpg" alt="侵删">
+<p class="caption">侵删</p>
+</div>
+
+        </div>
+        <div id="post-footer">
+            <div class="avatar" >
+                <img src="http://image.geekaholic.cn/author.jpg" alt="avatar"/>
+                
+                <a href="javascript:void(0)" class="high-song">high起来 &#128541;</a>
+                
+                
+                <a href="javascript:void(0)" class="donate fa">打赏资瓷 &#128536;</a>
+                
+            </div>
+            <ul class="author-profile-section">
+                <li>
+                  
+                  作者:
+                  
+                    
+                    <a href="/about.html">GeekaholicLin</a>
+                </li>
+                
+                <li>发表日期: <span>2015-12-28  20:24:13</span></li>
+                
+                <li>最后编辑日期: <span>2019-09-26  05:21:46</span></li>
+                
+                <li class="post-category">
+                    文章分类:
+                    
+                    <a href="/categories/编执狂/">编执狂</a>
+                    
+                    <a href="/categories/编执狂/Java/">Java</a>
+                    
+                </li>
+                <li class="post-tags">
+                    文章标签:
+                    
+                    <a href="/tags/Java/">Java</a>
+                    
+                    <a href="/tags/IO操作/">IO操作</a>
+                    
+                    <a href="/tags/Scanner/">Scanner</a>
+                    
+                </li>
+                
+                <li> 版权声明: 
+<a href="https://creativecommons.org/licenses/by-nc-nd/3.0/" target="_blank">
+知识共享署名-非商业性使用-禁止演绎 3.0 未本地化版本许可协议（CC BY-NC-ND 3.0）
+</a></li>
+                
+            </ul>
+            <div id="donate-wrap">
+                
+                
+                
+                <img src="http://image.geekaholic.cn/alipay.jpg" alt="支付宝付款" class="donate-img">
+                
+                <img src="http://image.geekaholic.cn/wechat.png" alt="微信付款" class="donate-img">
+                
+                
+            </div>
+        </div>
+    </article>
+    <div class="article-nav">
+        
+        <a href="/2016/01/19/算法符号和算法分析浅谈/" class="pre-post fa fa-caret-left">算法分析符号和算法分析浅谈</a>
+        
+        
+        <a href="/2015/12/27/理清Java的IO-2/" class="next-post fa">理清Java的IO(2)--流</a>
+        
+    </div>
+    
+    <div id="comments">
+        
+
+<script>
+  gitalk.render("comments");
+</script>
+
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+    <footer id="footer">
+    
+    <div class="social">
+        
+        <a href="https://freecodecamp.cn/geekaholiclin" class="fa fa-free-code-camp" target="_blank" title="freecodecamp"></a>
+        
+        <a href="https://github.com/GeekaholicLin" class="fa fa-github" target="_blank" title="github"></a>
+        
+        <a href="mailto:geekaholiclin@gmail.com" class="fa fa-envelope-o" target="_blank" title="mail to me"></a>
+        
+    </div>
+    
+    <div>
+        
+        <a href="/" class="copyright-links">GeekaholicLin</a>&copy;2015 - 2019.All Rights
+        Reserved.
+    </div>
+    <p>Powered by <a href="https://hexo.io" class="copyright-links" target="_blank">Hexo</a> | Theme by <a
+                href="https://github.com/GeekaholicLin" class="copyright-links" target="_blank">GeekaholicLin</a>
+    </p>
+    
+    
+    <p>
+        <span id="busuanzi_container_site_uv" class="fa fa-bar-chart">
+        欢迎第<span id="busuanzi_value_site_uv"><i class="fa fa-spinner fa-spin"></i></span>位小伙伴~
+        </span>
+    </p>
+    
+</footer>
+
+</div>
+    <ul id="tools">
+    <li class="totop-btn fa fa-angle-up"></li>
+    <li class="exchange-btn fa fa-exchange"></li>
+  
+    <li class="toc-btn fa fa-list-ul"></li>
+    
+    
+
+    
+    <li class="comment-btn fa fa-comments-o">
+        <a href="#comments" title="comments"></a>
+    </li>
+    
+</ul>
+<p id="process"></p>
+<div id="search-overlay">
+    <div class="search-area-wrap">
+        <div id="search-area">
+            <div class="input-wrap focus">
+                <i class="fa fa-search" aria-hidden="true"></i>
+                <input id="search-input" autofocus autocomplete="off" type="text"
+                       placeholder="search this website..."/>
+            </div>
+            <ul id="search-result">
+                <li class="load-first"><i class="fa fa-spinner fa-pulse"></i></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#scanner-如何工作"><span class="toc-number">1.</span> <span class="toc-text">Scanner 如何工作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#代码实例"><span class="toc-number">1.1.</span> <span class="toc-text">代码实例</span></a></li></ol></li></ol>
+
+
+    <script src="/js/highsong.js"></script>
+
+
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+    //theme config datas
+    var copyrightObj = {};
+    copyrightObj.enable = 'true';
+    copyrightObj.triggerCopyLength = '200';
+    copyrightObj.appendText = '商业转载请联系作者获得授权,非商业转载请注明出处 © GeekaholicLin';
+    var leancloudObj = {};
+    leancloudObj.enable = 'true';
+    leancloudObj.className = 'BlogCounter';
+    leancloudObj.limits = '10';
+</script>
+<script type="text/javascript">
+    var search = {};
+    var search_path = "search.xml";
+    if (!search_path) {
+        search_path = "search.xml";
+    }
+    search.path = "/" + search_path;
+    search.func =  _ajax.init();
+</script>
+<script src="/js/app.js"></script>
+
+
+</body>
+</html>

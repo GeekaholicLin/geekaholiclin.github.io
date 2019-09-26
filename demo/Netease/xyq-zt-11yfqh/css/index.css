@@ -1,0 +1,684 @@
+a, area {
+    outline: none;
+    cursor: hand;
+}
+
+#bar {
+    height: 55px;
+}
+
+#wrap {
+    min-width: 1280px;
+    max-width: 1920px;
+    margin: 0 auto
+}
+
+#container {
+    position: relative;
+    background: #F6A0C6 url("../img/indexbg.jpg") no-repeat scroll center top;
+    width: 100%;
+    margin: 0 auto;
+    height: 1027px;
+}
+
+#inner-container {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+}
+
+#main {
+    position: relative;
+    width: 1200px;
+    margin: 0 auto;
+    height: 927px;
+}
+
+.nav {
+    position: absolute;
+    background-image: url(../img/nav_bg.png);
+    width: 401px;
+    height: 33px;
+    right: 0;
+    top: 50px;
+}
+
+.nav > a, #NIE-share .NIE-share-txt, #NIE-share .NIE-share-iconBtn a {
+    font-size: 14px;
+    color: #FFFFFF;
+    text-align: center;
+    height: 33px;
+    line-height: 33px;
+}
+
+.nav > a {
+    text-decoration: none;
+    margin-left: 18px;
+    position: relative;
+}
+
+
+
+#NIE-share {
+    position: absolute;
+    right: 14px;
+    top: 0
+}
+
+#NIE-share .NIE-share-iconBtn a {
+    font-size: 23px
+}
+
+.nav > a:hover, #NIE-share .NIE-share-iconBtn a:hover {
+    color: #F8EB47;
+}
+
+/*==logo==*/
+#logo {
+    display: block;
+    position: absolute;
+    background-image: url(http://webinput.nie.netease.com/img/xyq/logo.png/200);
+    height: 95px;
+    width: 200px;
+    left: 45px;
+    top: 52px;
+}
+
+/*==logo end==*/
+#btn-area {
+    position: absolute;
+    width: 701px;
+    height: 502px;
+    top: 434px;
+    left: 337px;
+}
+
+/*==btn==*/
+
+.btn {
+    display: block;
+    position: absolute;
+    /*remove*/
+    -webkit-animation: twinkling 1.5s infinite;
+    -o-animation: twinkling 1.5s infinite;
+    animation: twinkling 1.5s infinite;
+
+}
+
+.btn img {
+    position: absolute;
+    display: none;
+}
+
+.btn:hover img, .btn.selected img {
+    display: block;
+}
+
+.btn.btn1 {
+    width: 158px;
+    height: 124px;
+    top: 170px;
+    left: 37px;
+    background-repeat: no-repeat;
+}
+
+.btn:hover img {
+    -webkit-animation: bounceIn 1s ease 0s 1;
+    -o-animation: bounceIn 1s ease 0s 1;
+    animation: bounceIn 1s ease 0s 1;
+}
+
+.btn.btn1:hover, .btn1.selected {
+    width: 209px;
+    height: 196px;
+    top: 98px;
+    left: 24px;
+    background-repeat: no-repeat;
+}
+
+.btn.btn1:hover img, .btn.btn1.selected img {
+    left: 6px;
+    top: 7px;
+
+}
+
+.btn.btn2 {
+    width: 148px;
+    height: 114px;
+    top: 195px;
+    left: 211px;
+    background-repeat: no-repeat;
+}
+
+.btn.btn2:hover, .btn2.selected {
+    width: 193px;
+    height: 171px;
+    top: 142px;
+    left: 192px;
+    background-repeat: no-repeat;
+}
+
+.btn.btn2:hover img, .btn.btn2.selected img {
+    left: 18px;
+    top: -3px;
+}
+
+.btn.btn3 {
+    top: 328px;
+    left: 100px;
+
+    width: 187px;
+    height: 144px;
+    background-repeat: no-repeat;
+}
+
+.btn.btn3:hover, .btn3.selected {
+    width: 233px;
+    height: 190px;
+    top: 284px;
+    left: 72px;
+    background-repeat: no-repeat;
+}
+
+.btn.btn3:hover img, .btn.btn3.selected img {
+    left: 22px;
+    top: -14px;
+}
+
+.btn.btn4 {
+    width: 200px;
+    height: 185px;
+    top: 354px;
+    left: 277px;
+    background-repeat: no-repeat;
+}
+
+.btn.btn4:hover, .btn4.selected {
+    width: 250px;
+    height: 229px;
+    top: 310px;
+    left: 268px;
+    background-repeat: no-repeat;
+}
+
+.btn.btn4:hover img, .btn.btn4.selected img {
+    left: 56px;
+    top: 5px;
+}
+
+.btn.btn5 {
+    top: 371px;
+    left: 488px;
+
+    width: 180px;
+    height: 128px;
+    background-repeat: no-repeat;
+}
+
+.btn.btn5:hover, .btn5.selected {
+    width: 228px;
+    height: 173px;
+    top: 328px;
+    left: 471px;
+    background-repeat: no-repeat;
+}
+
+.btn.btn5:hover img, .btn.btn5.selected img {
+    left: 29px;
+    top: -3px;
+}
+
+.btn.btn6 {
+    top: -199px;
+    left: 485px;
+    width: 161px;
+    height: 161px;
+
+}
+
+.btn.btn6:hover, .btn6.selected {
+    width: 178px;
+    height: 180px;
+    top: -211px;
+    left: 476px;
+
+}
+
+.btn.btn6 .btn6-bg {
+    display: block;
+    width: 161px;
+    height: 161px;
+    -webkit-animation: myRotate 9s linear 0s infinite;
+    -o-animation: myRotate 9s linear 0s infinite;
+    animation: myRotate 9s linear 0s infinite;
+}
+
+.btn.btn6:hover .scale, .btn6.selected .scale {
+    width: 180px;
+    height: 180px;
+}
+
+.btn.btn6 img {
+    display: none;
+}
+
+.btn.btn6 .normal-img {
+    display: block;
+    top: 40px;
+    left: 40px;
+    -webkit-animation: bounceIn 0.7s 0s 1;
+    -o-animation: bounceIn 0.7s 0s 1;
+    animation: bounceIn 0.7s 0s 1;
+}
+
+.btn.btn6:hover .normal-img {
+    display: none;
+}
+
+.btn.btn6:hover .hover-img,
+.btn.btn6.selected .hover-img {
+    position: absolute;
+    display: block;
+    left: 44px;
+    top: 53px;
+}
+
+.btn .box-star {
+    display: block;
+}
+
+.btn:hover .box-star {
+    display: none;
+}
+
+.btn .box-star.star1 {
+    display: block;
+    -webkit-animation: twinklingStar 1s ease 1s infinite;
+    -o-animation: twinklingStar 1s ease 1s infinite;
+    animation: twinklingStar 1s ease 1s infinite;
+}
+
+.btn .box-star.star2 {
+    display: block;
+    -webkit-animation: twinklingStar 2s ease 2s infinite;
+    -o-animation: twinklingStar 2s ease 2s infinite;
+    animation: twinklingStar 2s ease 2s infinite;
+}
+
+/*==btn==*/
+
+/*==footer==*/
+#footer {
+    position: relative;
+    width: 100%;
+    max-width: 1920px;
+    text-align: center;
+    padding-top: 20px;
+    margin: 0 auto;
+    background: url("../img/footerbg.png") repeat-y center top;
+}
+
+#NIE-copyRight {
+    height: 80px;
+
+}
+
+#NIE-copyRight, #NIE-copyRight a {
+    color: #FFF
+}
+
+#snow-canvas {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 0;
+    z-index: 2;
+}
+
+#fore {
+    position: absolute;
+    left: 50%;
+    margin-left: -776px;
+    bottom: 0;
+}
+
+/*twinkling*/
+@-webkit-keyframes twinkling { /*透明度由0到1*/
+    0% {
+        opacity: 0.9; /*透明度为0*/
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0.9; /*透明度为1*/
+    }
+}
+
+/*star*/
+.btn6 .star1 {
+    display: block;
+    -webkit-animation: twinklingStar 1s ease 1s infinite;
+    -o-animation: twinklingStar 1s ease 1s infinite;
+    animation: twinklingStar 1s ease 1s infinite;
+}
+
+.btn6 .star2 {
+    display: block;
+    -webkit-animation: twinklingStar 2s ease 2s infinite;
+    -o-animation: twinklingStar 2s ease 2s infinite;
+    animation: twinklingStar 2s ease 2s infinite;
+}
+
+@keyframes twinklingStar {
+    0% {
+        opacity: 0.5; /*透明度为0*/
+    }
+
+    50% {
+        opacity: 1; /*透明度为1*/
+    }
+    100% {
+        opacity: 0.5; /*透明度为0*/
+    }
+}
+
+@-webkit-keyframes twinklingStar { /*透明度由0到1*/
+    0% {
+        opacity: 0.5; /*透明度为0*/
+    }
+
+    50% {
+        opacity: 1; /*透明度为1*/
+    }
+    100% {
+        opacity: 0.5; /*透明度为0*/
+    }
+}
+
+@keyframes twinkling {
+    0% {
+        opacity: 0.9; /*透明度为0*/
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0.9; /*透明度为1*/
+    }
+}
+
+/*zoomIn*/
+.zoomIn {
+    -webkit-animation: zoomIn 1s ease 0s 1;
+    -o-animation: zoomIn 1s ease 0s 1;
+    animation: zoomIn 1s ease 0s 1;
+}
+
+@-webkit-keyframes zoomIn {
+    0% {
+        opacity: 0;
+        -webkit-transform: scale(0.3, 0.3);
+        -moz-transform: scale(0.3, 0.3);
+        -ms-transform: scale(0.3, 0.3);
+        -o-transform: scale(0.3, 0.3);
+        transform: scale(0.3, 0.3);
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+@keyframes zoomIn {
+    0% {
+        opacity: 0;
+        -webkit-transform: scale(0.3, 0.3);
+        -moz-transform: scale(0.3, 0.3);
+        -ms-transform: scale(0.3, 0.3);
+        -o-transform: scale(0.3, 0.3);
+        transform: scale(0.3, 0.3);
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+/*bounceIn*/
+.bounceIn {
+    -webkit-animation: bounceIn 0.7s 0s 1;
+    -o-animation: bounceIn 0.7s 0s 1;
+    animation: bounceIn 0.7s 0s 1;
+}
+
+@-webkit-keyframes bounceIn {
+    0%, 20%, 40%, 60%, 80%, 100% {
+        -webkit-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+        -moz-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+        -ms-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+        -o-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+        transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+    }
+    0% {
+        opacity: 0;
+        -webkit-transform: scale(0.3, 0.3);
+        -moz-transform: scale(0.3, 0.3);
+        -ms-transform: scale(0.3, 0.3);
+        -o-transform: scale(0.3, 0.3);
+        transform: scale(0.3, 0.3);
+    }
+    20% {
+        -webkit-transform: scale(1.1, 1.1);
+        -moz-transform: scale(1.1, 1.1);
+        -ms-transform: scale(1.1, 1.1);
+        -o-transform: scale(1.1, 1.1);
+        transform: scale(1.1, 1.1);
+    }
+    40% {
+        -webkit-transform: scale(0.9, 0.9);
+        -moz-transform: scale(0.9, 0.9);
+        -ms-transform: scale(0.9, 0.9);
+        -o-transform: scale(0.9, 0.9);
+        transform: scale(0.9, 0.9);
+    }
+    60% {
+        opacity: 1;
+        -webkit-transform: scale(1.03, 1.03);
+        -moz-transform: scale(1.03, 1.03);
+        -ms-transform: scale(1.03, 1.03);
+        -o-transform: scale(1.03, 1.03);
+        transform: scale(1.03, 1.03);
+    }
+    80% {
+        -webkit-transform: scale(0.97, 0.97);
+        -moz-transform: scale(0.97, 0.97);
+        -ms-transform: scale(0.97, 0.97);
+        -o-transform: scale(0.97, 0.97);
+        transform: scale(0.97, 0.97);
+    }
+    100% {
+        opacity: 1;
+        -webkit-transform: scale(1, 1);
+        -moz-transform: scale(1, 1);
+        -ms-transform: scale(1, 1);
+        -o-transform: scale(1, 1);
+        transform: scale(1, 1);
+    }
+}
+
+@keyframes bounceIn {
+    0%, 20%, 40%, 60%, 80%, 100% {
+        -webkit-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+        -moz-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+        -ms-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+        -o-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+        transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+    }
+    0% {
+        opacity: 0;
+        -webkit-transform: scale(0.3, 0.3);
+        -moz-transform: scale(0.3, 0.3);
+        -ms-transform: scale(0.3, 0.3);
+        -o-transform: scale(0.3, 0.3);
+        transform: scale(0.3, 0.3);
+    }
+    20% {
+        -webkit-transform: scale(1.1, 1.1);
+        -moz-transform: scale(1.1, 1.1);
+        -ms-transform: scale(1.1, 1.1);
+        -o-transform: scale(1.1, 1.1);
+        transform: scale(1.1, 1.1);
+    }
+    40% {
+        -webkit-transform: scale(0.9, 0.9);
+        -moz-transform: scale(0.9, 0.9);
+        -ms-transform: scale(0.9, 0.9);
+        -o-transform: scale(0.9, 0.9);
+        transform: scale(0.9, 0.9);
+    }
+    60% {
+        opacity: 1;
+        -webkit-transform: scale(1.03, 1.03);
+        -moz-transform: scale(1.03, 1.03);
+        -ms-transform: scale(1.03, 1.03);
+        -o-transform: scale(1.03, 1.03);
+        transform: scale(1.03, 1.03);
+    }
+    80% {
+        -webkit-transform: scale(0.97, 0.97);
+        -moz-transform: scale(0.97, 0.97);
+        -ms-transform: scale(0.97, 0.97);
+        -o-transform: scale(0.97, 0.97);
+        transform: scale(0.97, 0.97);
+    }
+    100% {
+        opacity: 1;
+        -webkit-transform: scale(1, 1);
+        -moz-transform: scale(1, 1);
+        -ms-transform: scale(1, 1);
+        -o-transform: scale(1, 1);
+        transform: scale(1, 1);
+    }
+}
+
+/*rotate*/
+.rotate {
+    -webkit-animation: myRotate 9s linear 0s infinite;
+    -o-animation: myRotate 9s linear 0s infinite;
+    animation: myRotate 9s linear 0s infinite;
+}
+
+@keyframes myRotate {
+    from {
+        -webkit-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        transform: rotate(0deg);
+        /*transform-origin: 50% 49.9%;*/
+    }
+    to {
+        -webkit-transform: rotate(360deg);
+        -moz-transform: rotate(360deg);
+        -ms-transform: rotate(360deg);
+        -o-transform: rotate(360deg);
+        transform: rotate(360deg);
+        /*transform-origin: 83px 82px;*/
+
+    }
+}
+
+@-webkit-keyframes myRotate {
+    from {
+        -webkit-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        transform: rotate(0deg);
+        transform-origin: 50% 50%;
+    }
+    to {
+        -webkit-transform: rotate(360deg);
+        -moz-transform: rotate(360deg);
+        -ms-transform: rotate(360deg);
+        -o-transform: rotate(360deg);
+        transform: rotate(360deg);
+        transform-origin: 83px 82px;
+    }
+}
+
+.btn.btn6 .star1,
+.btn.btn6 .star2 {
+    display: block;
+}
+
+.pot {
+    position: absolute;
+    left: 176px;
+    top: 7px;
+    color: #fff;
+}
+.pot{
+    left: 170px\9;
+}
+:root .pot{
+    left: 176px;
+}
+.nav-pot{
+    position: absolute;
+    left: -7px;
+    top: -6px;
+}
+.nav-pot{
+    position: absolute\9;
+    left: -11px\9;
+    top: -9px\9;
+}
+:root .nav-pot{
+    position: absolute;
+    left: -7px;
+    top: -6px;
+}
+.btn.btn1 {
+    background-position: -92px 0px
+}
+
+.btn.btn1:hover, .btn1.selected {
+    background-position: -47px -127px
+}
+
+.btn.btn2 {
+    background-position: -102px -326px
+}
+
+.btn.btn2:hover, .btn2.selected {
+    background-position: -57px -443px
+}
+
+.btn.btn3 {
+    background-position: -63px -613px
+}
+
+.btn.btn3:hover, .btn3.selected {
+    background-position: -17px -760px
+}
+
+.btn.btn4 {
+    background-position: -50px -951px
+}
+
+.btn.btn4:hover, .btn4.selected {
+    background-position: 0px -1139px
+}
+
+.btn.btn5 {
+    background-position: -70px -1371px
+}
+
+.btn.btn5:hover, .btn5.selected {
+    background-position: -22px -1502px
+}
+
+.btn.btn1, .btn.btn1:hover, .btn1.selected, .btn.btn2, .btn.btn2:hover, .btn2.selected, .btn.btn3, .btn.btn3:hover, .btn3.selected, .btn.btn4, .btn.btn4:hover, .btn4.selected, .btn.btn5, .btn.btn5:hover, .btn5.selected {
+    background-image: url(../img/spriter/index_z.png)
+}

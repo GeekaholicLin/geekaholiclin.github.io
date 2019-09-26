@@ -1,0 +1,539 @@
+<!doctype html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no">
+    
+<meta name="google-site-verification" content="osGzKb_y9J6vt8d0mGYPDH81ljatwPdSVCFwxMCJSaE">
+
+    
+<meta name="baidu-site-verification" content="Yn6v4uAWVY">
+<script>
+    //push
+    (function(){
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        }
+        else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    <!--Simple SEO-->
+
+<meta name="description" content="编执狂的博客，主要记录自己在IT路上的成长历程。/">
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+    <!--Title-->
+
+<title>从伪类和伪元素说起的知识点 | Geekaholic</title>
+
+<link rel="alternate" href="/atom.xml" title="Geekaholic" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+    
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/css/pages/post.css">
+<link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/thirdParty/highlight/solarized-light.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+
+<style>
+    figure .code .line:before{
+        display: none!important;
+    }
+</style>
+
+    <!--script-->
+
+
+<script src="//cdn.jsdelivr.net/npm/leancloud-storage@3.15.0/dist/av-min.js"></script>
+<script>
+  var appId = "RI5uv752sD0nGTyUSUC6odJE-gzGzoHsz";
+  var appKey = "yuke8QmutaxI5YvyD2NIE57u";
+  var region = "null";
+  var serverURLs = "http://leancloud.geekaholic.cn";
+  AV.init({
+    appId: appId,
+    appKey: appKey,
+    region: region,
+    serverURLs: serverURLs
+  });
+</script>
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+<script>
+  var admin = "GeekaholicLin";
+  admin = admin.split(",");
+  var gitalk = new Gitalk({
+    clientID: "aa2215dfc8ee944d1205",
+    clientSecret: "77cd2afa5d161bc0ab04639ed81300d808c6e22b",
+    repo: "geekaholiclin.github.io",
+    owner: "GeekaholicLin",
+    admin: admin,
+    id: decodeURIComponent(location.pathname),
+    distractionFreeMode: false
+  })
+
+</script>
+
+    
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?1fdc784829bc9fa0c0bbee0c680ffe2a";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+    
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-91854900-3', 'auto');
+    ga('send', 'pageview');
+
+</script>
+
+</head>
+</html>
+<body id="normal">
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<style>
+    header{ top: 71px; position: absolute!important;}
+    #container{padding-top: 151px!important;}
+</style>
+<div style="position:fixed;z-index:9999;left:0;top:0;width:100%;height:70px;background-color:#e0e0e0;color:#396CA5;border-bottom:1px solid #cecece;text-align:center;line-height:70px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis">您使用的浏览器版本过低，为了您更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<div id="wrap">
+    <header  style="position: absolute;" >
+    <div id="site-meta">
+        <a href="/" id="logo">
+            <h1 class="title">Geekaholic</h1>
+        </a>
+        
+        <h2 class="subtitle">编程在于折腾</h2>
+        
+    </div>
+    <ul id="nav">
+        
+            <li><a href="/"><i class="fa fa-home"></i>首页</a></li>
+        
+            <li><a href="/about"><i class="fa fa-user"></i>关于我</a></li>
+        
+            <li><a href="/atom.xml"><i class="fa fa-rss"></i>RSS</a></li>
+        
+        <li id="search"><a href="javascript:void(0)"><i class="fa fa-search"></i>搜索</a></li>
+    </ul>
+</header>
+
+    <div id="container">
+        
+<ul id="sidebar">
+    
+    
+    
+    
+<li class="widget widget-normal category">
+    <h3 class="fa fa-th widget-title">分类</h3>
+    <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/他山之石/"><i class="fa" aria-hidden="true">他山之石</i></a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/他山之石/Web/"><i class="fa" aria-hidden="true">Web</i></a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/编执狂/"><i class="fa" aria-hidden="true">编执狂</i></a><span class="category-list-count">14</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/编执狂/Android/"><i class="fa" aria-hidden="true">Android</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/编执狂/Java/"><i class="fa" aria-hidden="true">Java</i></a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/编执狂/Web/"><i class="fa" aria-hidden="true">Web</i></a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/编执狂/计算机基础/"><i class="fa" aria-hidden="true">计算机基础</i></a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/编程之外/"><i class="fa" aria-hidden="true">编程之外</i></a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/编程之外/Hexo/"><i class="fa" aria-hidden="true">Hexo</i></a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/编程之外/解决方法/"><i class="fa" aria-hidden="true">解决方法</i></a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/黄金屋-读书笔记/"><i class="fa" aria-hidden="true">黄金屋--读书笔记</i></a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/黄金屋-读书笔记/CSS设计指南/"><i class="fa" aria-hidden="true">CSS设计指南</i></a><span class="category-list-count">1</span></li></ul></li></ul>
+</li>
+
+
+    
+    
+<li class="widget widget-normal archive">
+  <h3 class="fa fa-archive widget-title">归档</h3>
+    <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/"><i class="fa" aria-hidden="true">九月 2017</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/"><i class="fa" aria-hidden="true">八月 2017</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/"><i class="fa" aria-hidden="true">三月 2017</i></a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/"><i class="fa" aria-hidden="true">二月 2017</i></a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/"><i class="fa" aria-hidden="true">三月 2016</i></a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/"><i class="fa" aria-hidden="true">二月 2016</i></a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/"><i class="fa" aria-hidden="true">一月 2016</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/"><i class="fa" aria-hidden="true">十二月 2015</i></a><span class="archive-list-count">5</span></li></ul>
+</li>
+
+
+    
+    
+<li class="widget widget-normal popular-posts" id="popular-posts">
+    <h3 class="fa fa-thermometer-3 widget-title">热门文章</h3>
+    <ul id="popular-content">
+        <li class="load-first"><i class="fa fa-spinner fa-pulse"></i></li>
+    </ul>
+</li>
+
+    
+    
+<li class="widget widget-normal tags">
+  <h3 class="fa fa-tags widget-title">标签云</h3>
+  <div class="tagcloud-content">
+    
+      <a href="/tags/Mathjax/" style="font-size: 0.18rem; color: #4f83b8">Mathjax</a> <a href="/tags/JavaScript/" style="font-size: 0.21rem; color: #386da4">JavaScript</a> <a href="/tags/Web/" style="font-size: 0.21rem; color: #386da4">Web</a> <a href="/tags/Android/" style="font-size: 0.18rem; color: #4f83b8">Android</a> <a href="/tags/ListView原理/" style="font-size: 0.14rem; color: #69c">ListView原理</a> <a href="/tags/ListView优化/" style="font-size: 0.14rem; color: #69c">ListView优化</a> <a href="/tags/Android控件/" style="font-size: 0.14rem; color: #69c">Android控件</a> <a href="/tags/解决方法/" style="font-size: 0.14rem; color: #69c">解决方法</a> <a href="/tags/Genymotion/" style="font-size: 0.14rem; color: #69c">Genymotion</a> <a href="/tags/VisualBox/" style="font-size: 0.14rem; color: #69c">VisualBox</a> <a href="/tags/Java/" style="font-size: 0.28rem; color: #0a407c">Java</a> <a href="/tags/线程/" style="font-size: 0.14rem; color: #69c">线程</a> <a href="/tags/InterruptedException/" style="font-size: 0.14rem; color: #69c">InterruptedException</a> <a href="/tags/异常/" style="font-size: 0.14rem; color: #69c">异常</a> <a href="/tags/RxJS/" style="font-size: 0.14rem; color: #69c">RxJS</a> <a href="/tags/Translation/" style="font-size: 0.18rem; color: #4f83b8">Translation</a> <a href="/tags/Hexo主题/" style="font-size: 0.18rem; color: #4f83b8">Hexo主题</a> <a href="/tags/ylion/" style="font-size: 0.25rem; color: #215690">ylion</a> <a href="/tags/模块化/" style="font-size: 0.18rem; color: #4f83b8">模块化</a> <a href="/tags/CSS3/" style="font-size: 0.14rem; color: #69c">CSS3</a> <a href="/tags/W3C/" style="font-size: 0.14rem; color: #69c">W3C</a> <a href="/tags/Hexo/" style="font-size: 0.21rem; color: #386da4">Hexo</a> <a href="/tags/主题制作/" style="font-size: 0.18rem; color: #4f83b8">主题制作</a> <a href="/tags/IO操作/" style="font-size: 0.21rem; color: #386da4">IO操作</a> <a href="/tags/Scanner/" style="font-size: 0.14rem; color: #69c">Scanner</a> <a href="/tags/马士兵/" style="font-size: 0.18rem; color: #4f83b8">马士兵</a> <a href="/tags/异常处理/" style="font-size: 0.18rem; color: #4f83b8">异常处理</a> <a href="/tags/流类型/" style="font-size: 0.18rem; color: #4f83b8">流类型</a> <a href="/tags/算法分析/" style="font-size: 0.14rem; color: #69c">算法分析</a> <a href="/tags/复杂度/" style="font-size: 0.14rem; color: #69c">复杂度</a> <a href="/tags/虚拟机/" style="font-size: 0.14rem; color: #69c">虚拟机</a> <a href="/tags/英文XP系统/" style="font-size: 0.14rem; color: #69c">英文XP系统</a> <a href="/tags/中文字体/" style="font-size: 0.14rem; color: #69c">中文字体</a> <a href="/tags/兼容性/" style="font-size: 0.18rem; color: #4f83b8">兼容性</a> <a href="/tags/CSS设计指南/" style="font-size: 0.14rem; color: #69c">CSS设计指南</a> <a href="/tags/读书笔记/" style="font-size: 0.14rem; color: #69c">读书笔记</a> <a href="/tags/polyfill/" style="font-size: 0.14rem; color: #69c">polyfill</a>
+  </div>
+</li>
+
+
+    
+    
+<li class="widget widget-normal friends-link">
+    <h3 class="fa fa-globe widget-title">友链</h3><br/>
+
+    
+        <a href="http://geekaholiclin.github.io" class="fa" target="_blank">主题作者</a>
+
+    
+        <a href="http://walkerlala.github.com/" class="fa" target="_blank">walkerlala</a>
+
+    
+        <a href="http://jerry011235.github.io/" class="fa" target="_blank">璀璨星空</a>
+
+    
+
+</li>
+
+    
+</ul>
+
+
+        <div id="main">
+    <article id="post">
+        <div id="post-header">
+
+            <h1 id="从伪类和伪元素说起的知识点">
+                
+                从伪类和伪元素说起的知识点
+                
+            </h1>
+            <div class="article-meta">
+    
+    
+    <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+        <span>Web</span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+         <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            Web
+            
+        </span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta ">2017/03/19</span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+            <i class="fa fa-thermometer-three-quarters"></i>
+        <span class="hits hits-meta " data-leadcloud-title="从伪类和伪元素说起的知识点"
+              data-leadcloud-url="/2017/03/19/从伪类和伪元素说起的知识点/"><i class="fa fa-spinner fa-spin"></i></span>
+    </span>
+    
+    
+</div>
+
+            
+            
+            <p class="fa fa-exclamation-triangle warning">
+                本文于<strong>920</strong>天之前发表，文中内容可能已经过时。如有疑问，请在评论区留言。
+            </p>
+            
+        </div>
+        
+        <div id="post-body">
+            <p>在YY的一轮面试之后，和工作室的小伙伴一起讨论了“CSS伪类和伪元素”(因为就有一个面试问题是问“遇到过哪些伪类和伪元素，使用的场景有哪些？”)，发现牵扯进来的边边角角还是挺多的，就用一篇文章来记录一下，如果有更多涉及两者的知识点，欢迎补充~</p>
+<h2 id="伪类和伪元素的区别">伪类和伪元素的区别</h2>
+<p>在刚开始学习前端的时候，我根本就没有注意到<strong>伪类</strong>和<strong>伪元素</strong>说的是两个不同的东西，毕竟都是<code>:xxx</code>来表示。在MDN查询<code>document.querySelectorAll()</code>的API时，跳转到了<a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/Pseudo-elements" target="_blank" rel="noopener">伪元素</a></p>
+<blockquote>
+<p>就像 pseudo classes (伪类)一样…</p>
+</blockquote>
+<p>然后就意识到两者的不同，而且<code>document.querySelectorAll()</code>的<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Document/querySelectorAll" target="_blank" rel="noopener">中文翻译</a>也搞混了，英文版本的是说<code>querySelectorAll()</code>的选择器语法不支持<code>伪元素</code>而不是<code>伪类</code>。以伪类中的<code>:target</code>为例子，可以正确返回结果，见下图所示，可见两者还是很容易混淆的。</p>
+<div class="figure">
+<img src="http://old-image.geekaholic.cn/2017-03-20_161608_0001.jpg" alt=":target伪类">
+<p class="caption">:target伪类</p>
+</div>
+<p>(有一个小插曲，想吐槽一下MDN。在很久之前就发现了翻译页面的错误，那时也想着改正，但是MDN编辑语法什么的真是orz，后来就放弃了，因为学习成本还算挺高的。一直到写这篇文章的时候，又记起这件事，实在忍不住，改正了翻译，不到100个字，花了我半个多小时…)</p>
+<p><strong>那么问题来了，如何区分两者？</strong></p>
+<p>在<a href="http://www.alloyteam.com/2016/05/summary-of-pseudo-classes-and-pseudo-elements/" target="_blank" rel="noopener">一篇博客</a>中的一张图已经为我们归纳了两者，</p>
+<div class="figure">
+<img src="http://old-image.geekaholic.cn/2017-03-20_161854_0002.jpg" alt="两者区别的归纳图">
+<p class="caption">两者区别的归纳图</p>
+</div>
+<p>但是这并不是正确的打开方式，这只是知其然不知其所以然。</p>
+<p>让我们回归<strong>W3C规范</strong>看看，规范是怎么对<a href="https://www.w3.org/TR/2011/REC-css3-selectors-20110929/#pseudo-elements" target="_blank" rel="noopener">伪元素</a>和<a href="https://www.w3.org/TR/2011/REC-css3-selectors-20110929/#pseudo-classes" target="_blank" rel="noopener">伪类</a>进行定义的。</p>
+<blockquote>
+<p>The pseudo-class concept is introduced to permit selection based on information that lies outside of the document tree or that cannot be expressed using the other simple selectors. 简单翻译：伪类这个概念的引入，是为了允许(authors)对那些在文档树之外或无法使用简单css选择器表示的信息(ps:个人感觉“文档树之外的状态”和“css选择器表示的元素”会更贴切)进行选择获取</p>
+</blockquote>
+<blockquote>
+<p>Pseudo-elements create abstractions about the document tree beyond those specified by the document language. For instance, document languages do not offer mechanisms to access the first letter or first line of an element’s content. 简单翻译：在文档语言规定之外，伪元素创建了一个关于文档树的抽象引用。比如，文档语言并未提供获取元素的第一个字或者第一行的机制。</p>
+</blockquote>
+<p>orz，差别在哪？</p>
+<p>如果你想看看别人对两者的解读，可以看看<a href="http://stackoverflow.com/questions/8069973/what-is-the-difference-between-a-pseudo-class-and-a-pseudo-element-in-css#answer-11701951" target="_blank" rel="noopener">stackoverflow这个回答以及评论区的讨论</a></p>
+<p><strong>按照我个人的理解：</strong><code>伪类</code>侧重描述(descript,not filter)以不同于简单选择器选择存在的元素(比如<code>:first-child</code>)或元素的特殊状态(比如<code>:hover</code>)。而<code>伪元素</code>侧重的是虚拟的元素，比如<code>:first-letter</code>，就好像<strong>真实地存在文档树中</strong>一样，但实际上是不存在的，而<code>:first-child</code>指向的元素是存在于文档树的，这是两者的不同。这大概也是为什么<code>querySelectorAll()</code>适用于<code>伪类</code>而不适用于<code>伪元素</code>的原因吧–因为前者是真实存在于DOM树，但是后者并不是。</p>
+<h2 id="伪元素和伪类的选择器优先级">伪元素和伪类的选择器优先级</h2>
+<p>这方面的知识是在写这篇文章不久前才接触的。总的来说，伪元素的优先级和标签的优先级是一样的，而伪类的优先级和类以及属性选择器等等的优先级是相同的。</p>
+<p>如果就这么简单地介绍完这个小节，那也就不必大费周章了。我们来解读<a href="https://www.w3.org/TR/CSS2/cascade.html#specificity" target="_blank" rel="noopener">W3C中关于选择器优先级计算的部分</a>~</p>
+<blockquote>
+<p>A selector’s specificity is calculated as follows:</p>
+<ol style="list-style-type: decimal">
+<li>count 1 if the declaration is from is a ‘style’ attribute rather than a rule with a selector, 0 otherwise (= a) (In HTML, values of an element’s “style” attribute are style sheet rules. These rules have no selectors, so a=1, b=0, c=0, and d=0.)</li>
+<li>count the number of ID attributes in the selector (= b)</li>
+<li>count the number of other attributes and pseudo-classes in the selector (= c)</li>
+<li>count the number of element names and pseudo-elements in the selector (= d)</li>
+</ol>
+</blockquote>
+<p>总的来说就是，每个行内样式(<code>style=&quot;&quot;</code>)以<code>1000</code>计，每个id选择器以<code>100</code>计，其他属性选择器和伪类选择器以<code>10</code>计，标签和伪元素选择器以<code>1</code>计，而通配符<code>*</code>以<code>0</code>计。注意，这里只是提供一个计算的方便，并不是11个类的选择器可以将一个id选择器的样式覆盖掉。</p>
+<p>还有一点，HTML行内样式可以被JavaScript的style覆盖，而JavaScript的行内样式可以被<code>!important</code>的样式覆盖。</p>
+<p>官方还给出了一些例子：</p>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">*             &#123;&#125;  <span class="comment">/* a=0 b=0 c=0 d=0 -&gt; specificity = 0,0,0,0 */</span></span><br><span class="line"><span class="selector-tag">li</span>            &#123;&#125;  <span class="comment">/* a=0 b=0 c=0 d=1 -&gt; specificity = 0,0,0,1 */</span></span><br><span class="line"><span class="selector-tag">li</span><span class="selector-pseudo">:first-line</span> &#123;&#125;  <span class="comment">/* a=0 b=0 c=0 d=2 -&gt; specificity = 0,0,0,2 */</span></span><br><span class="line"><span class="selector-tag">ul</span> <span class="selector-tag">li</span>         &#123;&#125;  <span class="comment">/* a=0 b=0 c=0 d=2 -&gt; specificity = 0,0,0,2 */</span></span><br><span class="line"><span class="selector-tag">ul</span> <span class="selector-tag">ol</span>+<span class="selector-tag">li</span>      &#123;&#125;  <span class="comment">/* a=0 b=0 c=0 d=3 -&gt; specificity = 0,0,0,3 */</span></span><br><span class="line"><span class="selector-tag">h1</span> + *<span class="selector-attr">[rel=up]</span>&#123;&#125;  <span class="comment">/* a=0 b=0 c=1 d=1 -&gt; specificity = 0,0,1,1 */</span></span><br><span class="line"><span class="selector-tag">ul</span> <span class="selector-tag">ol</span> <span class="selector-tag">li</span><span class="selector-class">.red</span>  &#123;&#125;  <span class="comment">/* a=0 b=0 c=1 d=3 -&gt; specificity = 0,0,1,3 */</span></span><br><span class="line"><span class="selector-tag">li</span><span class="selector-class">.red</span><span class="selector-class">.level</span>  &#123;&#125;  <span class="comment">/* a=0 b=0 c=2 d=1 -&gt; specificity = 0,0,2,1 */</span></span><br><span class="line"><span class="selector-id">#x34y</span>         &#123;&#125;  <span class="comment">/* a=0 b=1 c=0 d=0 -&gt; specificity = 0,1,0,0 */</span></span><br><span class="line">style=""          /* a=1 b=0 c=0 d=0 -&gt; specificity = 1,0,0,0 */</span><br></pre></td></tr></table></figure>
+<h2 id="层叠次序">层叠次序</h2>
+<p>这只是选择器Selector的优先级，而样式的确定不仅仅是由选择器的优先级这一个因素来确定，还有层叠次序。</p>
+<p>W3C规范的<a href="https://www.w3.org/TR/CSS2/cascade.html#cascading-order" target="_blank" rel="noopener">6.4.1 Cascading order</a>小节中有说明最终决定一个元素的样式的步骤：</p>
+<blockquote>
+<ol style="list-style-type: decimal">
+<li>Find all declarations that apply to the element and property in question, for the target media type.Declarations apply if the associated selector matches the element in question and the target medium matches the media list on all <span class="citation">@media</span> rules containing the declaration and on all links on the path through which the style sheet was reached.</li>
+<li>Sort according to importance (normal or important) and origin (author, user, or user agent). In ascending order of precedence: 2.1. user agent declarations 2.2. user normal declarations 2.3. author normal declarations 2.4. author important declarations 2.5. user important declarations</li>
+<li>Sort rules with the same importance and origin by specificity of selector: more specific selectors will override more general ones. Pseudo-elements and pseudo-classes are counted as normal elements and classes, respectively.</li>
+<li>Finally, sort by order specified: if two declarations have the same weight, origin and specificity, the latter specified wins. Declarations in imported style sheets are considered to be before any declarations in the style sheet itself.</li>
+</ol>
+</blockquote>
+<p>用图形来概括就是：</p>
+<div class="figure">
+<img src="http://image.geekaholic.cn/2017-03-20_195002_0003.jpg" alt="优先级">
+<p class="caption">优先级</p>
+</div>
+<blockquote>
+<p>Declarations in imported style sheets are considered to be before any declarations in the style sheet itself.</p>
+</blockquote>
+<p>英文水平有限的我，看到这句话的时候，一直搞不懂讲的是什么，误以为“import和link导入的样式会被看成是在<code>&lt;style&gt;</code>之前”。（不知道各位会翻译成什么样子呢哈哈）但是直到看<a href="http://library.salve.edu/lsc548/tutorials/css/css.html" target="_blank" rel="noopener">Cascading Styles</a>中讲到：</p>
+<blockquote>
+Note: If the link to the external style sheet is placed after the internal style sheet in HTML
+<head><meta name="generator" content="Hexo 3.9.0">
+<p>, the external style sheet will override the internal style sheet!</p>
+</head></blockquote>
+<p>决定用例子来试试，看看那句话说的是什么。</p>
+<div class="figure">
+<img src="http://image.geekaholic.cn/20170320201147.jpg" alt="代码示例">
+<p class="caption">代码示例</p>
+</div>
+<p>从图片中可以看出，样式最终选择的是<code>blue</code>，因为篇幅问题，大家可以在自己的电脑上试试，验证一下：优先级相同，以<code>&lt;style&gt;</code>，<code>&lt;link&gt;</code>的出现顺序来定义声明出现的顺序。</p>
+<p>那最后的一句话真正的含义是什么？</p>
+<p>我觉得应该是在讲，在<strong>同一个</strong>样式表中，<code>@import</code>的规则总是在其他规则的前面。</p>
+<blockquote>
+<p>In CSS 2.1, any <span class="citation">@import</span> rules must precede all other rules (except the <span class="citation">@charset</span> rule, if present). – https://www.w3.org/TR/CSS2/cascade.html#at-import</p>
+</blockquote>
+
+        </div>
+        <div id="post-footer">
+            <div class="avatar" >
+                <img src="http://image.geekaholic.cn/author.jpg" alt="avatar"/>
+                
+                <a href="javascript:void(0)" class="high-song">high起来 &#128541;</a>
+                
+                
+                <a href="javascript:void(0)" class="donate fa">打赏资瓷 &#128536;</a>
+                
+            </div>
+            <ul class="author-profile-section">
+                <li>
+                  
+                  作者:
+                  
+                    
+                    <a href="/about.html">GeekaholicLin</a>
+                </li>
+                
+                <li>发表日期: <span>2017-03-19  19:45:04</span></li>
+                
+                <li>最后编辑日期: <span>2019-09-26  05:21:46</span></li>
+                
+                <li class="post-category">
+                    文章分类:
+                    
+                    <a href="/categories/编执狂/">编执狂</a>
+                    
+                    <a href="/categories/编执狂/Web/">Web</a>
+                    
+                </li>
+                <li class="post-tags">
+                    文章标签:
+                    
+                    <a href="/tags/Web/">Web</a>
+                    
+                    <a href="/tags/CSS3/">CSS3</a>
+                    
+                    <a href="/tags/W3C/">W3C</a>
+                    
+                </li>
+                
+                <li> 版权声明: 
+<a href="https://creativecommons.org/licenses/by-nc-nd/3.0/" target="_blank">
+知识共享署名-非商业性使用-禁止演绎 3.0 未本地化版本许可协议（CC BY-NC-ND 3.0）
+</a></li>
+                
+            </ul>
+            <div id="donate-wrap">
+                
+                
+                
+                <img src="http://image.geekaholic.cn/alipay.jpg" alt="支付宝付款" class="donate-img">
+                
+                <img src="http://image.geekaholic.cn/wechat.png" alt="微信付款" class="donate-img">
+                
+                
+            </div>
+        </div>
+    </article>
+    <div class="article-nav">
+        
+        <a href="/2017/08/10/双语对照翻译测试文件.ts/" class="pre-post fa fa-caret-left">【译】双语对照翻译测试文件</a>
+        
+        
+        <a href="/2017/03/11/AMD等模块化的简单原理/" class="next-post fa">AMD等模块化的简单原理</a>
+        
+    </div>
+    
+    <div id="comments">
+        
+
+<script>
+  gitalk.render("comments");
+</script>
+
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+    <footer id="footer">
+    
+    <div class="social">
+        
+        <a href="https://freecodecamp.cn/geekaholiclin" class="fa fa-free-code-camp" target="_blank" title="freecodecamp"></a>
+        
+        <a href="https://github.com/GeekaholicLin" class="fa fa-github" target="_blank" title="github"></a>
+        
+        <a href="mailto:geekaholiclin@gmail.com" class="fa fa-envelope-o" target="_blank" title="mail to me"></a>
+        
+    </div>
+    
+    <div>
+        
+        <a href="/" class="copyright-links">GeekaholicLin</a>&copy;2015 - 2019.All Rights
+        Reserved.
+    </div>
+    <p>Powered by <a href="https://hexo.io" class="copyright-links" target="_blank">Hexo</a> | Theme by <a
+                href="https://github.com/GeekaholicLin" class="copyright-links" target="_blank">GeekaholicLin</a>
+    </p>
+    
+    
+    <p>
+        <span id="busuanzi_container_site_uv" class="fa fa-bar-chart">
+        欢迎第<span id="busuanzi_value_site_uv"><i class="fa fa-spinner fa-spin"></i></span>位小伙伴~
+        </span>
+    </p>
+    
+</footer>
+
+</div>
+    <ul id="tools">
+    <li class="totop-btn fa fa-angle-up"></li>
+    <li class="exchange-btn fa fa-exchange"></li>
+  
+    <li class="toc-btn fa fa-list-ul"></li>
+    
+    
+
+    
+    <li class="comment-btn fa fa-comments-o">
+        <a href="#comments" title="comments"></a>
+    </li>
+    
+</ul>
+<p id="process"></p>
+<div id="search-overlay">
+    <div class="search-area-wrap">
+        <div id="search-area">
+            <div class="input-wrap focus">
+                <i class="fa fa-search" aria-hidden="true"></i>
+                <input id="search-input" autofocus autocomplete="off" type="text"
+                       placeholder="search this website..."/>
+            </div>
+            <ul id="search-result">
+                <li class="load-first"><i class="fa fa-spinner fa-pulse"></i></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#伪类和伪元素的区别"><span class="toc-number">1.</span> <span class="toc-text">伪类和伪元素的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#伪元素和伪类的选择器优先级"><span class="toc-number">2.</span> <span class="toc-text">伪元素和伪类的选择器优先级</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#层叠次序"><span class="toc-number">3.</span> <span class="toc-text">层叠次序</span></a></li></ol>
+
+
+    <script src="/js/highsong.js"></script>
+
+
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+    //theme config datas
+    var copyrightObj = {};
+    copyrightObj.enable = 'true';
+    copyrightObj.triggerCopyLength = '200';
+    copyrightObj.appendText = '商业转载请联系作者获得授权,非商业转载请注明出处 © GeekaholicLin';
+    var leancloudObj = {};
+    leancloudObj.enable = 'true';
+    leancloudObj.className = 'BlogCounter';
+    leancloudObj.limits = '10';
+</script>
+<script type="text/javascript">
+    var search = {};
+    var search_path = "search.xml";
+    if (!search_path) {
+        search_path = "search.xml";
+    }
+    search.path = "/" + search_path;
+    search.func =  _ajax.init();
+</script>
+<script src="/js/app.js"></script>
+
+
+</body>
+</html>

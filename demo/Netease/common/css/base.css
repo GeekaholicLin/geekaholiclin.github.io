@@ -1,0 +1,298 @@
+
+html {
+    color: #000;
+}
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {
+    margin: 0;
+    padding: 0;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+fieldset, img {
+    border: 0 none;
+}
+address, caption, cite, code, dfn, em, strong, th, var {
+    font-style: normal;
+    font-weight: normal;
+}
+li {
+    list-style: outside none none;
+}
+caption, th {
+    text-align: left;
+}
+h1, h2, h3, h4, h5, h6 {
+    font-size: 100%;
+    font-weight: normal;
+}
+q::before, q::after {
+    content: "";
+}
+abbr, acronym {
+    border: 0 none;
+    font-variant: normal;
+}
+sup {
+    vertical-align: text-top;
+}
+sub {
+    vertical-align: text-bottom;
+}
+input, textarea, select {
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+}
+input, textarea, select {
+}
+legend {
+    color: #000;
+}
+html, body {
+    background: #fff none repeat scroll 0 0;
+    height: 100%;
+}
+body {
+    color: #000;
+    font-family: "Microsoft YaHei",simSun,"Lucida Grande","Lucida Sans Unicode",Arial;
+    font-size: 12px;
+    line-height: 170%;
+}
+i {
+    font-style: normal;
+}
+a {
+    color: #000;
+}
+a:hover {
+    color: #f60;
+}
+a.under:link, a.under:active, a.under:visited, a.under:hover {
+    text-decoration: underline;
+}
+.fltL {
+    float: left;
+}
+.fltR {
+    float: right;
+}
+.fltN {
+    float: none;
+}
+.setCenter {
+    margin: 0 auto;
+}
+.show {
+    display: block;
+}
+.hide {
+    display: none;
+}
+.space5, .space10, .space15, .space20, .space25, .space30 {
+    clear: both;
+    display: block;
+    overflow: hidden;
+}
+.space5 {
+    height: 5px;
+}
+.space10 {
+    height: 10px;
+}
+.space15 {
+    height: 15px;
+}
+.space20 {
+    height: 20px;
+}
+.space25 {
+    height: 25px;
+}
+.space30 {
+    height: 30px;
+}
+.clrB {
+    clear: both;
+}
+.clrL {
+    clear: left;
+}
+.clrR {
+    clear: right;
+}
+.clrN {
+    clear: none;
+}
+.b {
+    font-weight: bold;
+}
+.n {
+    font-weight: normal;
+}
+.f12 {
+    font-size: 12px;
+}
+.f14 {
+    font-size: 14px;
+}
+.f16 {
+    font-size: 16px;
+}
+.f18 {
+    font-size: 18px;
+}
+.txtC {
+    text-align: center;
+}
+.txtL {
+    text-align: left;
+}
+.txtR {
+    text-align: right;
+}
+.veraM {
+    vertical-align: middle;
+}
+.veraT {
+    vertical-align: top;
+}
+.veraB {
+    vertical-align: bottom;
+}
+.l16 {
+    line-height: 16px;
+}
+.l18 {
+    line-height: 18px;
+}
+.l20 {
+    line-height: 20px;
+}
+.l22 {
+    line-height: 22px;
+}
+.l24 {
+    line-height: 24px;
+}
+.l25 {
+    line-height: 25px;
+}
+.ti0 {
+    text-indent: 0;
+}
+.ti2 {
+    text-indent: 2em;
+}
+.colorWhite {
+    color: #fff;
+}
+.colorBlack {
+    color: #000;
+}
+.colorRed {
+    color: red;
+}
+.colorBlue {
+    color: blue;
+}
+.colorOrange {
+    color: #f30;
+}
+.colorBrown {
+    color: brown;
+}
+.colorGreen {
+    color: green;
+}
+.colorGray {
+    color: gray;
+}
+.colorYellow {
+    color: #fc0;
+}
+a.linkWhite:link, a.linkWhite:active, a.linkWhite:visited {
+    color: #fff;
+}
+a.linkWhite:hover {
+}
+a.linkBlack:link, a.linkBlack:active, a.linkBlack:visited {
+    color: #000;
+}
+a.linkBlack:hover {
+}
+a.linkRed:link, a.linkRed:active, a.linkRed:visited {
+    color: red;
+}
+a.linkRed:hover {
+}
+a.linkBlue:link, a.linkBlue:active, a.linkBlue:visited {
+    color: blue;
+}
+a.linkBlue:hover {
+}
+a.linkOrange:link, a.linkOrange:active, a.linkOrange:visited {
+    color: #f30;
+}
+a.linkOrange:hover {
+}
+#NIE-topBar {
+    background-color: #fff;
+    height: 55px;
+}
+#wrap {
+    height: auto;
+    margin: 0 auto;
+    max-width: 1920px;
+    min-width: 1000px;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+}
+#wrap-bg1, #wrap-bg2, #wrap-bg3 {
+    float: left;
+    width: 100%;
+}
+#wrap-bg1 {
+}
+#wrap-bg2 {
+}
+#wrap-bg3 {
+}
+#main {
+    margin: 0 auto;
+    position: relative;
+    width: 960px;
+}
+#header {
+}
+#center {
+}
+#footer {
+    clear: both;
+    text-align: center;
+}
+#footer, #footer a {
+    color: #000;
+    text-decoration: none;
+}
+#footer a:hover {
+    text-decoration: underline;
+}
+#NIE-copyRight {
+    text-align: center;
+}
+#NIE-copyRight a {
+    text-decoration: none;
+}
+#NIE-copyRight .l1 {
+    padding-bottom: 10px;
+}
+#NIE-copyRight .l2 {
+}
+#NIE-copyRight .l3 {
+}
+#botCode {
+    display: none;
+}

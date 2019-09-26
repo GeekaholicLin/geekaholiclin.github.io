@@ -1,0 +1,347 @@
+@font-face {
+    font-family: iconfont2;
+    src: url(iconfont2.eot?-l7hz8t);
+    src: url(iconfont2.eot?#iefix-l7hz8t) format('embedded-opentype'), url(iconfont2.ttf?-l7hz8t) format('truetype'), url(iconfont2.woff?-l7hz8t) format('woff'), url(iconfont2.svg?-l7hz8t#icomoon) format('svg');
+    font-weight: 400;
+    font-style: normal
+}
+
+.iconfont {
+    font-family: iconfont2 !important;
+    font-size: 16px;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale
+}
+
+span.NIE-share *, .NIE-share *, .sideBarShareBox * {
+    text-decoration: none;
+    font-weight: 400;
+    text-align: left;
+    font-family: simSun, Arial;
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    -o-box-sizing: content-box;
+    -ms-box-sizing: content-box;
+    box-sizing: content-box
+}
+
+.NIE-share-clearfix {
+    clear: both;
+    width: 0;
+    height: 0;
+    overflow: hidden
+}
+
+.NIE-share {
+    line-height: 0 !important;
+    position: relative;
+    font-size: 0;
+    display: inline-block
+}
+
+.NIE-share .NIE-share-txt {
+    display: inline-block;
+    float: left;
+    height: 20px;
+    line-height: 20px;
+    font-size: 12px
+}
+
+.NIE-share .NIE-share-iconBtn {
+    list-style: none;
+    float: left;
+    padding: 0;
+    margin: 0
+}
+
+.NIE-share .NIE-share-iconBtn li {
+    float: left
+}
+
+.NIE-share .NIE-share-iconBtn a {
+    display: inline-block;
+    float: left;
+    font-size: 20px;
+    line-height: 20px;
+    text-decoration: none;
+    color: #000;
+    margin-right: 3px
+}
+
+.NIE-share .NIE-share-iconBtn a:hover {
+    color: #a70d01;
+    text-decoration: none
+}
+
+.NIE-share2 .NIE-share-txt {
+    height: 36px;
+    line-height: 36px;
+    font-size: 18px;
+    font-weight: 700
+}
+
+.NIE-share2 .NIE-share-iconBtn a {
+    line-height: 36px;
+    font-size: 36px
+}
+
+.NIE-share6 .NIE-share-iconBtn a {
+    height: auto;
+    line-height: 14px;
+    width: 80px;
+    cursor: pointer
+}
+
+.NIE-share6 .NIE-share-iconBtn a span {
+    display: inline-block;
+    float: left;
+    height: 20px;
+    line-height: 20px;
+    font-size: 20px;
+    cursor: pointer
+}
+
+.NIE-share6 .NIE-share-iconBtn a em {
+    display: inline-block;
+    font-style: normal;
+    float: left;
+    height: 20px;
+    line-height: 20px;
+    font-size: 14px;
+    cursor: pointer
+}
+
+.NIE-share6 .NIE-share-iconBtn a.morebtn {
+    width: 60px
+}
+
+#NIE-share-img .NIE-share1, #NIE-share-txt .NIE-share1 {
+    top: 3px
+}
+
+a.NIE-share, .NIE-share-more a, #NIE-share-panel div a, #NIE-share-sideBar div span p a, #NIE-share-sideBar div div ul a {
+    background: url(../icon.v5.png) no-repeat;
+    _background: url(https://nie.res.netease.com/comm/js/nie/util/share/img/icon.v5.p8.png) no-repeat
+}
+
+.NIE-share-more {
+    position: relative;
+    display: inline-block !important;
+    *display: inline !important
+}
+
+.NIE-share-more ul {
+    position: absolute !important;
+    z-index: 9;
+    width: 198px;
+    padding: 2px;
+    border: 1px #c2c2c2 solid;
+    background: #fff;
+    overflow: hidden;
+    display: none;
+    list-style: none
+}
+
+.NIE-share-more li {
+    float: left;
+    width: 99px;
+    overflow: hidden
+}
+
+.NIE-share-more a {
+    width: 87px;
+    padding: 5px;
+    text-decoration: none !important
+}
+
+.NIE-share1 .NIE-share-more ul {
+    left: -10px;
+    top: -10px
+}
+
+.NIE-share2 .NIE-share-more ul {
+    left: -20px;
+    top: -20px
+}
+
+.NIE-share .NIE-share-more a {
+    width: 87px;
+    position: static;
+    margin-right: 0
+}
+
+.NIE-share1 .NIE-share-more, .NIE-share2 .NIE-share-more, .NIE-share6 .NIE-share-more {
+    width: 22px;
+    top: 25px;
+    position: absolute;
+    right: -20px;
+    *right: 20px
+}
+
+.NIE-share2 .NIE-share-more {
+    top: 40px
+}
+
+#NIE-share-sideBar div span p a, #NIE-share-sideBar div div ul a {
+    text-decoration: none !important
+}
+
+#NIE-share-sideBar div b, #NIE-share-sideBar div span, #NIE-share-sideBar div span button, #NIE-share-sideBar div div, #NIE-share-sideBar div div button {
+    background: url(https://nie.res.netease.com/comm/js/nie/util/share/img/items.jpg)
+}
+
+#NIE-share-sideBar div div h3 {
+    position: relative;
+    margin: 10px 5px;
+    color: #575757;
+    font-weight: 700;
+    font-size: 16px
+}
+
+#NIE-share-sideBar {
+    position: absolute;
+    right: 0;
+    width: 30px;
+    height: 450px;
+    overflow: hidden
+}
+
+#NIE-share-sideBar ul, #NIE-share-sideBar ul li {
+    list-style: none;
+    padding: 0;
+    margin: 0
+}
+
+#NIE-share-sideBar .sideBarShareBox {
+    position: absolute;
+    right: -120px;
+    width: 150px
+}
+
+#NIE-share-sideBar div b {
+    width: 30px;
+    height: 102px;
+    margin-top: 38px;
+    float: left;
+    display: inline-block;
+    background: url(https://nie.res.netease.com/comm/js/nie/util/share/img/sideBar.tip.png)
+}
+
+#NIE-share-sideBar div div {
+    width: 110px;
+    float: left;
+    margin: 0;
+    padding: 4px;
+    background-color: #fff;
+    background-position: 0 -24px;
+    border: 1px #c2c2c2 solid;
+    display: inline-block
+}
+
+#NIE-share-sideBar div div button {
+    position: absolute;
+    z-index: 2;
+    right: 7px;
+    top: 10px;
+    width: 12px;
+    height: 12px;
+    border: 0;
+    cursor: pointer;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box
+}
+
+#NIE-share-sideBar div div button.hover {
+    background-position: 0 -12px
+}
+
+#NIE-share-sideBar div div ul {
+    width: 98px;
+    margin: 0;
+    padding: 5px;
+    background: #fff;
+    border: 1px #c2c2c2 solid;
+    display: inline-block;
+    overflow: hidden
+}
+
+#NIE-share-sideBar div div ul a {
+    width: 85px;
+    padding: 5px
+}
+
+#NIE-share-txt, #NIE-share-img {
+    position: absolute;
+    z-index: 99;
+    padding: 0 3px 7px;
+    line-height: 16px;
+    background: #fbfbfb;
+    border: 1px #c2c2c2 solid;
+    display: none;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -khtml-border-radius: 20px;
+    border-radius: 20px;
+    *padding-top: 3px
+}
+
+.NIE-share .NIE-share-more a, #NIE-share-sideBar div span p a, #NIE-share-sideBar div div ul a {
+    height: 14px;
+    line-height: 12px;
+    float: left;
+    text-indent: 25px;
+    color: #333;
+    font-size: 12px;
+    border: 1px #fff solid;
+    text-decoration: none;
+    overflow: hidden;
+    display: inline-block
+}
+
+.NIE-share .NIE-share-more a:hover, #NIE-share-sideBar div span p a:hover, #NIE-share-sideBar div div ul a:hover {
+    color: #000;
+    background-color: #f0f0f0;
+    border-color: #e0e0e0;
+    text-decoration: none
+}
+
+.NIE-share .NIE-share-more ul, .NIE-share .NIE-share-more ul li, .NIE-share .NIE-share-more ul li a {
+    list-style: none
+}
+
+.NIE-share .NIE-share-more .NIE-share-btn23, #NIE-share-sideBar .sideBarShareBox div ul .NIE-share-btn23, .shareUL .NIE-share-btn23 {
+    background-position: 5px -348px
+}
+
+.NIE-share .NIE-share-more .NIE-share-btn22, #NIE-share-sideBar .sideBarShareBox div ul .NIE-share-btn22, .shareUL .NIE-share-btn22 {
+    background-position: 5px -323px
+}
+
+.NIE-share .NIE-share-more .NIE-share-btn1, #NIE-share-sideBar .sideBarShareBox div ul .NIE-share-btn1, .shareUL .NIE-share-btn1 {
+    background-position: 5px 2px
+}
+
+.NIE-share .NIE-share-more .NIE-share-btn2, #NIE-share-sideBar .sideBarShareBox div ul .NIE-share-btn2, .shareUL .NIE-share-btn2 {
+    background-position: 5px -23px
+}
+
+.NIE-share .NIE-share-more .NIE-share-btn3, #NIE-share-sideBar .sideBarShareBox div ul .NIE-share-btn3, .shareUL .NIE-share-btn3 {
+    background-position: 5px -48px
+}
+
+.NIE-share .NIE-share-more .NIE-share-btn8, #NIE-share-sideBar .sideBarShareBox div ul .NIE-share-btn8, .shareUL .NIE-share-btn8 {
+    background-position: 5px -173px
+}
+
+.NIE-share .NIE-share-more .NIE-share-btn11, #NIE-share-sideBar .sideBarShareBox div ul .NIE-share-btn11, .shareUL .NIE-share-btn11 {
+    background-position: 5px -248px
+}
+
+.NIE-share .NIE-share-more .NIE-share-btn14, #NIE-share-sideBar .sideBarShareBox div ul .NIE-share-btn14, .shareUL .NIE-share-btn14 {
+    background-position: 5px -448px
+}
+
+.NIE-share .NIE-share-more .NIE-share-btn24, #NIE-share-sideBar .sideBarShareBox div ul .NIE-share-btn24, .shareUL .NIE-share-btn124 {
+    background-position: 5px -473px
+}

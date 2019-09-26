@@ -1,0 +1,554 @@
+<!doctype html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no">
+    
+<meta name="google-site-verification" content="osGzKb_y9J6vt8d0mGYPDH81ljatwPdSVCFwxMCJSaE">
+
+    
+<meta name="baidu-site-verification" content="Yn6v4uAWVY">
+<script>
+    //push
+    (function(){
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        }
+        else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    <!--Simple SEO-->
+
+<meta name="description" content="编执狂的博客，主要记录自己在IT路上的成长历程。/">
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+    <!--Title-->
+
+<title>Java基础之线程 | Geekaholic</title>
+
+<link rel="alternate" href="/atom.xml" title="Geekaholic" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+    
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/css/pages/post.css">
+<link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/thirdParty/highlight/solarized-light.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+
+<style>
+    figure .code .line:before{
+        display: none!important;
+    }
+</style>
+
+    <!--script-->
+
+
+<script src="//cdn.jsdelivr.net/npm/leancloud-storage@3.15.0/dist/av-min.js"></script>
+<script>
+  var appId = "RI5uv752sD0nGTyUSUC6odJE-gzGzoHsz";
+  var appKey = "yuke8QmutaxI5YvyD2NIE57u";
+  var region = "null";
+  var serverURLs = "http://leancloud.geekaholic.cn";
+  AV.init({
+    appId: appId,
+    appKey: appKey,
+    region: region,
+    serverURLs: serverURLs
+  });
+</script>
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+<script>
+  var admin = "GeekaholicLin";
+  admin = admin.split(",");
+  var gitalk = new Gitalk({
+    clientID: "aa2215dfc8ee944d1205",
+    clientSecret: "77cd2afa5d161bc0ab04639ed81300d808c6e22b",
+    repo: "geekaholiclin.github.io",
+    owner: "GeekaholicLin",
+    admin: admin,
+    id: decodeURIComponent(location.pathname),
+    distractionFreeMode: false
+  })
+
+</script>
+
+    
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?1fdc784829bc9fa0c0bbee0c680ffe2a";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+    
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-91854900-3', 'auto');
+    ga('send', 'pageview');
+
+</script>
+
+</head>
+</html>
+<body id="normal">
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<style>
+    header{ top: 71px; position: absolute!important;}
+    #container{padding-top: 151px!important;}
+</style>
+<div style="position:fixed;z-index:9999;left:0;top:0;width:100%;height:70px;background-color:#e0e0e0;color:#396CA5;border-bottom:1px solid #cecece;text-align:center;line-height:70px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis">您使用的浏览器版本过低，为了您更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<div id="wrap">
+    <header  style="position: absolute;" >
+    <div id="site-meta">
+        <a href="/" id="logo">
+            <h1 class="title">Geekaholic</h1>
+        </a>
+        
+        <h2 class="subtitle">编程在于折腾</h2>
+        
+    </div>
+    <ul id="nav">
+        
+            <li><a href="/"><i class="fa fa-home"></i>首页</a></li>
+        
+            <li><a href="/about"><i class="fa fa-user"></i>关于我</a></li>
+        
+            <li><a href="/atom.xml"><i class="fa fa-rss"></i>RSS</a></li>
+        
+        <li id="search"><a href="javascript:void(0)"><i class="fa fa-search"></i>搜索</a></li>
+    </ul>
+</header>
+
+    <div id="container">
+        
+<ul id="sidebar">
+    
+    
+    
+    
+<li class="widget widget-normal category">
+    <h3 class="fa fa-th widget-title">分类</h3>
+    <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/他山之石/"><i class="fa" aria-hidden="true">他山之石</i></a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/他山之石/Web/"><i class="fa" aria-hidden="true">Web</i></a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/编执狂/"><i class="fa" aria-hidden="true">编执狂</i></a><span class="category-list-count">14</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/编执狂/Android/"><i class="fa" aria-hidden="true">Android</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/编执狂/Java/"><i class="fa" aria-hidden="true">Java</i></a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/编执狂/Web/"><i class="fa" aria-hidden="true">Web</i></a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/编执狂/计算机基础/"><i class="fa" aria-hidden="true">计算机基础</i></a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/编程之外/"><i class="fa" aria-hidden="true">编程之外</i></a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/编程之外/Hexo/"><i class="fa" aria-hidden="true">Hexo</i></a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/编程之外/解决方法/"><i class="fa" aria-hidden="true">解决方法</i></a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/黄金屋-读书笔记/"><i class="fa" aria-hidden="true">黄金屋--读书笔记</i></a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/黄金屋-读书笔记/CSS设计指南/"><i class="fa" aria-hidden="true">CSS设计指南</i></a><span class="category-list-count">1</span></li></ul></li></ul>
+</li>
+
+
+    
+    
+<li class="widget widget-normal archive">
+  <h3 class="fa fa-archive widget-title">归档</h3>
+    <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/"><i class="fa" aria-hidden="true">九月 2017</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/"><i class="fa" aria-hidden="true">八月 2017</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/"><i class="fa" aria-hidden="true">三月 2017</i></a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/"><i class="fa" aria-hidden="true">二月 2017</i></a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/"><i class="fa" aria-hidden="true">三月 2016</i></a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/"><i class="fa" aria-hidden="true">二月 2016</i></a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/"><i class="fa" aria-hidden="true">一月 2016</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/"><i class="fa" aria-hidden="true">十二月 2015</i></a><span class="archive-list-count">5</span></li></ul>
+</li>
+
+
+    
+    
+<li class="widget widget-normal popular-posts" id="popular-posts">
+    <h3 class="fa fa-thermometer-3 widget-title">热门文章</h3>
+    <ul id="popular-content">
+        <li class="load-first"><i class="fa fa-spinner fa-pulse"></i></li>
+    </ul>
+</li>
+
+    
+    
+<li class="widget widget-normal tags">
+  <h3 class="fa fa-tags widget-title">标签云</h3>
+  <div class="tagcloud-content">
+    
+      <a href="/tags/Mathjax/" style="font-size: 0.18rem; color: #4f83b8">Mathjax</a> <a href="/tags/JavaScript/" style="font-size: 0.21rem; color: #386da4">JavaScript</a> <a href="/tags/Web/" style="font-size: 0.21rem; color: #386da4">Web</a> <a href="/tags/Android/" style="font-size: 0.18rem; color: #4f83b8">Android</a> <a href="/tags/ListView原理/" style="font-size: 0.14rem; color: #69c">ListView原理</a> <a href="/tags/ListView优化/" style="font-size: 0.14rem; color: #69c">ListView优化</a> <a href="/tags/Android控件/" style="font-size: 0.14rem; color: #69c">Android控件</a> <a href="/tags/解决方法/" style="font-size: 0.14rem; color: #69c">解决方法</a> <a href="/tags/Genymotion/" style="font-size: 0.14rem; color: #69c">Genymotion</a> <a href="/tags/VisualBox/" style="font-size: 0.14rem; color: #69c">VisualBox</a> <a href="/tags/Java/" style="font-size: 0.28rem; color: #0a407c">Java</a> <a href="/tags/线程/" style="font-size: 0.14rem; color: #69c">线程</a> <a href="/tags/InterruptedException/" style="font-size: 0.14rem; color: #69c">InterruptedException</a> <a href="/tags/异常/" style="font-size: 0.14rem; color: #69c">异常</a> <a href="/tags/RxJS/" style="font-size: 0.14rem; color: #69c">RxJS</a> <a href="/tags/Translation/" style="font-size: 0.18rem; color: #4f83b8">Translation</a> <a href="/tags/Hexo主题/" style="font-size: 0.18rem; color: #4f83b8">Hexo主题</a> <a href="/tags/ylion/" style="font-size: 0.25rem; color: #215690">ylion</a> <a href="/tags/模块化/" style="font-size: 0.18rem; color: #4f83b8">模块化</a> <a href="/tags/CSS3/" style="font-size: 0.14rem; color: #69c">CSS3</a> <a href="/tags/W3C/" style="font-size: 0.14rem; color: #69c">W3C</a> <a href="/tags/Hexo/" style="font-size: 0.21rem; color: #386da4">Hexo</a> <a href="/tags/主题制作/" style="font-size: 0.18rem; color: #4f83b8">主题制作</a> <a href="/tags/IO操作/" style="font-size: 0.21rem; color: #386da4">IO操作</a> <a href="/tags/Scanner/" style="font-size: 0.14rem; color: #69c">Scanner</a> <a href="/tags/马士兵/" style="font-size: 0.18rem; color: #4f83b8">马士兵</a> <a href="/tags/异常处理/" style="font-size: 0.18rem; color: #4f83b8">异常处理</a> <a href="/tags/流类型/" style="font-size: 0.18rem; color: #4f83b8">流类型</a> <a href="/tags/算法分析/" style="font-size: 0.14rem; color: #69c">算法分析</a> <a href="/tags/复杂度/" style="font-size: 0.14rem; color: #69c">复杂度</a> <a href="/tags/虚拟机/" style="font-size: 0.14rem; color: #69c">虚拟机</a> <a href="/tags/英文XP系统/" style="font-size: 0.14rem; color: #69c">英文XP系统</a> <a href="/tags/中文字体/" style="font-size: 0.14rem; color: #69c">中文字体</a> <a href="/tags/兼容性/" style="font-size: 0.18rem; color: #4f83b8">兼容性</a> <a href="/tags/CSS设计指南/" style="font-size: 0.14rem; color: #69c">CSS设计指南</a> <a href="/tags/读书笔记/" style="font-size: 0.14rem; color: #69c">读书笔记</a> <a href="/tags/polyfill/" style="font-size: 0.14rem; color: #69c">polyfill</a>
+  </div>
+</li>
+
+
+    
+    
+<li class="widget widget-normal friends-link">
+    <h3 class="fa fa-globe widget-title">友链</h3><br/>
+
+    
+        <a href="http://geekaholiclin.github.io" class="fa" target="_blank">主题作者</a>
+
+    
+        <a href="http://walkerlala.github.com/" class="fa" target="_blank">walkerlala</a>
+
+    
+        <a href="http://jerry011235.github.io/" class="fa" target="_blank">璀璨星空</a>
+
+    
+
+</li>
+
+    
+</ul>
+
+
+        <div id="main">
+    <article id="post">
+        <div id="post-header">
+
+            <h1 id="Java基础之线程">
+                
+                Java基础之线程
+                
+            </h1>
+            <div class="article-meta">
+    
+    
+    <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+        <span>Java</span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+         <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            Java
+            
+        </span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta ">2016/02/09</span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+            <i class="fa fa-thermometer-three-quarters"></i>
+        <span class="hits hits-meta " data-leadcloud-title="Java基础之线程"
+              data-leadcloud-url="/2016/02/09/Java基础之线程/"><i class="fa fa-spinner fa-spin"></i></span>
+    </span>
+    
+    
+</div>
+
+            
+            
+            <p class="fa fa-exclamation-triangle warning">
+                本文于<strong>1324</strong>天之前发表，文中内容可能已经过时。如有疑问，请在评论区留言。
+            </p>
+            
+        </div>
+        
+        <div id="post-body">
+            <h2 id="线程的基本概念">线程的基本概念</h2>
+<p>线程是一个程序内部的顺序控制流。</p>
+<h3 id="线程与进程的区别">线程与进程的区别</h3>
+<p>每个进程都有独立的代码和数据空间(进程上下文)，进程间的切换会有较大的开销，线程可以看成是轻量级的进程，<strong>同一类线程共享代码和数据空间</strong>，一个进程的内存空间是共享的，每个线程都可以使用这些共享内存。每个线程都有独立的运行栈和程序计时器，线程切换的开销小。</p>
+<blockquote>
+<p>多进程: 在操作系统中能同时运行多个任务(程序) 多线程: 在同一应用程序中有多个顺序流同时执行。</p>
+</blockquote>
+<p>进程和线程的关系初步可以理解成：进程是加载到内存里的程序，而一个进程至少拥有一个线程(Java中的Main()方法)，当然可以使用代码进行开启多线程。</p>
+<a id="more"></a>
+<h3 id="java中线程的知识点">Java中线程的知识点</h3>
+<blockquote>
+<p>JAVA的线程是通过java,lang.Thread类来实现的。 在Java中可以通过创建Thread的实例来创建新的线程。 每个线程都是通过某个特定Thread对象所对应的方法run()来完成其操作的，方法run()称为线程体。 通过调用Thread类的start()方法来启动一个线程。</p>
+</blockquote>
+<p><strong>run()方法是执行的代码，而start()方法是开启线程，注意两者的区别</strong>。</p>
+<h2 id="java中的线程">Java中的线程</h2>
+<p>在Java中可以有两种方式创建新的线程。</p>
+<h3 id="java中线程的创建方法">Java中线程的创建方法</h3>
+<blockquote>
+<ol style="list-style-type: decimal">
+<li>第一种</li>
+</ol>
+<ul>
+<li>定义线程类A实现Runnable接口</li>
+<li>实例化Runnable线程类A的对象B</li>
+<li>实例化Thread对象: Thread mThread = new Thread(B);</li>
+<li>实现Runnable接口中的线程运行体，也就是run()方法</li>
+<li>使用Runnable接口的类可以为多个线程提供共享的数据。</li>
+<li>在实现Runnable接口的类的run方法定义中可以使用Thread的静态方法。比如currntThread()方法，该方法可以获取当前线程的引用。</li>
+</ul>
+</blockquote>
+<blockquote>
+<ol start="2" style="list-style-type: decimal">
+<li>第二种</li>
+</ol>
+<ul>
+<li>可以定义一个Thread的子类并重写run()方法</li>
+<li>实例化Thread对象。</li>
+</ul>
+</blockquote>
+<h3 id="代码示例">代码示例</h3>
+<p><strong>方法1</strong></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyThread</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        MyRunnableClass mrc = <span class="keyword">new</span> MyRunnableClass();</span><br><span class="line">        Thread mThread = <span class="keyword">new</span> Thread(mrc);<span class="comment">//实际是多态的运用</span></span><br><span class="line">        mThread.start();<span class="comment">//开启线程</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">50</span>; i++) &#123;</span><br><span class="line">            System.out.println(<span class="string">"这是主线程中第"</span>+(i+<span class="number">1</span>)+<span class="string">"行"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"> <span class="class"><span class="keyword">class</span> <span class="title">MyRunnableClass</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"=====开启子线程======"</span>);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">50</span>; i++) &#123;</span><br><span class="line">                   System.out.println(<span class="string">"这是子线程中第"</span>+(i+<span class="number">1</span>)+<span class="string">"行"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>运行结果 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//不贴出来了，两者是同时两个线程一起执行，而不是先等run()方法执行完成之后</span></span><br><span class="line"><span class="comment">//再执行main()中其他语句。因为线程的开启时间有快有慢，以及两个线程分得的</span></span><br><span class="line"><span class="comment">//时间片不一样，所以每次运行的结果有可能有区别。</span></span><br><span class="line"><span class="comment">//但当把 mThread.start(); 替换成 mThread.run(); 时，</span></span><br><span class="line"><span class="comment">//此时实际上是main()方法对run()方法进行调用，而不是开启线程执行run()方法</span></span><br></pre></td></tr></table></figure></p>
+<p><strong>方法二</strong></p>
+<p>与上面方法一类似，只需要适当修改一下。 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyThread</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        MyRunnableClass mThread = <span class="keyword">new</span> MyRunnableClass();</span><br><span class="line">        mThread.start();<span class="comment">//开启线程</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">50</span>; i++) &#123;</span><br><span class="line">            System.out.println(<span class="string">"这是主线程中第"</span>+(i+<span class="number">1</span>)+<span class="string">"行"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"> <span class="class"><span class="keyword">class</span> <span class="title">MyRunnableClass</span> <span class="keyword">extends</span> <span class="title">Thread</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"=====开启子线程======"</span>);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">50</span>; i++) &#123;</span><br><span class="line">                   System.out.println(<span class="string">"这是子线程中第"</span>+(i+<span class="number">1</span>)+<span class="string">"行"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>在两个方法中，推荐使用实现接口的方法，即方法一。原因是<strong>可以实现多个接口</strong>但继承只能是单继承，不利于该类的扩展。</p>
+<h3 id="java中线程的状态">Java中线程的状态</h3>
+<div class="figure">
+<img src="http://old-image.geekaholic.cn/2016-02-09_00001.jpg" alt="Java线程的状态转换图">
+<p class="caption">Java线程的状态转换图</p>
+</div>
+<p>从图中可以看出，Java中线程大致有5中状态，在Java的API中也提供了操作Java线程的方法。让我们先睹为快。</p>
+<blockquote>
+<p>isAlive() 判断线程是否还未被终止。 getPriority() 获得线程的优先级数值 setPriority() 设置线程的优先级 Thread.sleep() 静态方法，将当前的线程指定毫秒数进行睡眠。会抛出interruptedException异常。 join() 调用某线程的该方法，将当前线程与该线程“合并”，即等待该线程结束，再恢复当前线程的运行。 yield() 让出cpu，当前线程进入就绪队列等待调度。 wait() 当前线程进入对象的wait pool notify()/notifyAll() 唤醒对象的wait pool中的一个/所有等待线程</p>
+</blockquote>
+<p>让我们使用sleep()方法实现子线程每隔1s打印出当前的时间。偷一下懒，还是使用该类，不新建其他类了。sleep()方法会抛出<code>InterruptedException</code>异常，我们需要进行捕获，关于异常的知识点在之前的博客中已经详细地讲解过了，这里不再叙述。</p>
+<h4 id="sleepinterrupt">sleep()&amp;&amp;interrupt()</h4>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyThread</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        MyRunnableClass mThread = <span class="keyword">new</span> MyRunnableClass();</span><br><span class="line">        mThread.start();<span class="comment">//开启线程</span></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyRunnableClass</span> <span class="keyword">extends</span> <span class="title">Thread</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</span><br><span class="line">                System.out.println(<span class="string">"当前时间"</span> + <span class="keyword">new</span> Date());</span><br><span class="line">                Thread.sleep(<span class="number">1000</span>);</span><br><span class="line">                interrupt();<span class="comment">//粗鲁地调用方法打断当前的线程，只为演示效果</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException ex) &#123;</span><br><span class="line">            System.out.println(<span class="string">"别打断我睡觉~！"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>运行的结果为：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">当前时间Tue Feb <span class="number">09</span> <span class="number">16</span>:<span class="number">31</span>:<span class="number">03</span> CST <span class="number">2016</span></span><br><span class="line">当前时间Tue Feb <span class="number">09</span> <span class="number">16</span>:<span class="number">31</span>:<span class="number">04</span> CST <span class="number">2016</span></span><br><span class="line">别打断我睡觉~！</span><br></pre></td></tr></table></figure>
+<h4 id="sleep与interrupt的解惑">sleep()与interrupt()的解惑</h4>
+<p><strong>注意此处打印了两次！哎哎哎，为什么呀？不是应该只打印一次吗？那究竟interrupt()是何时作用的呢？InterruptedException是什么时候抛出的</strong>？让我们先看下面的修改版代码。</p>
+<h4 id="sleep代码示例">sleep()代码示例</h4>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyThread</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        MyRunnableClass mThread = <span class="keyword">new</span> MyRunnableClass();</span><br><span class="line">        mThread.start();<span class="comment">//开启线程</span></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyRunnableClass</span> <span class="keyword">extends</span> <span class="title">Thread</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</span><br><span class="line">                i++;</span><br><span class="line">                System.out.println(<span class="string">"当前时间"</span> + <span class="keyword">new</span> Date());</span><br><span class="line">                System.out.println(<span class="string">"第"</span> + i + <span class="string">"次睡前"</span>);</span><br><span class="line">                System.out.println(<span class="string">"该线程的状态是否中断？"</span> + isInterrupted());</span><br><span class="line">                Thread.sleep(<span class="number">1000</span>);</span><br><span class="line">                System.out.println(<span class="string">"第"</span> + i + <span class="string">"次睡后"</span>);</span><br><span class="line">                System.out.println(<span class="string">"该线程的状态是否中断？"</span> + isInterrupted());</span><br><span class="line">                interrupt();<span class="comment">//调用方法打断当前的线程</span></span><br><span class="line">                System.out.println(<span class="string">"该线程的状态是否中断？"</span> + isInterrupted());</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException ex) &#123;</span><br><span class="line">            System.out.println(<span class="string">"异常获取到"</span>+ex);</span><br><span class="line">            System.out.println(<span class="string">"别打断我睡觉~！"</span>);</span><br><span class="line">            System.out.println(<span class="string">"该线程的状态是否中断？"</span> + isInterrupted());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>对原来的代码进行微小的修改，运行结果如下：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">当前时间Tue Feb <span class="number">09</span> <span class="number">17</span>:<span class="number">38</span>:<span class="number">34</span> CST <span class="number">2016</span></span><br><span class="line">第<span class="number">1</span>次睡前</span><br><span class="line">该线程的状态是否中断？<span class="keyword">false</span></span><br><span class="line">第<span class="number">1</span>次睡后</span><br><span class="line">该线程的状态是否中断？<span class="keyword">false</span></span><br><span class="line">该线程的状态是否中断？<span class="keyword">true</span></span><br><span class="line">当前时间Tue Feb <span class="number">09</span> <span class="number">17</span>:<span class="number">38</span>:<span class="number">35</span> CST <span class="number">2016</span></span><br><span class="line">第<span class="number">2</span>次睡前</span><br><span class="line">该线程的状态是否中断？<span class="keyword">true</span></span><br><span class="line">异常获取到java.lang.InterruptedException: sleep interrupted</span><br><span class="line">别打断我睡觉~！</span><br><span class="line">该线程的状态是否中断？<span class="keyword">false</span></span><br></pre></td></tr></table></figure>
+<p>从结果可以看到，当我们开启线程的时候，先执行打印当前时间，在之后便进入第一次睡眠(sleep)，此时的线程状态并未被打断(此时尚未执行<code>this.interrupt();</code>)(<code>isInterrupted()</code>是用来判断线程的中断状态)，当执行完<code>this.interrupt();</code>之后，线程的状态已经变成<strong>中断标志</strong>，但<strong>并非退出运行</strong>，<strong>它只是一种标识，程序还会继续执行</strong>。sleep完成之后由于是while(true)死循环，所以继续执行run()方法体的代码，再次打印时间，但当sleep()方法再次调用的时候，它抛出异常了<code>InterruptedException</code>异常，并且中断状态清除。WHY?</p>
+<p>我在遇到这个问题的时候，也Google和百度过，但可能关键字的问题，愣是没找出来。</p>
+<p>还是回归官网的文档吧~在IDE中双击sleep()方法，找到它的文档(已经在NetBeans中配置好文档的显示)</p>
+<div class="figure">
+<img src="http://old-image.geekaholic.cn/2016-02-09_00003.jpg" alt="IDE截图">
+<p class="caption">IDE截图</p>
+</div>
+<blockquote>
+<p>InterruptedException - if any thread has interrupted the current thread. The interrupted status of the current thread is cleared when this exception is thrown</p>
+</blockquote>
+<p>这下全都明白了吧~~</p>
+<blockquote>
+<p>如果该线程被任何的线程所阻塞(在文档中还说明线程可被自身阻塞)，则该线程的阻塞状态会清除并抛出InterruptedException异常。</p>
+</blockquote>
+<p>小结一下：interrupt()可以阻塞线程自己本身，但它不是真正意义上中断该线程，只是打上<strong>中断标志</strong>，线程还会执行。当sleep()遇到interrupted为true的线程时，会清除状态为false，并抛出<code>interruptedException</code>异常。</p>
+<p><strong>当run()方法执行结束之后，该线程也为终止状态</strong>。上面的程序修改，可以使用一个布尔型值变量来控制while循环，而不是简单粗暴的<strong>中断加异常处理</strong>。</p>
+<h4 id="joinyield">join()&amp;&amp;yield()</h4>
+<p>join()方法用来合并线程，相当于方法调用，等到子线程中的run()执行结束之后，main()方法中的其余部分才会继续执行。</p>
+<p>，yiled是“退让”的意思。yield()方法让出CPU，给其他线程执行的机会。 #### join()代码示例 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyThread</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        MyRunnableClass mThread1 = <span class="keyword">new</span> MyRunnableClass(<span class="string">"张三"</span>);</span><br><span class="line">         MyRunnableClass mThread2 = <span class="keyword">new</span> MyRunnableClass(<span class="string">"李四"</span>);</span><br><span class="line">         mThread1.start();</span><br><span class="line">        mThread2.start();<span class="comment">//开启线程</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyRunnableClass</span> <span class="keyword">extends</span> <span class="title">Thread</span> </span>&#123;</span><br><span class="line">    MyRunnableClass()&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//通过super(String)为线程起名,可以使用getName()获取名字</span></span><br><span class="line">    MyRunnableClass(String name)&#123;</span><br><span class="line">        <span class="keyword">super</span>(name);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= <span class="number">50</span>; i++) &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                sleep(<span class="number">1000</span>);</span><br><span class="line">                System.out.println(getName()+<span class="string">"拍"</span>+i);</span><br><span class="line">                <span class="keyword">if</span>(getName().equals(<span class="string">"张三"</span>)&amp;&amp;i%<span class="number">5</span>==<span class="number">0</span>)&#123;</span><br><span class="line">                    System.out.println(getName()+<span class="string">"说:每拍5次我让你一下"</span>);</span><br><span class="line">                    yield();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; <span class="keyword">catch</span> (InterruptedException ex) &#123;</span><br><span class="line">                System.out.println(ex);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>运行结果过长，就不贴了，该代码是两人每隔1s就拍一次，每5s，张三调用了yield()方法。</p>
+<h3 id="线程的优先级">线程的优先级</h3>
+<p>Java提供一个线程调度器来监控程序中启动后进入就绪状态的所有线程，线程调度器按照线程的优先级决定应调度哪个线程来执行。</p>
+<p>线程的优先级用数字来表示，范围从1~10，一个线程的缺省优先级是5.</p>
+<blockquote>
+<p>三个优先级常量。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">     * The minimum priority that a thread can have.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">static</span> <span class="keyword">int</span> MIN_PRIORITY = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">   <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * The default priority that is assigned to a thread.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">static</span> <span class="keyword">int</span> NORM_PRIORITY = <span class="number">5</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * The maximum priority that a thread can have.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">static</span> <span class="keyword">int</span> MAX_PRIORITY = <span class="number">10</span>;</span><br></pre></td></tr></table></figure>
+<p>优先级越高，得到CPU调度的时间片越多。</p>
+
+        </div>
+        <div id="post-footer">
+            <div class="avatar" >
+                <img src="http://image.geekaholic.cn/author.jpg" alt="avatar"/>
+                
+                <a href="javascript:void(0)" class="high-song">high起来 &#128541;</a>
+                
+                
+                <a href="javascript:void(0)" class="donate fa">打赏资瓷 &#128536;</a>
+                
+            </div>
+            <ul class="author-profile-section">
+                <li>
+                  
+                  作者:
+                  
+                    
+                    <a href="/about.html">GeekaholicLin</a>
+                </li>
+                
+                <li>发表日期: <span>2016-02-09  14:56:28</span></li>
+                
+                <li>最后编辑日期: <span>2019-09-26  05:21:46</span></li>
+                
+                <li class="post-category">
+                    文章分类:
+                    
+                    <a href="/categories/编执狂/">编执狂</a>
+                    
+                    <a href="/categories/编执狂/Java/">Java</a>
+                    
+                </li>
+                <li class="post-tags">
+                    文章标签:
+                    
+                    <a href="/tags/Java/">Java</a>
+                    
+                    <a href="/tags/线程/">线程</a>
+                    
+                    <a href="/tags/InterruptedException/">InterruptedException</a>
+                    
+                    <a href="/tags/异常/">异常</a>
+                    
+                </li>
+                
+                <li> 版权声明: 
+<a href="https://creativecommons.org/licenses/by-nc-nd/3.0/" target="_blank">
+知识共享署名-非商业性使用-禁止演绎 3.0 未本地化版本许可协议（CC BY-NC-ND 3.0）
+</a></li>
+                
+            </ul>
+            <div id="donate-wrap">
+                
+                
+                
+                <img src="http://image.geekaholic.cn/alipay.jpg" alt="支付宝付款" class="donate-img">
+                
+                <img src="http://image.geekaholic.cn/wechat.png" alt="微信付款" class="donate-img">
+                
+                
+            </div>
+        </div>
+    </article>
+    <div class="article-nav">
+        
+        <a href="/2016/02/19/虚拟机英文XP系统安装中文字体-图文教程/" class="pre-post fa fa-caret-left">虚拟机英文XP系统安装中文字体(图文教程)</a>
+        
+        
+        <a href="/2016/02/06/Android控件学习之ListView/" class="next-post fa">Android控件学习之ListView</a>
+        
+    </div>
+    
+    <div id="comments">
+        
+
+<script>
+  gitalk.render("comments");
+</script>
+
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+    <footer id="footer">
+    
+    <div class="social">
+        
+        <a href="https://freecodecamp.cn/geekaholiclin" class="fa fa-free-code-camp" target="_blank" title="freecodecamp"></a>
+        
+        <a href="https://github.com/GeekaholicLin" class="fa fa-github" target="_blank" title="github"></a>
+        
+        <a href="mailto:geekaholiclin@gmail.com" class="fa fa-envelope-o" target="_blank" title="mail to me"></a>
+        
+    </div>
+    
+    <div>
+        
+        <a href="/" class="copyright-links">GeekaholicLin</a>&copy;2015 - 2019.All Rights
+        Reserved.
+    </div>
+    <p>Powered by <a href="https://hexo.io" class="copyright-links" target="_blank">Hexo</a> | Theme by <a
+                href="https://github.com/GeekaholicLin" class="copyright-links" target="_blank">GeekaholicLin</a>
+    </p>
+    
+    
+    <p>
+        <span id="busuanzi_container_site_uv" class="fa fa-bar-chart">
+        欢迎第<span id="busuanzi_value_site_uv"><i class="fa fa-spinner fa-spin"></i></span>位小伙伴~
+        </span>
+    </p>
+    
+</footer>
+
+</div>
+    <ul id="tools">
+    <li class="totop-btn fa fa-angle-up"></li>
+    <li class="exchange-btn fa fa-exchange"></li>
+  
+    <li class="toc-btn fa fa-list-ul"></li>
+    
+    
+
+    
+    <li class="comment-btn fa fa-comments-o">
+        <a href="#comments" title="comments"></a>
+    </li>
+    
+</ul>
+<p id="process"></p>
+<div id="search-overlay">
+    <div class="search-area-wrap">
+        <div id="search-area">
+            <div class="input-wrap focus">
+                <i class="fa fa-search" aria-hidden="true"></i>
+                <input id="search-input" autofocus autocomplete="off" type="text"
+                       placeholder="search this website..."/>
+            </div>
+            <ul id="search-result">
+                <li class="load-first"><i class="fa fa-spinner fa-pulse"></i></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#线程的基本概念"><span class="toc-number">1.</span> <span class="toc-text">线程的基本概念</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#线程与进程的区别"><span class="toc-number">1.1.</span> <span class="toc-text">线程与进程的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#java中线程的知识点"><span class="toc-number">1.2.</span> <span class="toc-text">Java中线程的知识点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#java中的线程"><span class="toc-number">2.</span> <span class="toc-text">Java中的线程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#java中线程的创建方法"><span class="toc-number">2.1.</span> <span class="toc-text">Java中线程的创建方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#代码示例"><span class="toc-number">2.2.</span> <span class="toc-text">代码示例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#java中线程的状态"><span class="toc-number">2.3.</span> <span class="toc-text">Java中线程的状态</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#sleepinterrupt"><span class="toc-number">2.3.1.</span> <span class="toc-text">sleep()&amp;&amp;interrupt()</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#sleep与interrupt的解惑"><span class="toc-number">2.3.2.</span> <span class="toc-text">sleep()与interrupt()的解惑</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#sleep代码示例"><span class="toc-number">2.3.3.</span> <span class="toc-text">sleep()代码示例</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#joinyield"><span class="toc-number">2.3.4.</span> <span class="toc-text">join()&amp;&amp;yield()</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#线程的优先级"><span class="toc-number">2.4.</span> <span class="toc-text">线程的优先级</span></a></li></ol></li></ol>
+
+
+    <script src="/js/highsong.js"></script>
+
+
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+    //theme config datas
+    var copyrightObj = {};
+    copyrightObj.enable = 'true';
+    copyrightObj.triggerCopyLength = '200';
+    copyrightObj.appendText = '商业转载请联系作者获得授权,非商业转载请注明出处 © GeekaholicLin';
+    var leancloudObj = {};
+    leancloudObj.enable = 'true';
+    leancloudObj.className = 'BlogCounter';
+    leancloudObj.limits = '10';
+</script>
+<script type="text/javascript">
+    var search = {};
+    var search_path = "search.xml";
+    if (!search_path) {
+        search_path = "search.xml";
+    }
+    search.path = "/" + search_path;
+    search.func =  _ajax.init();
+</script>
+<script src="/js/app.js"></script>
+
+
+</body>
+</html>

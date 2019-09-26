@@ -1,0 +1,563 @@
+<!doctype html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no">
+    
+<meta name="google-site-verification" content="osGzKb_y9J6vt8d0mGYPDH81ljatwPdSVCFwxMCJSaE">
+
+    
+<meta name="baidu-site-verification" content="Yn6v4uAWVY">
+<script>
+    //push
+    (function(){
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        }
+        else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    <!--Simple SEO-->
+
+<meta name="description" content="编执狂的博客，主要记录自己在IT路上的成长历程。/">
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+    <!--Title-->
+
+<title>Android控件学习之ListView | Geekaholic</title>
+
+<link rel="alternate" href="/atom.xml" title="Geekaholic" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+    
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/css/pages/post.css">
+<link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/thirdParty/highlight/solarized-light.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+
+<style>
+    figure .code .line:before{
+        display: none!important;
+    }
+</style>
+
+    <!--script-->
+
+
+<script src="//cdn.jsdelivr.net/npm/leancloud-storage@3.15.0/dist/av-min.js"></script>
+<script>
+  var appId = "RI5uv752sD0nGTyUSUC6odJE-gzGzoHsz";
+  var appKey = "yuke8QmutaxI5YvyD2NIE57u";
+  var region = "null";
+  var serverURLs = "http://leancloud.geekaholic.cn";
+  AV.init({
+    appId: appId,
+    appKey: appKey,
+    region: region,
+    serverURLs: serverURLs
+  });
+</script>
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+<script>
+  var admin = "GeekaholicLin";
+  admin = admin.split(",");
+  var gitalk = new Gitalk({
+    clientID: "aa2215dfc8ee944d1205",
+    clientSecret: "77cd2afa5d161bc0ab04639ed81300d808c6e22b",
+    repo: "geekaholiclin.github.io",
+    owner: "GeekaholicLin",
+    admin: admin,
+    id: decodeURIComponent(location.pathname),
+    distractionFreeMode: false
+  })
+
+</script>
+
+    
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?1fdc784829bc9fa0c0bbee0c680ffe2a";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+    
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-91854900-3', 'auto');
+    ga('send', 'pageview');
+
+</script>
+
+</head>
+</html>
+<body id="normal">
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<style>
+    header{ top: 71px; position: absolute!important;}
+    #container{padding-top: 151px!important;}
+</style>
+<div style="position:fixed;z-index:9999;left:0;top:0;width:100%;height:70px;background-color:#e0e0e0;color:#396CA5;border-bottom:1px solid #cecece;text-align:center;line-height:70px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis">您使用的浏览器版本过低，为了您更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<div id="wrap">
+    <header  style="position: absolute;" >
+    <div id="site-meta">
+        <a href="/" id="logo">
+            <h1 class="title">Geekaholic</h1>
+        </a>
+        
+        <h2 class="subtitle">编程在于折腾</h2>
+        
+    </div>
+    <ul id="nav">
+        
+            <li><a href="/"><i class="fa fa-home"></i>首页</a></li>
+        
+            <li><a href="/about"><i class="fa fa-user"></i>关于我</a></li>
+        
+            <li><a href="/atom.xml"><i class="fa fa-rss"></i>RSS</a></li>
+        
+        <li id="search"><a href="javascript:void(0)"><i class="fa fa-search"></i>搜索</a></li>
+    </ul>
+</header>
+
+    <div id="container">
+        
+<ul id="sidebar">
+    
+    
+    
+    
+<li class="widget widget-normal category">
+    <h3 class="fa fa-th widget-title">分类</h3>
+    <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/他山之石/"><i class="fa" aria-hidden="true">他山之石</i></a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/他山之石/Web/"><i class="fa" aria-hidden="true">Web</i></a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/编执狂/"><i class="fa" aria-hidden="true">编执狂</i></a><span class="category-list-count">14</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/编执狂/Android/"><i class="fa" aria-hidden="true">Android</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/编执狂/Java/"><i class="fa" aria-hidden="true">Java</i></a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/编执狂/Web/"><i class="fa" aria-hidden="true">Web</i></a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/编执狂/计算机基础/"><i class="fa" aria-hidden="true">计算机基础</i></a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/编程之外/"><i class="fa" aria-hidden="true">编程之外</i></a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/编程之外/Hexo/"><i class="fa" aria-hidden="true">Hexo</i></a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/编程之外/解决方法/"><i class="fa" aria-hidden="true">解决方法</i></a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/黄金屋-读书笔记/"><i class="fa" aria-hidden="true">黄金屋--读书笔记</i></a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/黄金屋-读书笔记/CSS设计指南/"><i class="fa" aria-hidden="true">CSS设计指南</i></a><span class="category-list-count">1</span></li></ul></li></ul>
+</li>
+
+
+    
+    
+<li class="widget widget-normal archive">
+  <h3 class="fa fa-archive widget-title">归档</h3>
+    <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/"><i class="fa" aria-hidden="true">九月 2017</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/"><i class="fa" aria-hidden="true">八月 2017</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/"><i class="fa" aria-hidden="true">三月 2017</i></a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/"><i class="fa" aria-hidden="true">二月 2017</i></a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/"><i class="fa" aria-hidden="true">三月 2016</i></a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/"><i class="fa" aria-hidden="true">二月 2016</i></a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/"><i class="fa" aria-hidden="true">一月 2016</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/"><i class="fa" aria-hidden="true">十二月 2015</i></a><span class="archive-list-count">5</span></li></ul>
+</li>
+
+
+    
+    
+<li class="widget widget-normal popular-posts" id="popular-posts">
+    <h3 class="fa fa-thermometer-3 widget-title">热门文章</h3>
+    <ul id="popular-content">
+        <li class="load-first"><i class="fa fa-spinner fa-pulse"></i></li>
+    </ul>
+</li>
+
+    
+    
+<li class="widget widget-normal tags">
+  <h3 class="fa fa-tags widget-title">标签云</h3>
+  <div class="tagcloud-content">
+    
+      <a href="/tags/Mathjax/" style="font-size: 0.18rem; color: #4f83b8">Mathjax</a> <a href="/tags/JavaScript/" style="font-size: 0.21rem; color: #386da4">JavaScript</a> <a href="/tags/Web/" style="font-size: 0.21rem; color: #386da4">Web</a> <a href="/tags/Android/" style="font-size: 0.18rem; color: #4f83b8">Android</a> <a href="/tags/ListView原理/" style="font-size: 0.14rem; color: #69c">ListView原理</a> <a href="/tags/ListView优化/" style="font-size: 0.14rem; color: #69c">ListView优化</a> <a href="/tags/Android控件/" style="font-size: 0.14rem; color: #69c">Android控件</a> <a href="/tags/解决方法/" style="font-size: 0.14rem; color: #69c">解决方法</a> <a href="/tags/Genymotion/" style="font-size: 0.14rem; color: #69c">Genymotion</a> <a href="/tags/VisualBox/" style="font-size: 0.14rem; color: #69c">VisualBox</a> <a href="/tags/Java/" style="font-size: 0.28rem; color: #0a407c">Java</a> <a href="/tags/线程/" style="font-size: 0.14rem; color: #69c">线程</a> <a href="/tags/InterruptedException/" style="font-size: 0.14rem; color: #69c">InterruptedException</a> <a href="/tags/异常/" style="font-size: 0.14rem; color: #69c">异常</a> <a href="/tags/RxJS/" style="font-size: 0.14rem; color: #69c">RxJS</a> <a href="/tags/Translation/" style="font-size: 0.18rem; color: #4f83b8">Translation</a> <a href="/tags/Hexo主题/" style="font-size: 0.18rem; color: #4f83b8">Hexo主题</a> <a href="/tags/ylion/" style="font-size: 0.25rem; color: #215690">ylion</a> <a href="/tags/模块化/" style="font-size: 0.18rem; color: #4f83b8">模块化</a> <a href="/tags/CSS3/" style="font-size: 0.14rem; color: #69c">CSS3</a> <a href="/tags/W3C/" style="font-size: 0.14rem; color: #69c">W3C</a> <a href="/tags/Hexo/" style="font-size: 0.21rem; color: #386da4">Hexo</a> <a href="/tags/主题制作/" style="font-size: 0.18rem; color: #4f83b8">主题制作</a> <a href="/tags/IO操作/" style="font-size: 0.21rem; color: #386da4">IO操作</a> <a href="/tags/Scanner/" style="font-size: 0.14rem; color: #69c">Scanner</a> <a href="/tags/马士兵/" style="font-size: 0.18rem; color: #4f83b8">马士兵</a> <a href="/tags/异常处理/" style="font-size: 0.18rem; color: #4f83b8">异常处理</a> <a href="/tags/流类型/" style="font-size: 0.18rem; color: #4f83b8">流类型</a> <a href="/tags/算法分析/" style="font-size: 0.14rem; color: #69c">算法分析</a> <a href="/tags/复杂度/" style="font-size: 0.14rem; color: #69c">复杂度</a> <a href="/tags/虚拟机/" style="font-size: 0.14rem; color: #69c">虚拟机</a> <a href="/tags/英文XP系统/" style="font-size: 0.14rem; color: #69c">英文XP系统</a> <a href="/tags/中文字体/" style="font-size: 0.14rem; color: #69c">中文字体</a> <a href="/tags/兼容性/" style="font-size: 0.18rem; color: #4f83b8">兼容性</a> <a href="/tags/CSS设计指南/" style="font-size: 0.14rem; color: #69c">CSS设计指南</a> <a href="/tags/读书笔记/" style="font-size: 0.14rem; color: #69c">读书笔记</a> <a href="/tags/polyfill/" style="font-size: 0.14rem; color: #69c">polyfill</a>
+  </div>
+</li>
+
+
+    
+    
+<li class="widget widget-normal friends-link">
+    <h3 class="fa fa-globe widget-title">友链</h3><br/>
+
+    
+        <a href="http://geekaholiclin.github.io" class="fa" target="_blank">主题作者</a>
+
+    
+        <a href="http://walkerlala.github.com/" class="fa" target="_blank">walkerlala</a>
+
+    
+        <a href="http://jerry011235.github.io/" class="fa" target="_blank">璀璨星空</a>
+
+    
+
+</li>
+
+    
+</ul>
+
+
+        <div id="main">
+    <article id="post">
+        <div id="post-header">
+
+            <h1 id="Android控件学习之ListView">
+                
+                Android控件学习之ListView
+                
+            </h1>
+            <div class="article-meta">
+    
+    
+    <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+        <span>Android</span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+         <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            Android
+            
+        </span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta ">2016/02/06</span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+            <i class="fa fa-thermometer-three-quarters"></i>
+        <span class="hits hits-meta " data-leadcloud-title="Android控件学习之ListView"
+              data-leadcloud-url="/2016/02/06/Android控件学习之ListView/"><i class="fa fa-spinner fa-spin"></i></span>
+    </span>
+    
+    
+</div>
+
+            
+            
+            <p class="fa fa-exclamation-triangle warning">
+                本文于<strong>1327</strong>天之前发表，文中内容可能已经过时。如有疑问，请在评论区留言。
+            </p>
+            
+        </div>
+        
+        <div id="post-body">
+            <p><strong>参考资料</strong>： &gt; <a href="http://www.runoob.com/w3cnote/android-tutorial-adapter.html" target="_blank" rel="noopener">Adapter基础讲解</a> &gt; <a href="http://blog.csdn.net/to_be_designer/article/details/47980475" target="_blank" rel="noopener">Android UI</a> &gt; <a href="http://www.cnblogs.com/xiaowenji/archive/2010/12/08/1900579.html" target="_blank" rel="noopener">译文</a> &gt; <a href="http://niorgai.github.io/2014/12/13/ListView%E4%B8%8EBaseAdapter%E4%BC%98%E5%8C%96/" target="_blank" rel="noopener">ListView与BaseAdapter优化</a> &gt; <a href="http://mzh3344258.blog.51cto.com/1823534/889879" target="_blank" rel="noopener">华华世界 的BLOG</a></p>
+<p>ListView的学习主要是适配器(Adapter)的使用以及对MVC的理解。代码尽量做到简单，为的是演示它的核心功能，不顾及界面。所以界面过丑，勿喷~~ ### 1.ArrayAdapter</p>
+<p>只需要我们提供数据，即可以显示。显示的方式使用Android提供的布局–e.g:<code>android.R.layout.simple_expandable_list_item_1</code>。还有其他的官方提供的布局,可以修改一下试一试。</p>
+<blockquote>
+<p>simple_list_item_1 : 单独一行的文本框 simple_list_item_2 : 两个文本框组成，要调整数据。 simple_list_item_checked : 每项都是有一个勾选框的列表项 <img src="./images/1454742558811.jpg" title="1454742558811.jpg"> simple_list_item_multiple_choice : 都带有一个复选框 <img src="./images/1454742586021.jpg" title="1454742586021.jpg"> simple_list_item_single_choice : 都带有一个单选钮</p>
+</blockquote>
+<a id="more"></a>
+<h4 id="listview主布局activity_main.xml">ListView主布局–activity_main.xml</h4>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">&lt;?xml version=<span class="string">"1.0"</span> encoding=<span class="string">"utf-8"</span>?&gt;</span><br><span class="line">&lt;RelativeLayout xmlns:android=<span class="string">"http://schemas.android.com/apk/res/android"</span></span><br><span class="line">    xmlns:tools=<span class="string">"http://schemas.android.com/tools"</span></span><br><span class="line">    android:layout_width=<span class="string">"match_parent"</span></span><br><span class="line">    android:layout_height=<span class="string">"match_parent"</span></span><br><span class="line">    android:paddingBottom=<span class="string">"@dimen/activity_vertical_margin"</span></span><br><span class="line">    android:paddingLeft=<span class="string">"@dimen/activity_horizontal_margin"</span></span><br><span class="line">    android:paddingRight=<span class="string">"@dimen/activity_horizontal_margin"</span></span><br><span class="line">    android:paddingTop=<span class="string">"@dimen/activity_vertical_margin"</span></span><br><span class="line">    tools:context=<span class="string">"com.scauit.androidtest_fragmentandtextview.MainActivity"</span>&gt;</span><br><span class="line"></span><br><span class="line">   &lt;ListView</span><br><span class="line">       android:id=<span class="string">"@+id/list"</span></span><br><span class="line">       android:layout_width=<span class="string">"match_parent"</span></span><br><span class="line">       android:layout_height="match_parent"&gt;&lt;/ListView&gt;</span><br><span class="line">&lt;/RelativeLayout&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="listviewitem布局listviewiitem">ListViewItem布局–ListViewIitem</h4>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">&lt;?xml version=<span class="string">"1.0"</span> encoding=<span class="string">"utf-8"</span>?&gt;</span><br><span class="line">&lt;LinearLayout xmlns:android=<span class="string">"http://schemas.android.com/apk/res/android"</span></span><br><span class="line">    android:orientation=<span class="string">"vertical"</span> android:layout_width=<span class="string">"match_parent"</span></span><br><span class="line">    android:layout_height=<span class="string">"match_parent"</span>&gt;</span><br><span class="line">&lt;TextView</span><br><span class="line">    android:id=<span class="string">"@+id/tv_item_text"</span></span><br><span class="line">    android:layout_width=<span class="string">"match_parent"</span></span><br><span class="line">    android:layout_height=<span class="string">"wrap_content"</span> /&gt;</span><br><span class="line">&lt;/LinearLayout&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="mainactivy代码">MainActivy代码</h4>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.activity_main);</span><br><span class="line">        String[] dataStrings = &#123;</span><br><span class="line">                <span class="string">"Java"</span>,<span class="string">"Python"</span>,<span class="string">"C"</span>,<span class="string">"C++"</span>,<span class="string">"C#"</span></span><br><span class="line">        &#125;;</span><br><span class="line">        ArrayAdapter&lt;String&gt; listAdapter = <span class="keyword">new</span> ArrayAdapter&lt;String&gt;(<span class="keyword">this</span>,</span><br><span class="line">                android.R.layout.simple_expandable_list_item_1,dataStrings);</span><br><span class="line">        ListView ls = (ListView) findViewById(R.id.list);</span><br><span class="line">        ls.setAdapter(listAdapter);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="arrayadapter的其他用法来自教程3">ArrayAdapter的其他用法:来自<a href="http://www.runoob.com/w3cnote/android-tutorial-adapter.html" target="_blank" rel="noopener">‘教程’</a></h3>
+<blockquote>
+<p>1.除了通过数组外，我们还可以写到一个数组资源文件中：</p>
+</blockquote>
+<blockquote>
+<p>比如：在res：arrays.xml： <figure class="highlight"><table><tr><td class="code"><pre><span class="line">&lt;?xml version=<span class="string">"1.0"</span> encoding=<span class="string">"utf-8"</span>?&gt;</span><br><span class="line">&lt;resources&gt;</span><br><span class="line">    &lt;string-array name=<span class="string">"myarray"</span>&gt;</span><br><span class="line">    &lt;item&gt;语文&lt;/item&gt;</span><br><span class="line">    &lt;item&gt;数学&lt;/item&gt;</span><br><span class="line">    &lt;item&gt;英语&lt;/item&gt;</span><br><span class="line">    &lt;/string-array&gt;</span><br><span class="line">&lt;/resources&gt;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>接着布局的listview属性设置下这个列表项： <figure class="highlight java"><table><tr><td class="code"><pre><span class="line">&lt;ListView</span><br><span class="line">        android:id=<span class="string">"@id/list_test"</span></span><br><span class="line">        android:layout_height=<span class="string">"match_parent"</span></span><br><span class="line">        android:layout_width=<span class="string">"match_parent"</span></span><br><span class="line">        android:entries=<span class="string">"@array/myarray"</span>/&gt;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p>就可以了~</p>
+<p>当然我们也可以在Java代码中这样写： <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ArrayAdapter&lt;CharSequence&gt; adapter = ArrayAdapter.createFromResource(this,</span><br><span class="line">        R.array.myarray,android.R.layout.simple_list_item_multiple_choice );</span><br></pre></td></tr></table></figure></p>
+<h3 id="simpleadapter">2.SimpleAdapter</h3>
+<p>SimpleAdapter也是Android自己提供的一个Adapter适配器，它与ArrayAdapter不同的是ArrayAdapter需要使用Android自己定义的view布局文件，而SimpleAdapter则可以使用我们自己定义的布局文件。</p>
+<div class="figure">
+<img src="http://old-image.geekaholic.cn/2016-02-06_00001.jpg" alt="SimpleAdapter">
+<p class="caption">SimpleAdapter</p>
+</div>
+<p>首先，我们先来看SimpleAdapter的构造方法：来自【<a href="http://blog.csdn.net/to_be_designer/article/details/47980475" target="_blank" rel="noopener">博客</a>】 <code>public SimpleAdapter(Context context, List&lt;? extends Map&lt;String, ?&gt;&gt; data,             @LayoutRes int resource, String[] from, @IdRes int[]to)</code></p>
+<blockquote>
+<p>第一个参数Context context是指当前的Activity，我们传入this即可。 第二个参数List&lt;? extends Map<string,?>&gt;是指传入的数据类型必须是List集合，集合存放的数据类型必须是Map。 第三个参数int resource是指View的布局文件。传入我们的布局文件 第四个参数 String[]from数据是以Map类型存放在List集合中的，from参数是指存放在List中每条Map数据的键值集合。 第五个参数int[] to是指将每条Map类型的数据中的不同键值对应到不同的得布局控件中。</string,?></p>
+</blockquote>
+<h4 id="主布局activity_main.xml">主布局activity_main.xml</h4>
+<p>与ArrayAdapter的一样，只有一个ListView控件：</p>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">&lt;?xml version=<span class="string">"1.0"</span> encoding=<span class="string">"utf-8"</span>?&gt;</span><br><span class="line">&lt;RelativeLayout xmlns:android=<span class="string">"http://schemas.android.com/apk/res/android"</span></span><br><span class="line">    xmlns:tools=<span class="string">"http://schemas.android.com/tools"</span></span><br><span class="line">    android:layout_width=<span class="string">"match_parent"</span></span><br><span class="line">    android:layout_height=<span class="string">"match_parent"</span></span><br><span class="line">    android:paddingBottom=<span class="string">"@dimen/activity_vertical_margin"</span></span><br><span class="line">    android:paddingLeft=<span class="string">"@dimen/activity_horizontal_margin"</span></span><br><span class="line">    android:paddingRight=<span class="string">"@dimen/activity_horizontal_margin"</span></span><br><span class="line">    android:paddingTop=<span class="string">"@dimen/activity_vertical_margin"</span></span><br><span class="line">    tools:context=<span class="string">"com.scauit.androidtest_fragmentandtextview.MainActivity"</span>&gt;</span><br><span class="line"></span><br><span class="line">   &lt;ListView</span><br><span class="line">       android:id=<span class="string">"@+id/list"</span></span><br><span class="line">       android:layout_width=<span class="string">"match_parent"</span></span><br><span class="line">       android:layout_height="match_parent"&gt;&lt;/ListView&gt;</span><br><span class="line">&lt;/RelativeLayout&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="item布局listview_item.xml">Item布局–listview_item.xml</h4>
+<p>由于使用了第三方开源控件，需要在build.gradle中引入依赖<code>compile 'de.hdodenhof:circleimageview:2.0.0'</code>：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">dependencies &#123;</span><br><span class="line">    <span class="function">compile <span class="title">fileTree</span><span class="params">(dir: <span class="string">'libs'</span>, include: [<span class="string">'*.jar'</span>])</span></span></span><br><span class="line"><span class="function">    testCompile 'junit:junit:4.12'</span></span><br><span class="line"><span class="function">    compile 'com.android.support:appcompat-v7:23.1.1'</span></span><br><span class="line"><span class="function">    compile 'de.hdodenhof:circleimageview:2.0.0'</span></span><br><span class="line"><span class="function">&#125;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">&lt;?xml version=<span class="string">"1.0"</span> encoding=<span class="string">"utf-8"</span>?&gt;</span><br><span class="line">&lt;LinearLayout xmlns:android=<span class="string">"http://schemas.android.com/apk/res/android"</span></span><br><span class="line">    android:orientation=<span class="string">"horizontal"</span> android:layout_width=<span class="string">"match_parent"</span></span><br><span class="line">    android:layout_height=<span class="string">"match_parent"</span>&gt;</span><br><span class="line">    &lt;de.hdodenhof.circleimageview.CircleImageView</span><br><span class="line">        xmlns:app=<span class="string">"http://schemas.android.com/apk/res-auto"</span></span><br><span class="line">        android:id=<span class="string">"@+id/tv_item_img"</span></span><br><span class="line">        android:layout_width=<span class="string">"100dp"</span></span><br><span class="line">        android:layout_height=<span class="string">"100dp"</span></span><br><span class="line">        android:src=<span class="string">"@drawable/profile"</span>/&gt;</span><br><span class="line">&lt;TextView</span><br><span class="line">    android:id=<span class="string">"@+id/tv_item_text"</span></span><br><span class="line">    android:layout_width=<span class="string">"match_parent"</span></span><br><span class="line">    android:layout_height=<span class="string">"wrap_content"</span></span><br><span class="line">    android:text=<span class="string">"@string/app_name"</span>/&gt;</span><br><span class="line">&lt;/LinearLayout&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="mainactivy代码-1">MainActivy代码</h4>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">AppCompatActivity</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.activity_main);</span><br><span class="line">        <span class="comment">//构建Item布局中的TextView的属性值</span></span><br><span class="line">        String[] dataStrings = &#123;</span><br><span class="line">                <span class="string">"学习Java"</span>,<span class="string">"学习Python"</span>,<span class="string">"学习C"</span>,<span class="string">"学习C++"</span>,<span class="string">"学习C#"</span></span><br><span class="line">        &#125;;</span><br><span class="line">        <span class="comment">//使用int来存储img的id，构建Item布局中的CircleImageView的属性值(为了演示方便，使用同一张图片)</span></span><br><span class="line">        <span class="keyword">int</span>[] img = <span class="keyword">new</span> <span class="keyword">int</span>[]&#123;</span><br><span class="line">                R.drawable.profile,</span><br><span class="line">                R.drawable.profile,</span><br><span class="line">                R.drawable.profile,</span><br><span class="line">                R.drawable.profile,</span><br><span class="line">                R.drawable.profile,</span><br><span class="line">                R.drawable.profile,</span><br><span class="line">        &#125;;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//构建Map类型的线性表List数据，将数据存储在List&lt;Map&lt;String,Object&gt;&gt;类型中</span></span><br><span class="line">        List&lt;Map&lt;String,Object&gt;&gt; dataList = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;dataStrings.length ; i++) &#123;</span><br><span class="line">            Map&lt;String,Object&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">            map.put(<span class="string">"study"</span>,dataStrings[i]);</span><br><span class="line">            map.put(<span class="string">"img"</span>,img[i]);</span><br><span class="line">            dataList.add(map);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//构建构造方法的参数4，传入Map的键值数组</span></span><br><span class="line">        String[] from = &#123;</span><br><span class="line">                <span class="string">"study"</span>,<span class="string">"img"</span></span><br><span class="line">        &#125;;</span><br><span class="line">        <span class="comment">//构建构造方法的参数5，传入Item布局的id，需要注意的是：</span></span><br><span class="line">        <span class="comment">//键值对与id要一一对应</span></span><br><span class="line">        <span class="keyword">int</span>[] to = <span class="keyword">new</span> <span class="keyword">int</span>[]&#123;</span><br><span class="line">                R.id.tv_item_text,</span><br><span class="line">                R.id.tv_item_img</span><br><span class="line">        &#125;;</span><br><span class="line">        <span class="comment">//构建SimpleAdapter对象</span></span><br><span class="line">        SimpleAdapter simpleAdapter = <span class="keyword">new</span> SimpleAdapter(<span class="keyword">this</span>,dataList,R.layout.listview_item,from,to);</span><br><span class="line">        ListView ls = (ListView) findViewById(R.id.list);</span><br><span class="line">        ls.setAdapter(simpleAdapter);<span class="comment">//设置</span></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="自定义adapter使用最多的">自定义Adapter–使用最多的</h3>
+<h4 id="数据-model">数据-Model</h4>
+<p>根据MVC的思想，先构造Model–数据：(新建数据类–People)</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">People</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> img;</span><br><span class="line">    <span class="keyword">private</span> String peoName;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">People</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.img = R.drawable.profile;</span><br><span class="line">        <span class="keyword">this</span>.peoName = <span class="string">"无名氏"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">People</span><span class="params">(<span class="keyword">int</span> img, String peoName, <span class="keyword">char</span> sex, <span class="keyword">int</span> idNum, <span class="keyword">float</span> tall)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.img = img;</span><br><span class="line">        <span class="keyword">this</span>.peoName = peoName;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/*getter and setter*/</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getImg</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> img;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setImg</span><span class="params">(<span class="keyword">int</span> img)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.img = img;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getPeoName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> peoName;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setPeoName</span><span class="params">(String peoName)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.peoName = peoName;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="视图view">视图–View</h4>
+<p>布局文件与上述一样。</p>
+<h4 id="自定义适配器adaptercontroller">自定义适配器Adapter–Controller</h4>
+<p>自定义一个Adapter，让它继承自BaseAdapter，并且实现其抽象方法。 来自【<a href="http://blog.csdn.net/to_be_designer/article/details/47983017" target="_blank" rel="noopener">博客</a>】 &gt;BaseAdapter中有四个抽象的方法：public int getCount()， public Object getItem(int position)， public long getItemId(int position)， public View getView(int position, View convertview，ViewGroup viewGroup)，因此在继承BaseAdapter类后必须实现这四个方法。 &gt;public int getCount()： 　　是用来返回数据的数量的。 　　 &gt;public Object getItem(int position): 　　该方法使用来获得每一条ListView中的Item的，这里我们返回position即可，position是指每条Item在ListView中的位置（0， 1， 2……）。 　　 &gt;public long getItemId(int position)： 　　　该方法是来获得ListView中每条Item的Id的，这里我们依然返回position即可。 　　　 &gt;public View getView(int position, View convertview, ViewGroup viewGroup): 　　该方法是自定义Adapter最重要的方法，在这个方法中我们需要将数据一一对应的映射或者添加到我们自己定义的View中。然后返回view。</p>
+<p>不需要强行记住这四个方法，使用AS的时候，当继承了BaseAdapter抽象类时，自动提醒你实现，所以，应该记住他们的功能是什么。</p>
+<p>下面为ListViewAdapter的代码 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ListViewAdapter</span> <span class="keyword">extends</span> <span class="title">BaseAdapter</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//定义数据</span></span><br><span class="line">    <span class="keyword">private</span> List&lt;People&gt; peoples;</span><br><span class="line">    <span class="comment">//定义Inflater,用来加载我们自定义的布局。</span></span><br><span class="line">    <span class="comment">//inflater是泵的意思，生动形象</span></span><br><span class="line">    <span class="keyword">private</span> LayoutInflater inflater;</span><br><span class="line">    <span class="keyword">private</span> Context mContext;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//构造函数</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ListViewAdapter</span><span class="params">(List&lt;People&gt; peoples, LayoutInflater inflater, Context mContext)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.peoples = peoples;</span><br><span class="line">        <span class="keyword">this</span>.inflater = inflater;</span><br><span class="line">        <span class="keyword">this</span>.mContext = mContext;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getCount</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> peoples.size();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">getItem</span><span class="params">(<span class="keyword">int</span> position)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> position;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">long</span> <span class="title">getItemId</span><span class="params">(<span class="keyword">int</span> position)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> position;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> View <span class="title">getView</span><span class="params">(<span class="keyword">int</span> position, View convertView, ViewGroup parent)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//1.创建viewHolder对象</span></span><br><span class="line">        ViewHolder viewHolder;</span><br><span class="line">        <span class="comment">//2.获取viewHolder</span></span><br><span class="line">        <span class="comment">//2.1 convertview为空时，先使用inflater加载布局，</span></span><br><span class="line">        <span class="comment">// ViewHolder将显示在ListView中的数据通过findViewById获取到</span></span><br><span class="line">        <span class="keyword">if</span> (convertView == <span class="keyword">null</span>) &#123;</span><br><span class="line">            viewHolder = <span class="keyword">new</span> ViewHolder();</span><br><span class="line">            <span class="comment">//从inflater中获取视图</span></span><br><span class="line">            convertView = inflater.inflate(R.layout.listview_item, parent, <span class="keyword">false</span>);</span><br><span class="line">            <span class="comment">//将视图的控件'赋值'给viewHolder来操作</span></span><br><span class="line">            viewHolder.circleImageView =</span><br><span class="line">                    (CircleImageView) convertView.findViewById(R.id.tv_item_img);</span><br><span class="line">            viewHolder.tv = (TextView) convertView.findViewById(R.id.tv_item_text);</span><br><span class="line">            convertView.setTag(viewHolder);</span><br><span class="line">        &#125; <span class="keyword">else</span></span><br><span class="line">            viewHolder = (ViewHolder) convertView.getTag();<span class="comment">//2.2 不为空时通过Tag获取viewHolder</span></span><br><span class="line">        <span class="comment">//3.获取到viewHolder，对值进行设置</span></span><br><span class="line">        viewHolder.circleImageView.setImageResource(peoples.get(position).getImg());</span><br><span class="line">        viewHolder.tv.setText(peoples.get(position).getPeoName());</span><br><span class="line">        <span class="keyword">return</span> convertView;<span class="comment">//返回视图</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//ViewHolder内部类</span></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">ViewHolder</span> </span>&#123;</span><br><span class="line">        CircleImageView circleImageView;</span><br><span class="line">        TextView tv;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>完成了数据类和适配器Adapter之后，就可以编写代码了，相对于适配器的代码来说，Activity的代码就很简单了。无非就是初始化数据，获取ListView的实例，并且设置它的适配器。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">    <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">AppCompatActivity</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> List&lt;People&gt; peoples;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.activity_main);</span><br><span class="line">        initData();</span><br><span class="line">        ListView ls = (ListView) findViewById(R.id.list);</span><br><span class="line">        LayoutInflater layoutInflater = getLayoutInflater();<span class="comment">//获取实例</span></span><br><span class="line">        ListViewAdapter lsAdapter = <span class="keyword">new</span> ListViewAdapter(peoples,layoutInflater,<span class="keyword">this</span>);</span><br><span class="line">        ls.setAdapter(lsAdapter);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">initData</span><span class="params">()</span> </span>&#123;</span><br><span class="line">       peoples = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        People p1 = <span class="keyword">new</span> People();</span><br><span class="line">        People p2 = <span class="keyword">new</span> People(R.drawable.profile,<span class="string">"lin"</span>);</span><br><span class="line">        People p3 = <span class="keyword">new</span> People(R.drawable.profile,<span class="string">"lin2"</span>);</span><br><span class="line">        People p4 = <span class="keyword">new</span> People(R.drawable.profile,<span class="string">"lin3"</span>);</span><br><span class="line">        People p5 = <span class="keyword">new</span> People(R.drawable.profile,<span class="string">"lin4"</span>);</span><br><span class="line">        peoples.add(p1);</span><br><span class="line">        peoples.add(p2);</span><br><span class="line">        peoples.add(p3);</span><br><span class="line">        peoples.add(p4);</span><br><span class="line">        peoples.add(p5);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>OK~大功告成。偷懒了不少，很粗略地完成了ListView的学习。难点在于自定义Adapter。而自定义Adapter的难点在于getView的重写和优化【废话！】[优化之处在于使用内部类ViewHolder以及convertView]</p>
+<h3 id="原理浅谈与优化">3.原理浅谈与优化</h3>
+<p>看完是不是觉得很难以理解代码？为什么这样？为什么不是那样？刚开始看郭神的《第一行代码》时，也有这种感觉，不理解getView()方法是有什么用，不理解ListView的工作原理，云里雾里。</p>
+<p>关于convertView可以参考以下的文章，这些是个人在理解原理时收集的文章，还请仔细阅读。这里结合自己的理解，理解总结getView()方法整个过程的使用，纰漏之处，还望指出~</p>
+<p><strong>特别重要的一点：Recycler中’回收’的是出现过又不可见的Item类型(ItemType)</strong></p>
+<blockquote>
+<ol style="list-style-type: decimal">
+<li>第一次加载ListView时会先根据ListView的高度和宽度，将<code>layoutInflater</code>读取的布局创建视图，加载在ListView可见区域，对于不可见的Item暂时不加载进内存中(记得是内存)。</li>
+<li>比如下图中，有7个Item，会根据高度，加载每个Item的布局并创建视图。 3.使用convertView的原因在于从’布局读取’的内存方面进行优化。当Item1滑出可见区域，则被Recycler回收，该布局类型为Type1，并存在convertView当中，因为Item8的ItemType相同，均为Type1，这时候就不需要从layoutInflater中加载布局文件，而是利用convertView的View视图类型，<strong>重用布局</strong>，只更新Item8的数据，而不更新布局。 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//也就是说如果布局文件中有一个多选框checkbox，该checkbox与数</span></span><br><span class="line"><span class="comment">//据无关，只和布局相关，在Item1中为勾选状态，Item1滑出保存在</span></span><br><span class="line"><span class="comment">//convertView中时，在加载Item8的时候，调用getView()返回的视</span></span><br><span class="line"><span class="comment">//图Viwe是Item8的数据以及Item1的勾选状态。因为它们的布局文件</span></span><br><span class="line"><span class="comment">//一样，会使得ItemType相同，重用布局。</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+</blockquote>
+<blockquote>
+<ol start="4" style="list-style-type: decimal">
+<li>所以convertView是从加载布局文件方面进行优化。</li>
+<li><strong>使用ViewHolder的原因是findViewById方法耗时较大</strong>，如果控件个数过多，会严重影响性能，而使用ViewHolder主要是为了可以省去这个时间。通过setTag，getTag直接获取View。至于里面的是否要用static修饰，关于是否定义成静态，跟里面的对象数目是没有关系的，加静态是为了在多个地方使用这个Holder的时候，类只需加载一次，如果只是使用了一次，加不加也没所谓！</li>
+<li>根据1中所述，在使用convertView的时候需要注意：</li>
+</ol>
+<ul>
+<li>不可以设置listView的layout_height为wrap_content。原因是： ListView根据高度来初始化加载Item的时候，不知道本身到底要定义成多高 所以需要调用多次getView方法来计算item的高度 来填充自己，所以要match_parent或者写成固定高度。</li>
+</ul>
+</blockquote>
+<div class="figure">
+<img src="http://old-image.geekaholic.cn/%5BAndroid%5D%20ListView%E4%B8%ADgetView%E7%9A%84%E5%8E%9F%E7%90%86%EF%BC%8B%E5%A6%82%E4%BD%95%E5%9C%A8ListView%E4%B8%AD%E6%94%BE%E7%BD%AE%E5%A4%9A%E4%B8%AAitem%20-%20%E6%9C%A8%E4%B9%83%E7%8C%AB%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD.jpg" alt="原理解析经典图">
+<p class="caption">原理解析经典图</p>
+</div>
+<h3 id="其他优化">4.其他优化</h3>
+<h4 id="onscrolllistener-图片加载">OnScrollListener-图片加载</h4>
+<p>ListView经常需要展示图片，如果在滑动时对滑动过的每张图片都要加载，会比较占内存。推荐的优化方法是设置OnScrollListener，在滑动完成后再下载当前页面的图片。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">listView.setOnScrollListener(<span class="keyword">new</span> AbsListView.OnScrollListener() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onScrollStateChanged</span><span class="params">(AbsListView view, <span class="keyword">int</span> scrollState)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">switch</span> (scrollState)&#123;</span><br><span class="line">            <span class="comment">// 用户手指滑动中</span></span><br><span class="line">            <span class="keyword">case</span> SCROLL_STATE_TOUCH_SCROLL:</span><br><span class="line">            <span class="comment">// 用户手指离开，但滑动动画进行中</span></span><br><span class="line">            <span class="keyword">case</span> SCROLL_STATE_FLING:</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="comment">// 滑动结束</span></span><br><span class="line">            <span class="keyword">case</span> SCROLL_STATE_IDLE:</span><br><span class="line">                <span class="keyword">int</span> start = listView.getFirstVisiblePosition();</span><br><span class="line">                <span class="keyword">int</span> end = listView.getLastVisiblePosition();</span><br><span class="line">                <span class="keyword">if</span>(end &gt;= listView.getCount())&#123;</span><br><span class="line">                    end = listView.getCount() - <span class="number">1</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="comment">//展示start－end之间的图片</span></span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onScroll</span><span class="params">(AbsListView view, <span class="keyword">int</span> firstVisibleItem, <span class="keyword">int</span> visibleItemCount, <span class="keyword">int</span> totalItemCount)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h4 id="item监听">Item监听</h4>
+<p>当ListView的item中有比如button这些子view时，需要对其设置<code>onclickListener</code>，通常的写法是在getView方法中一个个设置，但是这种写法每次调用getView时都设置了一个新的onClick事件，效率很低。高效的写法可以直接在ViewHolder中设置一个position，然后<code>viewHolder implements OnClickListenr</code>。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span>  <span class="title">ViewHolder</span> <span class="keyword">implements</span> <span class="title">OnClickListener</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> position;</span><br><span class="line">    TextView name;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setPosition</span><span class="params">(<span class="keyword">int</span> position)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.position = position;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">switch</span> (v.getId())&#123;</span><br><span class="line">            <span class="comment">//XXXX</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> View <span class="title">getView</span><span class="params">(<span class="keyword">int</span> position, View convertView, ViewGroup parent)</span> </span>&#123;</span><br><span class="line">    ViewHolder holder = <span class="keyword">null</span>;</span><br><span class="line">    <span class="keyword">if</span> (convertView == <span class="keyword">null</span>) &#123;</span><br><span class="line">        convertView = inflater.inflate(R.layout.list_item, parent, <span class="keyword">false</span>);</span><br><span class="line">        holder = <span class="keyword">new</span> ViewHolder();</span><br><span class="line">        holder.name = (TextView) convertView.findViewById(R.id.name);</span><br><span class="line">        holder.name.setOnClickListener(<span class="keyword">this</span>);</span><br><span class="line">        convertView.setTag(holder);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        holder = (ViewHolder) convertView.getTag();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//设置holder</span></span><br><span class="line">    holder.name.setText(list.get(position).partname);</span><br><span class="line">    <span class="comment">//设置position</span></span><br><span class="line">    holder.setPosition(position);</span><br><span class="line">    <span class="keyword">return</span> convertView;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="listview的焦点问题">ListView的焦点问题</h4>
+<p>如果ListView中的Item中有按钮等控件抢占了焦点的获取，我们是无法使用onItem(Long)Click两个方法的，解决的办法如下：</p>
+<blockquote>
+<ol style="list-style-type: decimal">
+<li>将Item的控件焦点获取设置为false <code>android:focusable=&quot;false&quot;</code> 当然，在代码中使用方法setFocusable(false)也可以达到同样的效果。</li>
+<li>对item的根节点进行设置: <code>android:descendantFocusability=&quot;blocksDescendants&quot;</code> viewgroup会覆盖子类控件而直接获得焦点 该属性有3个可选值，</li>
+</ol>
+<ul>
+<li>beforeDescendants：viewgroup会优先其子类控件而获取到焦点</li>
+<li>afterDescendants：viewgroup只有当其子类控件不需要获取焦点时才获取焦点</li>
+<li>blocksDescendants：viewgroup会覆盖子类控件而直接获得焦点</li>
+</ul>
+</blockquote>
+<hr>
+<p>虽然内容很多，但是ListView已经逐渐被新出的RecyclerView替代。学习它的原因是想了解Adapter的自定义，为RecyclerView的使用做准备，谁叫咱基础太薄弱呢~！！哈，为了我的第一个APP，下一个内容即将会是<code>RecyclerView</code>控件的使用。</p>
+
+        </div>
+        <div id="post-footer">
+            <div class="avatar" >
+                <img src="http://image.geekaholic.cn/author.jpg" alt="avatar"/>
+                
+                <a href="javascript:void(0)" class="high-song">high起来 &#128541;</a>
+                
+                
+                <a href="javascript:void(0)" class="donate fa">打赏资瓷 &#128536;</a>
+                
+            </div>
+            <ul class="author-profile-section">
+                <li>
+                  
+                  作者:
+                  
+                    
+                    <a href="/about.html">GeekaholicLin</a>
+                </li>
+                
+                <li>发表日期: <span>2016-02-06  14:40:28</span></li>
+                
+                <li>最后编辑日期: <span>2019-09-26  05:21:46</span></li>
+                
+                <li class="post-category">
+                    文章分类:
+                    
+                    <a href="/categories/编执狂/">编执狂</a>
+                    
+                    <a href="/categories/编执狂/Android/">Android</a>
+                    
+                </li>
+                <li class="post-tags">
+                    文章标签:
+                    
+                    <a href="/tags/Android/">Android</a>
+                    
+                    <a href="/tags/ListView原理/">ListView原理</a>
+                    
+                    <a href="/tags/ListView优化/">ListView优化</a>
+                    
+                    <a href="/tags/Android控件/">Android控件</a>
+                    
+                </li>
+                
+                <li> 版权声明: 
+<a href="https://creativecommons.org/licenses/by-nc-nd/3.0/" target="_blank">
+知识共享署名-非商业性使用-禁止演绎 3.0 未本地化版本许可协议（CC BY-NC-ND 3.0）
+</a></li>
+                
+            </ul>
+            <div id="donate-wrap">
+                
+                
+                
+                <img src="http://image.geekaholic.cn/alipay.jpg" alt="支付宝付款" class="donate-img">
+                
+                <img src="http://image.geekaholic.cn/wechat.png" alt="微信付款" class="donate-img">
+                
+                
+            </div>
+        </div>
+    </article>
+    <div class="article-nav">
+        
+        <a href="/2016/02/09/Java基础之线程/" class="pre-post fa fa-caret-left">Java基础之线程</a>
+        
+        
+        <a href="/2016/01/19/算法符号和算法分析浅谈/" class="next-post fa">算法分析符号和算法分析浅谈</a>
+        
+    </div>
+    
+    <div id="comments">
+        
+
+<script>
+  gitalk.render("comments");
+</script>
+
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+    <footer id="footer">
+    
+    <div class="social">
+        
+        <a href="https://freecodecamp.cn/geekaholiclin" class="fa fa-free-code-camp" target="_blank" title="freecodecamp"></a>
+        
+        <a href="https://github.com/GeekaholicLin" class="fa fa-github" target="_blank" title="github"></a>
+        
+        <a href="mailto:geekaholiclin@gmail.com" class="fa fa-envelope-o" target="_blank" title="mail to me"></a>
+        
+    </div>
+    
+    <div>
+        
+        <a href="/" class="copyright-links">GeekaholicLin</a>&copy;2015 - 2019.All Rights
+        Reserved.
+    </div>
+    <p>Powered by <a href="https://hexo.io" class="copyright-links" target="_blank">Hexo</a> | Theme by <a
+                href="https://github.com/GeekaholicLin" class="copyright-links" target="_blank">GeekaholicLin</a>
+    </p>
+    
+    
+    <p>
+        <span id="busuanzi_container_site_uv" class="fa fa-bar-chart">
+        欢迎第<span id="busuanzi_value_site_uv"><i class="fa fa-spinner fa-spin"></i></span>位小伙伴~
+        </span>
+    </p>
+    
+</footer>
+
+</div>
+    <ul id="tools">
+    <li class="totop-btn fa fa-angle-up"></li>
+    <li class="exchange-btn fa fa-exchange"></li>
+  
+    <li class="toc-btn fa fa-list-ul"></li>
+    
+    
+
+    
+    <li class="comment-btn fa fa-comments-o">
+        <a href="#comments" title="comments"></a>
+    </li>
+    
+</ul>
+<p id="process"></p>
+<div id="search-overlay">
+    <div class="search-area-wrap">
+        <div id="search-area">
+            <div class="input-wrap focus">
+                <i class="fa fa-search" aria-hidden="true"></i>
+                <input id="search-input" autofocus autocomplete="off" type="text"
+                       placeholder="search this website..."/>
+            </div>
+            <ul id="search-result">
+                <li class="load-first"><i class="fa fa-spinner fa-pulse"></i></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#listview主布局activity_main.xml"><span class="toc-number">1.</span> <span class="toc-text">ListView主布局–activity_main.xml</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#listviewitem布局listviewiitem"><span class="toc-number">2.</span> <span class="toc-text">ListViewItem布局–ListViewIitem</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#mainactivy代码"><span class="toc-number">3.</span> <span class="toc-text">MainActivy代码</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#arrayadapter的其他用法来自教程3"><span class="toc-number"></span> <span class="toc-text">ArrayAdapter的其他用法:来自‘教程’</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#simpleadapter"><span class="toc-number"></span> <span class="toc-text">2.SimpleAdapter</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#主布局activity_main.xml"><span class="toc-number">1.</span> <span class="toc-text">主布局activity_main.xml</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#item布局listview_item.xml"><span class="toc-number">2.</span> <span class="toc-text">Item布局–listview_item.xml</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#mainactivy代码-1"><span class="toc-number">3.</span> <span class="toc-text">MainActivy代码</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#自定义adapter使用最多的"><span class="toc-number"></span> <span class="toc-text">自定义Adapter–使用最多的</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#数据-model"><span class="toc-number">1.</span> <span class="toc-text">数据-Model</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#视图view"><span class="toc-number">2.</span> <span class="toc-text">视图–View</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#自定义适配器adaptercontroller"><span class="toc-number">3.</span> <span class="toc-text">自定义适配器Adapter–Controller</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#原理浅谈与优化"><span class="toc-number"></span> <span class="toc-text">3.原理浅谈与优化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#其他优化"><span class="toc-number"></span> <span class="toc-text">4.其他优化</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#onscrolllistener-图片加载"><span class="toc-number">1.</span> <span class="toc-text">OnScrollListener-图片加载</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#item监听"><span class="toc-number">2.</span> <span class="toc-text">Item监听</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#listview的焦点问题"><span class="toc-number">3.</span> <span class="toc-text">ListView的焦点问题</span></a></li></ol>
+
+
+    <script src="/js/highsong.js"></script>
+
+
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+    //theme config datas
+    var copyrightObj = {};
+    copyrightObj.enable = 'true';
+    copyrightObj.triggerCopyLength = '200';
+    copyrightObj.appendText = '商业转载请联系作者获得授权,非商业转载请注明出处 © GeekaholicLin';
+    var leancloudObj = {};
+    leancloudObj.enable = 'true';
+    leancloudObj.className = 'BlogCounter';
+    leancloudObj.limits = '10';
+</script>
+<script type="text/javascript">
+    var search = {};
+    var search_path = "search.xml";
+    if (!search_path) {
+        search_path = "search.xml";
+    }
+    search.path = "/" + search_path;
+    search.func =  _ajax.init();
+</script>
+<script src="/js/app.js"></script>
+
+
+</body>
+</html>

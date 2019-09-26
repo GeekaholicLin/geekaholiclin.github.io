@@ -1,0 +1,784 @@
+<!doctype html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no">
+    
+<meta name="google-site-verification" content="osGzKb_y9J6vt8d0mGYPDH81ljatwPdSVCFwxMCJSaE">
+
+    
+<meta name="baidu-site-verification" content="Yn6v4uAWVY">
+<script>
+    //push
+    (function(){
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        }
+        else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    <!--Simple SEO-->
+
+<meta name="description" content="编执狂的博客，主要记录自己在IT路上的成长历程。/">
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+    <!--Title-->
+
+<title>读书笔记--CSS设计指南(理论部分) | Geekaholic</title>
+
+<link rel="alternate" href="/atom.xml" title="Geekaholic" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+    
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/css/pages/post.css">
+<link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/thirdParty/highlight/solarized-light.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+
+<style>
+    figure .code .line:before{
+        display: none!important;
+    }
+</style>
+
+    <!--script-->
+
+
+<script src="//cdn.jsdelivr.net/npm/leancloud-storage@3.15.0/dist/av-min.js"></script>
+<script>
+  var appId = "RI5uv752sD0nGTyUSUC6odJE-gzGzoHsz";
+  var appKey = "yuke8QmutaxI5YvyD2NIE57u";
+  var region = "null";
+  var serverURLs = "http://leancloud.geekaholic.cn";
+  AV.init({
+    appId: appId,
+    appKey: appKey,
+    region: region,
+    serverURLs: serverURLs
+  });
+</script>
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+<script>
+  var admin = "GeekaholicLin";
+  admin = admin.split(",");
+  var gitalk = new Gitalk({
+    clientID: "aa2215dfc8ee944d1205",
+    clientSecret: "77cd2afa5d161bc0ab04639ed81300d808c6e22b",
+    repo: "geekaholiclin.github.io",
+    owner: "GeekaholicLin",
+    admin: admin,
+    id: decodeURIComponent(location.pathname),
+    distractionFreeMode: false
+  })
+
+</script>
+
+    
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?1fdc784829bc9fa0c0bbee0c680ffe2a";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+    
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-91854900-3', 'auto');
+    ga('send', 'pageview');
+
+</script>
+
+</head>
+</html>
+<body id="normal">
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<style>
+    header{ top: 71px; position: absolute!important;}
+    #container{padding-top: 151px!important;}
+</style>
+<div style="position:fixed;z-index:9999;left:0;top:0;width:100%;height:70px;background-color:#e0e0e0;color:#396CA5;border-bottom:1px solid #cecece;text-align:center;line-height:70px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis">您使用的浏览器版本过低，为了您更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<div id="wrap">
+    <header  style="position: absolute;" >
+    <div id="site-meta">
+        <a href="/" id="logo">
+            <h1 class="title">Geekaholic</h1>
+        </a>
+        
+        <h2 class="subtitle">编程在于折腾</h2>
+        
+    </div>
+    <ul id="nav">
+        
+            <li><a href="/"><i class="fa fa-home"></i>首页</a></li>
+        
+            <li><a href="/about"><i class="fa fa-user"></i>关于我</a></li>
+        
+            <li><a href="/atom.xml"><i class="fa fa-rss"></i>RSS</a></li>
+        
+        <li id="search"><a href="javascript:void(0)"><i class="fa fa-search"></i>搜索</a></li>
+    </ul>
+</header>
+
+    <div id="container">
+        
+<ul id="sidebar">
+    
+    
+    
+    
+<li class="widget widget-normal category">
+    <h3 class="fa fa-th widget-title">分类</h3>
+    <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/他山之石/"><i class="fa" aria-hidden="true">他山之石</i></a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/他山之石/Web/"><i class="fa" aria-hidden="true">Web</i></a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/编执狂/"><i class="fa" aria-hidden="true">编执狂</i></a><span class="category-list-count">14</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/编执狂/Android/"><i class="fa" aria-hidden="true">Android</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/编执狂/Java/"><i class="fa" aria-hidden="true">Java</i></a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/编执狂/Web/"><i class="fa" aria-hidden="true">Web</i></a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/编执狂/计算机基础/"><i class="fa" aria-hidden="true">计算机基础</i></a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/编程之外/"><i class="fa" aria-hidden="true">编程之外</i></a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/编程之外/Hexo/"><i class="fa" aria-hidden="true">Hexo</i></a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/编程之外/解决方法/"><i class="fa" aria-hidden="true">解决方法</i></a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/黄金屋-读书笔记/"><i class="fa" aria-hidden="true">黄金屋--读书笔记</i></a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/黄金屋-读书笔记/CSS设计指南/"><i class="fa" aria-hidden="true">CSS设计指南</i></a><span class="category-list-count">1</span></li></ul></li></ul>
+</li>
+
+
+    
+    
+<li class="widget widget-normal archive">
+  <h3 class="fa fa-archive widget-title">归档</h3>
+    <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/"><i class="fa" aria-hidden="true">九月 2017</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/"><i class="fa" aria-hidden="true">八月 2017</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/"><i class="fa" aria-hidden="true">三月 2017</i></a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/"><i class="fa" aria-hidden="true">二月 2017</i></a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/"><i class="fa" aria-hidden="true">三月 2016</i></a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/"><i class="fa" aria-hidden="true">二月 2016</i></a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/"><i class="fa" aria-hidden="true">一月 2016</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/"><i class="fa" aria-hidden="true">十二月 2015</i></a><span class="archive-list-count">5</span></li></ul>
+</li>
+
+
+    
+    
+<li class="widget widget-normal popular-posts" id="popular-posts">
+    <h3 class="fa fa-thermometer-3 widget-title">热门文章</h3>
+    <ul id="popular-content">
+        <li class="load-first"><i class="fa fa-spinner fa-pulse"></i></li>
+    </ul>
+</li>
+
+    
+    
+<li class="widget widget-normal tags">
+  <h3 class="fa fa-tags widget-title">标签云</h3>
+  <div class="tagcloud-content">
+    
+      <a href="/tags/Mathjax/" style="font-size: 0.18rem; color: #4f83b8">Mathjax</a> <a href="/tags/JavaScript/" style="font-size: 0.21rem; color: #386da4">JavaScript</a> <a href="/tags/Web/" style="font-size: 0.21rem; color: #386da4">Web</a> <a href="/tags/Android/" style="font-size: 0.18rem; color: #4f83b8">Android</a> <a href="/tags/ListView原理/" style="font-size: 0.14rem; color: #69c">ListView原理</a> <a href="/tags/ListView优化/" style="font-size: 0.14rem; color: #69c">ListView优化</a> <a href="/tags/Android控件/" style="font-size: 0.14rem; color: #69c">Android控件</a> <a href="/tags/解决方法/" style="font-size: 0.14rem; color: #69c">解决方法</a> <a href="/tags/Genymotion/" style="font-size: 0.14rem; color: #69c">Genymotion</a> <a href="/tags/VisualBox/" style="font-size: 0.14rem; color: #69c">VisualBox</a> <a href="/tags/Java/" style="font-size: 0.28rem; color: #0a407c">Java</a> <a href="/tags/线程/" style="font-size: 0.14rem; color: #69c">线程</a> <a href="/tags/InterruptedException/" style="font-size: 0.14rem; color: #69c">InterruptedException</a> <a href="/tags/异常/" style="font-size: 0.14rem; color: #69c">异常</a> <a href="/tags/RxJS/" style="font-size: 0.14rem; color: #69c">RxJS</a> <a href="/tags/Translation/" style="font-size: 0.18rem; color: #4f83b8">Translation</a> <a href="/tags/Hexo主题/" style="font-size: 0.18rem; color: #4f83b8">Hexo主题</a> <a href="/tags/ylion/" style="font-size: 0.25rem; color: #215690">ylion</a> <a href="/tags/模块化/" style="font-size: 0.18rem; color: #4f83b8">模块化</a> <a href="/tags/CSS3/" style="font-size: 0.14rem; color: #69c">CSS3</a> <a href="/tags/W3C/" style="font-size: 0.14rem; color: #69c">W3C</a> <a href="/tags/Hexo/" style="font-size: 0.21rem; color: #386da4">Hexo</a> <a href="/tags/主题制作/" style="font-size: 0.18rem; color: #4f83b8">主题制作</a> <a href="/tags/IO操作/" style="font-size: 0.21rem; color: #386da4">IO操作</a> <a href="/tags/Scanner/" style="font-size: 0.14rem; color: #69c">Scanner</a> <a href="/tags/马士兵/" style="font-size: 0.18rem; color: #4f83b8">马士兵</a> <a href="/tags/异常处理/" style="font-size: 0.18rem; color: #4f83b8">异常处理</a> <a href="/tags/流类型/" style="font-size: 0.18rem; color: #4f83b8">流类型</a> <a href="/tags/算法分析/" style="font-size: 0.14rem; color: #69c">算法分析</a> <a href="/tags/复杂度/" style="font-size: 0.14rem; color: #69c">复杂度</a> <a href="/tags/虚拟机/" style="font-size: 0.14rem; color: #69c">虚拟机</a> <a href="/tags/英文XP系统/" style="font-size: 0.14rem; color: #69c">英文XP系统</a> <a href="/tags/中文字体/" style="font-size: 0.14rem; color: #69c">中文字体</a> <a href="/tags/兼容性/" style="font-size: 0.18rem; color: #4f83b8">兼容性</a> <a href="/tags/CSS设计指南/" style="font-size: 0.14rem; color: #69c">CSS设计指南</a> <a href="/tags/读书笔记/" style="font-size: 0.14rem; color: #69c">读书笔记</a> <a href="/tags/polyfill/" style="font-size: 0.14rem; color: #69c">polyfill</a>
+  </div>
+</li>
+
+
+    
+    
+<li class="widget widget-normal friends-link">
+    <h3 class="fa fa-globe widget-title">友链</h3><br/>
+
+    
+        <a href="http://geekaholiclin.github.io" class="fa" target="_blank">主题作者</a>
+
+    
+        <a href="http://walkerlala.github.com/" class="fa" target="_blank">walkerlala</a>
+
+    
+        <a href="http://jerry011235.github.io/" class="fa" target="_blank">璀璨星空</a>
+
+    
+
+</li>
+
+    
+</ul>
+
+
+        <div id="main">
+    <article id="post">
+        <div id="post-header">
+
+            <h1 id="读书笔记--CSS设计指南(理论部分)">
+                
+                读书笔记--CSS设计指南(理论部分)
+                
+            </h1>
+            <div class="article-meta">
+    
+    
+    <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+        <span>CSS设计指南</span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+         <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            兼容性
+            
+        </span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta ">2016/03/11</span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+            <i class="fa fa-thermometer-three-quarters"></i>
+        <span class="hits hits-meta " data-leadcloud-title="读书笔记--CSS设计指南(理论部分)"
+              data-leadcloud-url="/2016/03/11/读书笔记--CSS设计指南(理论部分)/"><i class="fa fa-spinner fa-spin"></i></span>
+    </span>
+    
+    
+</div>
+
+            
+            
+            <p class="fa fa-exclamation-triangle warning">
+                本文于<strong>1293</strong>天之前发表，文中内容可能已经过时。如有疑问，请在评论区留言。
+            </p>
+            
+        </div>
+        
+        <div id="post-body">
+            <h2 id="说在前面">说在前面</h2>
+<blockquote>
+<p>如果你看到这部分内容竟然和《css设计指南》的如此相似，不要惊讶，因为这个是我在看书时的笔记，权当是查漏补缺和加强自己的理论知识。当然，不是全书地照搬，还会增加个人的理解，还有一些很好的文章。比如<code>@font-face</code>的使用，找了很多不错的参考文章，作为对书中的补充。 如果你和我是从初级阶段，当过几次切图仔(本人目前还是)，想进阶到更高一个级别，那这部分内容你不容错过。因为在你使用的时候并不注意，一些坑坑洼洼会让你烦恼很久。如果你是大神级别，还不吝你能指出错误，感激不尽~</p>
+</blockquote>
+<p>此部分为<a href="https://book.douban.com/subject/23123255/" target="_blank" rel="noopener">CSS设计指南(第3版)</a>读书笔记的理论部分(<strong>个人认为</strong>)，除开第5章部分，第6章全章，第7章全章。</p>
+<h2 id="知识点大杂烩">知识点大杂烩</h2>
+<h3 id="那些坑儿">那些坑儿</h3>
+<ol style="list-style-type: decimal">
+<li><p>不设置宽度的块级元素盒子会扩展到与父元素同宽</p></li>
+<li><p>有一点很重要，那就是 CSS 样式是通过<code>&lt;style&gt;</code>标签嵌入到页面里的。当浏览器遇到 开标签<code>&lt;style&gt;</code>时，就会由解释 HTML 代码切换为解释 CSS 代码。等遇到闭标签<code>&lt;/style&gt;</code>时，它会再切换回解释 HTML 代码</p></li>
+<li><p>紧邻同胞选择符+,一般同胞选择符~</p></li>
+<li><p>一个冒号（:）表示伪类，两个冒号（::）表示 CSS3 新增的伪元素。尽管浏览器目前都支持对 CSS 1 和 CSS 2的伪元素使用一个冒号，但希望你能习惯于用双冒号代替单冒号，因为这些单冒号的伪元素最终可能都会被淘汰掉。<sub><del>更多相关信息，可以参见这里：传送门</del></sub></p></li>
+<li><p>通过在上下文选择符中使用链接伪类，可以轻易地为 nav、 footer、 aside 和article元素中的链接应用不同的外观和行为。[技巧一]</p></li>
+<li><p>link伪类四个同时使用的时候 ：为了好记，我建议大家可以这 么想：“ LoVe? HA!”大写字母就是每个伪类的头一个字母。【顺序问题困扰很久】</p></li>
+<li><p>新学习的伪类，<strong><code>:target</code></strong></p></li>
+</ol>
+<blockquote>
+<p>如果用户点击一个指向页面中其他元素的链接，则那个元素就是目标target），可以用:target 伪类选中它。 对于下面这个链接<code>&lt;a href=&quot;#more_info&quot;&gt;More Information&lt;/a&gt;</code>位于页面其他地方、 ID 为more_info 的那个元素就是目标。该元素可能是这样的：<code>&lt;h2 id=&quot;more_info&quot;&gt;This is the information you are looking for.&lt;/h2&gt;</code> 那么，如下CSS规则 <code>#more_info:target{background:#eee;}</code> 会在用户单击链接转向ID为more_info的元素时，为该元素添加浅灰色背景。</p>
+</blockquote>
+<ol start="8" style="list-style-type: decimal">
+<li><code>:nth-child</code> 伪类最常用于提高表格的可读性，比如对表格的所有行交替应用不同颜色。</li>
+</ol>
+<blockquote>
+<p><code>e:nth-child(n)</code>,括号里的n为第n个元素e元素</p>
+</blockquote>
+<ol start="9" style="list-style-type: decimal">
+<li><p><code>font-variant</code>： 属性设置小型大写字母的字体显示文本</p></li>
+<li>p::first-line {font-variant:small-caps;}` 可以把第一行以小型大写字母显示。</li>
+<li><p><code>::first-line</code>为伪元素。伪元素就是你的文档中<strong>若有实无</strong>的元素。类似的还有<code>::first-letter</code>，可以设置第一个字的样式.<code>::before</code>和<code>::after</code>伪元素。</p></li>
+</ol>
+<p>“first-line”，“first-letter” 伪元素只能用于块级元素。</p>
+<blockquote>
+<p><strong>搜索引擎不会取得伪元素的信息（因为它在标记中并不存在）。因此,不要通过伪元素添加你想让搜索引擎索引的重要内容</strong>。</p>
+</blockquote>
+<ol start="11" style="list-style-type: decimal">
+<li>color 是前景色，前景色既影响文本，也影响边框。但人们通常只用它设定文本颜色。</li>
+<li>要改变背景图片的起点，可以修改 background-position 属性。</li>
+<li><p>只给 background-position 设定一个关键字值，则另一个也会取相同的值。 &gt; /<em>center center 的简化写法</em>/ p#center {background-position:center;}</p></li>
+<li><code>background-position:center center</code>设定<strong>图片中心点与元素中心点重合</strong>，然后再向各个方向重复。</li>
+<li><p>由14可知，通过把<code>background-position</code>设定为 <code>50% 50%</code>，把 <code>background-repeat</code>设定为<code>no-repeat</code>，实现了图片在背景区域内居中的效果。</p></li>
+<li><p><code>background-size</code>为我们控制背景图片提供了更多可能性。</p></li>
+</ol>
+<p><sub><del>17. <code>font-size</code>,<code>height</code>,<code>line-height</code>三者的关系是：<code>height</code>将盒子撑开，<code>line-height</code>是从文本的<strong>基线</strong>处在文本行上下平均分配，<strong>不影响标准文档流</strong>，<code>font-size</code>是在从文本的<strong>基线</strong>处开始变大，会撑开盒子模型，但可以显示在其他元素上方。丝毫不影响标准文档流。不信可以在Chrome中将<code>font-size</code>调大进行观察</del></sub>。(update:尚未熟悉) 18. 使用 Modernizr来检测浏览器对它们的支持情况，并为不支持它们的浏览器提供替代 CSS。</p>
+<blockquote>
+<p>Modernizr 是一个 JavaScript 库，用于检测用户浏览器支持哪些 HTML5 和 CSS3 功能。 更多信息，请参考这个网址： <a href="http://modernizr.com" class="uri" target="_blank" rel="noopener">http://modernizr.com</a></p>
+</blockquote>
+<ol start="19" style="list-style-type: decimal">
+<li><p>默认情况下，背景绘制区域是扩展到边框外边界的。 &gt; 如果想使用更多的选择，使用CSS3中的<code>background-clip</code>属性。提供3个可选值。 background-clip: border-box;/<em>背景包括border</em>/ background-clip: padding-box;/<em>背景包括padding，不包括border</em>/ background-clip: content-box;/<em>背景包括content，不包括padding和border</em>/</p></li>
+<li><p><code>font-family</code> 用于设定元素中的文本使用什么字体。一般来说，应该给整个页面设定一种主字体，然后只对那些需要使用不同字体的元素再应用 <code>font-family</code>。要为整个页面指定字体，可以设定 body 元素的 <code>font-family</code> 属性。<code>font-family</code>是可以继承的属性，因此它的值会遗传给所有后代元素。</p></li>
+<li><p>小技巧:我们永远也不敢保证一定能用某种字体来显示网页。为此，在指定文本的字体时，需要多列出几种后备字体，以防第一种字体无效。这个字体的列表也叫<strong>字体栈</strong>。</p></li>
+<li><p>西方国家字母体系分为两类：<code>serif</code>以及<code>sans serif</code>。<code>serif</code>是有衬线字体,在每个字符笔画的末端会有一些装饰线。 <code>sans-serif</code>，也就是无衬线字体，字符笔画的末端没有装饰线。具体看下图。</p></li>
+</ol>
+<div class="figure">
+<img src="http://old-image.geekaholic.cn/2016-03-14_00001.jpg" alt="字体">
+<p class="caption">字体</p>
+</div>
+<ol start="23" style="list-style-type: decimal">
+<li>字体大小</li>
+</ol>
+<blockquote>
+<p>默认情况下， 1em等于 16 像素，这也是 font-size 的基准大小。如果需要重新设定了基准大小，则修改body 的字体大小。body的字体大小即为1em(比如重新设定为20px,则1em = 20px)</p>
+</blockquote>
+<ul>
+<li><p>绝对字体大小。 优点：它们是绝对单位，因此设定多大就多大，与祖先元素的字体大小无关。 缺点：<strong>使用绝对单位的缺点很明显，那就是在需要调整页面所有元素的字体大小时，必须一个一个地修改样式表中的 font-size</strong>。</p></li>
+<li><p>相对字体大小。如果你给某个元素设定了相对字体大小，则该元素的字体大小要相对于<strong>最近的“被设定过字体大小的”祖先元素</strong>来确定。 优点：使用相对大小后，通过调整body元素的字体大小，可以成比例地改变所有元素的字体大小。或者，至少能通过改变某个祖先元素，只影响它的所有子元素。 缺点：“牵一发而动全身”的事，出现连锁反应，所以使用相对字体大小时，必须事先规划好。 【请看下面例子】</p></li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;p&gt;This is &lt;strong&gt;very important!&lt;/strong&gt;&lt;/p&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line"></span><br><span class="line">p &#123;font-size:.<span class="number">75</span>em;&#125;</span><br><span class="line">strong &#123;font-size:.<span class="number">75</span>em;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//计算</span></span><br><span class="line"></span><br><span class="line">font-size(p) = <span class="number">0.75</span>*<span class="number">16</span>px = <span class="number">12</span>px;</span><br><span class="line">font-size(strong) = <span class="number">12</span>px * <span class="number">0.75</span> = <span class="number">9</span>px;</span><br></pre></td></tr></table></figure>
+<ol start="24" style="list-style-type: decimal">
+<li><p>默认值并不是无用，它可以用来有选择地覆盖某个默认或你设定的全局属性。</p></li>
+<li><p>由于浏览器对数字值的实现各不相同，所以从常规字体到粗体的切换可能发生在不同的数值上——通常是 400左右。总之，对于 font-weight 属性来说，最好只用 <code>bold</code> 和 <code>normal</code>这两个值。</p></li>
+</ol>
+<p><strong>26</strong>. 粗体和斜体：两个都有两种方法，一种是标签来控制显示，一种是用css来控制。</p>
+<ul>
+<li>斜体：<code>font-style:italic;</code>或<code>font-style:oblique;</code>或<code>&lt;em&gt;</code> (emphasized)标签或<code>&lt;i&gt;</code>(italic)标签。</li>
+<li>粗体: <code>font-weight:bold;</code>或<code>&lt;strong&gt;</code>(strong)标签或<code>&lt;b&gt;</code>(bold)标签。</li>
+</ul>
+<p><strong>那应该如何选择？</strong></p>
+<blockquote>
+<p>其实，个人认为，如果不是特别强调的，不要轻易使用<code>&lt;em&gt;</code>,<code>&lt;strong&gt;</code>两种分别显示斜体和粗体。因为他们在搜索引擎中更受重视，将会影响SEO。也就是说，在一般情况下，使用css来控制字体样式(推荐)或者<code>&lt;b&gt;</code>和<code>&lt;i&gt;</code>。</p>
+</blockquote>
+<ol start="27" style="list-style-type: decimal">
+<li><strong>text-indent的那些坑</strong> 【坑1】 <code>text-indent</code> 是可以被子元素继承的。如果你在一个 <code>div</code> 上设定了 <code>text-indent</code> 属性，那么 <code>div</code> 中的所有段落都会继承该缩进值。然而，与 所有继承的 CSS 值一样，<strong>这个缩进值并不是祖先元素中设定的值，而是计算的值</strong>。(注意)【请看下面例子】</li>
+</ol>
+<blockquote>
+<p>假设有一个 400 像素宽的 div，包含的文本缩进 5%，则缩进的距离是 20 像素（400 的 5%）。 在这个 div 中有一个 200 像素宽的段落。作为子元素，它继承父元素的 <code>text-indent</code>值，所以 它包含的文本也缩进。但继承的缩进值是多少呢？不是 5%，而是 20 像素。也就是说，子元素 继承的是根据父元素宽度计算得到的缩进值。结果，虽然段落只有父元素一半宽，但其中的文 本也会缩进 20 像素。这样可以确保无论段落多宽，它们的缩进距离都一样。当然，在子元素 上重新设定 text-indent 属性，可以覆盖继承的值</p>
+</blockquote>
+<p>【坑2】</p>
+<blockquote>
+<p>一个容易疏忽的点，就是，<code>text-indent</code>对于块级文本元素有效，比如<code>&lt;p&gt;</code>，<code>&lt;li&gt;</code>。如果一个段落很长，则只会对首行缩进，要实现每行都缩进，可以使用多个<code>&lt;p&gt;</code>，或者<code>margin-left</code>属性(看需求)。</p>
+</blockquote>
+<p>【坑3】</p>
+<blockquote>
+<p>在设定缩进和外边距时<strong>最好同时使用em</strong>，以便在改变字体大小时， 它们的长度能够按比例变化。</p>
+</blockquote>
+<ol start="28" style="list-style-type: decimal">
+<li>文本修饰的一些建议。</li>
+</ol>
+<blockquote>
+<ul>
+<li>blink 是为文本添加闪烁效果的，实际上很讨厌，应该少用，最好不用。</li>
+<li>上网的人都习惯了把带下划线的文本当成链接。如果你给本来不是链接的文本加上下划线，很容易导致困惑和无效点击。</li>
+<li>利用下划线的出现和隐藏，呈现有效的视觉反馈。</li>
+</ul>
+</blockquote>
+<ol start="29" style="list-style-type: decimal">
+<li>间距的那些事儿~</li>
+</ol>
+<blockquote>
+<ul>
+<li><code>letter-spacing</code>对英文字母、汉字及其他字符都起作用。<code>etter-spacing</code> 的值是在浏览器默认值<strong>基础上增加或减少</strong>的值。</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li>纯汉字文本一段之中没有空格，因此<code>word-spacing</code>对中文网页几乎没有用，但对中英混排段落可能有用。【见下图】</li>
+</ul>
+</blockquote>
+<div class="figure">
+<img src="http://old-image.geekaholic.cn/2016-03-14_00002.jpg" alt="中文word-spacing">
+<p class="caption">中文word-spacing</p>
+</div>
+<ol start="30" style="list-style-type: decimal">
+<li>自定义字体库@font-face(css3属性，IE9+才支持)</li>
+</ol>
+<p>使用@font-face 规则在网页中嵌入可下载字体的 CSS 功能，为设计师提供了系统自带字体以外的广泛选择，不必再依赖用户机器中的字体。有3种使用方法。</p>
+<ol style="list-style-type: decimal">
+<li>使用 <a href="https://www.google.com/fonts/" target="_blank" rel="noopener">Google Web Fonts</a> 或 Adobe 的 Typekit 等公共字体库。</li>
+<li>使用事先打好包的@font-face 包。</li>
+<li>使用 <a href="http://www.fontsquirrel.com" target="_blank" rel="noopener">Font Squirrel</a> 用你自己的字体生成@font-face 包</li>
+</ol>
+<blockquote>
+<p>小缺陷: 使用@font-face的一个问题是不同浏览器要求的字体格式不一样。比如， Firefox、Webkit 核心的浏览器（Safari 和Chrome），以及 iOS 4.1 版之后的移动Safari使用OTF（OpenType）或TTF（TrueType）字体。 Internet Explorer 使用 EOT（Embedded OpenType）。另外， iOS 4.1 之前版本中的移动 Safari 以及其他浏览器使用 SVG（Scalable Vector Graphics）格式。</p>
+</blockquote>
+<p>讲那么多很难描述清楚，书中也是忽略而过。看下面的链接，已经讲得够详细。但需要提醒的是，在定义好自己的<code>font-family</code>之后，<strong>在css中的选择器上使用才可以显示效果</strong>。</p>
+<blockquote>
+<p><a href="http://www.w3cplus.com/content/css3-font-face" target="_blank" rel="noopener">传送门</a></p>
+</blockquote>
+<h3 id="继承">继承</h3>
+<p>CSS 中有很多属性是可以继承的，其中相当一部分都跟文本有关，比如颜色、字体、字号。然而，也有很多CSS属性不能继承，因为<strong>继承这些属性没有意义</strong>。这些不能继承的属性主要涉及元素盒子的定位和显示方式，比如边框、外边距、内边距。【继承对自身有意义的属性】</p>
+<p>举个例子吧，假设我们想创建一个边栏，在其中放一组链接。为此，我们用 nav 元素嵌套该组链接，并给nav应用了一种字号和一个边框效果，比如 2 像素宽的红色边框。不难想象，nav中的所有链接都继承它的字号正常，可要是也继承它的边框就不合适了。当然，这些链接不会继承边框效果，因为 border 属性不能继承。</p>
+<h3 id="层叠">层叠</h3>
+<p>层叠，就是层叠样式表中的层叠，是一种样式在文档层次中逐层叠加的过程，目的是让浏览器面对某个标签特定属性值的多个来源，确定最终使用哪个值。这就涉及到了优先级。 优先级的大概计算如下<a href="http://liunian.info/css-specificity.html" target="_blank" rel="noopener">通俗易懂</a> 如果优先级的值一样，则以后者为先。</p>
+<h3 id="样式缩写">样式缩写</h3>
+<p>如果哪个值没有写，那就使用对边的值。 E.G. <code>{margin:12px 10px 6px;}</code> 对这个例子来说，由于没有写最后一个值（左边的值），所以左边就会使用右边的值。</p>
+<blockquote>
+<p>叠加的只是垂直外边距，水平外边距不叠加。对于水平相邻的元素，它们的水平间距是相邻外边距之和。</p>
+</blockquote>
+<h2 id="盒子模型加强">盒子模型（加强）</h2>
+<h3 id="盒子模型两大结论">盒子模型两大结论</h3>
+<blockquote>
+<p>盒模型结论一：没有（就是没有设置width的）宽度的元素始终会扩展到填满其父元素的宽度为止。添加水平边框、内边距和外边距，会导致内容宽度减少，减少量等于水平边框、内边距和外边距的和。[<strong>其实也可以看成是结论二的特殊情况，因为最大宽度被父级宽度所限制，不会再增加</strong>]</p>
+</blockquote>
+<blockquote>
+<p>盒模型结论二：为设定了宽度的盒子添加边框、内边距和外边距，会导致盒子扩展得更宽。实际上，盒子的width属性设定的只是<strong>盒子内容区的宽度</strong>，而非盒子要占据的水平宽度。 （<strong>补充：宽度高度都适用</strong>。） 这两种盒子所表现出来的完全不同的行为，对将来构建多栏布局具有重要的启示。因为在多栏布局中，每一栏都必须时刻维护自己的宽度. CSS3 新增了一个 <code>box-sizing</code> 属性，通过它可以将有宽度的盒子也设定成具有默认的auto状态下的行为。【IE8+支持】 具体是怎么一回事？<a href="http://www.w3school.com.cn/cssref/pr_box-sizing.asp" target="_blank" rel="noopener">box-sizing</a></p>
+</blockquote>
+<p><code>box-sizing</code>的默认值是<code>content-box</code>，也就是上面的两个结论。 <code>box-sizing</code>的另外一个值，是CSS3的内容，<code>border-box</code>。就是将结论1的特性应用到结论2，无论是否有设定具体的高度和宽度，为元素指定的任何内边距和边框都将在已设定的宽度和高度内进行绘制，不会再增加元素的宽度和高度。</p>
+<h3 id="两大结论的好处">两大结论的好处</h3>
+<p>这两个结论有什么用？</p>
+<blockquote>
+<p>在三栏布局的时候，最外层<strong>固定宽度</strong>，要在不改变盒子的宽度的前提下，需要增加外层和内容间的间距，如果使用内边距<code>padding</code>则会增加盒子的宽度。(见盒子模型结论2)。一个好的办法是使用<code>box-sizing:border-box;</code>，还可以增加一个<code>div</code>，不设置宽度。但考虑到那两个神一般存在的浏览器(IE6,IE7)，还是推荐使用方法2–增加一个<code>div</code>，不设置宽度【虽然方法1可以用JS的方式来实现，使用borderBoxModel.js】</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;body&gt;</span><br><span class="line">&lt;!-- HTML 标记 --&gt;</span><br><span class="line">&lt;!-- 只让 IE8 之前的 IE 加载它 --&gt;</span><br><span class="line">&lt;!--[if lt IE 8 ]&gt;</span><br><span class="line">&lt;script src=&quot;helpers/borderBoxModel.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;![endif]--&gt;</span><br><span class="line">&lt;/body&gt;</span><br></pre></td></tr></table></figure>
+<p>但使用JS的方式有所局限，比如，宽高必须使用px作为单位。不支持<code>onresize, min/max-width等不固定属性</code>，如果布局复杂，还需要更多的测试来保证布局没有被破坏。<a href="https://github.com/albertogasparin/borderBoxModel" target="_blank" rel="noopener">具体可以看这个github项目</a></p>
+<h3 id="盒子模型的一些坑">盒子模型的一些坑</h3>
+<p>盒子模型中还有一个巨坑。<a href="http://www.cnblogs.com/pomoho/p/4381753.html" target="_blank" rel="noopener">坑在这~</a></p>
+<p>简单一句话（引自:《css权威指南》）</p>
+<blockquote>
+<p>非替换元素的内边距，边框和外边距对行内元素及其生成框没有垂直效果；也就是说，他们不会影响行内框的高度。</p>
+</blockquote>
+<p>什么是非替换元素和可替换元素？用一句话来区别~</p>
+<blockquote>
+<p>可替换元素是<strong>浏览器根据元素的标签和属性，来决定元素的具体显示内容</strong>。</p>
+</blockquote>
+<p>比如图像，浏览器根本不知道显示的是什么图片，只知道图片的地址，并且将其显示出来。</p>
+<p>典型的可替换元素有 <code>&lt;img&gt;</code>、 <code>&lt;object&gt;</code>、 <code>&lt;video&gt;</code> 以及 <code>&lt;textarea&gt;</code>、 <code>&lt;input&gt;</code> 。还有，<strong>使用了 CSS content 属性插入的对象被称作匿名的可替换元素</strong>，比如<code>:before</code>和<code>:after</code>伪类。</p>
+<p>需要注意的是，非替换元素和可替换元素，与 块级元素和行内元素，没有关系，两者是对元素的不同划分方式。</p>
+<h3 id="盒子模型和三列布局的优化">盒子模型和三列布局的优化</h3>
+<p>这一部分来自《css设计指南》第五章。 Tip 1 &gt; 关于通配符<code>*</code>，它会导致浏览器遍历整个DOM结构去查找所有匹配的元素。但也发现这一点性能影响几乎可以忽略不计。除非页面有成千上万个元素。</p>
+<p>这一部分还是不大同意作者所说，毕竟大家都已经习惯使用自己的重置样式表<code>reset.css</code>让自己的页面在各大浏览器尽量在间距等可控方面表现一致。况且对于大型网站而言，优化还是十分重要的。如果有时间，当然提倡根据自己的网站进行自定义。比如网站中没有使用到表格，就没有必要对表格进行消除间距。如果没有时间，<strong>使用通配符达到目的也未尝不可</strong>。</p>
+<p>Tip 2</p>
+<blockquote>
+<p><code>* {box-sizing:border-box}</code></p>
+</blockquote>
+<p>使用通配符和CSS特性，使得页面中的盒模型就全都符合逻辑。</p>
+<p>Tip 3 保护布局</p>
+<blockquote>
+<ul>
+<li>img{max-width:100%;} –限制图片的宽度不超过其父元素</li>
+<li>给内容包装<code>div</code>添加 <code>overflow:hidden</code> 声明,任何超出容器边界的部分剪切掉，保护布局。</li>
+<li>给所有栏的外包装元素应用 <code>word-wrap:break-word</code> 声明,保护布局不会被 长 URL或长文本顶得支离破碎。</li>
+</ul>
+</blockquote>
+<h2 id="浮动和清除浮动">浮动和清除浮动</h2>
+<p>浮动元素<strong>脱离了常规文档流</strong>之后，原来紧跟其后的元素就会在空间允许的情况下，向上提升到与浮动元素平起平坐。</p>
+<p>CSS 设计 float 属性的主要目的，是为了实现文本绕排图片的效果。后来，也成了创建多栏布局的方式。</p>
+<p>对于<code>float:right;</code>的元素，它脱离文档流向右移动，直到它的右边框碰到包含框。如果包含框太窄，则自动向下浮动，直到有足够的空间(此时可能导致’卡住’的情况)。</p>
+<h3 id="清除浮动的方法">清除浮动的方法</h3>
+<p><strong>清除浮动是清除浮动对被影响元素本身的影响，而不是浮动本身</strong>。对影响的元素使用<code>clear:left;</code>是<strong>清除浮动在左边的元素对该元素的影响，不去围绕着它浮动的元素</strong>。</p>
+<ul>
+<li><ol style="list-style-type: decimal">
+<li>给父级元素添加overflow:hidden,迫使父元素包含其浮动的子元素,但对于父元素中高度超过浮动元素的其他内容，会进行截断。</li>
+</ol></li>
+<li><ol start="2" style="list-style-type: decimal">
+<li>浮动父级元素。浮动父级元素后，不管其子元素是否浮动，它都会紧紧地包围（也称收缩包裹）住子元素。</li>
+</ol></li>
+<li><ol start="3" style="list-style-type: decimal">
+<li>添加非浮动的清除元素。（注意此时父元素未浮动）</li>
+</ol>
+<ul>
+<li>3.1 在(未浮动的)父元素最后一个非浮动子元素添加一个非浮动的 子元素，然后清除该子元素。常做的做法是添加一个空的<code>&lt;div&gt;</code>标签。(例子1)</li>
+<li>3.2 利用浮动元素的<strong>下面的兄弟元素</strong>清除。（例子1中的<code>&lt;p&gt;</code>），如果浮动元素下面没有兄弟元素，则不可使用该方法。</li>
+<li>3.3 使用<code>:after伪元素</code>。<code>:after</code>会在元素内容后面而不是元素后面插入一个伪元素，在例子2中是<strong>the footer element…</strong>后面添加一个点，而不是在<code>&lt;section&gt;</code>父级元素后面添加。但设置<code>height:0;</code>后因为没有高度，父级元素不把它包含住，所以显示是在父级元素后面添加，其实不是的。<strong>可以自己将<code>visibility:hidden</code>去掉，调整高度进行观察</strong>。 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*例子1--html*/</span></span><br><span class="line">&lt;section&gt;</span><br><span class="line">&lt;img src=<span class="string">"images/rubber_duck.jpg"</span>&gt;</span><br><span class="line">&lt;p&gt;It<span class="string">'s fun to float.&lt;/p&gt;</span></span><br><span class="line"><span class="string">&lt;div class="clear_me"&gt;&lt;/div&gt;</span></span><br><span class="line"><span class="string">&lt;/section&gt;</span></span><br><span class="line"><span class="string">&lt;footer&gt; Here is the footer element…&lt;/footer&gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">/*例子1--css*/</span></span><br><span class="line"><span class="string">section &#123;border:1px solid blue;&#125;</span></span><br><span class="line"><span class="string">img &#123;float:left;&#125;</span></span><br><span class="line"><span class="string">.clear_me &#123;clear:left;&#125;</span></span><br><span class="line"><span class="string">footer &#123;border:1px solid red;&#125;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">/*例子2--html*/</span></span><br><span class="line"><span class="string">&lt;section class="clearfix"&gt;</span></span><br><span class="line"><span class="string">&lt;img src="images/rubber_duck.jpg"&gt;</span></span><br><span class="line">&lt;p&gt;It's fun to float.&lt;/p&gt;</span><br><span class="line">&lt;/section&gt;</span><br><span class="line">&lt;footer&gt; Here is the footer element…&lt;/footer&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*例子2--css*/</span></span><br><span class="line">.clearfix:after &#123;</span><br><span class="line">content:<span class="string">"."</span>;</span><br><span class="line">display:block;</span><br><span class="line">height:<span class="number">0</span>;</span><br><span class="line">visibility:hidden;</span><br><span class="line">clear:both;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul></li>
+</ul>
+<p>在方法2和方法3中，由于包含元素一定会包围非浮动的子元素，而且清除会让这个<strong>子元素位于（清除一侧）浮动元素的下方</strong>，因此包含元素一定<strong>会包含这个子元素——以及前面的浮动元素</strong>。【特别注意这部分的描述】</p>
+<p>且方法3.1和方法3.2不同，3.1的p元素还是会受浮动的影响，围绕在图片周围，而3.2的p元素不会受到浮动的影响，因为是p元素是块级元素，所以它<strong>在图片下面独自一行</strong>。</p>
+<h3 id="使用哪一种">使用哪一种？</h3>
+<p>这三种方法的使用要因地制宜。比如，不能在下拉菜单的顶级元素上应用 overflow:hidden，否则作为其子元素的下拉菜单就不会显示了。因为下拉菜单会显示在其父元素区域的外部，而这恰恰是 <code>overflow:hidden</code> 所要阻止的。再比如，不能对已经靠自动外边距居中(<code>margin:0 auto;</code>)的元素使用“浮动父元素”技术，否则它就不会再居中。而是根据浮动值浮动到左边或右边了。</p>
+<h2 id="布局">布局</h2>
+<p>因为文章篇幅的原因，布局就移到另外一篇文章(实战部分)进行总结。这里大概给出几种常见，并且重要的布局方式。</p>
+<h3 id="响应式布局可变的固定布局">响应式布局(可变的固定布局)</h3>
+<p>使用一项叫媒体查询的CSS功能，很容易检测出用户设备的屏幕大小。然后，据以提供替代或额外的CSS，可针对相应屏幕实现更加优化的体验。使用这种方式创建对设备有感知力的网站，被称为响应式设计。实际上真正的设计原则是“移动先行”，屏幕从小到大。</p>
+<p>一种布局不能适应多种屏幕尺寸。我们需要一种能够检测屏幕大小的方法，然后相应地修改布局。简言之，就是需要让页面能够自己响应屏幕变化。</p>
+<ul>
+<li>需要的技术
+<ul>
+<li>媒体查询：是一种CSS语法，可以根据浏览器的特性，一般是屏幕或浏览器容器宽度提供CSS 规则，将布局变为百分比或者改变html结构。</li>
+<li>流式布局：是使用em或百分比等相对单位设定页面总体宽度，让布局能够随屏幕大小而缩放；</li>
+<li>弹性图片：是使用相对单位确保图片再大也不会超过其容器。</li>
+</ul></li>
+</ul>
+<h4 id="媒体查询">媒体查询</h4>
+<blockquote>
+<p>移动设备的媒体查询:http://pugetworks.com/blog/2011/04/css-media-queries-for-targetingdifferent-mobile-devices/</p>
+</blockquote>
+<h4 id="媒体类型">媒体类型</h4>
+<p>常用的媒体类型如下。</p>
+<blockquote>
+<p>all：匹配所有设备； handled：匹配手持设备（小屏幕、单色、带宽有限）； print：匹配分页媒体或打印预览模式下的屏幕； screen：匹配彩色计算机屏幕； 其他媒体类型还有 braille（盲文点字触觉反馈设备）、 embossed（盲文分页打印机）、projection（投影仪）、 speech（语音合成器）、 tty（电话机屏幕等固定宽度字符栅格设备）和 tv（电视机）。</p>
+</blockquote>
+<p><strong>任意时刻浏览器窗口中只能使用一种媒体类型</strong>。</p>
+<h4 id="媒体特性">媒体特性</h4>
+<p>媒体特性也就是媒体某一方面的特征，一般带有 min-或 max-前缀。 常用的媒体特性如下：</p>
+<blockquote>
+<p>min-device-width 和 max-device-width：匹配设备屏幕的尺寸； min-width 和 max-width：匹配视口的宽度，例如浏览器窗口宽度； orientation（值为portrait(竖屏)和landscape(横屏)）：匹配设备是横屏还是竖屏。 如果想通过媒体查询来根据用户对浏览器窗口的缩放重新调整布局，应该使用 min-width 和max-width。</p>
+</blockquote>
+<p>还可以使用逻辑运算符 and、 not、 or 及关键字 all、 only 组合媒体类型和媒体特性。</p>
+<blockquote>
+<p><code>media=&quot;only screen and (max-width: 480px)&quot;</code></p>
+</blockquote>
+<h4 id="使用方法">使用方法</h4>
+<blockquote>
+<p>把 CSS 规则嵌套在了一个@media 规则中。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@media</span> <span class="function">screen <span class="title">and</span> <span class="params">(max-width:<span class="number">568</span>px)</span> </span>&#123;</span><br><span class="line">    .column &#123;<span class="keyword">float</span>:none; width:<span class="number">96</span>%; margin:<span class="number">0</span> auto;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注意该@media规则是放在css文件中或者<code>&lt;style&gt;</code>标签中使用，如图：</p>
+<div class="figure">
+<img src="http://old-image.geekaholic.cn/2016-03-15_00001.jpg" alt="@media使用">
+<p class="caption"><span class="citation">@media使用</span></p>
+</div>
+<blockquote>
+<p>如果要通过媒体查询应用的CSS规则非常多，那么就可以考虑使用&lt;link标签的media 属性设定条件，有选择地加载独立的样式表。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">&lt;link type=<span class="string">"text/css"</span> media=<span class="string">"print"</span> href=<span class="string">"css/print_styles.css"</span> /&gt;</span><br><span class="line">&lt;link type=<span class="string">"text/css"</span> media=<span class="string">"screen and (max-width:568px)"</span></span><br><span class="line">href=<span class="string">"css/iphone_styles.css"</span> /&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>断点</strong>是指区分不同宽度设备的临界点。 比如:<code>@media screen and (max-width:640px) { /*CSS 规则*/ }</code>，断点是640px。</p>
+<blockquote>
+<p>一个匹配的技巧是，不要去用断点一下子去匹配特定设备的屏幕宽度。而是<strong>慢慢地缩小窗口，在发现当前布局不合适的时候再确定断点</strong>，编写新的样式。可以确保一个样式在特定宽度范围内都适用。减少工作量。</p>
+</blockquote>
+<h4 id="viewport视口">viewport(视口)</h4>
+<p>用<meta>标签设定视口。比如：<code>&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width; maximumscale=1.0&quot; /&gt;</code>。这个<meta>标签告诉浏览器按照屏幕宽度来显示网页，不要缩小网页。</p>
+<h3 id="流动布局">流动布局</h3>
+<p>流动布局的大小会随用户调整浏览器窗口大小而变化。这种布局能够更好地适应大屏幕，但同时也意味着放弃对页面某些方面的控制，比如随着页面宽度变化，文本行的长度和页面元素之间的位置关系都可能变化。Amazon.com 的页面采用的就是流动中栏布局，在各栏宽度加大时通过为内容元素周围添加空白来保持内容居中，而且现在的导航条会在布局变窄到某个宽度时收缩进一个下拉菜单中，从而为内容腾出空间。</p>
+<h3 id="弹性布局">弹性布局</h3>
+<p>弹性布局与流动布局类似，在浏览器窗口变宽时，不仅布局变宽，而且所有内容元素的大小也会变化，让人产生一种所有东西都变大了的感觉。</p>
+<h3 id="圣杯布局略">圣杯布局(略)</h3>
+<h3 id="双飞翼布局略">双飞翼布局(略)</h3>
+<h2 id="兼容性之后备代码">兼容性之后备代码</h2>
+<h3 id="同一表现的前后顺序">同一表现的前后顺序</h3>
+<p>已经知道的兼容属性放在前面，而部分浏览器不兼容的新属性放在后面。浏览器不支持新属性时，会自动忽略后面的新属性。而如果浏览器支持新属性，由于<code>[css的层叠][13]</code>会自动覆盖。如下面的书中举例。</p>
+<p>IE9 之前的浏览器都不支持多背景，因此后备代码就是在多背景 声明之前简单地再加一条单背景声明，比如： <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">.someElement &#123;background-image:url(images/basic_image.jpg);&#125;</span><br><span class="line">.someElement &#123;background-image:</span><br><span class="line">url(images/cool_image1.jpg),</span><br><span class="line">url(images/cool_image2.jpg),</span><br><span class="line">url(images/cool_image3.jpg);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="条件注释">条件注释</h3>
+<h4 id="ie浏览器">IE浏览器</h4>
+<p>如果你真想单独为 <strong>IE浏览器</strong>做点什么，可以使用如下所示的条件注释来添加后备代码。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!-- 在为 IE8 及更低版本的 IE 加载额外的样式 --&gt;</span><br><span class="line">&lt;!--[if lte IE 8]&gt; &lt;!-- IE 条件注释 --&gt;</span><br><span class="line">&lt;link src=&quot;ie_only.css&quot; rel=&quot;stylesheet&quot; /&gt;</span><br><span class="line">&lt;![endif]--&gt;</span><br></pre></td></tr></table></figure>
+<p>lte（less than or equal to，小于等于）、 lt（less than，小于）、gte（greater than or equal to，大于等于）、 gt（greater than，大于），甚至只写一个浏览器版本号，如 IE 6。以此为不同版本的 IE 提供后备代码。</p>
+<p><strong>注意</strong>：这种条件注释只对<strong>指定版本的IE浏览器</strong>有效，而不满足版本的IE浏览器和其他非IE浏览器都会自动忽略该条件注释。</p>
+<h4 id="特定标签">特定标签</h4>
+<p>不算是条件注释的一部分，但个人感觉有一定的逻辑在里面。故把这个十分有用的标签放在这一部分。 noscript 元素用来定义在脚本未被执行时的替代内容（文本）。 这个标签可被用于可识别<code>&lt;script&gt;</code>标签但无法支持其中的脚本的浏览器。用法和普通的html标签一样。</p>
+<h3 id="腻子脚本">腻子脚本</h3>
+<blockquote>
+<p>腻子脚本（polyfill）指的是<strong>一段JavaScript代码</strong>，能够赋予浏览器未曾有过的功能。</p>
+</blockquote>
+<p><a href="https://github.com/Modernizr/%20Modernizr/wiki/HTML5-Cross-Browser-Polyfills" target="_blank" rel="noopener">一份完整的腻子脚本列表</a>，配合<a href="http://%20modernizr.com" target="_blank" rel="noopener">modernizr</a>使用效果更佳。前者负责修复，后者负责通过检查支持情况添加相应的类，便于前者操作。</p>
+<div class="figure">
+<img src="http://old-image.geekaholic.cn/2016-03-18_00001.jpg" alt="Modernizr添加了大量的表明浏览器功能的类–来自adobe">
+<p class="caption">Modernizr添加了大量的表明浏览器功能的类–来自adobe</p>
+</div>
+<p>实现’古老浏览器’对HTML5和CSS3的支持的大概过程如下。</p>
+<blockquote>
+<ol style="list-style-type: decimal">
+<li><strong>Modernizr</strong>脚本能够帮你检测用户浏览器对 HTML5 和 CSS3功能的支持情况。</li>
+<li>为顶级的
+<html>
+标签添加一组类(为 CSS 提供便利)，标明浏览器支持什么功能。</html></li>
+<li>设定一个 JavaScript对象modernizr的属性，以便通过JavaScript 来测试这些功能。</li>
+</ol>
+</blockquote>
+<p>更详细的用法见<a href="http://www.adobe.com/cn/devnet/dreamweaver/articles/using-modernizr.html" target="_blank" rel="noopener">使用Modernizr 检测HTML5和CSS3浏览器支持功能</a></p>
+<p>以下是<a href="https://book.douban.com/subject/23123255/" target="_blank" rel="noopener">CSS设计指南(第3版)</a>列出的常见polyfill（腻子脚本）</p>
+<ul>
+<li><a href="http://code.google.com/p/html5shiv" target="_blank" rel="noopener">html5shiv.js</a>：让 IE8 及更低版本的 IE 识别section、 article、 nav 等 HTML5 元素。</li>
+<li><a href="http://www.selectivizr.com" target="_blank" rel="noopener">selectivizr</a>：让 IE（6/7/8）支持::first-child 等高级 CSS 选择符。</li>
+<li><a href="http://code.google.com/p/ie7-js" target="_blank" rel="noopener">IE9.js</a>：修复从 IE6 到 IE9 的很多 bug 和缺损功能。</li>
+<li><a href="http://css3pie.com" target="_blank" rel="noopener">CSS3Pie</a>：让 IE6 到 IE9 支持圆角、背景渐变、边框图片、盒阴影、 RGBa 颜色等可视化的 CSS3 功能。</li>
+<li><a href="https://github.com/scottjehl/respond" target="_blank" rel="noopener">Respond.js</a>：让旧版本浏览器支持媒体查询。</li>
+<li><a href="http://lea.verou.me/projects" target="_blank" rel="noopener">-prefix-free</a>为需要厂商前缀的 CSS3 声明添加前缀。【这一条还是使用IDE自己添加比较好，webstorm就有某个属性全部添加的功能】</li>
+<li><a href="https://github.com/albertogasparin/borderBoxModel" target="_blank" rel="noopener">borderBoxModel.js</a>：让 IE6 和IE7 支持 CSS3 的 box-sizing 属性。</li>
+</ul>
+<hr>
+<p><strong>参考文章与书籍</strong>：</p>
+<p><span class="citation">[Airen的博客--CSS3 @font-face]</span><a href="http://www.w3cplus.com/content/css3-font-face" target="_blank" rel="noopener">26</a></p>
+<p><a href="http://liunian.info/css-specificity.html" target="_blank" rel="noopener">CSS优先级特性</a></p>
+<p><a href="https://book.douban.com/subject/23123255/" target="_blank" rel="noopener">CSS设计指南(第3版)</a></p>
+<p><a href="http://www.adobe.com/cn/devnet/dreamweaver/articles/using-modernizr.html" target="_blank" rel="noopener">使用Modernizr 检测HTML5和CSS3浏览器支持功能</a></p>
+
+        </div>
+        <div id="post-footer">
+            <div class="avatar" >
+                <img src="http://image.geekaholic.cn/author.jpg" alt="avatar"/>
+                
+                <a href="javascript:void(0)" class="high-song">high起来 &#128541;</a>
+                
+                
+                <a href="javascript:void(0)" class="donate fa">打赏资瓷 &#128536;</a>
+                
+            </div>
+            <ul class="author-profile-section">
+                <li>
+                  
+                  作者:
+                  
+                    
+                    <a href="/about.html">GeekaholicLin</a>
+                </li>
+                
+                <li>发表日期: <span>2016-03-11  23:36:41</span></li>
+                
+                <li>最后编辑日期: <span>2019-09-26  05:21:46</span></li>
+                
+                <li class="post-category">
+                    文章分类:
+                    
+                    <a href="/categories/黄金屋-读书笔记/">黄金屋--读书笔记</a>
+                    
+                    <a href="/categories/黄金屋-读书笔记/CSS设计指南/">CSS设计指南</a>
+                    
+                </li>
+                <li class="post-tags">
+                    文章标签:
+                    
+                    <a href="/tags/兼容性/">兼容性</a>
+                    
+                    <a href="/tags/CSS设计指南/">CSS设计指南</a>
+                    
+                    <a href="/tags/读书笔记/">读书笔记</a>
+                    
+                    <a href="/tags/polyfill/">polyfill</a>
+                    
+                </li>
+                
+                <li> 版权声明: 
+<a href="https://creativecommons.org/licenses/by-nc-nd/3.0/" target="_blank">
+知识共享署名-非商业性使用-禁止演绎 3.0 未本地化版本许可协议（CC BY-NC-ND 3.0）
+</a></li>
+                
+            </ul>
+            <div id="donate-wrap">
+                
+                
+                
+                <img src="http://image.geekaholic.cn/alipay.jpg" alt="支付宝付款" class="donate-img">
+                
+                <img src="http://image.geekaholic.cn/wechat.png" alt="微信付款" class="donate-img">
+                
+                
+            </div>
+        </div>
+    </article>
+    <div class="article-nav">
+        
+        <a href="/2016/03/18/Genymotion模拟器无法启动解决办法/" class="pre-post fa fa-caret-left">Genymotion模拟器无法启动解决办法</a>
+        
+        
+        <a href="/2016/02/19/虚拟机英文XP系统安装中文字体-图文教程/" class="next-post fa">虚拟机英文XP系统安装中文字体(图文教程)</a>
+        
+    </div>
+    
+    <div id="comments">
+        
+
+<script>
+  gitalk.render("comments");
+</script>
+
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+    <footer id="footer">
+    
+    <div class="social">
+        
+        <a href="https://freecodecamp.cn/geekaholiclin" class="fa fa-free-code-camp" target="_blank" title="freecodecamp"></a>
+        
+        <a href="https://github.com/GeekaholicLin" class="fa fa-github" target="_blank" title="github"></a>
+        
+        <a href="mailto:geekaholiclin@gmail.com" class="fa fa-envelope-o" target="_blank" title="mail to me"></a>
+        
+    </div>
+    
+    <div>
+        
+        <a href="/" class="copyright-links">GeekaholicLin</a>&copy;2015 - 2019.All Rights
+        Reserved.
+    </div>
+    <p>Powered by <a href="https://hexo.io" class="copyright-links" target="_blank">Hexo</a> | Theme by <a
+                href="https://github.com/GeekaholicLin" class="copyright-links" target="_blank">GeekaholicLin</a>
+    </p>
+    
+    
+    <p>
+        <span id="busuanzi_container_site_uv" class="fa fa-bar-chart">
+        欢迎第<span id="busuanzi_value_site_uv"><i class="fa fa-spinner fa-spin"></i></span>位小伙伴~
+        </span>
+    </p>
+    
+</footer>
+
+</div>
+    <ul id="tools">
+    <li class="totop-btn fa fa-angle-up"></li>
+    <li class="exchange-btn fa fa-exchange"></li>
+  
+    <li class="toc-btn fa fa-list-ul"></li>
+    
+    
+
+    
+    <li class="comment-btn fa fa-comments-o">
+        <a href="#comments" title="comments"></a>
+    </li>
+    
+</ul>
+<p id="process"></p>
+<div id="search-overlay">
+    <div class="search-area-wrap">
+        <div id="search-area">
+            <div class="input-wrap focus">
+                <i class="fa fa-search" aria-hidden="true"></i>
+                <input id="search-input" autofocus autocomplete="off" type="text"
+                       placeholder="search this website..."/>
+            </div>
+            <ul id="search-result">
+                <li class="load-first"><i class="fa fa-spinner fa-pulse"></i></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#说在前面"><span class="toc-number">1.</span> <span class="toc-text">说在前面</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#知识点大杂烩"><span class="toc-number">2.</span> <span class="toc-text">知识点大杂烩</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#那些坑儿"><span class="toc-number">2.1.</span> <span class="toc-text">那些坑儿</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#继承"><span class="toc-number">2.2.</span> <span class="toc-text">继承</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#层叠"><span class="toc-number">2.3.</span> <span class="toc-text">层叠</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#样式缩写"><span class="toc-number">2.4.</span> <span class="toc-text">样式缩写</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#盒子模型加强"><span class="toc-number">3.</span> <span class="toc-text">盒子模型（加强）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#盒子模型两大结论"><span class="toc-number">3.1.</span> <span class="toc-text">盒子模型两大结论</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#两大结论的好处"><span class="toc-number">3.2.</span> <span class="toc-text">两大结论的好处</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#盒子模型的一些坑"><span class="toc-number">3.3.</span> <span class="toc-text">盒子模型的一些坑</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#盒子模型和三列布局的优化"><span class="toc-number">3.4.</span> <span class="toc-text">盒子模型和三列布局的优化</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#浮动和清除浮动"><span class="toc-number">4.</span> <span class="toc-text">浮动和清除浮动</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#清除浮动的方法"><span class="toc-number">4.1.</span> <span class="toc-text">清除浮动的方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用哪一种"><span class="toc-number">4.2.</span> <span class="toc-text">使用哪一种？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#布局"><span class="toc-number">5.</span> <span class="toc-text">布局</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#响应式布局可变的固定布局"><span class="toc-number">5.1.</span> <span class="toc-text">响应式布局(可变的固定布局)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#媒体查询"><span class="toc-number">5.1.1.</span> <span class="toc-text">媒体查询</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#媒体类型"><span class="toc-number">5.1.2.</span> <span class="toc-text">媒体类型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#媒体特性"><span class="toc-number">5.1.3.</span> <span class="toc-text">媒体特性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#使用方法"><span class="toc-number">5.1.4.</span> <span class="toc-text">使用方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#viewport视口"><span class="toc-number">5.1.5.</span> <span class="toc-text">viewport(视口)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#流动布局"><span class="toc-number">5.2.</span> <span class="toc-text">流动布局</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#弹性布局"><span class="toc-number">5.3.</span> <span class="toc-text">弹性布局</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#圣杯布局略"><span class="toc-number">5.4.</span> <span class="toc-text">圣杯布局(略)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#双飞翼布局略"><span class="toc-number">5.5.</span> <span class="toc-text">双飞翼布局(略)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#兼容性之后备代码"><span class="toc-number">6.</span> <span class="toc-text">兼容性之后备代码</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#同一表现的前后顺序"><span class="toc-number">6.1.</span> <span class="toc-text">同一表现的前后顺序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#条件注释"><span class="toc-number">6.2.</span> <span class="toc-text">条件注释</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#ie浏览器"><span class="toc-number">6.2.1.</span> <span class="toc-text">IE浏览器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#特定标签"><span class="toc-number">6.2.2.</span> <span class="toc-text">特定标签</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#腻子脚本"><span class="toc-number">6.3.</span> <span class="toc-text">腻子脚本</span></a></li></ol></li></ol>
+
+
+    <script src="/js/highsong.js"></script>
+
+
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+    //theme config datas
+    var copyrightObj = {};
+    copyrightObj.enable = 'true';
+    copyrightObj.triggerCopyLength = '200';
+    copyrightObj.appendText = '商业转载请联系作者获得授权,非商业转载请注明出处 © GeekaholicLin';
+    var leancloudObj = {};
+    leancloudObj.enable = 'true';
+    leancloudObj.className = 'BlogCounter';
+    leancloudObj.limits = '10';
+</script>
+<script type="text/javascript">
+    var search = {};
+    var search_path = "search.xml";
+    if (!search_path) {
+        search_path = "search.xml";
+    }
+    search.path = "/" + search_path;
+    search.func =  _ajax.init();
+</script>
+<script src="/js/app.js"></script>
+
+
+</body>
+</html>

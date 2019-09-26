@@ -1,0 +1,703 @@
+a,area{
+    outline: none;
+    cursor: pointer;
+    text-decoration: none;
+}
+.subtitle{
+    color: #FFFFFF;
+    font-size: 32px;
+    font-weight: bold;
+    line-height: 36px;
+    height: 36px;
+}
+#wrap {
+    min-width: 1280px;
+    max-width: 1920px;
+    margin: 0 auto;
+    background-color: #23313E;
+}
+#bar{
+    height: 55px;
+}
+#container {
+    position: relative;
+    background: #23313E url(../img/bg.jpg) no-repeat center top;
+    width: 100%;
+    margin: 0 auto;
+}
+
+#main {
+    position: relative;
+    width: 1200px;
+    margin: 0 auto
+}
+#top{
+    height: 1356px;
+    position: relative;
+}
+
+/*==nav导航 start==*/
+.nav {
+    position: absolute;
+    width: 359px;
+    height: 33px;
+    right: -10px;
+    top: 12px;
+    z-index: 10;
+}
+
+.nav > a, #NIE-share .NIE-share-txt, #NIE-share .NIE-share-iconBtn a {
+    font-size: 14px;
+    color: #B0B0B0;
+    text-align: center;
+    height: 34px;
+    line-height: 34px;
+    z-index: 10;
+
+}
+
+.nav > a {
+    margin-left: 14px;
+}
+.nav > a > span{
+    margin: 0 3px 0 5px;
+}
+
+#NIE-share {
+    position: absolute;
+    right: 7px;
+    top: 0
+}
+#NIE-share .NIE-share-iconBtn a {
+    font-size: 23px
+}
+
+.nav > a:hover, #NIE-share .NIE-share-iconBtn a:hover {
+    color: #FFFFFF;
+}
+
+
+/*==nav导航 end==*/
+/*==logo==*/
+#logo{
+    display: block;
+    position: absolute;
+    height: 101px;
+    width: 221px;
+    left: 0;
+    top: 7px;
+}
+#lslogo{
+    display: block;
+    position: absolute;
+    height: 182px;
+    width: 287px;
+    left: 446px;
+    top: 30px;
+}
+#top .gw{
+    display: block;
+    background: url(../img/slice.png) no-repeat -466px 0;
+    width: 92px;
+    height: 25px;
+    position: absolute;
+    left: 1107px;
+    top: 51px;
+}
+#top .gw:hover{
+    background-position: -466px -27px;
+}
+#top .gksp{
+    display: block;
+    background: url(../img/slice.png) no-repeat 0 0;
+    position: absolute;
+    width: 231px;
+    height: 63px;
+    left: 483px;
+    top: 464px;
+}
+#top .gksp:hover{
+    background-position: -233px 0;
+}
+/*==logo end==*/
+
+/*==========timeLine CSS===========*/
+#timeline{
+    background: url(../img/atydate.png) no-repeat;
+    width: 1200px;
+    height: 112px;
+    position: absolute;
+    top: 643px;
+    left: 7px;
+    zoom: 1;
+}
+#timeline li{
+    float: left;
+    position: relative;
+    width: 299px;
+}
+
+#timeline .timeline-time,
+#timeline li .white-desc,
+#timeline li .blue-desc{
+    color: #FBFBFB;
+    font-size: 22px;
+    line-height: 30px;
+    height: 30px;
+    font-weight: bold;
+    padding-left: 40px;
+}
+#timeline li .blue-desc{
+    color: #2859D3;
+
+}
+#timeline .timeline-time{
+    margin-top: 10px;
+    color: #425A72;
+
+}
+
+/*视频区*/
+#video-area{
+    width: 1180px;
+    position: absolute;
+    bottom: 30px;
+    left: 10px;
+    min-height: 500px;
+    top: 791px;
+    overflow: hidden;
+}
+#video-area .page{
+    position: absolute;
+    left: 0;
+    top: 67px;
+    display: none;
+}
+#video-area .page.active{
+    display: block;
+}
+#video-area .subtitle{
+    margin: 10px 0 20px 0;
+}
+.ordinary.page li{
+    position: relative;
+    vertical-align: top;
+    display: inline-block;
+    *display:inline;
+    *zoom:1;
+}
+.page.special{
+    zoom:1;
+}
+/*.page.special li{*/
+/*}*/
+
+/*小视频*/
+
+.page.special li{
+    float: left;
+
+    width: 221px;
+    /*margin-top: 16px;*/
+    position: relative;
+    margin: 17px 2px 3px 27px;
+}
+#video-area .bigwrap{
+    width:662px;
+    margin:0;
+}
+.page li .small-videopic,
+{
+    position: relative;
+    width: 220px;
+    height: 123px;
+}
+
+.page li .videobtn{
+    position: absolute;
+    background: url(../img/smallvideo.png) no-repeat;
+    width: 28px;
+    height: 37px;
+    left: 94px;
+    top: 43px;
+    z-index: 100;
+}
+.page li .video-desc{
+    font-size: 14px;
+    color: #73798E;
+    min-height: 51px;
+    line-height: 22px;
+    margin-top: 2px;
+    width: 221px;
+    overflow: hidden;
+}
+
+#video-area .videobtn:hover + .video-desc{
+    color: #FFFFFF;
+}
+#video-area .pagebtn{
+    position: absolute;
+    width: 66px;
+    height: 17px;
+    top: 488px;
+    right: 40px;
+}
+.pagebtn .left-arr{
+    background: url(../img/slice.png) no-repeat -660px 0;
+    width: 13px;
+    height: 17px;
+    position: absolute;
+    left:-17px;
+    top:0;
+}
+.pagebtn .left-arr:hover{
+    background: url(../img/slice.png) no-repeat -634px 0;
+
+}
+.pagebtn .right-arr{
+    background: url(../img/slice.png) no-repeat -660px -52px;
+    width: 13px;
+    height: 17px;
+    position: absolute;
+    right:-17px;
+    top:0;
+}
+.pagebtn .right-arr:hover{
+    background-position: -634px -52px;
+}
+.pagebtn > span{
+    color:#EEF1F4;
+    font-size: 14px;
+    width: 66px;
+    display: block;
+    height: 17px;
+    text-align: center;
+    line-height: 17px;
+}
+
+/*大视频覆盖*/
+#video-area .bigvideo{
+    position: relative;
+    width: 662px;
+    height: 373px;
+    top: 17px;
+    left: 0;
+}
+#bigvideo-box{
+    display: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left:0;
+    top:0;
+}
+#video-area .bigvideo .big-videopic{
+    top:0;
+}
+#video-area .bigvideo .videobtn{
+    position: absolute;
+    background-image: url(../img/bigvideo.png);
+    width: 54px;
+    height: 74px;
+    left: 303px;
+    top: 150px;
+    z-index: 100;
+}
+
+#video-area .circle{
+    background: url(../img/circlebg.png) no-repeat;
+    width: 541px;
+    height: 30px;
+    position: relative;
+    padding-left: 123px;
+    font-size: 14px;
+    color: #D3CECE;
+    line-height: 30px;
+    left: 1px;
+    margin-top: 41px;
+}
+#video-area .circle.white{
+    color: #FFFFFF;
+}
+#video-area .circle .circle-span {
+    position: absolute;
+    background: url(../img/circle.png) no-repeat;
+    width: 113px;
+    height: 30px;
+    left: 0;
+    top:0;
+    text-align: center;
+    line-height: 30px;
+}
+/*第二页开始*/
+.ordinary.page li{
+    margin: 16px 12px 4px 0;
+}
+/*fight*/
+#fight{
+    clear: both;
+    background: url(../img/matchbg.jpg) top center no-repeat;
+    height: 569px;
+}
+#fight .teamwrap{
+    width: 1200px;
+    margin: 0 auto;
+    position: relative;
+}
+.teamwrap .subtitle{
+    text-align: center;
+    padding: 44px 0 20px 0;
+}
+.teamwrap .pk-match{
+    position: relative;
+    background: url(../img/teammap.png) no-repeat;
+    width: 1078px;
+    height: 366px;
+    top: 32px;
+    left: 58px;
+}
+.pk-match .champion{
+    background: url(../img/bigteam.png) no-repeat;
+    width: 230px;
+    height: 80px;
+    position: absolute;
+    left: 425px;
+    top: 2px;
+}
+.pk-match .champion .champion-name{
+    font-size: 24px;
+    height: 80px;
+    line-height: 80px;
+    padding-left: 34px;
+    background: url(../img/cup.png) no-repeat center left;
+    width: 153px;
+    margin: 0 auto;
+    color: #FFFFFF;
+}
+.pk-match .jijun{
+    left: 470px;
+    top: 264px;
+}
+.pk-match .win,.pk-match .fail{
+    position: absolute;
+    background-image: url(../img/smallteam.png);
+    width: 140px;
+    height: 50px;
+    text-align: center;
+    font-size: 14px;
+    color: #FFFFFF;
+    line-height: 50px;
+}
+.pk-match .fail{
+    color: #3881EA;
+    background-image: url(../img/failteam.png);
+}
+
+/*======team左边个别样式====*/
+.left.first{
+    left: 0;
+    top: 2px;
+}
+.left.second{
+    left: 2px;
+    top: 105px;
+}
+.left.third{
+    left: 0;
+    top: 213px;
+}
+.left.fourth{
+    left: 2px;
+    top: 316px;
+}
+.left.fifth{
+    left: 196px;
+    top: 52px;
+}
+.left.sixth{
+    left: 196px;
+    top: 264px;
+}
+.left.seventh{
+    left: 369px;
+    top: 155px;
+}
+/*======team右边个别样式====*/
+.right.first{
+    left: 936px;
+    top: 0;
+}
+.right.second{
+    left: 938px;
+    top: 103px;
+}
+.right.third{
+    left: 936px;
+    top: 213px;
+}
+.right.fourth{
+    left: 938px;
+    top: 316px;
+}
+.right.fifth{
+    left: 742px;
+    top: 52px;
+}
+.right.sixth{
+    left: 740px;
+    top: 264px;
+}
+.right.seventh{
+    left: 570px;
+    top: 155px;
+}
+/*======team精彩视频个别样式====*/
+.pk-match .jcsp{
+    position: absolute;
+    color: #3881EA;
+    font-size: 12px;
+}
+.pk-match .jcsp:hover{
+    text-decoration: underline;
+}
+
+.jcsp.first{
+    left: 40px;
+    top: 64px;
+}
+.jcsp.second{
+    left: 40px;
+    top: 280px;
+}
+.jcsp.third{
+    left: 246px;
+    top: 172px;
+}
+.jcsp.fifth{
+    left: 493px;
+    top: 352px;
+}
+.jcsp.fourth{
+    left: 492px;
+    top: 122px;
+}
+.jcsp.sixth{
+    left: 740px;
+    top: 172px;
+}
+.jcsp.seventh{
+    left: 939px;
+    top: 64px;
+}
+.jcsp.eighth{
+    left: 939px;
+    top: 279px;
+}
+
+/*bottom*/
+
+#bottom{
+
+    padding-bottom: 50px;
+
+}
+#bottom-content{
+    zoom:1;
+    width: 1200px;
+    margin: 0 auto;
+}
+#bottom-content:after,
+#match-news .news-top:after,#timeline:after,.special.page:after{
+    content: ".";
+    height: 0;
+    width: 0;
+    visibility: hidden;
+    display: block;
+    clear: both;
+}
+#bottom .subtitle{
+    padding-bottom: 24px;
+}
+#albumwrap,#match-news{
+    min-height: 497px;
+    padding-top: 43px;
+    position: relative;
+}
+#albumwrap{
+    float: left;
+    width: 726px;
+}
+.swiper-slide li{
+    display: inline-block;
+    *display:inline;
+    *zoom:1;
+    vertical-align: top;
+    margin: 0 18px 0 0;
+    width: 219px;
+    height: 200px;
+    padding: 5px 0;
+}
+.swiper-slide li a,.swiper-slide li .album-img{
+    display: block;
+    width: 100%;
+    height: 150px;
+    margin-bottom: 12px;
+}
+#albumwrap .album-desc{
+    font-size: 14px;
+    color: #666D75;
+    width: 219px;
+    overflow: hidden;
+    text-align: center;
+}
+#albumwrap li a:hover + .album-desc{
+    color: #FFFFFF;
+}
+#match-news{
+    float: right;
+    width: 413px;
+}
+#match-news .news-top{
+    position: relative;
+    min-height: 100px;
+    margin-bottom: 20px;
+    zoom:1;
+}
+
+.news-top .news-imglink{
+    float: left;
+    width: 148px;
+}
+.news-imglink .news-img{
+    height: 91px;
+    width: 148px;
+}
+.news-top .news-video{
+    float: right;
+    width: 250px;
+    background-color: #161E26;
+    padding-top: 10px;
+    min-height:81px;
+}
+.news-video .news-blue{
+    color: #2687ED;
+    font-size: 14px;
+    font-weight: bold;
+    height: 27px;
+    line-height: 27px;
+    padding-left: 13px;
+}
+.news-video .news-blue:hover{
+    text-decoration: underline;
+}
+.news-video .news-white{
+    color: #C2C3C4;
+    font-size: 12px;
+    padding-left: 13px;
+    line-height: 20px;
+}
+.news-area{
+    position: relative;
+    min-height: 200px;
+}
+.news-area li{
+    height: 20px;
+    position: relative;
+    margin-top: 16px;
+    line-height: 20px;
+    *margin-top:11px;
+}
+.news-area li > a{
+    display: block;
+    font-size: 14px;
+    color: #898E92;
+    width: 100%;
+    height: 100%;
+}
+.news-area li > a:hover{
+    color: #2687ED;
+}
+.news-area  .news-title,.news-area  .news-date{
+    position: absolute;
+    top: 2px;
+    display: block;
+}
+.news-area .news-title{
+    text-overflow: ellipsis;
+    left: -7px;
+    width: 343px;
+    overflow: hidden;
+    white-space:nowrap
+}
+.news-area .news-date{
+    right: 5px;
+    color: #898E92;
+}
+#match-news .more{
+    position: absolute;
+    background: url(../img/slice.png) no-repeat -560px -27px;
+    width: 72px;
+    height: 25px;
+    top: 50px;
+    right: 2px;
+}
+#match-news .more:hover{
+    background-position: -560px 0;
+}
+/*==footer==*/
+#footer {
+    width: 100%;
+    max-width: 1920px;
+    background-color: #0B111A;
+    text-align: center;
+    padding-top: 50px;
+    margin:0 auto;
+}
+
+#NIE-copyRight {
+    height: 100px
+}
+
+#NIE-copyRight, #NIE-copyRight a {
+    color: #BB3535
+}
+
+
+/*==视频弹窗==*/
+#video-mask {
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    opacity: 0.8;
+    filter: alpha(opacity=80);
+    z-index: 9999;
+}
+/*视频*/
+/*弹窗*/
+/*让video-wrap与#video同大小方便设置cancel按钮*/
+
+#video-wrap {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    width: 720px;
+    height: 406px;
+    top: 50%;
+    left: 50%;
+}
+
+.video-cancel {
+    position: absolute;
+    z-index: 9999;
+    right: -50px;
+    top: 0;
+    width: 46px;
+    height: 46px;
+    background: url(../img/close.png) center no-repeat;
+}
+
+

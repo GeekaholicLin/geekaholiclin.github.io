@@ -1,0 +1,567 @@
+<!doctype html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no">
+    
+<meta name="google-site-verification" content="osGzKb_y9J6vt8d0mGYPDH81ljatwPdSVCFwxMCJSaE">
+
+    
+<meta name="baidu-site-verification" content="Yn6v4uAWVY">
+<script>
+    //push
+    (function(){
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        }
+        else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    <!--Simple SEO-->
+
+<meta name="description" content="编执狂的博客，主要记录自己在IT路上的成长历程。/">
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+    <!--Title-->
+
+<title>理清Java的IO(2)--流 | Geekaholic</title>
+
+<link rel="alternate" href="/atom.xml" title="Geekaholic" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+    
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/css/pages/post.css">
+<link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/thirdParty/highlight/solarized-light.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+
+<style>
+    figure .code .line:before{
+        display: none!important;
+    }
+</style>
+
+    <!--script-->
+
+
+<script src="//cdn.jsdelivr.net/npm/leancloud-storage@3.15.0/dist/av-min.js"></script>
+<script>
+  var appId = "RI5uv752sD0nGTyUSUC6odJE-gzGzoHsz";
+  var appKey = "yuke8QmutaxI5YvyD2NIE57u";
+  var region = "null";
+  var serverURLs = "http://leancloud.geekaholic.cn";
+  AV.init({
+    appId: appId,
+    appKey: appKey,
+    region: region,
+    serverURLs: serverURLs
+  });
+</script>
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+<script>
+  var admin = "GeekaholicLin";
+  admin = admin.split(",");
+  var gitalk = new Gitalk({
+    clientID: "aa2215dfc8ee944d1205",
+    clientSecret: "77cd2afa5d161bc0ab04639ed81300d808c6e22b",
+    repo: "geekaholiclin.github.io",
+    owner: "GeekaholicLin",
+    admin: admin,
+    id: decodeURIComponent(location.pathname),
+    distractionFreeMode: false
+  })
+
+</script>
+
+    
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?1fdc784829bc9fa0c0bbee0c680ffe2a";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+    
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-91854900-3', 'auto');
+    ga('send', 'pageview');
+
+</script>
+
+</head>
+</html>
+<body id="normal">
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<style>
+    header{ top: 71px; position: absolute!important;}
+    #container{padding-top: 151px!important;}
+</style>
+<div style="position:fixed;z-index:9999;left:0;top:0;width:100%;height:70px;background-color:#e0e0e0;color:#396CA5;border-bottom:1px solid #cecece;text-align:center;line-height:70px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis">您使用的浏览器版本过低，为了您更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<div id="wrap">
+    <header  style="position: absolute;" >
+    <div id="site-meta">
+        <a href="/" id="logo">
+            <h1 class="title">Geekaholic</h1>
+        </a>
+        
+        <h2 class="subtitle">编程在于折腾</h2>
+        
+    </div>
+    <ul id="nav">
+        
+            <li><a href="/"><i class="fa fa-home"></i>首页</a></li>
+        
+            <li><a href="/about"><i class="fa fa-user"></i>关于我</a></li>
+        
+            <li><a href="/atom.xml"><i class="fa fa-rss"></i>RSS</a></li>
+        
+        <li id="search"><a href="javascript:void(0)"><i class="fa fa-search"></i>搜索</a></li>
+    </ul>
+</header>
+
+    <div id="container">
+        
+<ul id="sidebar">
+    
+    
+    
+    
+<li class="widget widget-normal category">
+    <h3 class="fa fa-th widget-title">分类</h3>
+    <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/他山之石/"><i class="fa" aria-hidden="true">他山之石</i></a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/他山之石/Web/"><i class="fa" aria-hidden="true">Web</i></a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/编执狂/"><i class="fa" aria-hidden="true">编执狂</i></a><span class="category-list-count">14</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/编执狂/Android/"><i class="fa" aria-hidden="true">Android</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/编执狂/Java/"><i class="fa" aria-hidden="true">Java</i></a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/编执狂/Web/"><i class="fa" aria-hidden="true">Web</i></a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/编执狂/计算机基础/"><i class="fa" aria-hidden="true">计算机基础</i></a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/编程之外/"><i class="fa" aria-hidden="true">编程之外</i></a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/编程之外/Hexo/"><i class="fa" aria-hidden="true">Hexo</i></a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/编程之外/解决方法/"><i class="fa" aria-hidden="true">解决方法</i></a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/黄金屋-读书笔记/"><i class="fa" aria-hidden="true">黄金屋--读书笔记</i></a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/黄金屋-读书笔记/CSS设计指南/"><i class="fa" aria-hidden="true">CSS设计指南</i></a><span class="category-list-count">1</span></li></ul></li></ul>
+</li>
+
+
+    
+    
+<li class="widget widget-normal archive">
+  <h3 class="fa fa-archive widget-title">归档</h3>
+    <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/"><i class="fa" aria-hidden="true">九月 2017</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/"><i class="fa" aria-hidden="true">八月 2017</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/"><i class="fa" aria-hidden="true">三月 2017</i></a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/"><i class="fa" aria-hidden="true">二月 2017</i></a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/"><i class="fa" aria-hidden="true">三月 2016</i></a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/"><i class="fa" aria-hidden="true">二月 2016</i></a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/"><i class="fa" aria-hidden="true">一月 2016</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/"><i class="fa" aria-hidden="true">十二月 2015</i></a><span class="archive-list-count">5</span></li></ul>
+</li>
+
+
+    
+    
+<li class="widget widget-normal popular-posts" id="popular-posts">
+    <h3 class="fa fa-thermometer-3 widget-title">热门文章</h3>
+    <ul id="popular-content">
+        <li class="load-first"><i class="fa fa-spinner fa-pulse"></i></li>
+    </ul>
+</li>
+
+    
+    
+<li class="widget widget-normal tags">
+  <h3 class="fa fa-tags widget-title">标签云</h3>
+  <div class="tagcloud-content">
+    
+      <a href="/tags/Mathjax/" style="font-size: 0.18rem; color: #4f83b8">Mathjax</a> <a href="/tags/JavaScript/" style="font-size: 0.21rem; color: #386da4">JavaScript</a> <a href="/tags/Web/" style="font-size: 0.21rem; color: #386da4">Web</a> <a href="/tags/Android/" style="font-size: 0.18rem; color: #4f83b8">Android</a> <a href="/tags/ListView原理/" style="font-size: 0.14rem; color: #69c">ListView原理</a> <a href="/tags/ListView优化/" style="font-size: 0.14rem; color: #69c">ListView优化</a> <a href="/tags/Android控件/" style="font-size: 0.14rem; color: #69c">Android控件</a> <a href="/tags/解决方法/" style="font-size: 0.14rem; color: #69c">解决方法</a> <a href="/tags/Genymotion/" style="font-size: 0.14rem; color: #69c">Genymotion</a> <a href="/tags/VisualBox/" style="font-size: 0.14rem; color: #69c">VisualBox</a> <a href="/tags/Java/" style="font-size: 0.28rem; color: #0a407c">Java</a> <a href="/tags/线程/" style="font-size: 0.14rem; color: #69c">线程</a> <a href="/tags/InterruptedException/" style="font-size: 0.14rem; color: #69c">InterruptedException</a> <a href="/tags/异常/" style="font-size: 0.14rem; color: #69c">异常</a> <a href="/tags/RxJS/" style="font-size: 0.14rem; color: #69c">RxJS</a> <a href="/tags/Translation/" style="font-size: 0.18rem; color: #4f83b8">Translation</a> <a href="/tags/Hexo主题/" style="font-size: 0.18rem; color: #4f83b8">Hexo主题</a> <a href="/tags/ylion/" style="font-size: 0.25rem; color: #215690">ylion</a> <a href="/tags/模块化/" style="font-size: 0.18rem; color: #4f83b8">模块化</a> <a href="/tags/CSS3/" style="font-size: 0.14rem; color: #69c">CSS3</a> <a href="/tags/W3C/" style="font-size: 0.14rem; color: #69c">W3C</a> <a href="/tags/Hexo/" style="font-size: 0.21rem; color: #386da4">Hexo</a> <a href="/tags/主题制作/" style="font-size: 0.18rem; color: #4f83b8">主题制作</a> <a href="/tags/IO操作/" style="font-size: 0.21rem; color: #386da4">IO操作</a> <a href="/tags/Scanner/" style="font-size: 0.14rem; color: #69c">Scanner</a> <a href="/tags/马士兵/" style="font-size: 0.18rem; color: #4f83b8">马士兵</a> <a href="/tags/异常处理/" style="font-size: 0.18rem; color: #4f83b8">异常处理</a> <a href="/tags/流类型/" style="font-size: 0.18rem; color: #4f83b8">流类型</a> <a href="/tags/算法分析/" style="font-size: 0.14rem; color: #69c">算法分析</a> <a href="/tags/复杂度/" style="font-size: 0.14rem; color: #69c">复杂度</a> <a href="/tags/虚拟机/" style="font-size: 0.14rem; color: #69c">虚拟机</a> <a href="/tags/英文XP系统/" style="font-size: 0.14rem; color: #69c">英文XP系统</a> <a href="/tags/中文字体/" style="font-size: 0.14rem; color: #69c">中文字体</a> <a href="/tags/兼容性/" style="font-size: 0.18rem; color: #4f83b8">兼容性</a> <a href="/tags/CSS设计指南/" style="font-size: 0.14rem; color: #69c">CSS设计指南</a> <a href="/tags/读书笔记/" style="font-size: 0.14rem; color: #69c">读书笔记</a> <a href="/tags/polyfill/" style="font-size: 0.14rem; color: #69c">polyfill</a>
+  </div>
+</li>
+
+
+    
+    
+<li class="widget widget-normal friends-link">
+    <h3 class="fa fa-globe widget-title">友链</h3><br/>
+
+    
+        <a href="http://geekaholiclin.github.io" class="fa" target="_blank">主题作者</a>
+
+    
+        <a href="http://walkerlala.github.com/" class="fa" target="_blank">walkerlala</a>
+
+    
+        <a href="http://jerry011235.github.io/" class="fa" target="_blank">璀璨星空</a>
+
+    
+
+</li>
+
+    
+</ul>
+
+
+        <div id="main">
+    <article id="post">
+        <div id="post-header">
+
+            <h1 id="理清Java的IO(2)--流">
+                
+                理清Java的IO(2)--流
+                
+            </h1>
+            <div class="article-meta">
+    
+    
+    <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+        <span>Java</span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+         <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            Java
+            
+        </span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta ">2015/12/27</span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+            <i class="fa fa-thermometer-three-quarters"></i>
+        <span class="hits hits-meta " data-leadcloud-title="理清Java的IO(2)--流"
+              data-leadcloud-url="/2015/12/27/理清Java的IO-2/"><i class="fa fa-spinner fa-spin"></i></span>
+    </span>
+    
+    
+</div>
+
+            
+            
+            <p class="fa fa-exclamation-triangle warning">
+                本文于<strong>1368</strong>天之前发表，文中内容可能已经过时。如有疑问，请在评论区留言。
+            </p>
+            
+        </div>
+        
+        <div id="post-body">
+            <h2 id="前言">前言</h2>
+<p>这是本博客中第二篇关于<code>Java IO</code>的文章，主要补充上一篇文章没有讲完的知识点–具体的’流’。上一篇链接:</p>
+<blockquote>
+<p><a href="http://garcin-lam.github.io/2015/12/27/%E7%90%86%E6%B8%85Java%E7%9A%84IO-1/" target="_blank" rel="noopener">传送门</a></p>
+</blockquote>
+<p>先来召唤上次文章所用的图吧。</p>
+<p><img src="http://old-image.geekaholic.cn/javaio%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93%20-%20-%20ITeye%E6%8A%80%E6%9C%AF%E7%BD%91%E7%AB%99.jpg" alt="图片来自网络–侵删"> <a id="more"></a> ## 常见的’流’类型</p>
+<h3 id="文件流file-stream">文件流–File Stream</h3>
+<p><code>FileInputStream</code> 继承自InputStream 和 <code>FileOutputStream</code> 继承自OutputStream.</p>
+<p>这两个类类用于从/向文件读取/写入字节。它们的方法都是从InputStream和OutStream类继承的，没有引入新的方法。使用文件(<code>File</code>)对象或文件路径字符串来作为参数进行实例构造。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 文件输入流构造方法</span></span><br><span class="line">FileInputStream(File file)</span><br><span class="line">FileInputStream(FileDescriptor fdObj)</span><br><span class="line">FileInputStream(String name)</span><br><span class="line"></span><br><span class="line"><span class="comment">//文件输出流构造方法</span></span><br><span class="line">FileOutputStream(File file)</span><br><span class="line">FileOutputStream(File file, <span class="keyword">boolean</span> append)</span><br><span class="line">FileOutputStream(FileDescriptor fdObj)</span><br><span class="line">FileOutputStream(String name)</span><br><span class="line">FileOutputStream(String name, <span class="keyword">boolean</span> append)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>如果试图为一个<code>不存在的文件</code>创建FileInputStream对象，将会发生<code>java.io.FileNotFoundException</code>异常。</p>
+</blockquote>
+<blockquote>
+<p>而对于FileOutputStream而言，如果要写入数据的File对象不存在，则会创建一个新的文件，如果文件存在，<strong>可选</strong>文件是否以追加形式写入。</p>
+</blockquote>
+<h3 id="转换流字节流转换到字符流">转换流–字节流转换到字符流</h3>
+<p>注意小标题，它是<strong>单向</strong>的。有没有反向的？ &gt; 计算机都是以二进制来存储文件的。</p>
+<p>文本文件在计算机以二进制存着，当然可以直接读，也就是说，<strong>不需要也没必要字符流转换为字节流</strong>。</p>
+<p>它们的用处是什么？ 为了记忆方便，在上一篇文章中我们说有’-er’的是处理文本文件数据，’Stream’是处理二进制文件数据。<strong>用来将字节数据以某种编码(如UTF-8)转换到字符数据</strong>。 转换流有<code>InputStreamReader</code>(继承自<strong>Reader</strong>抽象类)和<code>OutputStreamWriter</code>(继承自 <strong>Writer</strong>抽象类)。这两个也是<code>常见的处理流</code>。 &gt;- InputStreamReader 需要和 InputStream 抽象类的子类 “套接”(PS:废话<sub>！它处理的对象是“字节数据”，当然套接在它上面啦，而且input与input相对应</sub>。“套接”就意味着要以InputStream的子类实例为构造参数)。 &gt;- 同理可得，OutputStreamWriter 需要和 OutputStream抽象类的子类 “套接”. &gt;- 转换流在构造时可以指定其<code>编码集合</code>，若不指定，默认为Unicode编码。</p>
+<p>其中带有指定编码参数的<code>InputStreamReader</code>对象的构造方法。 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line">InputStreamReader(InputStream in, CharsetDecoder dec)</span><br><span class="line">Creates an InputStreamReader that uses the given charset decoder.</span><br></pre></td></tr></table></figure></p>
+<h3 id="过滤器数据流filter-stream">过滤器数据流–Filter Stream</h3>
+<p><code>FilterInputStream</code>,<code>OutputStream</code>是过滤数据流的基类，它以及其子类都是<code>处理流</code>。在上一篇博客中已经介绍过，处理流是在节点流或其他处理流的基础上建立的，相当于一个大水管(处理流)“套接”在了其他小水管上面。需要“套接”在InputStream和OutputStream类型的节点流上。字节流中不是已经有了吗，怎么还需要一个过滤流。<code>存在即有理</code>。Filter Stream 是为某种目的过滤字节的数据流。</p>
+<h4 id="data-stream">Data Stream</h4>
+<p>Data Stream 是数据过滤流(<code>Filter Stream</code>)的其中一个子类。基本字节注入流提供的读取方法<strong>read()只能用来读取字节</strong>，而没有<strong>Java基本类型以及字符串</strong>–这就需要数据流(<code>DataInputStream</code>/<code>DataOutputStream</code>)了，它们提供的方法很方便。 试想，如果在读取文件数据的时候，你是不是读取出来之后还要进行基本类型转换？</p>
+<p>但Filter Stream的一些子类有提供便捷的方法。存取的时候直接以该类型进行操作。比如: <code>DataInputStream</code> 和<code>DataOutputStream</code>提供了存取与机器无关的Java原始类型数据(如:int,double等)的方法(readFloat()/writeFloat()等等)，无需转换就可以从内存复制到输出数据流中。</p>
+<p>DataOutputStream 将一个输入流的数据过滤成合适的基本类型值或者字符串。而DataOutputStream 将基本类型值或者字符串转换成字节并且输出字节到输出流中。<strong>这么看来，Data Stream 就像在程序和文件间的一个“转换器”</strong>。</p>
+<h5 id="谈谈字符编码">谈谈字符编码</h5>
+<p>Data Stream中还有几组有意思的方法。在这里总结一下，也可以提一下醒。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//读取</span></span><br><span class="line">readUTF() -- 从UTF格式中读取一个字符串</span><br><span class="line">readLine()--从输入流中读取数据行。但目前官方不推荐使用DataInputStream对象的该方法。可以使用BufferedReader对象的readLine()方法读取文本行。</span><br><span class="line"> BufferedReader d  = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> InputStreamReader(in));<span class="comment">/*来自官方API 文档*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//输出</span></span><br><span class="line">writeByte()--向输出流中写出Int类型的低八位字节</span><br><span class="line">writeBytes()---向输出流写入一个字符串中字符的低位字节</span><br><span class="line">writeChar()---向输出流中写入一个字符(由两个字节组成)</span><br><span class="line">writeChars()--向输出流中依次写入一个字符串中的每个字符</span><br><span class="line">writeUTF()---以UTF-<span class="number">8</span>格式写入一个字符串</span><br><span class="line"></span><br><span class="line"><span class="comment">/*注意不要混淆Java的char,byte 以及C语言中的char</span></span><br><span class="line"><span class="comment">  Java中的char字符型是以统一码(Unicode)编码的，也就是说Java中的char虽说是一个字符，但它是两个字节组成的，而byte是Java中的char类型的低八位，也就是一个字节。至于C语言中的char类型，因为C语言的字符型是以ASCII码进行编码，所以每个字符是8位，一个字节。</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">  所以输出中的writeBytes()，writeChar(),writeChars()以及writeUTF()之间有什么区别和联系？应该在什么情况下使用？</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">  writeBytes方法适用于ASCII码组成的字符串，因为ASCII只储存统一码的低八位。</span></span><br><span class="line"><span class="comment">  而对于不是全部由ASCII码组成的字符串(比如含有汉字)，则要使用writeUTF()和writeChars()，都是将两个字节的长度信息写入输出流。但使用UTF编码格式来存储相对更省空间，它是变长的，对于ASCII字符它只会使用1个字节，但如果使用Unicode，则使用了两个字节。所以，如果一个长字符串的大多数字符都是普通的ASCII字符，采用UTF-8格式储存更加高效。</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="comment">/*注意，读写如果用到UTF,则必须成对出现。也就是说，如果在数据存储的时候，使用了writeUTF()格式写入数据，则读取的时候必须使用readUTF()*/</span></span><br></pre></td></tr></table></figure>
+<h5 id="关于utf-8编码">关于UTF-8编码</h5>
+<blockquote>
+<p>UTF-8是一种常用的字符编码，它是变长的，由统一码Unicode改进的编码。它根据字符的大小来使用1个字节，2个字节或者3个字节来存储字符。如果一个字符的编码值小于0X7F(即0111,1111 [逗号只是为了观看直观])，也就是ASCII码，则使用一个字节来存储。如果大于0X7F且小于等于0X7FF，则使用两个字节来存储。如果大于0X7FF则使用3个字节。UTF-8编码字符的起始几位标明这个字符是存储在一个字节两个字节还是三个字节中。如果是前4位是1110，则表明它是由3个字节序列组成的字符中的第1个字节。如果是0.则表明它是由一个字节组成的字符(ASCII)，更多具体的请查阅资料~~</p>
+</blockquote>
+<h5 id="例子">例子</h5>
+<blockquote>
+<p>writeUTF(“ABCDEF”)写入文件的是8个字节(00 06 41 42 43 44 45 46 )[16进制表示]，其中<strong>前两个字节用来存储字符串中的字符个数</strong>。</p>
+</blockquote>
+<p><a href="http://www.iteye.com/topic/47740" target="_blank" rel="noopener"><strong>注意，在Java中，当用UTF-8来存储中文汉字的时候，每个汉字占3个字节，而GBK是两个字节</strong></a> 可以改动下面的代码看看，将“ABCDEF”改成“ABCDEF测试”，再观察结果，就明了了。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.DataInputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.DataOutputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.EOFException;</span><br><span class="line"><span class="keyword">import</span> java.io.File;</span><br><span class="line"><span class="keyword">import</span> java.io.FileInputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.FileOutputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JavaIO</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        File mFile = <span class="keyword">new</span> File(<span class="string">"D:\\test.txt"</span>);</span><br><span class="line">        FileInputStream mFileInputStream;</span><br><span class="line">        DataInputStream in;</span><br><span class="line">        <span class="keyword">try</span> (FileOutputStream mFileOutputStream = <span class="keyword">new</span> FileOutputStream(mFile)) &#123;</span><br><span class="line">            DataOutputStream data = <span class="keyword">new</span> DataOutputStream(mFileOutputStream);</span><br><span class="line">            data.writeUTF(<span class="string">"ABCDEF"</span>);</span><br><span class="line">            data.close();</span><br><span class="line">            mFileOutputStream.close();</span><br><span class="line">            mFileInputStream = <span class="keyword">new</span> FileInputStream(mFile);</span><br><span class="line">            in = <span class="keyword">new</span> DataInputStream(mFileInputStream);</span><br><span class="line">            System.out.println(<span class="string">"文件字节数为"</span> + mFile.length());</span><br><span class="line">            System.out.println(<span class="string">"readUTF()读取的数据:"</span> + in.readUTF());</span><br><span class="line">            mFileInputStream.close();</span><br><span class="line">            in.close();</span><br><span class="line">            mFileInputStream = <span class="keyword">new</span> FileInputStream(mFile);</span><br><span class="line">            in = <span class="keyword">new</span> DataInputStream(mFileInputStream);</span><br><span class="line">            System.out.println(<span class="string">"readByte()读出的数据："</span>);</span><br><span class="line">            <span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</span><br><span class="line">                System.out.printf(<span class="string">"%x "</span>,in.readByte());<span class="comment">//16进制</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (EOFException eof) &#123;</span><br><span class="line">            System.out.println(<span class="string">"\ndone!"</span>);<span class="comment">//到达结尾抛出EOF异常，要捕获。</span></span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException ee) &#123;</span><br><span class="line">            ee.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="缓冲流buffered-stream">缓冲流–Buffered Stream</h4>
+<p>BufferedInputStream 和 BufferedOutputStream 类可以<strong>减少磁盘读写次数</strong>来提升输入和输出的速度。使用BufferedInputStream时，磁盘上的整块数据一次性地读入到内存中的缓冲区。然后从缓冲区中将<strong>个别数据</strong>传递到程序中。使用BufferedOutputStream时，个别的数据首先写入到内存中的缓冲区中，当缓冲区已满时，缓冲区中的所有数据一次性写入到磁盘中。</p>
+<p><strong>构造方法</strong> &gt;- 1.BufferedInputStream(InputStream in) Creates a BufferedInputStream and saves its argument, the input stream in, for later use. &gt;- 2.BufferedInputStream(InputStream in, int size) Creates a BufferedInputStream with the specified buffer size, and saves its argument, the input stream in, for later use.</p>
+<p>如果不指定缓冲区大小，默认大小为512个字节。不管对于多大的文件，<strong>都应该使用</strong>缓冲区I/O来加速输入输出。 ### 对象流 – Object Stream</p>
+<p>对象类可以用来读写可序列化的对象，所谓可序列化对象是指该类实现了可序列化Serializable接口，这样可以将对象直接转换为字节流。</p>
+<h4 id="对象流和数据流的关系">对象流和数据流的关系</h4>
+<ul>
+<li>在前面我们已经知道，DataInputStream 类 和 DataOutputStream类可以实现<strong>基本数据类型与字符串的输入和输出</strong>，但ObjectInputStream 和 ObjectOutputStream 除了<strong>基本数据类型与字符串的输入和输出</strong>外，还可以实现对象的输入和输出。可以看出，ObjectOutputStream 和 ObjectInputStream 包括了 DataInputStream和DataOutStream的所有功能，完全可以使用前两者代替后两者。</li>
+<li>ObjectInputStream 和 DataInputStream 都扩展了InputStream抽象类，前者实现了接口ObjectInput，后者实现了接口DataInput。ObjectInput 接口 是 DataInput接口的子接口，并且多了一个readObject()的抽象方法(ObjectOutputStream 和 DataOutputStream同理)。除了ObjectInput接口外，ObjectInputStream和ObjectOutputStream还实现了接口ObjectStreamConstants，从名字中就可以看出来，该接口包含了ObjectInputStream 和 ObjectOutputStream所使用的<strong>常量</strong>。</li>
+<li>都要遵循以数据写入文件时的顺序和格式从文件中读取这些数据。</li>
+</ul>
+<h4 id="serializable关键字">serializable关键字</h4>
+<ul>
+<li><p>serializable “可序列化的”。它是一个接口，一种标记接口，因为没有方法。实现这个接口可以启动Java的序列化机制，自动完成存储对象和数组的过程。在ObjectOutStream中完成将可序列化的对象写入文件，这个过程称为<code>序列化</code>。在ObjectInputStream中完成将文件中的可序列化对象读取出来，这个过程称为<code>反序列化</code>。 当储存一个可序列化对象时，会对该对象的类进行编码。编码包括类名、类的签名、对象实例变量的值以及该对象引用的任何其他对象的<code>闭包</code>，但是<strong>不存储对象静态变量的值</strong>。</p></li>
+<li><p>externailzable 接口 Serializable的子接口，它的作用是让程序员自定义序列化过程。<strong>已经超出本人目前能力之外，不予讨论。</strong></p></li>
+</ul>
+<h4 id="非序列化的数据域">非序列化的数据域</h4>
+<p>已经知道，对象的静态变量的值不会存储。如果一个对象是Serializable的实例，但它包含了非序列化的实例数据域，那么就不可以序列化这个对象。一个对象保证能够被序列化，就要<strong>必须保证其数据域都可被序列化</strong>。还有一种方法是<code>transient</code>关键字，它的作用是告诉Java虚拟机将对象写入流的时候，<strong>忽略这些数据域</strong>。</p>
+<h4 id="重复的对象处理">重复的对象处理</h4>
+<blockquote>
+<p><strong>来自《Java语言程序设计(基础篇)》</strong> 如果一个对象不止一次写入对象流，会存储对象的多个副本吗？答案是不会。第一次写入一个对象的时候，就<strong>会为它创建一个序列号</strong>。Java虚拟机<strong>将对象的所有内容和序列号一起写入</strong>对象流中。以后每次存储时，如果再写入相同的对象，就只存储序列号。读出这些对象时，它们的引用相同，因为在内存中实际上存储的只是一个对象。</p>
+</blockquote>
+<h3 id="标准输入流">“标准”输入流</h3>
+<p>System.in 是“standard” InputStream(标准输入流)，这里的InputStream是父类指向子类引用对象(<code>多态性</code>)，其实<strong>System.in是BufferedStream的一个实例</strong>。也就是InputStream的一个子类。可以把它看成获取键盘的输入。 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JavaIO</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        System.out.println(System.in.getClass().getName());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>运行结果： java.io.BufferedInputStream</p>
+</blockquote>
+<p><strong>为什么是BufferedInputStream</strong>?在我迷惑的时候，去翻过Java API文档，但找不到答案。最终还是在<code>StackOverFlow</code>上找到了答案。其实“答案”在Java源码中可以看得到。</p>
+<p>用<code>NetBeans</code>或者其它IDE，ctrl+点击“in”进入’System.java’，当然其他方式也可以。</p>
+<blockquote>
+<ol start="83" style="list-style-type: decimal">
+<li>public final static InputStream in = null;</li>
+</ol>
+</blockquote>
+<blockquote>
+<ol start="257" style="list-style-type: decimal">
+<li>private static native void setIn0(InputStream in);</li>
+</ol>
+</blockquote>
+<blockquote>
+<ol start="1188" style="list-style-type: decimal">
+<li>FileInputStream fdIn = new FileInputStream(FileDescriptor.in);</li>
+</ol>
+</blockquote>
+<blockquote>
+<ol start="1191" style="list-style-type: decimal">
+<li>setIn0(new BufferedInputStream(fdIn));//就是在这里</li>
+</ol>
+</blockquote>
+<h3 id="print流">print流</h3>
+<p>PrintWriter 和 PrintStream都属于输出流，分别针对字符和字节。 两者都提供了重装的print PrintWriter和PrintStream的输出操作不会抛出异常，用户通过检测错误状态获取错误信息。(方便)？什么来的 PrintWriter和PrintStream有自动flush的功能。</p>
+<p>PrintfWriter的构造方法有点特殊。它可以有Writer的子类或者OutputStreamd的子类作为构造参数。所以它也是一种处理流。</p>
+<p><strong>注意</strong>:System.out是PrintfStream类型。System.in是InputStream类型。System.out.print()默认的输出是DOS窗口(标准输出)，但如果在方法中使用了System.setOut(PrintfStream)，会将默认的输出改变成设置的PrintStream目标，而不再是DOS窗口(屏幕)。<strong>屏幕也是一种’文件’</strong></p>
+<p>例子 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//用print流实现将test.txt文件中的字符串打印到new.txt中</span></span><br><span class="line"><span class="keyword">import</span> java.io.File;</span><br><span class="line"><span class="keyword">import</span> java.io.FileNotFoundException;</span><br><span class="line"><span class="keyword">import</span> java.io.PrintStream;</span><br><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JavaIO</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        File mFile = <span class="keyword">new</span> File(<span class="string">"D:\\test.txt"</span>);</span><br><span class="line">        File mNewFile = <span class="keyword">new</span> File(<span class="string">"D:\\new.txt"</span>);</span><br><span class="line">        Scanner in;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            PrintStream mOut = <span class="keyword">new</span> PrintStream(mNewFile);</span><br><span class="line">            in = <span class="keyword">new</span> Scanner(mFile,<span class="string">"UTF-8"</span>);</span><br><span class="line">            <span class="keyword">while</span> (in.hasNext()) &#123;</span><br><span class="line">                System.out.print(in.nextLine());</span><br><span class="line">            &#125;</span><br><span class="line">            in.close();</span><br><span class="line">            in = <span class="keyword">new</span> Scanner(mFile,<span class="string">"UTF-8"</span>);</span><br><span class="line">            System.setOut(mOut);</span><br><span class="line">             <span class="keyword">while</span> (in.hasNext()) &#123;</span><br><span class="line">                System.out.println(in.nextLine());</span><br><span class="line">                 System.out.println(<span class="string">"这句话也会在new.txt文件中"</span>);</span><br><span class="line">            &#125;</span><br><span class="line">             in.close();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">catch</span> (FileNotFoundException ex) &#123;</span><br><span class="line">            System.out.println(<span class="string">"找不到文件"</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="try-with-resources">try-with-resources</h2>
+<h3 id="两种方式">两种方式</h3>
+<p>这个是什么东西？其实，使用它来声明和创建输入输出流，从而在使用后可以自动关闭。 我们都知道，Java I/O操作都会抛出异常，需要我们进行关闭。而我们也知道，在操作完流之后，需要使用close()方法将它关闭。不关闭<code>流</code>可能会在输出文件中造成数据受损，或者导致其他的程序出错。但除了这种方法之外，还有一种简洁的方法。就是<code>try-with-resources</code>。</p>
+<h3 id="代码实例">代码实例</h3>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 方法一</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JavaIO</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            FileReader mFileReader ;</span><br><span class="line">            <span class="keyword">char</span>[] value = <span class="keyword">new</span> <span class="keyword">char</span>[<span class="number">2</span>];</span><br><span class="line">            File mFile = <span class="keyword">new</span> File(<span class="string">"D:\\test.txt"</span>);</span><br><span class="line">            mFileReader = <span class="keyword">new</span> FileReader(mFile);</span><br><span class="line">            System.out.println(<span class="string">"我是节点流对象mFileReader读取的数据"</span>);</span><br><span class="line">            <span class="comment">//一个字符一个字符地读取，当read()返回值为-1时，读取结束</span></span><br><span class="line">            <span class="keyword">while</span> (mFileReader.read(value, <span class="number">0</span>, <span class="number">1</span>) != -<span class="number">1</span>) &#123;</span><br><span class="line">                System.out.print(Arrays.toString(value));</span><br><span class="line">            &#125;</span><br><span class="line">            mFileReader.close();<span class="comment">//读写结束后需要关闭</span></span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception ee) &#123;</span><br><span class="line">            ee.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//方法2 try-with-resources</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JavaIO</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        File mFile = <span class="keyword">new</span> File(<span class="string">"D:\\test.txt"</span>);</span><br><span class="line">        <span class="keyword">try</span>(FileReader mFileReader=<span class="keyword">new</span> FileReader(mFile)) &#123;</span><br><span class="line">            <span class="keyword">char</span>[] value = <span class="keyword">new</span> <span class="keyword">char</span>[<span class="number">2</span>];</span><br><span class="line">            System.out.println(<span class="string">"我是节点流对象mFileReader读取的数据"</span>);</span><br><span class="line">            <span class="comment">//一个字符一个字符地读取，当read()返回值为-1时，读取结束</span></span><br><span class="line">            <span class="keyword">while</span> (mFileReader.read(value, <span class="number">0</span>, <span class="number">1</span>) != -<span class="number">1</span>) &#123;</span><br><span class="line">                System.out.print(Arrays.toString(value));</span><br><span class="line">            &#125;</span><br><span class="line">            mFileReader.close();<span class="comment">//读写结束后需要关闭</span></span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception ee) &#123;</span><br><span class="line">            ee.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="原理解说">原理解说</h3>
+<blockquote>
+<p><strong>来自《Java语言程序设计(基础篇)》</strong> 程序使用了<code>try-with-resources</code> 来声明和创建输入输出流，从而在使用后可以自动关闭。java.io.InputStream和java.io.OutputStream实现了<code>AutoClosable接口</code>。该接口定义了close()方法，用来关闭资源，任何AutoClousable类型的对象都可以用于try-with-resources语法中，实现其自动关闭。</p>
+</blockquote>
+<p>其实实现该接口的还有Scanner,Reader,Writer。目前接触涉及I/O的类都有close()方法，都有实现AutoClosable接口。</p>
+<h2 id="吐吐槽">吐吐槽</h2>
+<p>花了3天的时间来写关于I/O的，那感觉，满脑子都是’流’啊，’Scanner’等等的概念。估计要疯了。。。因为实在是太多了，整理的过程中总要想着如何排版更加合理，怎么说才能尽可能地述说完整。。。加上自己是菜鸟，总怕说错，不断地查文档和搜索，结果下来，发现还有很多琐碎的关于I/O的知识点等着T^T，还是加油吧~~！其实有很多类我们只需要了解就好，常见的I/O操作也就Scanner，Object Stream，Data Stream，File Stream，Buffered Stream.那为什么要将其他的像print流。 &gt; 因为它在那里。</p>
+<p>(<strong>PS：这篇文章那么长，难免会出错。如果哪里有错还望指出，记得轻拍</strong>。)</p>
+
+        </div>
+        <div id="post-footer">
+            <div class="avatar" >
+                <img src="http://image.geekaholic.cn/author.jpg" alt="avatar"/>
+                
+                <a href="javascript:void(0)" class="high-song">high起来 &#128541;</a>
+                
+                
+                <a href="javascript:void(0)" class="donate fa">打赏资瓷 &#128536;</a>
+                
+            </div>
+            <ul class="author-profile-section">
+                <li>
+                  
+                  作者:
+                  
+                    
+                    <a href="/about.html">GeekaholicLin</a>
+                </li>
+                
+                <li>发表日期: <span>2015-12-27  20:09:13</span></li>
+                
+                <li>最后编辑日期: <span>2019-09-26  05:21:46</span></li>
+                
+                <li class="post-category">
+                    文章分类:
+                    
+                    <a href="/categories/编执狂/">编执狂</a>
+                    
+                    <a href="/categories/编执狂/Java/">Java</a>
+                    
+                </li>
+                <li class="post-tags">
+                    文章标签:
+                    
+                    <a href="/tags/Java/">Java</a>
+                    
+                    <a href="/tags/IO操作/">IO操作</a>
+                    
+                    <a href="/tags/流类型/">流类型</a>
+                    
+                </li>
+                
+                <li> 版权声明: 
+<a href="https://creativecommons.org/licenses/by-nc-nd/3.0/" target="_blank">
+知识共享署名-非商业性使用-禁止演绎 3.0 未本地化版本许可协议（CC BY-NC-ND 3.0）
+</a></li>
+                
+            </ul>
+            <div id="donate-wrap">
+                
+                
+                
+                <img src="http://image.geekaholic.cn/alipay.jpg" alt="支付宝付款" class="donate-img">
+                
+                <img src="http://image.geekaholic.cn/wechat.png" alt="微信付款" class="donate-img">
+                
+                
+            </div>
+        </div>
+    </article>
+    <div class="article-nav">
+        
+        <a href="/2015/12/28/理清Java中的IO-Scanner/" class="pre-post fa fa-caret-left">理清Java中的IO-Scanner</a>
+        
+        
+        <a href="/2015/12/27/理清Java的IO-1/" class="next-post fa">理清Java的IO(1)--流</a>
+        
+    </div>
+    
+    <div id="comments">
+        
+
+<script>
+  gitalk.render("comments");
+</script>
+
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+    <footer id="footer">
+    
+    <div class="social">
+        
+        <a href="https://freecodecamp.cn/geekaholiclin" class="fa fa-free-code-camp" target="_blank" title="freecodecamp"></a>
+        
+        <a href="https://github.com/GeekaholicLin" class="fa fa-github" target="_blank" title="github"></a>
+        
+        <a href="mailto:geekaholiclin@gmail.com" class="fa fa-envelope-o" target="_blank" title="mail to me"></a>
+        
+    </div>
+    
+    <div>
+        
+        <a href="/" class="copyright-links">GeekaholicLin</a>&copy;2015 - 2019.All Rights
+        Reserved.
+    </div>
+    <p>Powered by <a href="https://hexo.io" class="copyright-links" target="_blank">Hexo</a> | Theme by <a
+                href="https://github.com/GeekaholicLin" class="copyright-links" target="_blank">GeekaholicLin</a>
+    </p>
+    
+    
+    <p>
+        <span id="busuanzi_container_site_uv" class="fa fa-bar-chart">
+        欢迎第<span id="busuanzi_value_site_uv"><i class="fa fa-spinner fa-spin"></i></span>位小伙伴~
+        </span>
+    </p>
+    
+</footer>
+
+</div>
+    <ul id="tools">
+    <li class="totop-btn fa fa-angle-up"></li>
+    <li class="exchange-btn fa fa-exchange"></li>
+  
+    <li class="toc-btn fa fa-list-ul"></li>
+    
+    
+
+    
+    <li class="comment-btn fa fa-comments-o">
+        <a href="#comments" title="comments"></a>
+    </li>
+    
+</ul>
+<p id="process"></p>
+<div id="search-overlay">
+    <div class="search-area-wrap">
+        <div id="search-area">
+            <div class="input-wrap focus">
+                <i class="fa fa-search" aria-hidden="true"></i>
+                <input id="search-input" autofocus autocomplete="off" type="text"
+                       placeholder="search this website..."/>
+            </div>
+            <ul id="search-result">
+                <li class="load-first"><i class="fa fa-spinner fa-pulse"></i></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#文件流file-stream"><span class="toc-number">1.1.</span> <span class="toc-text">文件流–File Stream</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#转换流字节流转换到字符流"><span class="toc-number">1.2.</span> <span class="toc-text">转换流–字节流转换到字符流</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#过滤器数据流filter-stream"><span class="toc-number">1.3.</span> <span class="toc-text">过滤器数据流–Filter Stream</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#data-stream"><span class="toc-number">1.3.1.</span> <span class="toc-text">Data Stream</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#谈谈字符编码"><span class="toc-number">1.3.1.1.</span> <span class="toc-text">谈谈字符编码</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#关于utf-8编码"><span class="toc-number">1.3.1.2.</span> <span class="toc-text">关于UTF-8编码</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#例子"><span class="toc-number">1.3.1.3.</span> <span class="toc-text">例子</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#缓冲流buffered-stream"><span class="toc-number">1.3.2.</span> <span class="toc-text">缓冲流–Buffered Stream</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#对象流和数据流的关系"><span class="toc-number">1.3.3.</span> <span class="toc-text">对象流和数据流的关系</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#serializable关键字"><span class="toc-number">1.3.4.</span> <span class="toc-text">serializable关键字</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#非序列化的数据域"><span class="toc-number">1.3.5.</span> <span class="toc-text">非序列化的数据域</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#重复的对象处理"><span class="toc-number">1.3.6.</span> <span class="toc-text">重复的对象处理</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#标准输入流"><span class="toc-number">1.4.</span> <span class="toc-text">“标准”输入流</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#print流"><span class="toc-number">1.5.</span> <span class="toc-text">print流</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#try-with-resources"><span class="toc-number">2.</span> <span class="toc-text">try-with-resources</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#两种方式"><span class="toc-number">2.1.</span> <span class="toc-text">两种方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#代码实例"><span class="toc-number">2.2.</span> <span class="toc-text">代码实例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#原理解说"><span class="toc-number">2.3.</span> <span class="toc-text">原理解说</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#吐吐槽"><span class="toc-number">3.</span> <span class="toc-text">吐吐槽</span></a></li></ol>
+
+
+    <script src="/js/highsong.js"></script>
+
+
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+    //theme config datas
+    var copyrightObj = {};
+    copyrightObj.enable = 'true';
+    copyrightObj.triggerCopyLength = '200';
+    copyrightObj.appendText = '商业转载请联系作者获得授权,非商业转载请注明出处 © GeekaholicLin';
+    var leancloudObj = {};
+    leancloudObj.enable = 'true';
+    leancloudObj.className = 'BlogCounter';
+    leancloudObj.limits = '10';
+</script>
+<script type="text/javascript">
+    var search = {};
+    var search_path = "search.xml";
+    if (!search_path) {
+        search_path = "search.xml";
+    }
+    search.path = "/" + search_path;
+    search.func =  _ajax.init();
+</script>
+<script src="/js/app.js"></script>
+
+
+</body>
+</html>

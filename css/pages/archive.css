@@ -1,0 +1,87 @@
+/*variable*/
+/*base on Netease _reset.less*/
+/* GeekaholicLin edited */
+#post-list {
+  text-align: center;
+}
+#post-list .post-items {
+  position: relative;
+  display: inline-block;
+  *display: inline;
+  *zoom: 1;
+  cursor: pointer;
+  margin: 0 .2rem .25rem 0;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  /*fix*/
+  width: 300px;
+  height: 130px;
+  line-height: 1.5;
+  vertical-align: top;
+  border: 1px solid #cecece;
+  -webkit-box-shadow: 0 1px 1px #666666;
+  -moz-box-shadow: 0 1px 1px #666666;
+  box-shadow: 0 1px 1px #666666;
+}
+#post-list .post-items:hover {
+  -webkit-box-shadow: 3px 3px 10px #666666;
+  -moz-box-shadow: 3px 3px 10px #666666;
+  box-shadow: 3px 3px 10px #666666;
+}
+#post-list .post-items:hover > h2 {
+  color: #6699cc !important;
+}
+#post-list .post-items .post-item-title {
+  color: #666666;
+  padding: 0 20px;
+  /*fix*/
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+#post-list .post-items .article-meta {
+  padding-top: 10px;
+  border: none;
+}
+#post-list .post-items .article-meta a:hover {
+  color: #666666;
+}
+#post-list .post-items .info {
+  margin-bottom: 15px;
+  font-weight: bold;
+  text-shadow: 0 1px 0 #181818;
+  text-indent: 3px;
+  /*fix*/
+  color: #666666;
+  height: 38.33333333px;
+  line-height: 38.33333333px;
+}
+#post-list .post-items .info:before {
+  content: "";
+  width: 0;
+  height: 0;
+  position: absolute;
+  border: 43.33333333px solid;
+  border-right-width: 150px;
+  border-left-width: 150px;
+  border-color: #E0E0E0 transparent transparent transparent;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  /*fix*/
+}
+.post-items:after {
+  content: "";
+  width: 0;
+  height: 0;
+  position: absolute;
+  border: 43.33333333px solid;
+  border-right-width: 150px;
+  border-left-width: 150px;
+  border-color: #ABCDEF transparent transparent transparent;
+  top: 0;
+  left: 0;
+  z-index: -2;
+  /*fix*/
+}

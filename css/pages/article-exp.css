@@ -1,0 +1,83 @@
+/*variable*/
+/*base on Netease _reset.less*/
+/* GeekaholicLin edited */
+#main > .article-excerpt-wrap {
+  opacity: 0.9;
+  cursor: pointer;
+  box-sizing: border-box;
+  overflow: hidden;
+  position: relative;
+  padding: .12rem .3rem .1rem;
+  margin-bottom: .1rem;
+  height: 2.27rem;
+  -webkit-box-shadow: #666666 0 2px 1px;
+  -moz-box-shadow: #666666 0 2px 1px;
+  box-shadow: #666666 0 2px 1px;
+}
+#main > .article-excerpt-wrap.stick .fa-bookmark {
+  position: absolute;
+  right: .15rem;
+  top: -0.02rem;
+  font-size: .4rem;
+  color: #396CA5;
+}
+#main > .article-excerpt-wrap:hover {
+  opacity: 1;
+  -webkit-box-shadow: #666666 0 3px 10px;
+  -moz-box-shadow: #666666 0 3px 10px;
+  box-shadow: #666666 0 3px 10px;
+}
+#main > .article-excerpt-wrap .article-excerpt {
+  width: 65%;
+  margin-left: 33%;
+}
+#main > .article-excerpt-wrap .article-title-link {
+  display: block;
+  margin-bottom: 0.12rem;
+}
+#main > .article-excerpt-wrap .article-title-link .article-title {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  font-size: 0.2rem;
+}
+#main > .article-excerpt-wrap .article-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 30%;
+  height: 100%;
+  background-size: cover;
+}
+#main > .article-excerpt-wrap .article-img .loading-img {
+  width: 100%;
+  height: 100%;
+  background-color: inherit;
+}
+#main > .article-excerpt-wrap .article-img .loading-img > .fa {
+  font-size: 0.8rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -0.5rem;
+  color: #cecece;
+}
+#main > .article-excerpt-wrap .article-content {
+  position: relative;
+  color: #666666;
+  line-height: 1.4;
+  overflow: hidden;
+  height: 1.14rem;
+  margin-bottom: 0.11rem;
+}
+#main > .article-excerpt-wrap .article-content:after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 0.1rem;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background-color: #EEEEEE;
+  opacity: 0.7;
+}

@@ -1,0 +1,629 @@
+<!doctype html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no">
+    
+<meta name="google-site-verification" content="osGzKb_y9J6vt8d0mGYPDH81ljatwPdSVCFwxMCJSaE">
+
+    
+<meta name="baidu-site-verification" content="Yn6v4uAWVY">
+<script>
+    //push
+    (function(){
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        }
+        else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    <!--Simple SEO-->
+
+<meta name="description" content="编执狂的博客，主要记录自己在IT路上的成长历程。/">
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+    <!--Title-->
+
+<title>JavaScript模块化的一二事 | Geekaholic</title>
+
+<link rel="alternate" href="/atom.xml" title="Geekaholic" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+    
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/css/pages/post.css">
+<link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/thirdParty/highlight/solarized-light.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+
+<style>
+    figure .code .line:before{
+        display: none!important;
+    }
+</style>
+
+    <!--script-->
+
+
+<script src="//cdn.jsdelivr.net/npm/leancloud-storage@3.15.0/dist/av-min.js"></script>
+<script>
+  var appId = "RI5uv752sD0nGTyUSUC6odJE-gzGzoHsz";
+  var appKey = "yuke8QmutaxI5YvyD2NIE57u";
+  var region = "null";
+  var serverURLs = "http://leancloud.geekaholic.cn";
+  AV.init({
+    appId: appId,
+    appKey: appKey,
+    region: region,
+    serverURLs: serverURLs
+  });
+</script>
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+<script>
+  var admin = "GeekaholicLin";
+  admin = admin.split(",");
+  var gitalk = new Gitalk({
+    clientID: "aa2215dfc8ee944d1205",
+    clientSecret: "77cd2afa5d161bc0ab04639ed81300d808c6e22b",
+    repo: "geekaholiclin.github.io",
+    owner: "GeekaholicLin",
+    admin: admin,
+    id: decodeURIComponent(location.pathname),
+    distractionFreeMode: false
+  })
+
+</script>
+
+    
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?1fdc784829bc9fa0c0bbee0c680ffe2a";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+    
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-91854900-3', 'auto');
+    ga('send', 'pageview');
+
+</script>
+
+</head>
+</html>
+<body id="normal">
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<style>
+    header{ top: 71px; position: absolute!important;}
+    #container{padding-top: 151px!important;}
+</style>
+<div style="position:fixed;z-index:9999;left:0;top:0;width:100%;height:70px;background-color:#e0e0e0;color:#396CA5;border-bottom:1px solid #cecece;text-align:center;line-height:70px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis">您使用的浏览器版本过低，为了您更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<div id="wrap">
+    <header  style="position: absolute;" >
+    <div id="site-meta">
+        <a href="/" id="logo">
+            <h1 class="title">Geekaholic</h1>
+        </a>
+        
+        <h2 class="subtitle">编程在于折腾</h2>
+        
+    </div>
+    <ul id="nav">
+        
+            <li><a href="/"><i class="fa fa-home"></i>首页</a></li>
+        
+            <li><a href="/about"><i class="fa fa-user"></i>关于我</a></li>
+        
+            <li><a href="/atom.xml"><i class="fa fa-rss"></i>RSS</a></li>
+        
+        <li id="search"><a href="javascript:void(0)"><i class="fa fa-search"></i>搜索</a></li>
+    </ul>
+</header>
+
+    <div id="container">
+        
+<ul id="sidebar">
+    
+    
+    
+    
+<li class="widget widget-normal category">
+    <h3 class="fa fa-th widget-title">分类</h3>
+    <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/他山之石/"><i class="fa" aria-hidden="true">他山之石</i></a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/他山之石/Web/"><i class="fa" aria-hidden="true">Web</i></a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/编执狂/"><i class="fa" aria-hidden="true">编执狂</i></a><span class="category-list-count">14</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/编执狂/Android/"><i class="fa" aria-hidden="true">Android</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/编执狂/Java/"><i class="fa" aria-hidden="true">Java</i></a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/编执狂/Web/"><i class="fa" aria-hidden="true">Web</i></a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/编执狂/计算机基础/"><i class="fa" aria-hidden="true">计算机基础</i></a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/编程之外/"><i class="fa" aria-hidden="true">编程之外</i></a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/编程之外/Hexo/"><i class="fa" aria-hidden="true">Hexo</i></a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/编程之外/解决方法/"><i class="fa" aria-hidden="true">解决方法</i></a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/黄金屋-读书笔记/"><i class="fa" aria-hidden="true">黄金屋--读书笔记</i></a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/黄金屋-读书笔记/CSS设计指南/"><i class="fa" aria-hidden="true">CSS设计指南</i></a><span class="category-list-count">1</span></li></ul></li></ul>
+</li>
+
+
+    
+    
+<li class="widget widget-normal archive">
+  <h3 class="fa fa-archive widget-title">归档</h3>
+    <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/"><i class="fa" aria-hidden="true">九月 2017</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/"><i class="fa" aria-hidden="true">八月 2017</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/"><i class="fa" aria-hidden="true">三月 2017</i></a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/"><i class="fa" aria-hidden="true">二月 2017</i></a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/"><i class="fa" aria-hidden="true">三月 2016</i></a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/"><i class="fa" aria-hidden="true">二月 2016</i></a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/"><i class="fa" aria-hidden="true">一月 2016</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/"><i class="fa" aria-hidden="true">十二月 2015</i></a><span class="archive-list-count">5</span></li></ul>
+</li>
+
+
+    
+    
+<li class="widget widget-normal popular-posts" id="popular-posts">
+    <h3 class="fa fa-thermometer-3 widget-title">热门文章</h3>
+    <ul id="popular-content">
+        <li class="load-first"><i class="fa fa-spinner fa-pulse"></i></li>
+    </ul>
+</li>
+
+    
+    
+<li class="widget widget-normal tags">
+  <h3 class="fa fa-tags widget-title">标签云</h3>
+  <div class="tagcloud-content">
+    
+      <a href="/tags/Mathjax/" style="font-size: 0.18rem; color: #4f83b8">Mathjax</a> <a href="/tags/JavaScript/" style="font-size: 0.21rem; color: #386da4">JavaScript</a> <a href="/tags/Web/" style="font-size: 0.21rem; color: #386da4">Web</a> <a href="/tags/Android/" style="font-size: 0.18rem; color: #4f83b8">Android</a> <a href="/tags/ListView原理/" style="font-size: 0.14rem; color: #69c">ListView原理</a> <a href="/tags/ListView优化/" style="font-size: 0.14rem; color: #69c">ListView优化</a> <a href="/tags/Android控件/" style="font-size: 0.14rem; color: #69c">Android控件</a> <a href="/tags/解决方法/" style="font-size: 0.14rem; color: #69c">解决方法</a> <a href="/tags/Genymotion/" style="font-size: 0.14rem; color: #69c">Genymotion</a> <a href="/tags/VisualBox/" style="font-size: 0.14rem; color: #69c">VisualBox</a> <a href="/tags/Java/" style="font-size: 0.28rem; color: #0a407c">Java</a> <a href="/tags/线程/" style="font-size: 0.14rem; color: #69c">线程</a> <a href="/tags/InterruptedException/" style="font-size: 0.14rem; color: #69c">InterruptedException</a> <a href="/tags/异常/" style="font-size: 0.14rem; color: #69c">异常</a> <a href="/tags/RxJS/" style="font-size: 0.14rem; color: #69c">RxJS</a> <a href="/tags/Translation/" style="font-size: 0.18rem; color: #4f83b8">Translation</a> <a href="/tags/Hexo主题/" style="font-size: 0.18rem; color: #4f83b8">Hexo主题</a> <a href="/tags/ylion/" style="font-size: 0.25rem; color: #215690">ylion</a> <a href="/tags/模块化/" style="font-size: 0.18rem; color: #4f83b8">模块化</a> <a href="/tags/CSS3/" style="font-size: 0.14rem; color: #69c">CSS3</a> <a href="/tags/W3C/" style="font-size: 0.14rem; color: #69c">W3C</a> <a href="/tags/Hexo/" style="font-size: 0.21rem; color: #386da4">Hexo</a> <a href="/tags/主题制作/" style="font-size: 0.18rem; color: #4f83b8">主题制作</a> <a href="/tags/IO操作/" style="font-size: 0.21rem; color: #386da4">IO操作</a> <a href="/tags/Scanner/" style="font-size: 0.14rem; color: #69c">Scanner</a> <a href="/tags/马士兵/" style="font-size: 0.18rem; color: #4f83b8">马士兵</a> <a href="/tags/异常处理/" style="font-size: 0.18rem; color: #4f83b8">异常处理</a> <a href="/tags/流类型/" style="font-size: 0.18rem; color: #4f83b8">流类型</a> <a href="/tags/算法分析/" style="font-size: 0.14rem; color: #69c">算法分析</a> <a href="/tags/复杂度/" style="font-size: 0.14rem; color: #69c">复杂度</a> <a href="/tags/虚拟机/" style="font-size: 0.14rem; color: #69c">虚拟机</a> <a href="/tags/英文XP系统/" style="font-size: 0.14rem; color: #69c">英文XP系统</a> <a href="/tags/中文字体/" style="font-size: 0.14rem; color: #69c">中文字体</a> <a href="/tags/兼容性/" style="font-size: 0.18rem; color: #4f83b8">兼容性</a> <a href="/tags/CSS设计指南/" style="font-size: 0.14rem; color: #69c">CSS设计指南</a> <a href="/tags/读书笔记/" style="font-size: 0.14rem; color: #69c">读书笔记</a> <a href="/tags/polyfill/" style="font-size: 0.14rem; color: #69c">polyfill</a>
+  </div>
+</li>
+
+
+    
+    
+<li class="widget widget-normal friends-link">
+    <h3 class="fa fa-globe widget-title">友链</h3><br/>
+
+    
+        <a href="http://geekaholiclin.github.io" class="fa" target="_blank">主题作者</a>
+
+    
+        <a href="http://walkerlala.github.com/" class="fa" target="_blank">walkerlala</a>
+
+    
+        <a href="http://jerry011235.github.io/" class="fa" target="_blank">璀璨星空</a>
+
+    
+
+</li>
+
+    
+</ul>
+
+
+        <div id="main">
+    <article id="post">
+        <div id="post-header">
+
+            <h1 id="JavaScript模块化的一二事">
+                
+                JavaScript模块化的一二事
+                
+            </h1>
+            <div class="article-meta">
+    
+    
+    <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+        <span>Web</span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+         <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            JavaScript
+            
+        </span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta ">2017/03/09</span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+            <i class="fa fa-thermometer-three-quarters"></i>
+        <span class="hits hits-meta " data-leadcloud-title="JavaScript模块化的一二事"
+              data-leadcloud-url="/2017/03/09/JavaScript模块化的一二事/"><i class="fa fa-spinner fa-spin"></i></span>
+    </span>
+    
+    
+</div>
+
+            
+            
+            <p class="fa fa-exclamation-triangle warning">
+                本文于<strong>930</strong>天之前发表，文中内容可能已经过时。如有疑问，请在评论区留言。
+            </p>
+            
+        </div>
+        
+        <div id="post-body">
+            <p>在前端发展迅速的今天，模块化已经不是什么新的名词。在查阅资料之前，本人对模块化一知半解，“不就引用sea.js或者require.js的事吗”。其实，学习技术怕的不就是只知道皮毛就以为自己懂了吗？（注：<code>sea.js</code>已经不再维护）</p>
+<p>不敢说对整篇文章说讲的都全部掌握，只求能比之前懵懂的状态前进一点。</p>
+<h2 id="js模块化解决的是什么">js模块化解决的是什么</h2>
+<p>一个工具流行，必然是它解决了当前的某个痛点，满足了人们的需求。就好像jQuery，它封装了DOM的常用操作，并处理了浏览器的兼容性，使得人们操作DOM更加方便。而JavaScript模块化工具必然也是解决了某一类问题。</p>
+<p>在学习C语言的时候，都能清楚地知道模块化的重要性–代码复用以及高内聚低耦合，不仅是为了可维护也是为了代码的健壮性。而在JavaScript中，解决的是什么？</p>
+<p>–当一个项目逐渐复杂，多个人进行开发的时候，难免会出现命名冲突的问题，还有一个就是前端开发并不像后端一样，有专门的工具进行管理依赖，只以script标签的出现顺序来简略地规定文件的依赖关系。所以<strong>命名冲突</strong>和<strong>文件依赖</strong>是JavaScript模块化解决的主要问题，它的好处自然是可维护性和复用性。</p>
+<h3 id="命名冲突">命名冲突</h3>
+<p>在<code>sea.js</code>等工具的出现之前，我们的JavaScript代码是如何组织的？或者说模块化开发的整个演变过程是如何的？</p>
+<h4 id="全局函数">全局函数</h4>
+<p>这种方式前期最常见的。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">minus</span>(<span class="params"></span>)</span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+<p>试想一下，如果全局中也有一个变量和函数同名，会导致什么后果？变量提升的时候，函数声明的优先级是高于变量的，所以会导致函数声明被覆盖(不管这个变量在函数声明之前还是之后都是一样的)</p>
+<p>缺点：全局命名空间被污染，很容易造成命名冲突。</p>
+<h4 id="简单的命名空间">简单的命名空间</h4>
+<p>我们知道不同的对象可以有不同的成员，包括变量和函数。这样我们可以将变量和函数都挂载在特定的自定义对象下，只能通过对象来引用其内部成员，达到命名空间的效果。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">//objBase.js</span></span><br><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">  add: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="built_in">console</span>.log(<span class="string">'add'</span>)&#125;,</span><br><span class="line">  minus: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="built_in">console</span>.log(<span class="string">'minus'</span>)&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//add();//出错</span></span><br><span class="line">obj.add();<span class="comment">//console:'add'</span></span><br></pre></td></tr></table></figure>
+<p>优点：减少了全局变量。 缺点：1. 对象的成员都被暴露，可以被外界修改，无私有成员可言。2. 当命名空间过长时，造成记忆负担。</p>
+<h4 id="闭包">闭包</h4>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">//objBase.js</span></span><br><span class="line"><span class="keyword">var</span> obj = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">var</span> addText = <span class="string">'add'</span>;</span><br><span class="line">  <span class="keyword">var</span> add = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="built_in">console</span>.log(addText)&#125;;</span><br><span class="line">  <span class="keyword">return</span>&#123;</span><br><span class="line">    add: add</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)();</span><br><span class="line">obj.add();<span class="comment">//'add'</span></span><br><span class="line">obj.addText= <span class="string">'add Changed!'</span>;</span><br><span class="line">obj.add();<span class="comment">//'add'</span></span><br></pre></td></tr></table></figure>
+<p>优点：1. 减少了全局变量，一定程度上解决了变量命名冲突。2. 可以选择性地将内部成员暴露给外部接口。</p>
+<h4 id="闭包依赖注入">闭包依赖注入</h4>
+<p>让我们为上面的闭包再增强一点，给它<strong>注入依赖</strong>，并且让它更加易于拓展。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">//objBase.js</span></span><br><span class="line"><span class="keyword">var</span> obj = (<span class="function"><span class="keyword">function</span>(<span class="params">$</span>)</span>&#123;</span><br><span class="line"><span class="comment">// 这时可以使用$作为jQuery对象</span></span><br><span class="line">  <span class="keyword">var</span> addText = <span class="string">'add'</span>;</span><br><span class="line">  <span class="keyword">var</span> add = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="built_in">console</span>.log(addText)&#125;;</span><br><span class="line">  <span class="keyword">return</span>&#123;</span><br><span class="line">    add: add</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)(jQuery);</span><br></pre></td></tr></table></figure>
+<p>优点：高内聚低耦合，根据需要注入不同的依赖。</p>
+<p>确实，只要在全局中存在<code>$</code>变量就可以在匿名函数中使用，但是这样不利于后期代码的维护。因为在维护的后期你很有可能不记得<code>obj</code>的依赖有哪些，而注入依赖会使得代码更加清晰。</p>
+<h4 id="闭包的高级模式">闭包的高级模式</h4>
+<p>(PS:Hexo-admin插件会莫名丢失<code>draft</code>中的内容，再也不用该插件了。心累…)</p>
+<p>看起来闭包已经足够使用，但是当基础模块<code>objBase.js</code>需要扩展的时候，在源文件进行修改是不妥当的，因为可能会把新的bug引入原有已经测试通过的模块中，这会导致在原有模块中定位错误相当困难。这也是面向对象中的<a href="https://zh.wikipedia.org/wiki/%E5%BC%80%E9%97%AD%E5%8E%9F%E5%88%99" target="_blank" rel="noopener">开闭原则</a> – 允许在改变它的源代码的前提下变更它的行为。 这就需要我们在扩展模块<code>objExtend.js</code>等文件中进行拓展。</p>
+<p>而这需要用到闭包的高级用法，而且不同需求对应不同的扩展模式。其实说是高级用法，其实还是用的基础知识，但是思想很值得我们去学习。高级用法有好多，还请根据自己的需求进行选择。</p>
+<h5 id="扩展">扩展</h5>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">//objExtend.js</span></span><br><span class="line"><span class="keyword">var</span> obj = (<span class="function"><span class="keyword">function</span>(<span class="params">myObj,$</span>)</span>&#123;</span><br><span class="line"><span class="comment">// 这时可以使用$作为jQuery对象</span></span><br><span class="line">  obj.minus = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;;</span><br><span class="line">  <span class="keyword">return</span> myObj;</span><br><span class="line">&#125;)(obj,jQuery);</span><br></pre></td></tr></table></figure>
+<p>需求：将一个模块分离到多个文件，<strong>同步加载</strong>模块文件。</p>
+<p>缺点：需要保证<code>obj</code>在<code>objExtend.js</code>加载前已经存在，所以需要同步加载，先加载<code>obj</code>基础模块。</p>
+<h5 id="松耦合扩展">松耦合扩展</h5>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = (<span class="function"><span class="keyword">function</span>(<span class="params">myObj,$</span>)</span>&#123;</span><br><span class="line"><span class="comment">// 这时可以使用$作为jQuery对象</span></span><br><span class="line">  obj.minus = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;;</span><br><span class="line">  <span class="keyword">return</span> myObj;</span><br><span class="line">&#125;)(obj||&#123;&#125;,jQuery);</span><br></pre></td></tr></table></figure>
+<p>需求：将一个模块分离到多个文件，<strong>异步加载</strong>模块文件(无论基础模块还是扩展模块)。</p>
+<p>Tips：其实是应用了<code>||</code>操作符的短路操作，JavaScript中比较常见。</p>
+<p>缺点：松耦合扩展不能和<code>闭包依赖注入</code>等返回新对象的模块模式进行混合使用，否则会覆盖。试想一下，当返回新对象的<code>*.js</code>文件后加载，会是怎样的情况？</p>
+<h5 id="紧耦合扩展">紧耦合扩展</h5>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = (<span class="function"><span class="keyword">function</span>(<span class="params">myObj,$</span>)</span>&#123;</span><br><span class="line"><span class="comment">// 这时可以使用$作为jQuery对象</span></span><br><span class="line">  <span class="keyword">var</span> old_add = obj.add;</span><br><span class="line">  obj.add = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="comment">/*use old_add*/</span>&#125;</span><br><span class="line">  obj.minus = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;;</span><br><span class="line">  <span class="keyword">return</span> myObj;</span><br><span class="line">&#125;)(obj,jQuery);</span><br></pre></td></tr></table></figure>
+<p>需求：将一个模块分离到多个文件，<strong>同步加载</strong>模块文件，覆盖原有属性或函数并且需要用到原有属性或函数。</p>
+<p>缺点：同步加载。</p>
+<h5 id="跨文件共享私有对象">跨文件共享私有对象</h5>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> MODULE = (<span class="function"><span class="keyword">function</span> (<span class="params">my</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">var</span> _private = my._private = my._private || &#123;&#125;,</span><br><span class="line">		_seal = my._seal = my._seal || <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">			<span class="keyword">delete</span> my._private;</span><br><span class="line">			<span class="keyword">delete</span> my._seal;</span><br><span class="line">			<span class="keyword">delete</span> my._unseal;</span><br><span class="line">		&#125;,</span><br><span class="line">		_unseal = my._unseal = my._unseal || <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">			my._private = _private;</span><br><span class="line">			my._seal = _seal;</span><br><span class="line">			my._unseal = _unseal;</span><br><span class="line">		&#125;;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// permanent access to _private, _seal, and _unseal</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> my;</span><br><span class="line">&#125;(MODULE || &#123;&#125;));</span><br></pre></td></tr></table></figure>
+<p>以上代码可以在<a href="http://www.adequatelygood.com/JavaScript-Module-Pattern-In-Depth.html" target="_blank" rel="noopener">英文原文</a>中找到，使用<code>松耦合扩展</code>模式对内部私有属性进行维护，从而达到模块内的多个文件访问私有对象。</p>
+<blockquote>
+<p>Any file can set properties on their local variable _private, and it will be immediately available to the others. Once this module has loaded completely, the application should call MODULE._seal(), which will prevent external access to the internal _private. If this module were to be augmented again, further in the application’s lifetime, one of the internal methods, in any file, can call _unseal() before loading the new file, and call _seal() again after it has been executed. This pattern occurred to me today while I was at work, I have not seen this elsewhere. I think this is a very useful pattern, and would have been worth writing about all on its own.</p>
+</blockquote>
+<p>需求：将一个模块分离到多个文件，私有对象模块内跨文件共享。</p>
+<p>Tips：可以看到<code>_seal()</code>是使用了<code>delete</code>删除属性的操作符，而<code>_unseal()</code>使用了重新赋值的方法。</p>
+<p>缺点：代码冗余。</p>
+<p>根据英文原文中的意思，“一个模块的所有文件都可以访问私有属性，提倡模块加载结束后调用<code>_seal()</code>，而如果需要加载新的模块文件，先调用<code>_unseal()</code>，加载完成后，再调用<code>_seal()</code>”，但是由于使用了<code>松耦合扩展</code>，说明模块加载无法保证顺序，这就意味着<code>_seal</code>和<code>_unseal</code>方法都要在该模块的每一个文件中。还有一个问题，“Once this module has loaded completely, the application should call MODULE._seal()“。这没有问题，但是</p>
+<blockquote>
+<p>“If this module were to be augmented again, further in the application’s lifetime, one of the internal methods, in any file, can call _unseal() before loading the new file, and call _seal() again after it has been executed.&quot;</p>
+</blockquote>
+<p>这似乎就说不过去了。</p>
+<p>因为调用<code>Module._seal()</code>的时候<code>delete my._unseal;</code>，会失去<code>_unseal</code>的引用，在新增加模块文件之前，自然无法调用<code>Module._unseal()</code>，导致出错。而且跨文件访问私有属性很难管理。我找到了作者在评论讨论的一番话，当时的内心Orz…</p>
+<blockquote>
+<p>I’ve never actually used it, which is probably a good sign that it’s not useful. I was mostly just trying to prove that you COULD do something like that with the Module Pattern, and to show the flexibility of JavaScript.</p>
+</blockquote>
+<div class="figure">
+<img src="http://image.geekaholic.cn/20170310103317.png" alt="讨论详情">
+<p class="caption">讨论详情</p>
+</div>
+<p>文章挺久远的了，但是不妨碍我们学习其思想:)</p>
+<h3 id="文件依赖">文件依赖</h3>
+<p>后端开发中有专门的依赖管理软件或者包管理软件，比如<code>Java</code>中的<code>Maven</code>和<code>Gradle</code>，<code>nodejs</code>中的<code>npm</code>，而在前端中的前期是如何管理依赖的？</p>
+<p><code>&lt;script&gt;</code>的出现顺序或者代码出现的顺序。</p>
+<p>就好像引入jQuery插件的时候，<code>jQuery</code>文件一定需要在这插件引入之前引入。这似乎没什么毛病啊，但当一个项目越来越庞大的时候，或者依赖关系出现闭环、相互依赖等复杂关系的时候，就会出现难以维护，依赖难以管理，请求过多等弊端了。</p>
+<p>而且要知道，前面的模块模式虽然可以注入依赖，但是模块导出都是存在单个全局变量，有时候我们只是基于一个存在的模块构建另外一个模块，而不是都将其挂载在全局变量中。</p>
+<p><a href="https://huangxuan.me/js-module-7day/#/11" target="_blank" rel="noopener">PPT</a>的例子如下：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">body</span><br><span class="line">    script(src=<span class="string">"zepto.js"</span>)</span><br><span class="line">    script(src=<span class="string">"jhash.js"</span>)</span><br><span class="line">    script(src=<span class="string">"fastClick.js"</span>)</span><br><span class="line">    script(src=<span class="string">"iScroll.js"</span>)</span><br><span class="line">    script(src=<span class="string">"underscore.js"</span>)</span><br><span class="line">    script(src=<span class="string">"handlebar.js"</span>)</span><br><span class="line">    script(src=<span class="string">"datacenter.js"</span>)</span><br><span class="line">    script(src=<span class="string">"deferred.js"</span>)</span><br><span class="line">    script(src=<span class="string">"util/wxbridge.js"</span>)</span><br><span class="line">    script(src=<span class="string">"util/login.js"</span>)</span><br><span class="line">    script(src=<span class="string">"util/base.js"</span>)</span><br><span class="line">    script(src=<span class="string">"util/city.js"</span>)</span><br><span class="line">    script(src=<span class="string">"util/date.js"</span>)</span><br><span class="line">    script(src=<span class="string">"util/cookie.js"</span>)</span><br><span class="line">    script(src=<span class="string">"app.js"</span>)</span><br></pre></td></tr></table></figure>
+<p>所以我们需要一些工具，比模块模式更加好用，既可以避免全局变量冲突(模块模式的冲突避免得不够彻底)，还可以明确代码直接的依赖关系，更重要的是模块声明的方式让编写代码更加舒适。</p>
+<h2 id="js模块化工具">js模块化工具</h2>
+<h3 id="模块定义和加载方案">模块定义和加载方案</h3>
+<h4 id="一些历史">一些历史</h4>
+<p><code>CMD</code>和<code>AMD</code>这部分纯属科普向，<code>RequireJS</code>和<code>SeaJS</code>都是历史阶段性的产物，也权当了解即可。</p>
+<p>JavaScript 模块化最早是出现在<code>Nodejs</code>当中，推出了<code>Module/1.0</code>规范并获得不错的成功后，想继而推广到浏览器端的时候，出现了分歧，形成了三大流派，大致如下：</p>
+<div class="figure">
+<img src="http://image.geekaholic.cn/p978yzq5wzv76ep29wn4hwjl73" alt="CommonJS流派">
+<p class="caption">CommonJS流派</p>
+</div>
+<p>如果你想了解这部分历史，请翻阅玉伯大大的<a href="https://github.com/seajs/seajs/issues/588" target="_blank" rel="noopener">前端模块化开发那点历史</a>。</p>
+<p>我们在这里简单地探讨一下<code>AMD规范</code>和<code>CMD规范</code>两者的实现，即<code>RequireJS</code>和<code>SeaJS</code>，有哪些不同。</p>
+<h4 id="amd与cmd">AMD与CMD</h4>
+<p>AMD(Async Module Definition)是RequireJS对模块定义的规范化产出，而CMD(Common Module Definition)是SeaJS对模块定义的规范化产出。所以CMD和CommonJS不是说的同一个东西。这里不展开探讨，也没有意义，只简单地总结AMD和CMD的相同点和代码方式上的差别。</p>
+<ul>
+<li>两者都是异步加载模块文件，而NodeJS的CommonJS是同步</li>
+<li>CMD推崇依赖就近，AMD推崇依赖前置(原因看下面一条)</li>
+<li>CMD 是延迟执行，as lazy as possible，也就是而AMD是提前执行，也就是加载完成后立即执行。</li>
+</ul>
+<p>关于第3点，或许看<a href="https://github.com/seajs/seajs/issues/588#issuecomment-19682315" target="_blank" rel="noopener">代码例子</a>更容易理解一些。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">//AMD</span></span><br><span class="line">define([<span class="string">'a'</span>, <span class="string">'b'</span>], <span class="function"><span class="keyword">function</span>(<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">   <span class="comment">// 模块 a 和 b 在这里就都执行好并可用了</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">//CMD</span></span><br><span class="line">define(<span class="function"><span class="keyword">function</span>(<span class="params">require, exports</span>) </span>&#123;</span><br><span class="line">   <span class="comment">// ...</span></span><br><span class="line">   <span class="keyword">var</span> a = <span class="built_in">require</span>(<span class="string">'a'</span>)  <span class="comment">// 模块 a 运行到此处才执行</span></span><br><span class="line"></span><br><span class="line">   <span class="comment">// ...</span></span><br><span class="line"></span><br><span class="line">   <span class="keyword">if</span> (<span class="literal">false</span>) &#123;</span><br><span class="line">      <span class="keyword">var</span> b = <span class="built_in">require</span>(<span class="string">'b'</span>)   <span class="comment">// 当某些条件为 false 时，模块 b 永远也不会执行</span></span><br><span class="line">   &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h4 id="umd">UMD</h4>
+<blockquote>
+<p>在一些同时需要AMD和CommonJS功能的项目中，你需要使用另一种规范：Universal Module Definition（通用模块定义规范）。</p>
+</blockquote>
+<p>这种模式的使用方法因为其兼容性好，兼顾了AMD、CommonJS和客户端，在开源类库或者自己实现某个原生插件、功能时比较常见。基本的代码框架如下：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// returnExports.js</span></span><br><span class="line">(<span class="function"><span class="keyword">function</span> (<span class="params">root, factory</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> define === <span class="string">'function'</span> &amp;&amp; define.amd) &#123;</span><br><span class="line">        <span class="comment">// AMD. Register as an anonymous module.</span></span><br><span class="line">        define([<span class="string">'b'</span>], factory);</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">typeof</span> <span class="built_in">module</span> === <span class="string">'object'</span> &amp;&amp; <span class="built_in">module</span>.exports) &#123;</span><br><span class="line">        <span class="comment">// Node. Does not work with strict CommonJS, but</span></span><br><span class="line">        <span class="comment">// only CommonJS-like environments that support module.exports,</span></span><br><span class="line">        <span class="comment">// like Node.</span></span><br><span class="line">        <span class="built_in">module</span>.exports = factory(<span class="built_in">require</span>(<span class="string">'b'</span>));</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// Browser globals (root is window)</span></span><br><span class="line">        root.returnExports = factory(root.b);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;(<span class="keyword">this</span>, <span class="function"><span class="keyword">function</span> (<span class="params">b</span>) </span>&#123;</span><br><span class="line">    <span class="comment">//use b in some fashion.</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// Just return a value to define the module export.</span></span><br><span class="line">    <span class="comment">// This example returns an object, but the module</span></span><br><span class="line">    <span class="comment">// can return a function as the exported value.</span></span><br><span class="line">    <span class="keyword">return</span> &#123;&#125;;</span><br><span class="line">&#125;));</span><br></pre></td></tr></table></figure>
+<p>原理就是一个IIFE，并且加上判断，判断是否存在AMD，存在CommonJS，否则将其挂载到全局对象。</p>
+<p>如果你想看更多的例子：见官方<a href="https://github.com/umdjs/umd" target="_blank" rel="noopener">Repo</a></p>
+<h4 id="es6-module">ES6 Module</h4>
+<p>前端模块化的重要性逐渐显现出来，ECMAScript在ES2015也就是ES6中引入了模块的功能。</p>
+<p>ES6默认一个文件一个模块，也就是说，在一个模块文件里面声明的任何东西都是默认私有的，如果想变为<code>public</code>，需要使用<code>export</code>命令。还有很重要的一点，ES6的<strong>import是实时只读的</strong>。</p>
+<p>对于<code>export</code>命令来说，有两种导出方式，一种是命名导出，一种是默认导出。一般来说，导出多个值的时候使用命名导出，导出一个值比如一个函数，一个类或者一个对象等使用默认导出。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">//multiple named export</span></span><br><span class="line"><span class="comment">//------ lib.js ------</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> sqrt = <span class="built_in">Math</span>.sqrt;</span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">square</span>(<span class="params">x</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x * x;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">diag</span>(<span class="params">x, y</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> sqrt(square(x) + square(y));</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//或者使用一次导出多个</span></span><br><span class="line"><span class="keyword">const</span> sqrt = <span class="built_in">Math</span>.sqrt;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">square</span>(<span class="params">x</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x * x;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">diag</span>(<span class="params">x, y</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> sqrt(square(x) + square(y));</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">export</span> &#123;sqrt,square,diag&#125;;</span><br><span class="line"><span class="comment">//------ main.js ------</span></span><br><span class="line"><span class="comment">//使用命名导出多个值时必须使用相同的名称进行引用，当然可以使用`as`对其名称重命名，export也可以使用`as`关键字</span></span><br><span class="line"><span class="keyword">import</span> &#123; square, diag <span class="keyword">as</span> d &#125; <span class="keyword">from</span> <span class="string">'lib'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(square(<span class="number">11</span>)); <span class="comment">// 121</span></span><br><span class="line"><span class="built_in">console</span>.log(d(<span class="number">4</span>, <span class="number">3</span>)); <span class="comment">// 5</span></span><br><span class="line"><span class="comment">//或者使用`*`引入全部</span></span><br><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> lib <span class="keyword">from</span> <span class="string">'lib'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(lib.square(<span class="number">11</span>)); <span class="comment">// 121</span></span><br><span class="line"><span class="built_in">console</span>.log(lib.diag(<span class="number">4</span>, <span class="number">3</span>)); <span class="comment">// 5</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">//Single default export</span></span><br><span class="line"><span class="comment">//------ MyClass.js ------</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> </span>&#123; ··· &#125; <span class="comment">// no semicolon!</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//------ main2.js ------</span></span><br><span class="line"><span class="keyword">import</span> MyClass <span class="keyword">from</span> <span class="string">'MyClass'</span>;</span><br><span class="line"><span class="keyword">const</span> inst = <span class="keyword">new</span> MyClass();</span><br></pre></td></tr></table></figure>
+<p>基本的用法如上所示，如果想查看更加高级的用法，比如两种方式混合导出等可以查阅专门的文章或者期待我的<a href="/tags/ES6/">ES6学习日记</a>~</p>
+<p>好处是它是一个标准，而且<strong>实时更新</strong>，然而残酷的现实是浏览器支持度全线飘红，不过可以通过<code>Babel</code>等工具进行代码转换。</p>
+<div class="figure">
+<img src="http://image.geekaholic.cn/2017-03-10_173025_0001.jpg" alt="兼容性">
+<p class="caption">兼容性</p>
+</div>
+<h3 id="模块打包构建方案">模块打包构建方案</h3>
+<p>AMD和CMD是在前端引入<code>RequireJS</code>或者<code>SeaJS</code>的脚本，在线加载解释器并对代码进行编译，从而达到模块化管理的目的。ES6 Module是JavaScript原生支持，但目前浏览器的兼容性不理想，需要通过<code>Bable</code>转换。</p>
+<p>其实除了上述两者之外，JavaScript前端模块化还有一种解决方案，是通过<code>Node</code>和相应的工具，本地预编译，不需要在前端加载解释器，将模块化的代码打包处理(合并和压缩等)，而浏览器端的代码引入只需要引入打包处理后的<strong>一个文件</strong>，比如<code>&lt;script src=&quot;app.js&quot;&gt;&lt;/script&gt;</code>即可。而这种解决方案目前流行的有两款工具：<code>Browserify</code>和<code>Webpack</code>。</p>
+<p>（ 注意<code>Babel</code>和<code>Browserify</code>、<code>Webpack</code>不是同一类工具，前者用于转换ES6代码，以达到更强的浏览器兼容性，而后者是构建工具，用于压缩合并等功能。 ）</p>
+<h4 id="browserifycommonjs">Browserify+CommonJS</h4>
+<blockquote>
+<p>Browsers don’t have the <code>require</code> method defined, but Node.js does. With Browserify you can write code that uses <code>require</code> in the same way that you would use it in Node.</p>
+</blockquote>
+<p>在<code>Node.js</code>中，CommonJS是同步载入的，对于浏览器来说并不理想。而<code>Browserify</code>的作用就是将CommonJS模块(或者纯前端脚本)转换为浏览器可以调用的格式。然后<code>Browserify</code>通过抽象语法树（AST）来解析代码中的每一个 <code>require</code> 语句，在分析完所有模块的依赖和结构之后，就会把所有的代码合并到一个文件中。它还有一个好处就是，可以让前端<code>JavaScript</code>模块直接使用<code>npm install</code>的方式进行安装，比如<code>npm install backbone jquery</code>安装backbone和它所依赖的jQuery模块。</p>
+<p>而如果你想在<code>Browserify</code>中使用<code>AMD</code>模块语法，可以看一下这款插件<a href="https://www.npmjs.com/package/deamdify" target="_blank" rel="noopener">deamdify</a>或者下面的解决方案。</p>
+<p>而如果你想使用AMD的语法以及<code>RequireJS</code>来异步加载模块，可以使用<code>RequireJS optimizer</code>, <code>r.js</code>一类的构建工具来合并和压缩AMD的模块。同理，<code>SeaJS</code>可以使用<code>spm</code>。</p>
+<p><code>Browserify</code>的基本用法是：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">browserify main.js -o bundle.js</span><br></pre></td></tr></table></figure>
+<p>如果你想详细了解<code>Browserify</code>的用法、例子，可以查看其<a href="http://browserify.org/" target="_blank" rel="noopener">官网</a>或者<a href="http://zhaoda.net/2015/10/16/browserify-guide/" target="_blank" rel="noopener">Browserify 使用指南</a></p>
+<h4 id="rollup-tree-shaking">Rollup – tree shaking</h4>
+<blockquote>
+<p>Rollup is a module bundler for JavaScript which compiles small pieces of code into a something larger and more complex, such as a library or application. It uses the new standardized format for code modules included in the ES6 revision of JavaScript, instead of previous idiosyncratic solutions such as CommonJS and AMD.</p>
+</blockquote>
+<p>从官网的介绍可以看到<code>RollupJS</code>作为打包工具，有一些优点：</p>
+<ul>
+<li>ES6原生语法</li>
+<li>Tree shaking</li>
+<li>转换为AMD,CommonJS,UMD,IIFE等方式</li>
+</ul>
+<p>关于什么是<code>Tree shaking</code>，官方的定义是：</p>
+<blockquote>
+<p>Tree-shaking a.k.a. ‘live code inclusion’ is the process of only including the code that is used. It is similar to dead code elimination but can be more efficient</p>
+</blockquote>
+<p>简单地来说，是一种减少代码冗余的技术，只加载需要调用的代码，而不是加载全部，这样就不怕载入的依赖存在冗余了。</p>
+<p>但是很不幸，以上的优点在最新版本v2.2的<code>Webpack</code>中都已经实现了。</p>
+<h4 id="webpack-一切皆模块">Webpack – 一切皆模块</h4>
+<p>目前主流的前端构建工具，估计属<code>Webpack</code>是最热的了吧。</p>
+<p>虽然Webpack和Browserify都是模块化打包工具，但是两者面向的方面可是大有不同。<code>Browserify</code>是一个为浏览器环境提供Node模块的模块打包工具，而<code>Webpack</code>不仅仅是将<code>JavaScipt</code>纳入模块化的范畴，图片、样式文件等资源也可以进行模块化、打包等，在很多人(包括我)看来，<code>Webpack</code>不仅仅是JavaScript模块化工具，依赖其强大的插件，也包含了<code>gulp</code>的大部分功能，可以说是大而全的前端工程化工具，也就是说<code>Webpack 约等于 gulp+Browerify</code>。当然，也有使用<code>Webpack+gulp</code>的（将Webpack做打包工具，gulp做自动化工具），这些工具的使用暂时不是很熟悉，就不献丑了。</p>
+<p>回到正题，Webpack提供的模块化思想似乎更加的先进，可以使用<code>code splitting</code>这样的功能，将代码分割成一个个的chunk，然后实现按需加载进行性能优化。</p>
+<p>Webpack在JavaScript模块化方面的简单使用和<code>Browserify</code>很类似。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">webpack main.js bundle.js</span><br></pre></td></tr></table></figure>
+<p>如果你想对比<code>Webpack</code>和<code>Browserify</code>之间的区别，可以查看文章<a href="http://blog.namangoel.com/browserify-vs-webpack-js-drama" target="_blank" rel="noopener">Browserify VS Webpack - JS Drama</a>和<a href="http://webpack.github.io/docs/comparison.html" target="_blank" rel="noopener">Webpack官方的对比</a>，或者<a href="https://github.com/petehunt/webpack-howto" target="_blank" rel="noopener">看看<code>Webpack</code>可以为你提供什么</a></p>
+<h4 id="最优解">最优解</h4>
+<p>所以，介绍了那么多的工具，目前(2017/3/10)的最优方案应该是什么？</p>
+<p>个人意见是<code>ES6+Webpack2.2(需要安装相关的Babel插件)</code>或者<code>ES6+RollupJS+gulp等</code>，至于如何还请根据自己的项目要求~</p>
+<h2 id="结束">结束？</h2>
+<p>这篇文章讲了什么？无外乎模块化历史的发展。学到了几种模块模式，懂得了<code>UMD</code>（之前知道这种写法，但不清楚术语），还见识到了前端发展的迅速。</p>
+<p>因为中间<code>hexo-admin</code>插件抽风了，让我一个下午的写作没有保存。本来一天可以写完的硬是花了我两天的时间来写这篇文件，我能怎么办QAQ我也很绝望啊。讲了那么多，无外乎一些历史和简单的介绍，到底模块化<code>AMD</code>等内部是如何实现的，内部是怎么样的原理，似乎没有讲到。想接着大致地分析内部的原理，虽然知道异步加载模块的原理是通过动态生成<code>&lt;script&gt;</code>标签，却怕自己的能力不够分析那么多。</p>
+<p>考虑到时间、篇章和能力的限制，暂且到此结束该篇，将其他部分的内容后移:)</p>
+<ul>
+<li><p>JavaScript模块化加载器的大概原理</p></li>
+<li><p>Webpack的使用和ES6 Module的详细介绍</p></li>
+</ul>
+<hr>
+<p>** 参考资料：**</p>
+<ul>
+<li><p><a href="https://huangxuan.me/js-module-7day/#/" target="_blank" rel="noopener">JavaScript模块化七日谈</a></p></li>
+<li><p><a href="http://www.jianshu.com/p/3832c00a44a7?utm_source=caibaojian.com" target="_blank" rel="noopener">JavaScript中的模块化开发</a></p></li>
+<li><p><a href="http://www.oschina.net/translate/javascript-module-pattern-in-depth#content_h2_5_5" target="_blank" rel="noopener">深入理解JavaScript 模块模式–高级模式</a></p></li>
+<li><p><a href="http://www.adequatelygood.com/JavaScript-Module-Pattern-In-Depth.html" target="_blank" rel="noopener">JavaScript Module Pattern: In-Depth</a></p></li>
+<li><p><a href="https://zhuanlan.zhihu.com/p/22945985" target="_blank" rel="noopener">JavaScript 模块化入门Ⅱ：模块打包构建</a></p></li>
+<li><p><a href="https://github.com/boxizen/boxizen.github.io/issues/9" target="_blank" rel="noopener">RequireJS, Sea.js, Browserify和webpack的对比</a></p></li>
+</ul>
+
+        </div>
+        <div id="post-footer">
+            <div class="avatar" >
+                <img src="http://image.geekaholic.cn/author.jpg" alt="avatar"/>
+                
+                <a href="javascript:void(0)" class="high-song">high起来 &#128541;</a>
+                
+                
+                <a href="javascript:void(0)" class="donate fa">打赏资瓷 &#128536;</a>
+                
+            </div>
+            <ul class="author-profile-section">
+                <li>
+                  
+                  作者:
+                  
+                    
+                    <a href="/about.html">GeekaholicLin</a>
+                </li>
+                
+                <li>发表日期: <span>2017-03-09  15:42:18</span></li>
+                
+                <li>最后编辑日期: <span>2019-09-26  05:21:46</span></li>
+                
+                <li class="post-category">
+                    文章分类:
+                    
+                    <a href="/categories/编执狂/">编执狂</a>
+                    
+                    <a href="/categories/编执狂/Web/">Web</a>
+                    
+                </li>
+                <li class="post-tags">
+                    文章标签:
+                    
+                    <a href="/tags/JavaScript/">JavaScript</a>
+                    
+                    <a href="/tags/模块化/">模块化</a>
+                    
+                    <a href="/tags/Web/">Web</a>
+                    
+                </li>
+                
+                <li> 版权声明: 
+<a href="https://creativecommons.org/licenses/by-nc-nd/3.0/" target="_blank">
+知识共享署名-非商业性使用-禁止演绎 3.0 未本地化版本许可协议（CC BY-NC-ND 3.0）
+</a></li>
+                
+            </ul>
+            <div id="donate-wrap">
+                
+                
+                
+                <img src="http://image.geekaholic.cn/alipay.jpg" alt="支付宝付款" class="donate-img">
+                
+                <img src="http://image.geekaholic.cn/wechat.png" alt="微信付款" class="donate-img">
+                
+                
+            </div>
+        </div>
+    </article>
+    <div class="article-nav">
+        
+        <a href="/2017/03/11/AMD等模块化的简单原理/" class="pre-post fa fa-caret-left">AMD等模块化的简单原理</a>
+        
+        
+        <a href="/2017/03/06/制作Hexo主题详细教程（2）/" class="next-post fa">制作Hexo主题详细教程（2）</a>
+        
+    </div>
+    
+    <div id="comments">
+        
+
+<script>
+  gitalk.render("comments");
+</script>
+
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+    <footer id="footer">
+    
+    <div class="social">
+        
+        <a href="https://freecodecamp.cn/geekaholiclin" class="fa fa-free-code-camp" target="_blank" title="freecodecamp"></a>
+        
+        <a href="https://github.com/GeekaholicLin" class="fa fa-github" target="_blank" title="github"></a>
+        
+        <a href="mailto:geekaholiclin@gmail.com" class="fa fa-envelope-o" target="_blank" title="mail to me"></a>
+        
+    </div>
+    
+    <div>
+        
+        <a href="/" class="copyright-links">GeekaholicLin</a>&copy;2015 - 2019.All Rights
+        Reserved.
+    </div>
+    <p>Powered by <a href="https://hexo.io" class="copyright-links" target="_blank">Hexo</a> | Theme by <a
+                href="https://github.com/GeekaholicLin" class="copyright-links" target="_blank">GeekaholicLin</a>
+    </p>
+    
+    
+    <p>
+        <span id="busuanzi_container_site_uv" class="fa fa-bar-chart">
+        欢迎第<span id="busuanzi_value_site_uv"><i class="fa fa-spinner fa-spin"></i></span>位小伙伴~
+        </span>
+    </p>
+    
+</footer>
+
+</div>
+    <ul id="tools">
+    <li class="totop-btn fa fa-angle-up"></li>
+    <li class="exchange-btn fa fa-exchange"></li>
+  
+    <li class="toc-btn fa fa-list-ul"></li>
+    
+    
+
+    
+    <li class="comment-btn fa fa-comments-o">
+        <a href="#comments" title="comments"></a>
+    </li>
+    
+</ul>
+<p id="process"></p>
+<div id="search-overlay">
+    <div class="search-area-wrap">
+        <div id="search-area">
+            <div class="input-wrap focus">
+                <i class="fa fa-search" aria-hidden="true"></i>
+                <input id="search-input" autofocus autocomplete="off" type="text"
+                       placeholder="search this website..."/>
+            </div>
+            <ul id="search-result">
+                <li class="load-first"><i class="fa fa-spinner fa-pulse"></i></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#js模块化解决的是什么"><span class="toc-number">1.</span> <span class="toc-text">js模块化解决的是什么</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#命名冲突"><span class="toc-number">1.1.</span> <span class="toc-text">命名冲突</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#全局函数"><span class="toc-number">1.1.1.</span> <span class="toc-text">全局函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#简单的命名空间"><span class="toc-number">1.1.2.</span> <span class="toc-text">简单的命名空间</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#闭包"><span class="toc-number">1.1.3.</span> <span class="toc-text">闭包</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#闭包依赖注入"><span class="toc-number">1.1.4.</span> <span class="toc-text">闭包依赖注入</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#闭包的高级模式"><span class="toc-number">1.1.5.</span> <span class="toc-text">闭包的高级模式</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#扩展"><span class="toc-number">1.1.5.1.</span> <span class="toc-text">扩展</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#松耦合扩展"><span class="toc-number">1.1.5.2.</span> <span class="toc-text">松耦合扩展</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#紧耦合扩展"><span class="toc-number">1.1.5.3.</span> <span class="toc-text">紧耦合扩展</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#跨文件共享私有对象"><span class="toc-number">1.1.5.4.</span> <span class="toc-text">跨文件共享私有对象</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#文件依赖"><span class="toc-number">1.2.</span> <span class="toc-text">文件依赖</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#js模块化工具"><span class="toc-number">2.</span> <span class="toc-text">js模块化工具</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#模块定义和加载方案"><span class="toc-number">2.1.</span> <span class="toc-text">模块定义和加载方案</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#一些历史"><span class="toc-number">2.1.1.</span> <span class="toc-text">一些历史</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#amd与cmd"><span class="toc-number">2.1.2.</span> <span class="toc-text">AMD与CMD</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#umd"><span class="toc-number">2.1.3.</span> <span class="toc-text">UMD</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#es6-module"><span class="toc-number">2.1.4.</span> <span class="toc-text">ES6 Module</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#模块打包构建方案"><span class="toc-number">2.2.</span> <span class="toc-text">模块打包构建方案</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#browserifycommonjs"><span class="toc-number">2.2.1.</span> <span class="toc-text">Browserify+CommonJS</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#rollup-tree-shaking"><span class="toc-number">2.2.2.</span> <span class="toc-text">Rollup – tree shaking</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#webpack-一切皆模块"><span class="toc-number">2.2.3.</span> <span class="toc-text">Webpack – 一切皆模块</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#最优解"><span class="toc-number">2.2.4.</span> <span class="toc-text">最优解</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#结束"><span class="toc-number">3.</span> <span class="toc-text">结束？</span></a></li></ol>
+
+
+    <script src="/js/highsong.js"></script>
+
+
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+    //theme config datas
+    var copyrightObj = {};
+    copyrightObj.enable = 'true';
+    copyrightObj.triggerCopyLength = '200';
+    copyrightObj.appendText = '商业转载请联系作者获得授权,非商业转载请注明出处 © GeekaholicLin';
+    var leancloudObj = {};
+    leancloudObj.enable = 'true';
+    leancloudObj.className = 'BlogCounter';
+    leancloudObj.limits = '10';
+</script>
+<script type="text/javascript">
+    var search = {};
+    var search_path = "search.xml";
+    if (!search_path) {
+        search_path = "search.xml";
+    }
+    search.path = "/" + search_path;
+    search.func =  _ajax.init();
+</script>
+<script src="/js/app.js"></script>
+
+
+</body>
+</html>

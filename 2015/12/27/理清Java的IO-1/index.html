@@ -1,0 +1,560 @@
+<!doctype html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no">
+    
+<meta name="google-site-verification" content="osGzKb_y9J6vt8d0mGYPDH81ljatwPdSVCFwxMCJSaE">
+
+    
+<meta name="baidu-site-verification" content="Yn6v4uAWVY">
+<script>
+    //push
+    (function(){
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        }
+        else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    <!--Simple SEO-->
+
+<meta name="description" content="编执狂的博客，主要记录自己在IT路上的成长历程。/">
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+    <!--Title-->
+
+<title>理清Java的IO(1)--流 | Geekaholic</title>
+
+<link rel="alternate" href="/atom.xml" title="Geekaholic" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+    
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/css/pages/post.css">
+<link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/thirdParty/highlight/solarized-light.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+
+<style>
+    figure .code .line:before{
+        display: none!important;
+    }
+</style>
+
+    <!--script-->
+
+
+<script src="//cdn.jsdelivr.net/npm/leancloud-storage@3.15.0/dist/av-min.js"></script>
+<script>
+  var appId = "RI5uv752sD0nGTyUSUC6odJE-gzGzoHsz";
+  var appKey = "yuke8QmutaxI5YvyD2NIE57u";
+  var region = "null";
+  var serverURLs = "http://leancloud.geekaholic.cn";
+  AV.init({
+    appId: appId,
+    appKey: appKey,
+    region: region,
+    serverURLs: serverURLs
+  });
+</script>
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+<script>
+  var admin = "GeekaholicLin";
+  admin = admin.split(",");
+  var gitalk = new Gitalk({
+    clientID: "aa2215dfc8ee944d1205",
+    clientSecret: "77cd2afa5d161bc0ab04639ed81300d808c6e22b",
+    repo: "geekaholiclin.github.io",
+    owner: "GeekaholicLin",
+    admin: admin,
+    id: decodeURIComponent(location.pathname),
+    distractionFreeMode: false
+  })
+
+</script>
+
+    
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?1fdc784829bc9fa0c0bbee0c680ffe2a";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+    
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-91854900-3', 'auto');
+    ga('send', 'pageview');
+
+</script>
+
+</head>
+</html>
+<body id="normal">
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<style>
+    header{ top: 71px; position: absolute!important;}
+    #container{padding-top: 151px!important;}
+</style>
+<div style="position:fixed;z-index:9999;left:0;top:0;width:100%;height:70px;background-color:#e0e0e0;color:#396CA5;border-bottom:1px solid #cecece;text-align:center;line-height:70px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis">您使用的浏览器版本过低，为了您更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<div id="wrap">
+    <header  style="position: absolute;" >
+    <div id="site-meta">
+        <a href="/" id="logo">
+            <h1 class="title">Geekaholic</h1>
+        </a>
+        
+        <h2 class="subtitle">编程在于折腾</h2>
+        
+    </div>
+    <ul id="nav">
+        
+            <li><a href="/"><i class="fa fa-home"></i>首页</a></li>
+        
+            <li><a href="/about"><i class="fa fa-user"></i>关于我</a></li>
+        
+            <li><a href="/atom.xml"><i class="fa fa-rss"></i>RSS</a></li>
+        
+        <li id="search"><a href="javascript:void(0)"><i class="fa fa-search"></i>搜索</a></li>
+    </ul>
+</header>
+
+    <div id="container">
+        
+<ul id="sidebar">
+    
+    
+    
+    
+<li class="widget widget-normal category">
+    <h3 class="fa fa-th widget-title">分类</h3>
+    <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/他山之石/"><i class="fa" aria-hidden="true">他山之石</i></a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/他山之石/Web/"><i class="fa" aria-hidden="true">Web</i></a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/编执狂/"><i class="fa" aria-hidden="true">编执狂</i></a><span class="category-list-count">14</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/编执狂/Android/"><i class="fa" aria-hidden="true">Android</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/编执狂/Java/"><i class="fa" aria-hidden="true">Java</i></a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/编执狂/Web/"><i class="fa" aria-hidden="true">Web</i></a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/编执狂/计算机基础/"><i class="fa" aria-hidden="true">计算机基础</i></a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/编程之外/"><i class="fa" aria-hidden="true">编程之外</i></a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/编程之外/Hexo/"><i class="fa" aria-hidden="true">Hexo</i></a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/编程之外/解决方法/"><i class="fa" aria-hidden="true">解决方法</i></a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/黄金屋-读书笔记/"><i class="fa" aria-hidden="true">黄金屋--读书笔记</i></a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/黄金屋-读书笔记/CSS设计指南/"><i class="fa" aria-hidden="true">CSS设计指南</i></a><span class="category-list-count">1</span></li></ul></li></ul>
+</li>
+
+
+    
+    
+<li class="widget widget-normal archive">
+  <h3 class="fa fa-archive widget-title">归档</h3>
+    <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/"><i class="fa" aria-hidden="true">九月 2017</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/"><i class="fa" aria-hidden="true">八月 2017</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/"><i class="fa" aria-hidden="true">三月 2017</i></a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/"><i class="fa" aria-hidden="true">二月 2017</i></a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/"><i class="fa" aria-hidden="true">三月 2016</i></a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/"><i class="fa" aria-hidden="true">二月 2016</i></a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/"><i class="fa" aria-hidden="true">一月 2016</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/"><i class="fa" aria-hidden="true">十二月 2015</i></a><span class="archive-list-count">5</span></li></ul>
+</li>
+
+
+    
+    
+<li class="widget widget-normal popular-posts" id="popular-posts">
+    <h3 class="fa fa-thermometer-3 widget-title">热门文章</h3>
+    <ul id="popular-content">
+        <li class="load-first"><i class="fa fa-spinner fa-pulse"></i></li>
+    </ul>
+</li>
+
+    
+    
+<li class="widget widget-normal tags">
+  <h3 class="fa fa-tags widget-title">标签云</h3>
+  <div class="tagcloud-content">
+    
+      <a href="/tags/Mathjax/" style="font-size: 0.18rem; color: #4f83b8">Mathjax</a> <a href="/tags/JavaScript/" style="font-size: 0.21rem; color: #386da4">JavaScript</a> <a href="/tags/Web/" style="font-size: 0.21rem; color: #386da4">Web</a> <a href="/tags/Android/" style="font-size: 0.18rem; color: #4f83b8">Android</a> <a href="/tags/ListView原理/" style="font-size: 0.14rem; color: #69c">ListView原理</a> <a href="/tags/ListView优化/" style="font-size: 0.14rem; color: #69c">ListView优化</a> <a href="/tags/Android控件/" style="font-size: 0.14rem; color: #69c">Android控件</a> <a href="/tags/解决方法/" style="font-size: 0.14rem; color: #69c">解决方法</a> <a href="/tags/Genymotion/" style="font-size: 0.14rem; color: #69c">Genymotion</a> <a href="/tags/VisualBox/" style="font-size: 0.14rem; color: #69c">VisualBox</a> <a href="/tags/Java/" style="font-size: 0.28rem; color: #0a407c">Java</a> <a href="/tags/线程/" style="font-size: 0.14rem; color: #69c">线程</a> <a href="/tags/InterruptedException/" style="font-size: 0.14rem; color: #69c">InterruptedException</a> <a href="/tags/异常/" style="font-size: 0.14rem; color: #69c">异常</a> <a href="/tags/RxJS/" style="font-size: 0.14rem; color: #69c">RxJS</a> <a href="/tags/Translation/" style="font-size: 0.18rem; color: #4f83b8">Translation</a> <a href="/tags/Hexo主题/" style="font-size: 0.18rem; color: #4f83b8">Hexo主题</a> <a href="/tags/ylion/" style="font-size: 0.25rem; color: #215690">ylion</a> <a href="/tags/模块化/" style="font-size: 0.18rem; color: #4f83b8">模块化</a> <a href="/tags/CSS3/" style="font-size: 0.14rem; color: #69c">CSS3</a> <a href="/tags/W3C/" style="font-size: 0.14rem; color: #69c">W3C</a> <a href="/tags/Hexo/" style="font-size: 0.21rem; color: #386da4">Hexo</a> <a href="/tags/主题制作/" style="font-size: 0.18rem; color: #4f83b8">主题制作</a> <a href="/tags/IO操作/" style="font-size: 0.21rem; color: #386da4">IO操作</a> <a href="/tags/Scanner/" style="font-size: 0.14rem; color: #69c">Scanner</a> <a href="/tags/马士兵/" style="font-size: 0.18rem; color: #4f83b8">马士兵</a> <a href="/tags/异常处理/" style="font-size: 0.18rem; color: #4f83b8">异常处理</a> <a href="/tags/流类型/" style="font-size: 0.18rem; color: #4f83b8">流类型</a> <a href="/tags/算法分析/" style="font-size: 0.14rem; color: #69c">算法分析</a> <a href="/tags/复杂度/" style="font-size: 0.14rem; color: #69c">复杂度</a> <a href="/tags/虚拟机/" style="font-size: 0.14rem; color: #69c">虚拟机</a> <a href="/tags/英文XP系统/" style="font-size: 0.14rem; color: #69c">英文XP系统</a> <a href="/tags/中文字体/" style="font-size: 0.14rem; color: #69c">中文字体</a> <a href="/tags/兼容性/" style="font-size: 0.18rem; color: #4f83b8">兼容性</a> <a href="/tags/CSS设计指南/" style="font-size: 0.14rem; color: #69c">CSS设计指南</a> <a href="/tags/读书笔记/" style="font-size: 0.14rem; color: #69c">读书笔记</a> <a href="/tags/polyfill/" style="font-size: 0.14rem; color: #69c">polyfill</a>
+  </div>
+</li>
+
+
+    
+    
+<li class="widget widget-normal friends-link">
+    <h3 class="fa fa-globe widget-title">友链</h3><br/>
+
+    
+        <a href="http://geekaholiclin.github.io" class="fa" target="_blank">主题作者</a>
+
+    
+        <a href="http://walkerlala.github.com/" class="fa" target="_blank">walkerlala</a>
+
+    
+        <a href="http://jerry011235.github.io/" class="fa" target="_blank">璀璨星空</a>
+
+    
+
+</li>
+
+    
+</ul>
+
+
+        <div id="main">
+    <article id="post">
+        <div id="post-header">
+
+            <h1 id="理清Java的IO(1)--流">
+                
+                理清Java的IO(1)--流
+                
+            </h1>
+            <div class="article-meta">
+    
+    
+    <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+        <span>Java</span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+         <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            Java
+            
+        </span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta ">2015/12/27</span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+            <i class="fa fa-thermometer-three-quarters"></i>
+        <span class="hits hits-meta " data-leadcloud-title="理清Java的IO(1)--流"
+              data-leadcloud-url="/2015/12/27/理清Java的IO-1/"><i class="fa fa-spinner fa-spin"></i></span>
+    </span>
+    
+    
+</div>
+
+            
+            
+            <p class="fa fa-exclamation-triangle warning">
+                本文于<strong>1368</strong>天之前发表，文中内容可能已经过时。如有疑问，请在评论区留言。
+            </p>
+            
+        </div>
+        
+        <div id="post-body">
+            <blockquote>
+<p><strong>声明:由于I/O操作的<code>Scanner</code>类不在java.io包内，不属于文中的主角–‘<code>流类型</code>’，故留着最后，防止解说过于混乱</strong></p>
+</blockquote>
+<h2 id="概念">概念</h2>
+<h3 id="相关包">相关包</h3>
+<blockquote>
+<p><code>java.io</code>、<code>java.util</code> (Scanner这个特殊的存在)</p>
+</blockquote>
+<h3 id="文件"><code>文件</code></h3>
+<blockquote>
+<p>文件就是字节序列。<strong>每一个I/O设备，包括磁盘，键盘，显示器，甚至网络都可以视为文件</strong>。–摘自《CSAPP》</p>
+</blockquote>
+<p>至于在文件中，文本文件和二进制文件的区别，可以看上一篇文章。</p>
+<h3 id="流"><code>流</code></h3>
+<p>在Java的<code>I/O操作</code>中，流是一个很重要的概念。在计算机的基础课程中，有学习过<code>数据流</code>，<code>控制流</code>等，这是一种类比的思想，将Java的I/O操作更加形象地描述出来。在视频或者书籍中，都喜欢用’流’来描述<code>文件读取</code>的过程。为了便于理解和记忆，姑且可以把’<strong>流’看成’水流’</strong>，而<strong>涉及’I/O操作的类’看成’管道’</strong>，<strong>‘文件和程序’看出’水池’</strong>。</p>
+<div class="figure">
+<img src="http://old-image.geekaholic.cn/sxt-javaio.jpg" alt="来自马士兵的Java视频">
+<p class="caption">来自马士兵的Java视频</p>
+</div>
+<p><br></p>
+<a id="more"></a>
+<h2 id="流的分类">流的分类</h2>
+<p><code>java.io</code> 包中定义了多个<code>流类型</code>(类或抽象类)来实现输入/输出功能。在刚开始学习<code>Java</code>的<code>I/O操作</code>时，着实给那么多的类和方法吓到了。也有时搞不清楚，为什么一些类的构造方法是其他的I/O类为参数，而一些类的构造方法是<code>File类</code>或者<code>文件路径字符串</code>为参数如果不细细地梳理，可能在使用的时候就会很混乱。(虽然可以查找<code>API 文档</code>)。</p>
+<h3 id="个人记忆方法">个人记忆方法</h3>
+<p>那我们开门见山吧~其实很简单。[<strong>请紧记于心</strong>] <figure class="highlight java"><table><tr><td class="code"><pre><span class="line">就两个<span class="string">"大类"</span>--文本I/O和二进制I/O。</span><br><span class="line">最后的单词是<span class="string">'-er'</span>的(包括Scanner)是处理文本文件数据，<span class="string">'-Stream'</span>可以处理二进制文件数据**以及文本数据**。</span><br></pre></td></tr></table></figure></p>
+<p><strong>为什么这样分</strong>？！</p>
+<p>SDK 所提供的所有流类型位于包java.io内都分别继承自以下4种<strong>抽象</strong>流类型。</p>
+<table>
+<thead>
+<tr class="header">
+<th>流的类型</th>
+<th><code>字节流</code></th>
+<th><code>字符流</code></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>输入流</td>
+<td>InputStream</td>
+<td>Reader</td>
+</tr>
+<tr class="even">
+<td>输出流</td>
+<td>OutputStream</td>
+<td>Writer</td>
+</tr>
+</tbody>
+</table>
+<p>[四种抽象流类型]</p>
+<blockquote>
+<p>抽象类<code>InputStream</code>是读取二进制数据的根类，抽象类<code>OutputStream</code>是写入二进制数据的根类。</p>
+</blockquote>
+<p><strong>字节流一般处理的是二进制文件(包括文本)，而字符流处理的是文本文件</strong>。 再来看一副图。这幅图替我们总结了IO操作中的IO’流’类。<strong>这只是常见的，并不是所有。请注意</strong></p>
+<div class="figure">
+<img src="http://old-image.geekaholic.cn/javaio%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93%20-%20-%20ITeye%E6%8A%80%E6%9C%AF%E7%BD%91%E7%AB%99.jpg" alt="网络图片–侵删">
+<p class="caption">网络图片–侵删</p>
+</div>
+<p><br></p>
+<p>仔细看图中的类，可以看到<strong>I/O处理的类大部分是对称的</strong>。也就是大部分4个一起出现。</p>
+<p>当然，也可以从不同的角度对其进行分类，关键是<strong>怎么记忆怎么来</strong>。比如: <figure class="highlight java"><table><tr><td class="code"><pre><span class="line">按照数据流的方向不同可以分为输入流和输出流</span><br><span class="line">按照处理数据单位不同可以分为字节流和字符流</span><br><span class="line">按照功能不同可以分为节点流和处理流</span><br></pre></td></tr></table></figure></p>
+<p>先来解释这3种不同分法的’流’。</p>
+<h3 id="输入流和输出流inputoutput-stream"><code>输入流</code>和<code>输出流</code>(Input/Output Stream)</h3>
+<p>输入流和输出流 在程序和文件当中，<strong>输入流和输出流是相对的</strong>。当读取文件的时候，从程序的角度看，<strong>文件数据</strong>是输入流，从文件的角度看则是输出流。<strong>输入输出是相对于参考体而已的，远离则为输出。</strong></p>
+<h3 id="字节流和字符流byte-streamcharacter-stream"><code>字节流</code>和<code>字符流</code>(byte Stream/character Stream)</h3>
+<ul>
+<li>字节流的数据处理单位是字节(8bit)</li>
+<li>字符流的数据处理单位是2个字节的Unicode 字符(16bit)</li>
+</ul>
+<p>为什么存在字节流还需要字符流？因为存在二进制文件和文本文件。 ### <code>节点流</code>和<code>处理流</code></p>
+<ul>
+<li>节点流为可以从一个特定的数据源(节点)直接读取数据。</li>
+<li>处理流是“连接”在已经存在的流(<strong>节点流或处理流</strong>)之上，通过对数据的处理，为程序提供更为强大的读写功能。</li>
+</ul>
+<p>看到<code>节点流</code>和<code>处理流</code>，应该知道为什么一些类的构造方法是其他的I/O类为参数，而一些类的构造方法是<code>File类</code>或者<code>文件路径字符串</code>为参数了吧？</p>
+<h4 id="构造方法不同的原因">构造方法不同的原因</h4>
+<p>以“程序以<code>FileReader</code>类读取文件”的过程为例。按照前面所说的思维方法，把’<strong>流’看成’水流’</strong>，而<strong>涉及’I/O操作的类’看成’管道’</strong>，<strong>‘文件和程序’看出’水池’</strong>。</p>
+<blockquote>
+<p>1.文件读取流，首先是利用文件的地址字符串或者文件(File)对象，进行建立，成为了<strong>节点流</strong>。</p>
+</blockquote>
+<p>这个过程可以看作是:</p>
+<blockquote>
+<p>要从一个水池A(文件)中取水到另外水池B(程序运行时分配的内存空间)，首先把小的管道(‘节点流’类型的类,FileReader)插在水池的出水口。这个插的过程相当于<strong>构造</strong>一个’节点流’。所以，FileReader 对象的构造方法中要有File 对象 或者 “文件路径的字符串”。这时就是<code>节点流</code>。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">FileReader的<span class="number">3</span>个构造方法：</span><br><span class="line"></span><br><span class="line">FileReader(File file)</span><br><span class="line">Creates a <span class="keyword">new</span> FileReader, given the File to read from.</span><br><span class="line">FileReader(FileDescriptor fd)</span><br><span class="line">Creates a <span class="keyword">new</span> FileReader, given the FileDescriptor to read from.</span><br><span class="line">FileReader(String fileName)</span><br><span class="line">Creates a <span class="keyword">new</span> FileReader, given the name of the file to read from.</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>2.而为了更加方便地读写数据和操作文件(因为处理流提供了很多好用的方法，如BufferedReader的readLine()可以读取一行数据)，引入了处理流。处理流的构造方法参数为节点流或者处理流的子类。</p>
+</blockquote>
+<p>这个过程可以看作是: &gt; 在取水的时候，发现水中有杂质。想要它先缓冲在一个地方进行过滤、沉淀，等到一定的水量之后再一次输入到水池B中。这时我需要一个带有过滤头并且具有缓冲功能的大水管(‘处理流’类型的类,BufferReader)。所以，BufferedReader中的构造参数要有’节点流’对象。这时候就是’处理流’。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">BufferedReader的<span class="number">2</span>个构造方法：</span><br><span class="line"></span><br><span class="line">BufferedReader(Reader in)</span><br><span class="line">Creates a buffering character-input stream that uses a <span class="keyword">default</span>-sized input buffer.</span><br><span class="line">BufferedReader(Reader in, <span class="keyword">int</span> sz)</span><br><span class="line">Creates a buffering character-input stream that uses an input buffer of the specified size.</span><br></pre></td></tr></table></figure>
+<h4 id="代码实例">代码实例</h4>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JavaIO</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            FileReader mFileReader ;</span><br><span class="line">            <span class="keyword">char</span>[] value = <span class="keyword">new</span> <span class="keyword">char</span>[<span class="number">2</span>];</span><br><span class="line">            File mFile = <span class="keyword">new</span> File(<span class="string">"D:\\test.txt"</span>);</span><br><span class="line">            mFileReader = <span class="keyword">new</span> FileReader(mFile);</span><br><span class="line">            System.out.println(<span class="string">"我是节点流对象mFileReader读取的数据"</span>);</span><br><span class="line">            <span class="comment">//一个字符一个字符地读取，当read()返回值为-1时，读取结束</span></span><br><span class="line">            <span class="keyword">while</span> (mFileReader.read(value, <span class="number">0</span>, <span class="number">1</span>) != -<span class="number">1</span>) &#123;</span><br><span class="line">                System.out.print(value);</span><br><span class="line">            &#125;</span><br><span class="line">            mFileReader.close();<span class="comment">//读写结束后需要关闭</span></span><br><span class="line">            System.out.println(<span class="string">"\n~~~~~华丽丽的分割线~~~~~"</span>);</span><br><span class="line">            mFileReader=<span class="keyword">new</span> FileReader(mFile);<span class="comment">//重新打开</span></span><br><span class="line">            BufferedReader mBufferedReader = <span class="keyword">new</span> BufferedReader(mFileReader);</span><br><span class="line">            System.out.println(<span class="string">"\n我是处理流对象mBufferedReader读取的数据"</span>);</span><br><span class="line">            System.out.println(mBufferedReader.readLine());<span class="comment">//只需要一句话</span></span><br><span class="line">            mFileReader.close();<span class="comment">//读写结束后需要关闭</span></span><br><span class="line">            mBufferedReader.close();<span class="comment">//关闭</span></span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception ee) &#123;</span><br><span class="line">            ee.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">运行结果</span><br><span class="line"></span><br><span class="line">我是节点流对象mFileReader读取的数据</span><br><span class="line">Hello,我是编执狂。欢迎来到Geekaholic的博客~</span><br><span class="line">~~~~~华丽丽的分割线~~~~~</span><br><span class="line">我是处理流对象mBufferedReader读取的数据</span><br><span class="line">Hello,我是编执狂。欢迎来到Geekaholic的博客~</span><br></pre></td></tr></table></figure>
+<p>总结一下，<strong>因为某一些流是处理流，是建立在其他节点流或处理流的基础之上，(相当于在节点流的“管道”基础上再套接一个管道)，所以构造方法需要某个’节点流’或’处理流’类型的对象为构造参数。</strong>从程序中可以看到，更加方便地读写数据和操作文件。</p>
+<h4 id="常见的处理流">常见的<code>处理流</code></h4>
+<p><strong>字节流-输入流</strong> ObjectInputStream(对象流)，SequenceInputStream(合并流)，FilterStream和它的子类(BufferedInputStream,DataInputStream等)。</p>
+<p><strong>字节流-输出流</strong> ObjectOutputStream(对象流)，FilterStream和它的子类(BufferedOutputStream,DataOutputStream等)。</p>
+<p><strong>字符流-输入流</strong> BufferedReader,InputStreamReader(转换流),FilterReader和它的子类。</p>
+<p><strong>字符流-输出流</strong> BufferedWriterer,InputStreamWriter(转换流),FilterWriter和它的子类。</p>
+<p>它们还是有一定的规律性的，比较对称。要查更多，请参照Java官方的<code>API文档</code>。要记住全部也不现实，但要记得一点。<strong>处理流是在节点流或处理流的基础上构造的</strong>，它可以(不是必须)用“节点流”对象做构造参数。</p>
+<h3 id="总结">总结</h3>
+<p>从两大类–<code>文本I/O</code>和<code>二进制I/O</code>来梳理’流’。并从大的方向区分了各式各样的’流类型’，分享了记忆方法。 &gt; 二进制I/O类中的所有方法都声明为抛出java.io.IOException或其子类。</p>
+<p>【还有…】 因为IO操作的内容太庞大了，所以只能将它们分隔开来。这一篇主要从大的分类方向梳理I/O处理的“流”，第二篇会继续更新常见的具体’流’类，第三篇将更新Scanner的知识，比如工作原理。</p>
+
+        </div>
+        <div id="post-footer">
+            <div class="avatar" >
+                <img src="http://image.geekaholic.cn/author.jpg" alt="avatar"/>
+                
+                <a href="javascript:void(0)" class="high-song">high起来 &#128541;</a>
+                
+                
+                <a href="javascript:void(0)" class="donate fa">打赏资瓷 &#128536;</a>
+                
+            </div>
+            <ul class="author-profile-section">
+                <li>
+                  
+                  作者:
+                  
+                    
+                    <a href="/about.html">GeekaholicLin</a>
+                </li>
+                
+                <li>发表日期: <span>2015-12-27  10:14:00</span></li>
+                
+                <li>最后编辑日期: <span>2019-09-26  05:21:46</span></li>
+                
+                <li class="post-category">
+                    文章分类:
+                    
+                    <a href="/categories/编执狂/">编执狂</a>
+                    
+                    <a href="/categories/编执狂/Java/">Java</a>
+                    
+                </li>
+                <li class="post-tags">
+                    文章标签:
+                    
+                    <a href="/tags/Java/">Java</a>
+                    
+                    <a href="/tags/IO操作/">IO操作</a>
+                    
+                    <a href="/tags/流类型/">流类型</a>
+                    
+                </li>
+                
+                <li> 版权声明: 
+<a href="https://creativecommons.org/licenses/by-nc-nd/3.0/" target="_blank">
+知识共享署名-非商业性使用-禁止演绎 3.0 未本地化版本许可协议（CC BY-NC-ND 3.0）
+</a></li>
+                
+            </ul>
+            <div id="donate-wrap">
+                
+                
+                
+                <img src="http://image.geekaholic.cn/alipay.jpg" alt="支付宝付款" class="donate-img">
+                
+                <img src="http://image.geekaholic.cn/wechat.png" alt="微信付款" class="donate-img">
+                
+                
+            </div>
+        </div>
+    </article>
+    <div class="article-nav">
+        
+        <a href="/2015/12/27/理清Java的IO-2/" class="pre-post fa fa-caret-left">理清Java的IO(2)--流</a>
+        
+        
+        <a href="/2015/12/26/理清Java异常-2/" class="next-post fa">理清Java异常(2)</a>
+        
+    </div>
+    
+    <div id="comments">
+        
+
+<script>
+  gitalk.render("comments");
+</script>
+
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+    <footer id="footer">
+    
+    <div class="social">
+        
+        <a href="https://freecodecamp.cn/geekaholiclin" class="fa fa-free-code-camp" target="_blank" title="freecodecamp"></a>
+        
+        <a href="https://github.com/GeekaholicLin" class="fa fa-github" target="_blank" title="github"></a>
+        
+        <a href="mailto:geekaholiclin@gmail.com" class="fa fa-envelope-o" target="_blank" title="mail to me"></a>
+        
+    </div>
+    
+    <div>
+        
+        <a href="/" class="copyright-links">GeekaholicLin</a>&copy;2015 - 2019.All Rights
+        Reserved.
+    </div>
+    <p>Powered by <a href="https://hexo.io" class="copyright-links" target="_blank">Hexo</a> | Theme by <a
+                href="https://github.com/GeekaholicLin" class="copyright-links" target="_blank">GeekaholicLin</a>
+    </p>
+    
+    
+    <p>
+        <span id="busuanzi_container_site_uv" class="fa fa-bar-chart">
+        欢迎第<span id="busuanzi_value_site_uv"><i class="fa fa-spinner fa-spin"></i></span>位小伙伴~
+        </span>
+    </p>
+    
+</footer>
+
+</div>
+    <ul id="tools">
+    <li class="totop-btn fa fa-angle-up"></li>
+    <li class="exchange-btn fa fa-exchange"></li>
+  
+    <li class="toc-btn fa fa-list-ul"></li>
+    
+    
+
+    
+    <li class="comment-btn fa fa-comments-o">
+        <a href="#comments" title="comments"></a>
+    </li>
+    
+</ul>
+<p id="process"></p>
+<div id="search-overlay">
+    <div class="search-area-wrap">
+        <div id="search-area">
+            <div class="input-wrap focus">
+                <i class="fa fa-search" aria-hidden="true"></i>
+                <input id="search-input" autofocus autocomplete="off" type="text"
+                       placeholder="search this website..."/>
+            </div>
+            <ul id="search-result">
+                <li class="load-first"><i class="fa fa-spinner fa-pulse"></i></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#概念"><span class="toc-number">1.</span> <span class="toc-text">概念</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#相关包"><span class="toc-number">1.1.</span> <span class="toc-text">相关包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#文件"><span class="toc-number">1.2.</span> <span class="toc-text">文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#流"><span class="toc-number">1.3.</span> <span class="toc-text">流</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#流的分类"><span class="toc-number">2.</span> <span class="toc-text">流的分类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#个人记忆方法"><span class="toc-number">2.1.</span> <span class="toc-text">个人记忆方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#输入流和输出流inputoutput-stream"><span class="toc-number">2.2.</span> <span class="toc-text">输入流和输出流(Input/Output Stream)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#字节流和字符流byte-streamcharacter-stream"><span class="toc-number">2.3.</span> <span class="toc-text">字节流和字符流(byte Stream/character Stream)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#构造方法不同的原因"><span class="toc-number">2.3.1.</span> <span class="toc-text">构造方法不同的原因</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#代码实例"><span class="toc-number">2.3.2.</span> <span class="toc-text">代码实例</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#常见的处理流"><span class="toc-number">2.3.3.</span> <span class="toc-text">常见的处理流</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#总结"><span class="toc-number">2.4.</span> <span class="toc-text">总结</span></a></li></ol></li></ol>
+
+
+    <script src="/js/highsong.js"></script>
+
+
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+    //theme config datas
+    var copyrightObj = {};
+    copyrightObj.enable = 'true';
+    copyrightObj.triggerCopyLength = '200';
+    copyrightObj.appendText = '商业转载请联系作者获得授权,非商业转载请注明出处 © GeekaholicLin';
+    var leancloudObj = {};
+    leancloudObj.enable = 'true';
+    leancloudObj.className = 'BlogCounter';
+    leancloudObj.limits = '10';
+</script>
+<script type="text/javascript">
+    var search = {};
+    var search_path = "search.xml";
+    if (!search_path) {
+        search_path = "search.xml";
+    }
+    search.path = "/" + search_path;
+    search.func =  _ajax.init();
+</script>
+<script src="/js/app.js"></script>
+
+
+</body>
+</html>

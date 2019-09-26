@@ -27,7 +27,6 @@ var _busuanzi = theme.busuanzi_src || '/js/thirdParty/busuanzi.min.js';
 
 <script>
   var admin = "<%= theme.gitalk.admin %>";
-  var distractionFreeMode = "<%= theme.gitalk.distractionFreeMode%>"
   admin = admin.split(",");
   var gitalk = new Gitalk({
     clientID: "<%= theme.gitalk.clientID %>",
@@ -36,7 +35,7 @@ var _busuanzi = theme.busuanzi_src || '/js/thirdParty/busuanzi.min.js';
     owner: "<%= theme.gitalk.owner %>",
     admin: admin,
     id: decodeURIComponent(location.pathname),
-    distractionFreeMode: distractionFreeMode
+    distractionFreeMode: <%= theme.gitalk.enable %>
   })
 
 </script>
